@@ -1,0 +1,100 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../images/logo1.png">
+
+    <title>iBitt - Disable Account </title>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <!-- Bootstrap 4.0-->
+    <link rel="stylesheet" href="~/DashboardAssets/vendor_components/bootstrap/dist/css/bootstrap.min.css">
+
+    <!-- Bootstrap 4.0-->
+    <link rel="stylesheet" href="~/DashboardAssets/vendor_components/bootstrap/dist/css/bootstrap-extend.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/DashboardAssets/vendor_components/font-awesome/css/font-awesome.min.css">
+
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="~/DashboardAssets/vendor_components/Ionicons/css/ionicons.min.css">
+
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/DashboardAssets/css/master_style.css">
+
+    <!-- mixpro_admin Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="~/DashboardAssets/css/skins/_all-skins.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- google font -->
+
+    <link href="https://fonts.googleapis.com/css?family=Rubik:400,700&display=swap" rel="stylesheet">
+
+</head>
+<body class="hold-transition login-page" style="font-family: 'Rubik', sans-serif;">
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="#">iBitt</a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="login-box-body" style="">
+            <p class="login-box-msg">Disable your account</p>
+            <h6 class="text-success" id="verify-msg"></h6>
+            <h6 class="text-center text-danger">@ViewBag.error</h6>
+            @if (ViewBag.msg == null)
+            {
+                <form class="form" action="@Url.Action("Disable","Account")" method="post" id="form" novalidate>
+                    <label class="text-danger text-center" style="text-align:center">@ViewBag.error</label>
+                    <label class="text-center text-default" id="msg" style="">Do you really want to disable your account?</label>
+                    @Html.Hidden("code", ViewBag.code as string)
+                    <div class="form-group mb-5">
+                        <button class="btn btn-block btn-lg btn-danger text-uppercase fs-12 fw-600" type="submit">Yes</button>
+                    </div>
+                    <br />
+                    <div class="form-group mb-5">
+                        <a href="@Url.Action("Login","Account")" class="btn btn-block btn-lg btn-success text-uppercase fs-12 fw-600">Cancel</a>
+                    </div>
+                </form>
+            }
+            else
+            {
+                <label class="text-center text-default" id="msg" style="">@ViewBag.msg</label>
+
+            }
+
+        </div>
+        <!-- /.login-box-body -->
+    </div>
+    <!-- /.login-box -->
+    <!-- jQuery 3 -->
+    <script src="~/DashboardAssets/vendor_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- popper -->
+    <script src="~/DashboardAssets/vendor_components/popper/dist/popper.min.js"></script>
+
+    <!-- Bootstrap 4.0-->
+    <script src="~/DashboardAssets/vendor_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+        $(function () {
+            $(".btn").click(function () {
+                $.blockUI();
+            })
+        })
+    </script>
+</body>
+</html>

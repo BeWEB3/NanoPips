@@ -1,0 +1,181 @@
+﻿@model Exchange.DTO.UserRole
+@{
+    Layout = null;
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Assets/vendor/css/bootstrap.min.css">
+    <!-- theme css -->
+    <link rel="stylesheet" href="~/Assets/css/theme.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <!-- custom csss -->
+    <link rel="stylesheet" href="~/Assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:400,700&display=swap" rel="stylesheet">
+    <title>iBitt - Log in </title>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+</head>
+<body style="font-family: 'Rubik', sans-serif;">
+    <!-- Site Header v2 -->
+    <header class="header-v2 sticky-top primary-bg">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark border-bottom border-dark">
+                <a class="navbar-brand" href="#"><img src="~/Assets/images/logo.png" alt="ibitt"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+
+            </nav>
+        </div>
+    </header>
+    <!-- / Site Header v2 -->
+    <!-- Page Content -->
+    <div class="page-content">
+
+
+
+        <!-- get your card -->
+        <section class="get-your-card py-5">
+            <div class="container">
+                <div class="section-header py-3 mb-5">
+                    <div class="d-lg-flex text-center">
+                        <div class="col-lg-6 mx-auto">
+
+                            <div id="wpcrlLoginSection" class="container-fluid">
+                                <div class="row">
+                                    <div class="col-xs-8 col-md-10">
+                                        <p class="login-box-msg">Two Factor Authentication</p>
+                                        <h6 class="text-success" id="verify-msg"></h6>
+                                        <h6 class="text-center text-danger">@ViewBag.error</h6>
+                                        @using (Html.BeginForm("TwoFA", "Account", FormMethod.Post, new { id = "t-form", @class = "text-center", novalidate = "novalidate" }))
+                                        {
+                                            <div class="form-group has-feedback">
+                                                <input type="number" class="form-control" name="code" required placeholder="2 fa code" autofocus />
+                                                <span class="ion ion-locked form-control-feedback"></span>
+                                            </div>
+
+                                            <div class="row">
+                                                <!-- /.col -->
+                                                <div class="col-12 text-center">
+                                                    <button type="submit" class="btn btn-block btn-flat margin-top-10 btn-primary">SUBMIT</button>
+                                                </div>
+                                                <!-- /.col -->
+                                            </div>
+                                        }
+
+                                        <!-- /.social-auth-links -->
+
+                                        <div class="margin-top-30 text-center">
+                                            <p>Back to <a href="@Url.Action("Index","Dashboard")" class="text-info m-l-5">Login</a></p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- /get your card -->
+    <!-- / Page Content -->
+    <!-- Site Footer -->
+    <footer class="primary-bg">
+        <div class="footer-main pt-5 pb-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-sm-4 col-12 col-lg-4">
+                        @*<img src="~/Assets/images/logo.png"><br /><br />*@
+                        <h5>IBITT OFFICES</h5>
+                        <h6 style="color:#fff"><strong>UNITED KINGDOM</strong> LONDON </h6>
+                        <p>
+                            71 Shelton St, London
+                            WC2H 9JQ, UK
+                        </p>
+                        <h6 style="color:#fff">
+                            <strong> CHILE </strong>
+                            Santiago
+                        </h6>
+                        <p>
+                            Santo Domingo 979 Local 11. <br />
+                            Agency Phone.	+56-2-28979166<br />
+                            +56-2-24053896
+                        </p>
+                        <h6 style="color:#fff">
+                            <strong>PERU</strong>
+                            Lima
+                        </h6>
+                        <p>
+                            Calle Coronel Andrés Reyes N° 437 Piso 12,
+                            Centro Empresarial Platinum Plaza Torre B,
+                            San Isidro. Lima.
+                        </p>
+                        <p>
+                            Email: support@ibitt.co<br>
+                            Tele: t.me/ibittsupport
+                        </p>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-12 col-lg-4">
+                        <h5>IMPORTANT LINKS</h5>
+                        <ul>
+                            <li><h4><a href="https://documenter.getpostman.com/view/4929813/S17tP7a5" target="_blank" style="color:#ababb0;text-decoration:none">
+                                    API Documentation</a></h4><br /></li>
+                            <li><h4>Products </h4><br /></li>
+                            <li><h4>Services</h4><br /></li>
+                            <li><h4>Support</h4><br /></li>
+                            <li><h4>News</h4><br /></li>
+                            <li><h4>Team</h4><br /></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-12 col-lg-4">
+                        <h5>STAY TUNED</h5>
+                        <p>Join our Mailing List</p>
+                        <form>
+                            <input type="email" class="form-control border-radius-3 mb-3" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                            <button type="button" class="btn primary-btn border-radius-3 py-3 px-3 w-100 b-effect3">Join</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mini-footer secondary-bg pt-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-12 col-sm-6">
+                        <p>Copyright © 2018, INVESTA Exchange.</p>
+                    </div>
+                    <div class="col-md-4 col-12 col-sm-6">
+                        <p>
+                            GET SOCIAL : <img src="~/Assets/images/facebook.png">
+                            <img src="~/Assets/images/twitter.png">
+                            <img src="~/Assets/images/instagram.png">
+                        </p>
+                    </div>
+                    <div class="col-md-4 col-12 col-sm-6">
+                        <p>Terms & Condition  |  Privacy Policy</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="~/Assets/vendor/js/lib/jquery-3.3.1.slim.min.js"></script>
+    <script src="~/Assets/vendor/js/lib/popper.min.js"></script>
+    <script src="~/Assets/vendor/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/DashboardAssets/vendor_components/blockUI/jquery.blockUI.js"></script>
+    <script>
+        $(function () {
+            $("#t-form").validate();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+﻿@using Exchange.DTO
+@{
+    ViewBag.Title = "Manage Currencies";
+    Layout = "~/Views/Shared/_masterAdmin.cshtml";
+}
+
+@{
+    var ac = SessionItems.Get(SessionKey.ACCOUNT) as Account;
+    byte? userType = ac.UserRoles.FirstOrDefault().UserRoleTypeId;
+}
+
+<input type="hidden" value="@userType" id="hdnUserType" />
+<input type="hidden" class="form-control" id="ud" data-mvcgrid-type="filter" data-mvcgrid-option="UserType" value="@userType" />
+<button type="button" hidden="hidden" id="filter-btn" data-mvcgrid-apply-filter="click">Search</button>
+
+
+<div class="content-block">
+    <div class="row no-gutters">
+        <!-- row -->
+        <!-- <div class="col-lg-12"><label class="border-left pl-2 text-muted">DataTables</label> </div> -->
+
+        <div class="col-12 col-md-6 col-lg-12 p-2">
+            <!-- col -->
+            <div class="card flat border-bottom">
+                <!-- card -->
+                <div class="card-header">@ViewBag.title</div>
+                <div class="card-body px-0">
+                    @*<table class="table dt">
+                        <thead>
+                            <tr>
+                                <td>Currency</td>
+                                <td>Code</td>
+                                <td>Status</td>
+                                <td></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Where(m => m.ThreeDigitName == "BTC" || m.ThreeDigitName == "USD" || m.ThreeDigitName=="CLP").ToList())
+                            {
+                                <tr>
+                                    <td>@item.FullName</td>
+                                    <td>@item.ThreeDigitName</td>
+                                    <td>
+                                        @if (item.Status == false)
+                                        {
+                                            <span class="label label-danger">Active</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="label label-success">Suspended</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        <span>
+                                            @using (Html.BeginForm("Spread", "Admin", FormMethod.Post))
+                                            {
+                                                <span style="display:inline-block">
+                                                    @Html.Hidden("Currency", item.ThreeDigitName)
+                                                    <label>Buy Spread</label><br />
+                                                    <input type="number" name="buy" value="@item.BuySpread" />
+                                                </span>
+                                                <span style="display:inline-block">
+                                                <label>Sell Spread</label><br />
+                                                <input type="number" name="sell" value="@item.SellSpread" />
+                                                <input type="submit" class="btn btn-danger" value="Update" />
+                                                </span>
+                                            }
+                                        </span>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+
+                    </table>*@
+
+                    @Html.Partial("_MVCGridToolbar", new Exchange.UI.Models.MVCGridToolbarModel()
+                        {
+                            MVCGridName = "CurrencyGrid",
+                            PageSize = true,
+                            ColumnVisibility = true,
+                            Export = true,
+                            GlobalSearch = true
+                        })
+                        <br />
+                        <div class="dataTables_wrapper table-responsive container-fluid dt-bootstrap4">
+                            @Html.MVCGrid("CurrencyGrid")
+                        </div>
+
+                </div>
+            </div> <!-- end card -->
+        </div> <!-- end col -->
+
+    </div> <!-- end row -->
+</div>
+
+
+@section scripts{
+    <script>
+
+        $(document).ready(function () {
+            $("#ud").val($("#hdnUserType").val());
+            $("#filter-btn").click();
+
+            debugger;
+
+            var userType = $("#hdnUserType").val();
+            if (userType == 3) {
+                $("#MVCGridTable_CurrencyGrid th:last-child, #MVCGridTable_CurrencyGrid td:last-child").remove();
+            }
+            $(".activateCurrency").click(function (e) {
+                e.preventDefault();
+                var url = $(this).attr("href");
+                $("#verifySecuritymodal").modal("show");
+                $(".verifyBtn").click(function (e) {
+                    e.preventDefault();
+                    $.blockUI();
+                    var pin = $(".verifyPin").val();
+                    var verifyUrl = $("#verify-form").attr("action");
+                    $.get(verifyUrl + "?verifyPin=" + pin, function (response) {
+                        if (response === "True") {
+                            $(".verifyPin").val(null);
+                            $("#verifySecuritymodal").modal("hide");
+                            location.href = url;
+                        } else {
+                            $.unblockUI();
+                            $(".verifyPin").val(null);
+                            $("#verifySecuritymodal").modal("hide");
+                            bootbox.alert("Your Pin is wrong!")
+                        }
+                    });
+                });
+            });
+            $(".deactivateCurrency").click(function (e) {
+                e.preventDefault();
+                var url = $(this).attr("href");
+                $("#verifySecuritymodal").modal("show");
+                $(".verifyBtn").click(function (e) {
+                    e.preventDefault();
+                    $.blockUI();
+                    var pin = $(".verifyPin").val();
+                    var verifyUrl = $("#verify-form").attr("action");
+                    $.get(verifyUrl + "?verifyPin=" + pin, function (response) {
+                        if (response === "True") {
+                            $(".verifyPin").val(null);
+                            $("#verifySecuritymodal").modal("hide");
+                            location.href = url;
+                        } else {
+                            $.unblockUI();
+                            $(".verifyPin").val(null);
+                            $("#verifySecuritymodal").modal("hide");
+                            bootbox.alert("Your Pin is wrong!")
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
+}

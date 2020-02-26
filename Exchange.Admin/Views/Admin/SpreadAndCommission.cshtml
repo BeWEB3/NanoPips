@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewBag.Title = "SpreadAndCommission";
+    Layout = "~/Views/Shared/_masterAdmin.cshtml";
+}
+
+<div class="content-block">
+    <div class="row no-gutters">
+        <div class="col-12 col-md-12 col-lg-12 p-2 col-sm-12 col-xs-12">
+            <div class="card flat border-bottom">
+                <div class="card-header">Add ERC Token</div>
+                @using (Html.BeginForm("SpreadAndCommission", "Admin", FormMethod.Post, new { id = "spCoForm", novalidate = "novalidate" }))
+                {
+                    <div class="card-body">
+                        <div class="form-row">
+                            <div class="col-md-4"></div>
+                            <div class="form-group col-md-4">
+                                <label>Email of User</label>
+                            </div>
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4 offset-md-4">
+                                <input type="text" name="email" class="form-control" id="emAil" placeholder="Email" required />
+                                <p class="text-danger" id="ae">Email does not exist</p>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-4"></div>
+                            <div class="form-group col-md-4">
+                                <label>Buy Spread</label>
+                            </div>
+                            <div class="col-md-4 offset-md-4">
+                                <input type="number" name="buySpread" step="0.05" class="form-control" placeholder="Buy Spread" required />
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-md-4"></div>
+                            <div class="form-group col-md-4">
+                                <label>Sell Spread</label>
+                            </div>
+                            <div class="col-md-4 offset-md-4">
+                                <input type="number" name="sellSpread" step="0.05" class="form-control" placeholder="Sell Spread" required />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-4"></div>
+                            <div class="form-group col-md-4">
+                                <label>Commisssion</label>
+                            </div>
+                            <div class="col-md-4 offset-md-4">
+                                <input type="number" name="commission" step="0.05" min="0.00" class="form-control" placeholder="Commission" required />
+                            </div>
+                        </div>
+                        <div class="form-row" style="margin-top:20px">
+                            <div class="col-md-4"></div>
+                            <div class="form-group col-md-4">
+                                <input type="submit" value="Add" id="spAndComBtn" class="btn btn-success form-control col-md-4" />
+
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div> <!-- end row -->
+</div>
+
+
+@section scripts{
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <script>
+
+        $("#spAndComBtn").click(function (event) {
+            event.preventDefault();
+            var form = $("#spCoForm");
+            form.validate();
+            if (form.valid()) {
+                $("#verifySecuritymodal").modal("show");
+                $(".verifyBtn").click(function (e) {
+                    e.preventDefault();
+                    $.blockUI();
+                    var pin = $(".verifyPin").val();
+                    var verifyUrl = $("#verify-form").attr("action");
+                    $.get(verifyUrl + "?verifyPin=" + pin, function (response) {
+                        if (response === "True") {
+                            $(".verifyPin").val(null);
+                            $("#verifySecuritymodal").modal("hide");
+                            form.submit();
+                        } else {
+                            $.unblockUI();
+                            $(".verifyPin").val(null);
+                            $("#verifySecuritymodal").modal("hide");
+                            bootbox.alert("Your Pin is wrong!")
+                        }
+                    });
+                });
+            } else {
+                event.preventDefault();
+            }
+
+        });
+
+        $("#ae").hide();
+            $("#emAil").blur(function () {
+                var value = $(this).val();
+                $.get("@Url.Action("_CheckEmail","Admin")", { email: value }, function (flag) {
+                    if (flag == "True") {
+                        $("#ae").hide();
+                        $("#email").val("");
+                    } else {
+                        $("#ae").show();
+                    }
+                })
+            });
+
+    </script>
+}

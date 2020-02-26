@@ -1,0 +1,166 @@
+﻿
+body::-webkit-scrollbar {
+    top:50%;
+    width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+}
+
+::-webkit-scrollbar {
+    width: 6px; 
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+
+.rate-txt {
+    position: absolute;
+    margin: 12px;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.green {
+    color: #05b469;
+    background: rgba(1, 152, 87, 0.60);
+    padding: 3px;
+}
+
+.green-text {
+    color: #05b469;
+    padding: 3px;
+}
+
+.red {
+    color: #dc1d1d;
+    background: rgba(229, 32, 32, 0.38);
+    padding: 3px;
+}
+
+.red-text {
+    color: #dc1d1d;
+    padding: 3px;
+}
+
+
+.rate-form-control {
+    text-align: right;
+    height: 50px;
+}
+
+.panel-heading {
+    background: #f1f3f6;
+}
+
+.rate-btn-alt {
+    background-color: #31363b !important;
+    border-color: #31363b !important;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+.rate-btn {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+.rate-btn-alt:hover {
+    background-color: white !important;
+    color: #31363b !important;
+}
+
+p {
+    text-align: center;
+    margin: 1px !important;
+    font-size: small !important;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    -moz-appearance: textfield;
+}
+
+#nav-header {
+    font-weight: 400;
+    text-align: right;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+    #nav-header li {
+        float: left;
+        padding: 10px;
+        color: #f2f2f2;
+    }
+
+.panel-title {
+    color: #f2f2f2 !important;
+    text-align: start !important;
+    width: 100%;
+}
+
+label {
+    font-size: x-small !important;
+    color: #f2f2f2;
+}
+
+.form-control {
+    font-size: x-small;
+    padding: 5px;
+    height: 30px
+}
+
+.o-btn {
+    font-size: x-small;
+    padding: 5px;
+}
+
+.panel-header {
+    height: 35px;
+    background: #31363b;
+    width: 100%;
+    font-size: small !important;
+    color: #f2f2f2;
+    padding: 8px !important;
+}
+
+.panel-body {
+    padding: 0px !important;
+    border: 1.2px solid #31363b !important;
+}
+
+.table {
+    font-size: small !important;
+    background: #212529
+}
+
+td {
+    font-size: x-small !important;
+}
+
+#cont{
+    height:7250px;
+}
+.gg {
+    width:100%;
+    height:845px;
+    overflow-y:scroll;
+}

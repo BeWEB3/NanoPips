@@ -1,0 +1,96 @@
+﻿
+@{
+    ViewBag.Title = "SpreadInfo";
+    Layout = "~/Views/Shared/_masterAdmin.cshtml";
+}
+<div class="content-block">
+    <div class="row no-gutters">
+        <div class="col-12 col-md-12 col-lg-12 p-2 col-sm-12 col-xs-12">
+            <div class="card flat border-bottom">
+                <div class="card-header">Search Spread and Commission Info of a user</div>
+                <form method="get" action="@Url.Action("_GetUserInfo","Admin")" id="spInfoForm">
+                    <div class="card-body">
+                        <div class="form-row">
+                            <div class="col-md-4"></div>
+                            <div class="form-group col-md-4">
+                                <label>Email of User</label>
+                            </div>
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4 offset-md-4">
+                                <input type="text" name="email" class="form-control" id="emAil" placeholder="Search a user" required />
+                                <p class="text-danger" id="ae">Email does not exist</p>
+                            </div>
+                        </div>
+                        <div class="form-row" style="margin-top:20px">
+                            <div class="col-md-4"></div>
+                            <div class="form-group col-md-4 offset-md-1">
+                                <input type="submit" value="Search" id="searchUserBtn" class="btn btn-success form-control col-md-4" />
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <h2 class="text-center" style="margin:20px"> RESULT </h2>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4">
+                        <label>Email of User</label>
+                        <input type="text" class="form-control" id="userName" disabled="disabled" placeholder="Email" required />
+                    </div>
+                    <div class="col-md-4">
+                        <label>Commisssion</label>
+                        <input type="number" class="form-control" disabled="disabled" id="comm" placeholder="Commission" required />
+                    </div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4">
+                        <label>Buy Spread</label>
+                        <input type="number" class="form-control" disabled="disabled" id="buySpread" placeholder="Buy Spread" required />
+                    </div>
+                    <div class="col-md-4">
+                        <label>Sell Spread</label>
+                        <input type="number"  class="form-control" disabled="disabled" id="sellSpread" placeholder="Sell Spread" required />
+                    </div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-12" style="height:20px"></div>
+                </div>
+
+            </div>
+        </div>
+
+    </div> <!-- end row -->
+</div>
+
+
+@section scripts{
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <script>
+        $("#ae").hide();
+        $("#emAil").keyup(function () {
+            $("#ae").hide();
+        });
+        $("#searchUserBtn").click(function (e) {
+            e.preventDefault();
+                var value = $("#emAil").val();
+                $.get("@Url.Action("_CheckEmail","Admin")", { email: value }, function (flag) {
+                    if (flag == "True") {
+                        $("#ae").hide();
+                        var url = $("#spInfoForm").attr("action");
+                        $.get(url, { email: value }, function (data) {
+                            $("#userName").val(data.Email);
+                            $("#buySpread").val(data.BuySpread);
+                            $("#sellSpread").val(data.SellSpread);
+                            $("#comm").val(data.Commission);
+                        });
+                    } else {
+                        $("#ae").show();
+                        $("#emAil").val("");
+                    }
+                })
+            });
+
+    </script>
+}

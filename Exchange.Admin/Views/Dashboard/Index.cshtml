@@ -1,0 +1,317 @@
+﻿@model Exchange.DTO.Account
+@{ 
+    ViewBag.title = "Summary";
+    ViewBag.description = "profile, activities and balance";
+    var market = ViewBag.summary as Exchange.DTO.MarketSummary;
+}
+
+
+@section scripts{
+
+<script src="~/DashboardAssets/vendors/amsCharts/amcharts.js"></script>
+<script src="~/DashboardAssets/vendors/amsCharts/serial.js"></script>
+<script src="~/DashboardAssets/vendors/amsCharts/amstock.js"></script>
+<script src="~/DashboardAssets/vendors/amsCharts/themes/light.js"></script>
+
+
+    <!-- Chart code -->
+<script>
+    $.blockUI();
+    $.get("@Url.Action("_getMarketHistory","Dashboard",new {from="BTC",to="ETH" })", function (jsondata) {
+        $.unblockUI();
+        var chartData = generateChartData();
+       
+        function generateChartData()
+        {
+            var chartData = [];
+            for (var i = 0; i < jsondata.length; i++)
+            {
+                chartData.push({
+                    "date":new Date( jsondata[i].time*1000),
+                    "value": jsondata[i].close,
+                    "volume": jsondata[i].volume
+                });
+
+            }
+            return chartData;
+        }
+
+        var chart = AmCharts.makeChart("chartdiv", {
+            "type": "stock",
+            "theme": "light",
+            "categoryAxesSettings": {
+                "minPeriod": "mm"
+            },
+
+            "dataSets": [{
+                "color": "#1cbe91",
+                "fieldMappings": [{
+                    "fromField": "value",
+                    "toField": "value"
+                }, {
+                    "fromField": "volume",
+                    "toField": "volume"
+                }],
+
+                "dataProvider": chartData,
+                "categoryField": "date"
+            }],
+
+            "panels": [{
+                "showCategoryAxis": false,
+                "title": "Value",
+                "percentHeight": 70,
+
+                "stockGraphs": [{
+                    "id": "g1",
+                    "valueField": "value",
+                    "type": "smoothedLine",
+                    "lineThickness": 2,
+                    "bullet": "round"
+                }],
+
+
+                "stockLegend": {
+                    "valueTextRegular": " ",
+                    "markerType": "none"
+                }
+            }, {
+                "title": "Volume",
+                "percentHeight": 30,
+                "stockGraphs": [{
+                    "valueField": "volume",
+                    "type": "column",
+                    "cornerRadiusTop": 2,
+                    "fillAlphas": 1
+                }],
+
+                "stockLegend": {
+                    "valueTextRegular": " ",
+                    "markerType": "none"
+                }
+            }],
+
+            "chartScrollbarSettings": {
+                "graph": "g1",
+                "usePeriod": "10mm",
+                "position": "top"
+            },
+
+            "chartCursorSettings": {
+                "valueBalloonsEnabled": false
+            },
+
+
+
+            "panelsSettings": {
+                "usePrefixes": false
+            },
+
+            "export": {
+                "enabled": false,
+                "position": "bottom-right"
+            }
+        });
+    })
+
+</script>
+    }
+
+
+<div class="row">
+    @if (Model.AccountType_Id == (int)Exchange.Common.AccountTypes.NEW)
+    {
+        <div class="alert alert-icon alert-danger border-danger alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            <i class="material-icons list-icon">warning</i>  <strong>Alert!</strong> Your account is not verified yet. Navigate to <strong>Security > Account Verification</strong> to verify your account with proof of identity document
+            <br />
+            <strong>Note: You cannot withdraw funds until your account is not verified by us</strong>
+        </div>
+    }
+ 
+    @if (Model.AccountType_Id == (int)Exchange.Common.AccountTypes.REJECTED)
+            {
+        <div class="alert alert-icon alert-danger border-danger alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            <i class="material-icons list-icon">warning</i>  <strong>Alert!</strong> We are sorry to announce that the document you submitted was rejected due to some reasons. Please re upload or contact support
+            <br />
+            <strong>Note: You cannot withdraw funds until your account is not verified by us</strong>
+        </div>
+    }
+    <div class="col-12 col-md-12 widget-holder widget-full-content">
+        <div class="widget-bg">
+            <div class="widget-body clearfix row">
+                <div class="col-md-12 row">
+                    <div class="col-md-4" style="margin-top:20px">
+                        <p class="text-center"><span class="h3">1 BTC = </span><span class="h1">@market.Price.ToString("0.000000") ETH</span> </p>
+                        <p class="text-center">BITCOIN PRICE</p>
+                    </div>
+                    <div class="col-md-4" style="margin-top:20px">
+                        <p class="text-center"><span class="h3">1 ETH = </span><span class="h1">@((1/market.Price).ToString("0.0000000")) BTC</span> </p>
+                        <p class="text-center">ETHEREUM PRICE</p>
+                    </div>
+                    <div class="col-md-4" style="margin-top:20px">
+                        <p class="text-center"><span class="h1">@market.Changepctday.ToString("0.0")%</span> </p>
+                        <p class="text-center">24 HOUR CHANGE (%)</p>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div id="chartdiv" style="width:100%;height:400px;padding:0px 10px"></div>
+
+                </div>
+                
+            </div>
+
+            <!-- /.widget-body -->
+        </div>
+        <!-- /.widget-bg -->
+    </div>
+    <div class="col-md-12" style="width:100%;height:10px;"></div>
+    <!-- User Summary -->
+    <div class="col-12 col-md-4 widget-holder widget-full-content">
+        <div class="widget-bg" style="height:550px;overflow:hidden">
+            <div class="widget-body clearfix">
+                <div class="widget-user-profile">
+                    
+                    <div class="profile-body" style="">
+                       
+                        <h6 class="h3 profile-user-name">@Model.FirstName @Model.LastName</h6>
+                        <small class="profile-user-address color-color-scheme">@Model.Email</small>
+                        <div style="width:100%;height:100px"></div>
+                        
+                        <h5><span>
+                                <img src="~/DashboardAssets/img/btc.png" style="width:40px" /> </span>   &nbsp;&nbsp; @((Model.Wallets.Where(m=>m.Currency=="BTC").First().Balance==null)?"0.00000": Model.Wallets.Where(m => m.Currency == "BTC").First().Balance.Value.ToString("0.00000")) BTC</h5>
+                        <h5><span>
+                                <img src="~/DashboardAssets/img/eth.png" style="width:40px" /> </span>  &nbsp;&nbsp; @((Model.Wallets.Where(m => m.Currency == "ETH").First().Balance == null) ? "0.00000" : Model.Wallets.Where(m => m.Currency == "ETH").First().Balance.Value.ToString("0.00000")) ETH</h5>
+                        
+                        <hr class="profile-seperator">
+                        <a href="@Url.Action("KYC","Dashboard")" class="btn btn-outline-color-scheme btn-rounded btn-lg px-5 border-thick text-uppercase mr-2 fw-700 fs-11 heading-font-family">Edit Profile</a>
+                        <!-- /.profile-user-description -->
+                        <div class="divide-50"></div>
+                        <div class="divide-10"></div>
+                        <div style="width:100%;height:2px;"></div>
+                    </div>
+                    <!-- /.d-flex -->
+                    <!-- /.row -->
+                </div>
+                <!-- /.widget-user-profile -->
+
+            </div>
+
+            <!-- /.widget-body -->
+        </div>
+        <!-- /.widget-bg -->
+    </div>
+    <!-- /.widget-holder -->
+    <!-- Tabs Content -->
+    <div class="col-12 col-md-8 mr-b-30">
+        <ul class="nav nav-tabs contact-details-tab">
+            <li class="nav-item">
+                <a href="#activity-tab-bordered-1" class="nav-link active" data-toggle="tab" aria-expanded="true">Last 5 Activities</a>
+            </li>
+            <li class="nav-item">
+                <a href="#profile-tab-bordered-1" class="nav-link" data-toggle="tab" aria-expanded="false">View Profile</a>
+            </li>
+        </ul>
+        <div class="tab-content" style="height:489px;overflow:auto">
+            <div role="tabpanel" class="tab-pane active" id="activity-tab-bordered-1" aria-expanded="true">
+                <div class="widget-user-activities">
+                    <table class="table table-bordered table-striped table-responsive">
+                        <thead>
+                            <tr class="color-color-scheme " style="font-weight:bold">
+                                <td>Time</td>
+                                <td>Address</td>
+                                <td>Activity</td>
+                                <td>User Agent</td>
+                                
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            @foreach (var item in ViewBag.activites as List<Exchange.DTO.UserActivity>)
+                            {
+                                <tr>
+                                    <td style="width:100px">@item.ActivityDate.Value.ToString("dd-MMM-yy")</td>
+                                    <td>@item.IPAddress</td>
+                                    <td>@item.ActivityType</td>
+                                    <td>@item.UserAgent</td>
+                                   
+                                </tr>
+                            }
+                            
+                         
+
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.widget-user-activities -->
+            </div>
+            <!-- /.tab-pane -->
+            <div role="tabpanel" class="tab-pane" id="profile-tab-bordered-1" aria-expanded="false">
+                <div class="contact-details-profile">
+                    <h5 class="mr-b-20">Personal Profile</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="contact-details-cell">
+                                <small class="heading-font-family fw-500">First Name</small>  <span>@Model.FirstName</span>
+                            </div>
+                            <!-- /.contact-details-cell -->
+                        </div>
+                        <!-- /.col-md-6 -->
+                        <div class="col-md-6">
+                            <div class="contact-details-cell">
+                                <small class="heading-font-family fw-500">Last Name</small>  <span>@Model.LastName</span>
+                            </div>
+                            <!-- /.contact-details-cell -->
+                        </div>
+                        <!-- /.col-md-6 -->
+                        
+                        <!-- /.col-md-6 -->
+                        <div class="col-md-12">
+                            <div class="contact-details-cell">
+                                <small class="heading-font-family fw-500">Email Address</small>  <span>@Model.Email</span>
+                            </div>
+                            <!-- /.contact-details-cell -->
+                        </div>
+                        <!-- /.col-md-6 -->
+                    </div>
+                    <!-- /.row -->
+                    <hr>
+                    <h5 class="mr-b-20">Additional Information</h5>
+                    <div class="row">
+                       
+                        <!-- /.col-md-6 -->
+                        <div class="col-md-12">
+                            <div class="contact-details-cell">
+                                <small class="heading-font-family fw-500">Date of Birth</small>  <span>@Model.DOBDay/@Model.DOBMonth/@Model.DOBYear</span>
+                            </div>
+                            <!-- /.contact-details-cell -->
+                        </div>
+                        <!-- /.col-md-6 -->
+                        <!-- /.col-md-12 -->
+                        <div class="col-md-12">
+                            <div class="contact-details-cell">
+                                <small class="heading-font-family fw-500 w-25 align-self-start">Address</small>
+                                <p class="flex-1">
+                                    @Model.Address1 @Model.Address2, @Model.Country
+                                </p>
+                            </div>
+                            <!-- /.contact-details-cell -->
+                        </div>
+                        <!-- /.col-md-12 -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <div class="divide-10">  </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.tab-pane -->
+        </div>
+        <!-- /.tab-content -->
+    </div>
+    <!-- /.col-sm-8 -->
+</div>

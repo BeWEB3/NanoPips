@@ -1,0 +1,238 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Basic -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Mobile Meta -->
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>NanoPips</title>
+
+    <meta name="keywords" content="Trade Bitcoin, Ethereum, Litecoin & More" />
+    <meta name="description" content="Trade Bitcoin, Ethereum, Litecoin & More" />
+    <meta name="author" content="websketchtechnologies.com">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="~/Assets2/img/favicon.ico" type="image/x-icon" />
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="~/Assets2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Assets2/css/style.css">
+    <link rel="stylesheet" href="~/Assets2/css/animate.css">
+    <link rel="stylesheet" href="~/Assets2/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Assets2/css/owl.theme.default.min.css">
+
+    <!-- Icon fonts -->
+    <link href="~/Assets2/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Assets2/css/responsive.css" />
+    <link href="https://fonts.googleapis.com/css?family=Rubik:400,700&display=swap" rel="stylesheet">
+
+    <!-- JQuery-->
+    <script src="~/Assets2/js/jquery.js" type="text/javascript"></script>
+    <script src="~/Assets2/js/bootstrap.min.js" type="text/javascript"></script>
+    <!--[if IE]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+
+        ul.social-media-icons li a {
+            color: #131328;
+            background-color: #fff;
+            width: 50px;
+            display: inline-block;
+            text-align: center;
+            height: 50px;
+            line-height: 50px;
+            font-size: 18px;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+
+            ul.social-media-icons li a:hover {
+                color: #fff;
+                background-color: #66c254;
+            }
+    </style>
+</head>
+
+<body style="font-family: 'Rubik', sans-serif;">
+    <header>
+        <!-- Top navbar -->
+        <nav style="background-color: transparent" class="navbar navbar-fixed-top">
+            <div class="container">
+                <div class="col-xs-4 col-sm-4">
+                    <div class="logo pull-left">
+                        <a href="@Url.Action("LandingPage","Account")"><img src="~/android-icon-48x48.png" alt="NanoPips" class=" " /></a>
+                    </div>
+                </div>
+                <div class="col-xs-8 col-sm-8">
+                    <ul class="nav navbar-nav pull-right wow fadeInRight">
+                        <li class=""><a href="@Url.Action("LandingPage","Account")">Home</a></li>
+                        <li><a href="@Url.Action("Help","Account")">Help</a></li>
+                        <a href="@Url.Action("Index","Dashboard")">  <button type="button" style="background-color:#082c09;border:none;font-size: 18px;padding:14px 35px" class="btn btn-mine">Sign In</button> </a>
+                        <div id="chatwing-button-e1eb5ad0-8010-11e8-b732-a7e76a373fa9"></div>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="fontchange">
+        <div class="container">
+            <div class="col-md-12 col-lg-12 col-sm-12">
+                <h1 style="font-size:60px;"><strong>Enjoy simple pricing</strong></h1>
+                <br><br><br><br>
+                <p><strong>$0.01 per 0.01 Order Quantity.</strong></p>
+
+                <!--
+                 <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Volume </th>
+                        <th>Per Side</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>500 - 500,000</td>
+                <td>0.15%</td>
+
+                      </tr>
+                      <tr>
+                      <td>500,000 - 5,000,0000</td>
+
+                        <td>0.075%</td>
+
+                      </tr>
+
+                      <tr>
+                      <td>5,000,000 + </td>
+                      <td>0.029%</td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                -->
+
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer1">
+        <div class="container">
+
+
+            <div class="col-lg-12 col-md-12 ">
+
+                <p class="padd30">
+                <p class="padd30">  Note: Please visit <a href="@Url.Action("rate","Account")"><u>Other Rates and Fees</u> </a> and <a href="@Url.Action("funding","Account")"> <u>Funding Your Account</u> </a> for additional information.</p>
+
+            </div>
+
+        </div>
+
+
+        <div class="container">
+            <div class="row">
+                <hr style="border: 0.5px solid gray;">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 left">
+                    <p>Have more questions? <a href="@Url.Action("contact","Account")"><font style="color: rgba(102, 184, 92, 1);">Contact us</font> </a> </p>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 right">
+                    <a href="https://www.facebook.com/nanopips/"> <i class="fa fa-facebook"></i></a> |
+                    <a href="https://twitter.com/nanopips"><i class="fa fa-twitter"></i> </a> |
+                </div>
+            </div>
+        </div>
+
+    </footer>
+
+
+    <div class="footer-bottom">
+        <div class="container">
+
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 left">
+
+                <p>NanoPips is the easiest, fastest and most reliable way to trade Bitcoin, Ethereum, Cryptocurrencies, and more. Made by Tech and Trading Experts.</p>
+
+                <br>
+                <p>©2020 NanoPips Ltd. MSB (FINTRAC): M19495736</p>
+                
+            </div>
+
+            <div class="col-xs-12 col-sm-1 col-md-1 col-lg-1 left"></div>
+
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 left">
+                <b style="margin-left: 20px;"> Products </b><br>
+
+                <ul>
+                    <li><a href="@Url.Action("Index","Dashboard")">Trade</a></li>
+
+
+                    <li><a href="@Url.Action("funding","Account")">Funding Options</a></li>
+
+
+                    <li><a href="@Url.Action("pricing","Account")">Fees</a></li>
+
+
+                    <li><a href="@Url.Action("Help","Account")">FAQ's</a></li>
+                </ul>
+
+
+
+            </div>
+
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 left">
+                <b style="margin-left: 20px;">Company</b><br>
+
+                <ul>
+                    <li><a href="@Url.Action("terms","Account")">Terms & Privacy</a></li>
+                    <li><a href="">KYC Policy</a></li>
+                    <li><a href="@Url.Action("contact","Account")">Contact</a></li>
+                </ul>
+
+
+
+            </div>
+
+            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 left">
+                <b style="margin-left: 20px;">Social</b><br>
+
+                 <ul class="social-media-icons" style="margin: 0; padding: 0; list-style: none;display:flex;">
+                     <li><a href="https://www.facebook.com/nanopips/" style="margin-right:20px;"><i class="fa fa-facebook-f" style="padding-top:15px;font-size:20px;"></i></a></li>
+                     <li><a href="https://twitter.com/nanopips"><i class="fa fa-twitter" style="padding-top:15px;font-size:20px;"></i></a></li>
+
+                 </ul>
+
+
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pull-center" style="color: #fff">
+
+                    <hr style="color:#fff;height:2px;" />
+                    <a href="https://directfx.com/en"> © NanoPips Ltd. | All Rights Reserved </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BootStrap JavaScript ================================================== -->
+
+    <script src="~/Assets2/js/wow.min.js" type="text/javascript"></script>
+    <script>new WOW().init();</script>
+    <script src="~/Assets2/js/index.js" type="text/javascript"></script>
+    <script src="~/Assets2/js/owl.carousel.min.js"></script>
+
+
+</body>
+</html>

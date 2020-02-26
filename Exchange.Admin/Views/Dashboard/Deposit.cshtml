@@ -1,0 +1,72 @@
+﻿@model List<Exchange.DTO.Wallet>
+@{
+    ViewBag.Title = "DEOSIT > CRYPTO";
+}
+<div class="row">
+    <div class="col-md-12 widget-holder">
+        <div class="widget-bg">
+            <div class="widget-body clearfix">
+                <div class="panel panel-primary">
+                    <h5 class="panel-heading">
+                        BITCOIN 
+                    </h5>
+                    <div class="panel-body row">
+                        <div class="">
+                            <p>Please send Bitcoin to one of your deposit addresses displayed below. The deposit will be credited in your corresponding wallet.</p>
+                            <br />
+                            <p>To ensure your transaction is confirmed as soon as possible, a miner transaction fee of at least 0.0003 BTC is recommended.</p>
+
+                            <br />
+                            <div class="form-group">
+                                <label>Wallet</label>
+                                <div class="form-control">@Model.Where(m => m.Currency == "BTC").First().WalletAddress</div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="panel-footer">
+                        <p class="text-danger">Bitcoin deposits are credited after a minimum of 3 confirmations (about 30 minutes, sometimes longer)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 widget-holder">
+        <div class="widget-bg">
+            <div class="widget-body clearfix">
+                <div class="panel panel-primary">
+                    <h5 class="panel-heading">
+                        ETHEREUM
+                    </h5>
+                    <div class="panel-body row">
+                        <div class="">
+                            <p>Please send Ethereum to one of your deposit addresses displayed below. The deposit will be credited in your corresponding wallet.</p>
+                            <br />
+                            <p>To ensure your transaction is confirmed as soon as possible, a miner transaction fee of at least 0.0003 BTC is recommended.</p>
+                            <br />
+                            <div class="form-group">
+                                <label> Wallet</label>
+                                <div class="form-control">@Model.Where(m => m.Currency == "ETH" ).First().WalletAddress</div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="panel-footer">
+                        <p class="text-danger">Ethereum deposits are credited after a minimum of 3 confirmations (about 30 minutes, sometimes longer)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+
+    </script>
+}
+

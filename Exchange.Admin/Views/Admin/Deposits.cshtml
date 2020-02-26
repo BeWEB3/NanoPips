@@ -1,0 +1,36 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_masterAdmin.cshtml";
+    ViewBag.Title = "Deposits Report";
+}
+
+<div class="content-block">
+    <div class="row no-gutters">
+        <!-- row -->
+        <!-- <div class="col-lg-12"><label class="border-left pl-2 text-muted">DataTables</label> </div> -->
+
+        <div class="col-12 col-md-6 col-lg-12 p-2">
+            <!-- col -->
+            <div class="card flat border-bottom">
+                <!-- card -->
+                <div class="card-header">@ViewBag.title</div>
+                <div class="card-body px-0">
+                    @Html.Partial("_MVCGridToolbar", new Exchange.UI.Models.MVCGridToolbarModel()
+                    {
+                        MVCGridName = "DespositGrid",
+                        PageSize = true,
+                        ColumnVisibility = true,
+                        Export = true,
+                        GlobalSearch = true
+                    })
+                    <br />
+                    <div class="dataTables_wrapper table-responsive container-fluid dt-bootstrap4">
+                        @Html.MVCGrid("DespositGrid")
+                    </div>
+                </div>
+            </div> <!-- end card -->
+        </div> <!-- end col -->
+
+    </div> <!-- end row -->
+</div>
+

@@ -1,0 +1,363 @@
+/*!
+Theme Name: nanopips
+Theme URI: http://underscores.me/
+Author: Underscores.me
+Author URI: http://underscores.me/
+Description: Description
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: LICENSE
+Text Domain: nanopips
+Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+
+nanopips is based on Underscores https://underscores.me/, (C) 2012-2017 Automattic, Inc.
+Underscores is distributed under the terms of the GNU GPL v2 or later.
+
+Normalizing styles have been helped along thanks to the fine work of
+Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
+*/
+
+
+.banner {
+    height: 100vh;
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: table;
+    width: 100%;
+    background-position: left bottom;
+}
+
+.banner-table-cell {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+header {
+    position: absolute;
+    z-index: 9;
+    width: 100%;
+}
+
+.banner-text h1 {
+    font-size: 56px;
+    color: #fff;
+}
+
+a.solid-btn {
+    color: #fff;
+    font-size: 18px;
+    background-color: #a349a4;
+    display: inline-block;
+    padding: 10px 35px;
+    text-transform: uppercase;
+    border-radius: 3px;
+}
+
+.banner-text span {
+    display: inline-block;
+    background-color: #44af4a;
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 3px;
+    margin-bottom: 15px;
+}
+
+.banner-text span a {
+    color: #333;
+    text-decoration: underline;
+    display: inline-block;
+    margin-left: 5px;
+}
+
+header ul#menu-mainmenu li a {color: #082c09;font-size: 16px;}
+
+.header-btns a {
+    background-color: #082c09;
+}
+
+header ul#menu-mainmenu li {
+    margin-left: 20px;
+}
+
+.header-btns {
+    margin-left: 30px;
+}
+
+header ul#menu-mainmenu li:first-child {
+    margin-left: 0;
+}
+
+.banner-text a.solid-btn {
+    margin-top: 20px;
+}
+
+.get-started-section {
+    margin-top: 100px;
+}
+
+.get-started-section-titler {
+    margin-bottom: 50px;
+}
+
+.get-started-section .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    background-color: #fff;
+    color: #333;
+}
+
+
+.get-started-section a.nav-link {
+    padding: 0;
+    position: relative;
+    border: 1px dashed #d4dad5;
+    margin-bottom: 30px;
+    padding: 28px 15px;
+}
+
+.get-started-section a.nav-link img {
+    position: absolute;
+    left: 30px;
+    filter: grayscale(1);
+}
+
+.tab-text h2 {
+    font-size: 24px;
+}
+
+.tab-text {
+    padding-left: 90px;
+}
+
+
+.tab-text p {
+    margin-bottom: 0;
+    color: #818682;
+}
+
+.get-started-section .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    border-color: transparent;
+    box-shadow: 0 0 25px #ddd;
+}
+.get-started-section .nav-pills .nav-link.active img{
+    filter: grayscale(0)!important;
+}
+
+.tab-form-custom .tab-pane .user-registration {
+    padding: 0;
+    border: none;
+    margin: 0;
+}
+
+.tab-form-custom {
+    padding: 30px;
+    box-shadow: 0 0 25px #ddd;
+    border-radius: 5px;
+}
+
+.tab-form-custom .tab-pane .user-registration input {
+    border: none;
+    background-color: #f1f1f1;
+    padding: 15px;
+    border-radius: 5px!important;
+}
+
+.tab-form-custom .tab-pane .user-registration span {
+    width: 100%;
+}
+
+.tab-form-custom li.ur-checkbox-list {
+    display: block!important;
+    width: 100%;
+    margin-bottom: 0!important;
+}
+
+.tab-form-custom .ur-button-container {
+    padding: 0;
+    margin: 0;
+}
+
+.tab-form-custom .ur-button-container button {
+    margin: 0;
+    width: 100%;
+    background-color: #3dce5d;
+    padding: 15px;
+    color: #fff;
+    text-transform: uppercase;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.tab-form-custom {
+    position: relative;
+}
+
+.tab-form-custom img {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+footer {
+    background-size: cover;
+    background-position: top center;
+    padding-top: 150px;
+    padding-bottom: 30px;
+}
+
+footer .textwidget p {
+    font-size: 16px;
+    color: #fff;
+}
+
+h2.widget-title {
+    color: #fff;
+    font-size: 30px;
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+
+footer ul.menu li a {
+    color: #fff;
+}
+
+footer ul.menu li {
+    margin-bottom: 15px;
+}
+
+footer ul.menu li:last-child {
+    margin-bottom: 0;
+}
+
+ul.social-media-icons li {
+    display: inline-block;
+    margin-right: 8px;
+}
+
+ul.social-media-icons li a {
+    color: #131328;
+    background-color: #fff;
+    width: 50px;
+    display: inline-block;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    border-radius: 50px;
+    transition: 0.3s;
+}
+
+ul.social-media-icons li a:hover {
+    background-color: #66c254;
+    color: #fff;
+}
+
+ul.social-media-icons li:last-child a {
+    margin-right: 0;
+}
+
+.footer-bottom .container {
+    border-top: 1px solid #fff;
+    padding-top: 30px;
+    margin-top: 50px;
+}
+
+.custom-logo-link img {
+    max-width: 140px;
+    height: auto;
+}
+button.navbar-toggler {
+    background-color: #333;
+}
+@media (max-width:1440px) {
+    .banner-thumbnail {
+        margin-left: -70px;
+        max-width: 500px;
+        margin-top: 50px;
+    }
+}
+@media (max-width:1199px) {
+    .banner-text h1 {
+        font-size: 42px;
+    }
+    .tab-text {
+        padding-left: 80px;
+    }
+    .tab-text p {
+        font-size: 14px;
+    }
+    .banner-thumbnail {
+        margin-left: 0;
+        margin-top: 0;
+    }
+}
+@media (max-width:991px) {
+    .banner {
+        height: 700px!important;
+        background-position: left top !important;
+        padding: 120px 0 0 !important;
+    }
+    .banner-text {
+        margin-bottom: 50px;
+    }
+    .features-area {
+        padding: 80px 0;
+    }
+    #menu-mainmenu {
+        text-align: center;
+    }
+    .header-btns {
+        text-align: center;
+    }
+}
+@media (max-width:767px) {
+    .banner-text {
+        margin-bottom: 50px;
+    }
+    .banner {
+        background-position: 100% 50%!important;
+        background-size: cover!important;
+    }
+}
+@media (max-width:425px) {
+    .banner {
+        background-position: 61% -70px !important;
+    }
+    .banner-text h1 {
+        font-size: 32px;
+    }
+    .get-started-section-titler h2 {
+        font-size: 28px;
+    }
+    .get-started-section a.nav-link img {
+        max-width: 40px;
+        left: 20px;
+    }
+    .tab-text {
+        padding-left: 55px;
+    }
+    .tab-text p {
+        font-size: 12px;
+    }
+    .features-area .section-title h2 {
+        font-size: 28px;
+    }
+
+}
+@media (max-width:375px) {
+    .banner-text h1 {
+        font-size: 28px;
+    }
+    .banner-text span {
+        font-size: 15px;
+    }
+    
+}
+
+.get-started-section .nav-pills .nav-link.active img {
+    filter: grayscale(0)!important;
+}
+
+.features-area .single-features-item {
+    min-height: 320px;
+}

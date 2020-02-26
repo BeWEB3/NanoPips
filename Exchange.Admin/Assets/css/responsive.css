@@ -1,0 +1,379 @@
+/*------------------------------------------------------------------------------*/
+/*                    width : 1200px 
+/*------------------------------------------------------------------------------*/
+@media (min-width: 1900px) {
+
+
+}
+
+/*------------------------------------------------------------------------------*/
+/*                    width : 992px 
+/*------------------------------------------------------------------------------*/
+@media (min-width: 992px) and (max-width: 1199px) {
+     
+.marleft{
+    margin-left:100px;
+}
+
+.bottom{    
+    bottom: -413px;           
+}
+
+table{
+	margin:0px;
+	padding:0px;
+}
+
+
+
+}
+
+/*------------------------------------------------------------------------------*/
+/*                    width : 768px 
+/*------------------------------------------------------------------------------*/
+@media (min-width: 768px) and (max-width: 991px) {
+.fullsc{
+
+    background:#000;
+}
+
+.heading{
+	font-size:30px;
+}
+    .marleft{
+    margin-left:10px;
+}
+
+    
+    .bottom{
+        bottom:-53px
+    }    
+ 
+.openbtn{
+    	width: 100%;
+}
+
+.content .sildetext h1{
+    font-size:50px;
+
+}
+ .content .sildetext p{
+font-size:30px;
+    margin-top:-10px;
+    
+}
+
+.regform{
+padding: 80px 30px; 
+}
+.signform{
+    margin: 10px 10px;
+    padding: 10px 10px;
+    padding-bottom:100px;
+
+}
+.submitform .btn-mine1{
+   padding-left: 5px;
+   padding-right: 5px;
+}
+table{
+	margin:0px;
+	padding:0px;
+}
+
+	.imgadd{
+	    width:500px;
+	    height:330px!important;
+	}
+
+
+}
+
+/*------------------------------------------------------------------------------*/
+/*                    Width : 480px
+/*------------------------------------------------------------------------------*/
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+.fullsc{
+
+    background:#000;
+}
+.carocon{
+ 
+width:auto; height:500px;border:none;
+
+}
+ .content .img{
+width: auto !important; /*Keep the aspect ratio of the image*/
+height: 380px !important;
+}
+     
+   
+ .content .sildetext h1{
+	font-size:30px;
+
+}
+.content .sildetext p{
+font-size:23px;
+    margin-top:-10px;
+	
+}
+.openbtn{
+    	width: 100%;
+}
+    
+    .marleft{
+    margin-left:1px;
+}
+
+    
+    .bottom{
+        bottom:-53px
+    }    
+
+.logo{
+margin-left: -10px;
+}
+ul.nav.navbar-nav li {
+display:none;
+}
+
+.regform{
+padding: 80px 30px; 
+}
+.signform{
+    margin: 10px 10px;
+    padding: 10px 10px;
+    padding-bottom:100px;
+
+}
+
+
+.submitform{
+    width:330px!important;
+}
+.submitform .btn-mine1{
+   padding-left: 5px;
+   padding-right: 5px;
+}
+	
+
+table{
+	margin:0px;
+	padding:0px;
+}
+
+}
+
+/*------------------------------------------------------------------------------*/
+/*                    Width : 321px
+/*------------------------------------------------------------------------------*/
+
+@media only screen and (min-width: 321px) and (max-width: 479px) {
+body{
+    overflow-x: hidden;
+}
+    .fullsc{
+
+    background:#000;
+}
+.nopad{
+padding:0px!important; 
+margin:0px!important; 
+}  
+.popform{
+     margin-left:-40px;
+    margin-right:-40px;
+      padding-left:-40px;
+    padding-right:-40px;
+}
+.submitform{
+    width:330px!important;
+}
+.submitform .btn-mine1{
+     padding-left: 5px;
+   padding-right: 5px;
+    margin-left:5px;
+    margin-right:5px;
+    font-size:15px;
+}
+html,
+body,
+.container{
+font-size:16px;
+}
+.heading{
+	font-size:25px;
+}
+
+.carocon{
+ 
+width:auto; height:480px;border:none;
+
+}
+
+
+.chawidth img {
+    padding-top:10px;
+   width:200px;
+}
+
+ 
+
+    
+.content .sildetext h1{
+	font-size:28px;
+	margin-top:-5px;
+	
+
+}
+
+table{
+	margin:0px;
+	padding:0px;
+}
+
+.btn-mine{ 
+margin-right:10px;
+padding:5px 20px;
+
+}
+.openbtn{
+    margin-top:-30px;
+    	width: 100%;
+}
+ .content .sildetext p{
+font-size:20px;
+    margin-top:-30px!important;
+	
+}
+     .btn-mine11{
+	padding: 5px 10px;
+	font-size:20px;	
+  
+}
+
+
+
+    
+    .marleft{
+padding:0px!important; 
+margin:0px!important; 
+      
+}
+
+    
+    .bottom{
+        bottom:-53px
+    }    
+
+
+    
+   
+    
+ul.nav.navbar-nav li {
+display:none;
+}
+
+.regform{
+padding: 80px 30px; 
+}
+.signform{
+  margin: 10px;
+  padding: 10px;
+  padding-bottom:100px;
+
+}
+
+
+}
+
+/*------------------------------------------------------------------------------*/
+/*                    Any width smaller than 320px
+/*------------------------------------------------------------------------------*/
+@media only screen and (min-width: 0) and (max-width: 320px) {
+html,
+body,
+.container{
+font-size:14px;
+}
+.heading{
+font-size:25px;
+}
+.openbtn{
+    margin-top:-50px;
+    	width: 100%;
+}
+
+    .marleft{
+    margin-left:5px;
+}
+
+table{
+	margin:0px;
+	padding:0px;
+}
+
+.chawidth img {
+    padding-top:10px;
+   width:200px;
+}
+
+ .content .sildetext h1{
+    font-size:20px;
+
+}
+ .content .sildetext p{
+font-size:18px;
+    margin-top:-50px;
+    
+}
+ 
+    .btn-mine11{
+    padding: 5px 10px;
+    font-size:18px; 
+  
+}
+
+.navbar{
+	margin-top:-25px;
+}
+
+.carousel-inner .item .carousel-caption form{
+
+	border-radius:5px;
+	width:50px;
+    margin: 0 auto; 
+}
+
+.bottom{
+        bottom:-50px
+    }   
+.logo{
+margin-left: -30px;
+}
+.btn-mine, .btn-mine1 { 
+	padding: 5px 10px;
+	font-size:10px;
+}
+
+ul.nav.navbar-nav li {
+display:none;
+}
+.regform{
+padding: 80px 30px; 
+}
+.signform{
+    margin: 10px 10px;
+    padding: 10px 10px;
+    padding-bottom:100px;
+
+}
+   .fullsc{
+
+    background:#000;
+}
+.carocon{
+width:auto; height:400px;border:none;
+}
+
+}

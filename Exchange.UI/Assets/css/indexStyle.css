@@ -1,0 +1,1214 @@
+﻿body {
+    color: #000 !important;
+}
+
+.checkbox-inline {
+    width: 20px;
+    height: 20px;
+}
+
+.ModelWidth {
+    width: 450px;
+    margin-left: 75px;
+}
+
+.logo:hover {
+    text-decoration: none;
+}
+
+.col2 {
+    width: 18%;
+    border: 2px solid #ded5d5;
+}
+
+.LightImg {
+    display: none !important;
+}
+
+.manageFundAmount {
+    text-decoration: none;
+}
+
+    .manageFundAmount:hover {
+        text-decoration: none;
+    }
+
+.dropdown-menu > li > a {
+    padding: 0px 20px !important;
+}
+
+.txtAlreadyaccount {
+    font-size: 12px;
+    font-weight: 500;
+    width: 100%;
+    padding-top: 20px;
+}
+
+.dropdownHover1 {
+    padding-left: 20px !important;
+    font-size: 17px !important;
+}
+
+.select_expiry {
+    padding-left: 20px !important;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.borderNone {
+    border-radius: 0px !important;
+}
+
+.col10 {
+    width: 80%;
+    margin-right: 5px;
+    border: 2px solid #ded5d5;
+}
+
+.txtAlreadyHaveAccount:hover {
+    color: #51d6d6;
+    text-decoration: underline;
+}
+
+.datepicker-dropdown {
+    cursor: pointer;
+}
+
+.btnSignup {
+    display: block;
+    font-size: 17px;
+    font-weight: bold;
+    width: 100%;
+    height: 50px;
+}
+
+
+.input-group {
+    width: 30%;
+}
+
+.navTab > li > a:hover {
+    border-color: transparent;
+}
+
+.navTab > li.active > a, .navTab > li.active > a:focus, .navTab > li.active > a:hover {
+    color: #5cb85c;
+    cursor: default;
+    background-color: #fff;
+    border: none;
+    border-bottom-color: transparent;
+}
+
+.navbarRegister > li {
+    position: relative;
+    display: inline-block;
+}
+
+.txtRegisterLogin {
+    color: #000;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.txtForgetPass {
+    float: right;
+    color: green;
+    font-size: 13px;
+    padding-top: 0px;
+}
+
+p {
+    margin-bottom: 0px !important;
+}
+
+.tabContentPadding {
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 20px;
+}
+
+.nav > li > a:focus, .nav > li > a:hover {
+    text-decoration: none;
+    background-color: #e8dfdf;
+    color: green;
+}
+
+.font-12 {
+    font-size: 12px;
+}
+
+.dropdown-menu {
+    left: -60px;
+    min-width: 200px;
+}
+
+.navbar {
+    background: #00fcb1 !important;
+}
+
+.marketButtonToshow {
+    display: block;
+}
+
+.levelButtonToshow {
+    display: none;
+}
+
+.buttonToShow {
+    background: transparent !important;
+}
+
+.txtPanelHeader {
+    padding: 10px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.panel-body {
+    padding-top: 5px;
+    padding-right: 11px;
+    padding-bottom: 5px;
+    padding-left: 11px;
+}
+
+.txtPanelbody {
+    font-size: 12px;
+    color: #868686;
+    text-align: justify;
+}
+
+
+.tableToShow {
+    background: transparent !important;
+}
+
+.navbar {
+    height: 60px;
+}
+
+.borderGreen {
+    border: 10px solid #398439;
+}
+
+.borderGreenThin {
+    border: 4px solid #398439;
+}
+
+.panel-default {
+    border-color: #fff;
+    box-shadow: 0 0 8px -2px;
+}
+
+.btn-Custom {
+    color: #00fcb1;
+    border: 2px solid #00fcb1;
+    background: transparent;
+}
+
+.closeDialogue {
+    background: transparent;
+}
+
+.btnLogin {
+    display: block;
+    width: 100%;
+    height: 50px;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.width-100 {
+    max-width: 100%;
+    width: 100%;
+    min-width: 100%;
+    display: flex;
+}
+
+.Label {
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.width-80 {
+    max-width: 80%;
+    width: 80%;
+    min-width: 80%;
+}
+
+.buyBtn {
+    font-size: 25px;
+    color: white !important;
+    background-image: linear-gradient(#bae4b7, #699c66, #6fb76b);
+    border: none;
+    height: 120px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.sellBtn {
+    font-size: 25px;
+    color: white !important;
+    background-image: linear-gradient(#e6b3b3,#a25e5e, #af6a6a);
+    border: none;
+    height: 120px;
+    margin-bottom: 0px;
+    font-weight: bold;
+}
+
+.tableBuySell {
+    border: 2px solid black;
+    margin-right: 10px;
+    border-collapse: collapse;
+}
+
+.buyBtn:hover {
+    background-image: linear-gradient(#a1ef97,#388c34, #358030) !important;
+}
+
+.buyBtn:focus {
+    outline: none;
+}
+
+.sellBtn:hover {
+    background-image: linear-gradient(#e49f9f,#923a3a, #a04141) !important;
+}
+
+.sellBtn:focus {
+    outline: none;
+}
+
+tbody > tr:hover {
+    background-color: #e9efed;
+}
+
+.inputField {
+    border: 1px solid #ccc;
+    height: 40px;
+    width: 100%;
+    padding-left: 10px;
+    font-size: 13px;
+    background: aliceblue;
+}
+
+.txtManageFundonHover {
+    font-size: 13px;
+    padding-top: 16px;
+    display: none;
+    height: 40px;
+    padding-left: 3px;
+    white-space: nowrap;
+}
+
+.txtAmount {
+    display: inline;
+    padding-right: 0px;
+    font-size: 14px;
+    height: 40px;
+    padding-left: 3px;
+    padding-top: 16px;
+}
+
+.borderRound {
+    border: 1px solid rgb(204, 204, 204);
+    height: 45px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    margin-top: -6px;
+}
+
+.InputDisabled {
+    width: 100%;
+    position: absolute;
+    height: 45px;
+    background-color: #fff !important;
+    border: 1px solid #ccc;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.manageFundAmount {
+    color: #000;
+    position: relative;
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: 500;
+    padding-left: 0px !important;
+}
+
+.txtManageFund {
+    display: none;
+    color: #66b85c;
+}
+
+.topImages {
+    width: 15px;
+    height: 15px;
+    position: relative;
+}
+
+.btnClose {
+    background-color: #d4cbcb !important;
+    height: 25px !important;
+    width: 25px !important;
+    font-size: 15px !important;
+    border: 1px solid;
+    border-color: #ccc !important;
+}
+
+.btn-primary {
+    background-color: #eee !important;
+    color: #000;
+    border-color: #ccc;
+    height: 34px;
+    padding-top: 7px;
+    border-radius: 0px;
+    text-align: center;
+}
+
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    resize: vertical;
+}
+
+.moonPadding {
+    padding: 6px 0px;
+    text-align: center;
+}
+
+.font-13 {
+    font-size: 13px;
+}
+
+.padd_all {
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 11px;
+}
+
+.chartHeight {
+    height: 630px;
+}
+
+.font-15 {
+    font-size: 15px;
+}
+
+.col4 {
+    display: none;
+}
+
+.chartpadding {
+    margin-bottom: 48px;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+.totalPNL {
+    font-size: 1.5em;
+    margin-top: 8px;
+}
+
+.col5 {
+    display: none;
+}
+
+.col6, .col7 {
+    display: none;
+}
+
+.margin-left-0 {
+    margin-left: 0px !important;
+}
+
+.width100 {
+    width: 100px;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .col2 {
+        display: none !important;
+    }
+
+    .ck1212 {
+        overflow-x: auto;
+        overflow-y: hidden;
+        background: transparent;
+        width: fit-content;
+    }
+
+    .width-80 {
+        max-width: 98%;
+        width: 98%;
+        min-width: 98%;
+        overflow-x: auto;
+    }
+
+    .width100 {
+        width: 100px;
+    }
+
+    .dropdown-menu > li > a {
+        color: #000 !important;
+    }
+
+    .col7 {
+        display: block !important;
+    }
+
+    .btnMarket {
+        border: 2px solid #ccc !important;
+        border-radius: 0px !important;
+        font-size: 18px;
+        color: #000;
+    }
+
+    .trade-table > tbody > tr > td, .trade-table > thead > tr > th {
+        padding: 17px 10px;
+    }
+
+    .dis-flex {
+        display: flex !important;
+    }
+
+    .col6 {
+        display: block !important;
+    }
+
+    .width250 {
+        width: 250px;
+    }
+
+    .col10 {
+        width: 98%;
+        border: none !important;
+    }
+
+    .col4 {
+        display: block !important;
+    }
+
+    .btnbtm {
+        padding: 12px 18px;
+        font-size: 24px;
+        background: #66b85c;
+        color: #fff;
+        border-radius: 100%;
+    }
+
+    .chartPaddMobile {
+        padding-right: 9px !important;
+        padding-left: 9px !important;
+        height: 500px;
+    }
+
+    .chartpadding {
+        margin-bottom: 35px;
+        margin-left: 5px;
+        margin-top: 5px;
+        margin-right: 3px;
+    }
+
+    .font-13 {
+        font-size: 10px;
+    }
+
+    .ABC {
+        display: none;
+    }
+
+    .dropbtn {
+        background-color: #4CAF50;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        margin-right: 30px;
+        position: absolute;
+        background-color: #fff;
+        min-width: 110px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+            .dropdown-content a:hover {
+                background-color: #ddd;
+            }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+        background-color: #3e8e41;
+    }
+
+    .dropdown-menu {
+        left: 5px;
+        min-width: 110px;
+    }
+
+    #tradeHistoryBody {
+        font-size: 8px;
+    }
+
+    .form-inline2 {
+        display: flex;
+    }
+
+    .totalPNL {
+        font-size: 11px !important;
+        padding-left: 10px !important;
+        margin-top: 8px;
+    }
+
+    .left-130 {
+        left: 0px !important;
+    }
+
+
+
+    .col5 {
+        display: block !important;
+    }
+
+    .txtRegisterLogin {
+        font-size: 18px !important;
+    }
+
+    .tabReg {
+        font-size: 12px !important;
+        font-weight: bold;
+    }
+
+    .txtRegBelow {
+        font-size: 10px !important;
+    }
+
+    .pad-t-30 {
+        padding-top: 0px !important;
+    }
+
+    .Label {
+        font-size: 10px;
+        font-weight: bold;
+    }
+
+    .pad-30 {
+        padding-top: 5px !important;
+        padding-right: 10px !important;
+        padding-bottom: 10px !important;
+        padding-left: 10px !important;
+    }
+
+    .txtPanelbody {
+        font-size: 10px !important;
+    }
+
+    .pd-t-25 {
+        padding-top: 5px !important;
+    }
+
+    .mg-t-50 {
+        margin-top: 10px !important;
+    }
+
+    .dropdown-menu ul li a {
+        color: #000 !important;
+    }
+
+    .txtManageFundonHover {
+        font-size: 12px;
+        padding-top: 0px !important;
+        display: none;
+        height: 15px !important;
+        padding-left: 3px;
+        white-space: nowrap;
+    }
+
+    .buyBtn {
+        margin-bottom: 0px;
+        margin-top: 5px;
+    }
+}
+
+
+@media only screen and (max-width: 320px) {
+    .ModelWidth {
+        width: 300px !important;
+        margin-left: 0px;
+    }
+
+    .btnbtm {
+        font-size: 15px !important;
+    }
+
+    .btm-left {
+        left: -50% !important;
+    }
+
+    .width-880 {
+        width: 295px !important;
+        height: 48pc !important;
+    }
+
+    .dropdown-menu {
+        font-size: 9px;
+    }
+
+    .dropdownHover1 {
+        font-size: 10px !important;
+    }
+
+    .select_expiry {
+        margin-left: 0px !important;
+    }
+
+    .btnMarket {
+        font-size: 14px !important;
+        color: #000;
+    }
+
+    .tabContentPadding1 {
+        padding-top: 0px;
+        padding-right: 0px;
+        padding-bottom: 0px;
+        padding-left: 0px;
+    }
+
+    .margin-top-mobile {
+        margin-top: 95px !important;
+    }
+}
+
+@media only screen and (max-width: 360px) and (min-width: 321px) {
+
+    .btm-left {
+        left: -15%;
+    }
+
+    .ModelWidth {
+        width: 340px !important;
+        margin-left: 0px;
+    }
+
+    .width-880 {
+        width: 335px !important;
+        height: 46pc !important;
+    }
+
+    .trade-table {
+        font-size: 10px;
+    }
+
+    .dropdown-menu {
+        font-size: 9px;
+        min-width: 85px;
+    }
+
+    .dropdownHover1 {
+        font-size: 10px !important;
+    }
+
+    .select_expiry {
+        margin-left: 0px !important;
+    }
+
+    .btnMarket {
+        font-size: 14px !important;
+        color: #000;
+    }
+
+    .tabContentPadding1 {
+        padding-top: 0px;
+        padding-right: 0px;
+        padding-bottom: 0px;
+        padding-left: 0px;
+    }
+
+    .margin-top-mobile {
+        margin-top: 95px !important;
+    }
+}
+
+@media only screen and (max-width: 375px) and (min-width: 361px) {
+
+
+    #tradeHistoryBody {
+        font-size: 10px;
+    }
+
+    .ModelWidth {
+        width: 355px !important;
+        margin-left: 0px;
+    }
+
+    .btm-left {
+        left: -30%;
+    }
+
+    .modal {
+        right: 15px !important;
+    }
+
+    .width-880 {
+        width: 350px !important;
+        height: 46pc !important;
+    }
+
+    .dropdownHover1 {
+        font-size: 10px !important;
+    }
+
+    .select_expiry {
+        margin-left: 0px !important;
+    }
+
+    .btnMarket {
+        font-size: 14px !important;
+        color: #000;
+    }
+
+    .tabContentPadding1 {
+        padding-top: 0px;
+        padding-right: 0px;
+        padding-bottom: 0px;
+        padding-left: 0px;
+    }
+
+    .margin-top-mobile {
+        margin-top: 110px !important;
+    }
+}
+
+
+@media only screen and (max-width: 390px) and (min-width: 376px) {
+
+    .col5 {
+        display: block !important;
+        margin-top: 100px;
+    }
+
+    .ModelWidth {
+        width: 370px !important;
+        margin-left: 0px;
+    }
+
+    #tradeHistoryBody {
+        font-size: 10px;
+    }
+
+    .btm-left {
+        left: -20% !important;
+    }
+
+    .modal {
+        right: 15px !important;
+    }
+
+    .width-880 {
+        width: 365px !important;
+        height: 46pc !important;
+    }
+
+    .dropdownHover1 {
+        font-size: 10px !important;
+    }
+
+    .select_expiry {
+        margin-left: 0px !important;
+    }
+
+    .btnMarket {
+        font-size: 14px !important;
+        color: #000;
+    }
+
+    .tabContentPadding1 {
+        padding-top: 0px;
+        padding-right: 0px;
+        padding-bottom: 0px;
+        padding-left: 0px;
+    }
+}
+
+
+@media only screen and (max-width: 410px) and (min-width: 391px) {
+    .ModelWidth {
+        width: 380px !important;
+        margin-left: 0px;
+    }
+
+    .col5 {
+        display: block !important;
+        margin-top: 100px;
+    }
+
+    .ABC {
+        left: -20px;
+    }
+
+    /*#tradeHistoryBody {
+        font-size: 10px;
+    }
+
+    .btm-left {
+        left: -30%;
+    }
+
+    .modal {
+        right: 15px !important;
+    }*/
+
+    .width-880 {
+        width: 380px !important;
+        height: 46pc !important;
+    }
+
+    /*.dropdownHover1 {
+        font-size: 10px !important;
+    }
+
+    .select_expiry {
+        margin-left: 0px !important;
+    }
+
+    .btnMarket {
+        font-size: 14px !important;
+        color: #000;
+    }
+
+    .tabContentPadding1 {
+        padding-top: 0px;
+        padding-right: 0px;
+        padding-bottom: 0px;
+        padding-left: 0px;
+    }
+
+    .margin-top-mobile {
+        margin-top: 95px !important;
+    }*/
+}
+
+
+@media only screen and (max-width: 414px) and (min-width: 411px) {
+
+    .btm-left {
+        left: -20%;
+    }
+
+    .ModelWidth {
+        width: 100% !important;
+        margin-left: 0px;
+    }
+
+    .tabContentPadding1 {
+        padding-top: 0px;
+        padding-right: 0px;
+        padding-bottom: 0px;
+        padding-left: 0px;
+    }
+
+    .width-880 {
+        width: 390px !important;
+        height: 46pc !important;
+    }
+
+    .margin-top-mobile {
+        margin-top: 95px !important;
+    }
+}
+
+
+
+
+/*@media (max-width: 1242px) {
+
+
+    .topImages {
+        width: 12px;
+        height: 12px;
+    }
+
+    .txtManageFundonHover {
+        font-size: 9px;
+    }
+
+    .txtAmount {
+        font-size: 12px;
+    }
+}*/
+/*@media only screen and (min-width: 1242px) and (max-width: 1365px) {
+    .topImages {
+        width: 12px;
+        height: 12px;
+    }
+    .pad-top {
+        padding-top: 5px;
+    }
+    .padd_all {
+        padding-top: 16px;
+    }
+
+    .txtManageFundonHover {
+        font-size: 9px;
+    }
+
+    .txtAmount {
+        font-size: 12px;
+    }
+    .font-12{
+        font-size:10px;
+    }
+    .form-control{
+        font-size:12px;
+    }
+    .buyBtn , .sellBtn{
+        font-size:20px;
+    }
+    .moonPadding {
+        padding: 12px 0px;
+    }
+
+    .font-13 {
+        font-size: 11px;
+    }
+
+    .buyBtn, .sellBtn {
+        height: 105px;
+    }
+    .form-control {
+        height: 30px;
+    }
+    .heightbtn {
+        height:40px;
+    }
+
+    .chartHeight {
+        height: 570px !important;
+    }
+    .col3{
+        display:none;
+    }
+
+}
+@media only screen and (min-width: 1093px) and (max-width: 1241px) {
+    .topImages {
+        width: 10px;
+        height: 10px;
+    }
+
+    .txtManageFundonHover {
+        font-size: 9px;
+    }
+
+    .txtAmount {
+        font-size: 10px;
+        padding-top: 14px;
+    }
+    .borderRound {
+        height: 40px;
+    }
+    .font-12 {
+        font-size: 9px;
+    }
+    .btn-sm {
+        font-size: 9px;
+    }
+    .market-btn {
+        width: 111% !important;
+        height: 25px;
+    }
+    #orderQuantity{
+        height:25px;
+    }
+    .form-control{
+        font-size:10px;
+    }
+    .buyBtn, .sellBtn{
+        height:95px;
+    }
+
+    .chartHeight {
+        height: 520px !important;
+    }
+    .font-15 {
+        font-size: 12px;
+        padding-top: 4px;
+    }
+    .font-13{
+        font-size:10px;
+    }
+    .col3 {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 911px) and (max-width: 1092px) {
+    .topImages {
+        width: 10px;
+        height: 10px;
+    }
+    .col2{
+        display:none;
+    }
+    .col10{
+        width:98%;
+    }
+    .col3 {
+        display: block;
+        width:100%;
+    }
+    .txtManageFundonHover {
+        font-size: 9px;
+    }
+
+    .txtAmount {
+        font-size: 10px;
+    }
+
+    .borderRound {
+        height: 40px;
+    }
+
+    .font-12 {
+        font-size: 9px;
+    }
+
+    .btn-sm {
+        font-size: 9px;
+    }
+
+    .market-btn {
+        width: 111% !important;
+        height: 25px;
+    }
+
+    #orderQuantity {
+        height: 25px;
+    }
+
+    .form-control {
+        font-size: 10px;
+    }
+
+    .buyBtn, .sellBtn {
+        height: 95px;
+    }
+
+    .chartHeight {
+        height: 520px !important;
+    }
+
+    .font-15 {
+        font-size: 12px;
+        padding-top: 4px;
+    }
+
+    .font-13 {
+        font-size: 10px;
+    }
+    .widthInharit{
+        width:inherit;
+    }
+}
+
+
+@media only screen and (min-width: 780px) and (max-width: 910px) {
+    .topImages {
+        width: 10px;
+        height: 10px;
+    }
+
+    .col2 {
+        display: none;
+    }
+
+    .col10 {
+        width: 98%;
+    }
+
+    .col3 {
+        display: block;
+        width: 100%;
+    }
+
+    .txtManageFundonHover {
+        font-size: 9px;
+    }
+
+    .txtAmount {
+        font-size: 10px;
+    }
+
+    .borderRound {
+        height: 40px;
+    }
+
+    .font-12 {
+        font-size: 9px;
+    }
+
+    .btn-sm {
+        font-size: 9px;
+    }
+
+    .market-btn {
+        width: 111% !important;
+        height: 25px;
+    }
+
+    #orderQuantity {
+        height: 25px;
+    }
+
+    .form-control {
+        font-size: 10px;
+    }
+
+    .buyBtn, .sellBtn {
+        height: 95px;
+    }
+
+    .chartHeight {
+        height: 520px !important;
+    }
+
+    .font-15 {
+        font-size: 12px;
+        padding-top: 4px;
+    }
+
+    .font-13 {
+        font-size: 10px;
+    }
+
+    .widthInharit {
+        width: inherit;
+    }
+}*/
+
+

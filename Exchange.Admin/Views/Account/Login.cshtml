@@ -1,0 +1,218 @@
+﻿@model Exchange.DTO.UserRole
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/DashboardAssets/img/logo.png">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Login</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="~/AdminAssets/css/bootstrap.min.css">
+    <!-- icon -->
+    <link rel="stylesheet" type="text/css" href="~/AdminAssets/vendors/material-icon/css/material-icons.css">
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="~/AdminAssets/css/xakti-bs.css">
+    <link rel="stylesheet" href="~/AdminAssets/css/main.css">
+    <style type="text/css">
+        .v1-left-menu {
+            position: relative;
+            z-index: 1;
+            margin-left: 50px;
+        }
+
+        .bd-left-4 {
+            border-left: 4px solid #fff;
+            overflow: hidden;
+        }
+
+        .effect-lr {
+            -webkit-animation: sign_in_v1 2s ease;
+            animation: sign_in_v1 2s ease;
+        }
+
+        @@-webkit-keyframes sign_in_v1 {
+            from {
+                opacity: 0.3;
+                margin-left: -500px;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @@keyframes sign_in_v1 {
+            from {
+                opacity: 0.3;
+                margin-left: -500px;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .sign-up-v1 {
+            display: none;
+        }
+    </style>
+    <style>
+        .divide-10 {
+            width: 100%;
+            height: 10px;
+        }
+
+        .divide-20 {
+            width: 100%;
+            height: 20px;
+        }
+
+        .divide-30 {
+            width: 100%;
+            height: 30px;
+        }
+
+        .divide-40 {
+            width: 100%;
+            height: 40px;
+        }
+
+        .divide-50 {
+            width: 100%;
+            height: 50px;
+        }
+
+        .g-recaptcha > div {
+            width: 100% !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="row no-gutters login-page-v1">
+        <div class="col-12 col-md-6 col-lg-8 text-white d-flex align-items-center align-content-stretch" style="background-color: #2F318B;">
+            <img class="img-login-page-v1" src="~/AdminAssets/img/CryptocurrencyImage.jpg">
+            <div class="v1-left-menu my-2">
+                <div class="px-4 bd-left-4">
+                    <div class="effect-lr">
+                        <h1>Welcome To</h1>
+                        <h1>NanoPips Admin</h1>
+                        @*<div class="text-white">Multifungsional Admin Template</div>
+                            <div class="text-opc_6">Based on Bootstrap.</div>*@
+                    </div>
+                </div>
+                @*<div class="pl-4 my-4">
+                        <a href="#" class="btn btn-light flat">Learn More</a>
+                        <a href="../../index-2.html" class="btn btn-outline-light rounded-0 w-100px">Home</a>
+                    </div>*@
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4 bg-white d-flex align-items-center">
+            <div class="col-12 p-4 my-4 sign-in-v1">
+                <h5 class="mb-4 text-center">Please Login</h5>
+                <h6 style="color:red">@ViewBag.error @TempData["error"]</h6>
+                <h6 class="text-success" id="verify-msg"></h6>
+                @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { id = "l-form", @class = "text-center" }))
+                {
+                    <div class="form-group form-group-icon">
+                        @Html.TextBoxFor(m => m.Username, new { @class = "form-control cs-form", placeholder = "Username" })
+                        <span class="material-icons form-icon" style="margin-top: -10px;">person_outline</span>
+                        <label class="text-danger">@Html.ValidationMessageFor(m => m.Username)</label>
+                        @*<input type="text" class="form-control cs-form" name="Username" placeholder="Username" autocomplete="off">*@
+                    </div>
+                    <div class="form-group form-group-icon">
+                        @*<input type="password" class="form-control cs-form" name="Password" placeholder="Password" autocomplete="off">*@
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control cs-form", placeholder = "Password" })
+                        <label class="text-danger">@Html.ValidationMessageFor(m => m.Password)</label>
+                        <span class="material-icons form-icon" style="margin-top: -10px;">lock_outline</span>
+                    </div>
+                    
+
+                    @*<div class="form-group no-gutters">
+                        <a href="#" id="forgot" class="use-loader text-muted fw-700 text-uppercase heading-font-family fs-12 btn-sign-up">Forgot Password?</a>
+                    </div>*@
+
+                    <div class="form-group">
+                        <button class="btn btn-warning btn-block flat" type="submit">Login</button>
+                    </div>
+                    @*<div class="form-group">
+                        <a href="#" class="btn btn-outline-primary btn-block rounded-0 btn-sign-up">Create Account</a>
+                    </div>*@
+                }
+            </div>
+
+           
+            <div class="absolute-bottom p-3 bg-opc font-14 text-muted text-center">@@Copyright @DateTime.Now.Year - NanoPips Admin</div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="~/AdminAssets/vendors/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="~/AdminAssets/vendors/popper.min.js"></script>
+    <script type="text/javascript" src="~/AdminAssets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/AdminAssets/js/xakti-bs.js"></script>
+    <script type="text/javascript" src="~/AdminAssets/js/main.js"></script>
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <script type="text/javascript">
+        $('.btn-sign-up').on('click', function () {
+            $('.sign-in-v1').hide(500, function () {
+                $('.sign-up-v1').show(500);
+            });
+        });
+        $('.btn-sign-in').on('click', function () {
+            $('.sign-up-v1').hide(500, function () {
+                $('.sign-in-v1').show(500);
+            });
+        });
+    </script>
+
+    <script>
+        $(function ()
+        {
+
+            $("#l-form").submit(function (e) {
+
+                var form = $(this);
+                form.validate();
+                if (form.valid()) {
+                    $.blockUI();
+
+                }
+            });
+            $(".use-loader").click(function () {
+                $.blockUI();
+            })
+            var code = "@ViewBag.code";
+            var email = "@ViewBag.email";
+            if (code != "") {
+                if (email != "") {
+                    $("#verify-msg").html("please wait...");
+                    $.post("@Url.Action("VerifyEmailForIPAgent", "Account")", { code: code, email: email }, function (msg) {
+                    $("#verify-msg").html(msg);
+                    });
+                }
+                else {
+                    $("#verify-msg").html("please wait...");
+                    $.post("@Url.Action("VerifyEmail", "Account")", { code: code }, function (msg) {
+                    $("#verify-msg").html(msg);
+                });
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>

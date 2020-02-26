@@ -1,0 +1,207 @@
+﻿@model Exchange.DTO.Account
+@{
+    decimal priceBtc = ViewBag.BTCPrice;
+}
+
+<div class="row">
+    <div class="col-12  widget-holder widget-full-content">
+        <div class="widget-bg">
+            <h1 style="text-align:center">Swipe your coins</h1>
+        </div>
+    </div>
+    
+    <div class="col-12 col-md-6 widget-holder widget-full-content">
+        <div class="widget-bg" >
+            <div class="widget-body clearfix">
+                <div style="width:100%;height:10px"></div>
+
+                <h2 class="text-center">
+                    <span style="">BUY BITCOIN (SELL ETHEREUM)</span>
+                </h2>
+                <p class="text-center">@Model.Wallets.Where(m=>m.Currency=="ETH").First().Balance.Value.ToString("0.00000") ETH</p>
+                <!-- /.widget-user-profile -->
+                <div style="width:100%;height:50px"></div>
+                <div class="row col-md-12">
+                    <div class="col-md-12">
+                        <div class="contact-details-cell col-md-12">
+                            <small class="heading-font-family fw-500">TRANSFER TO </small>
+                            <span>
+                                <svg width="15" height="15" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg" class="CurrencyIcon-iuzqsK gFNfZa"><g fill="none" fill-rule="evenodd"><circle fill="#FFAD02" cx="19" cy="19" r="19"></circle><path d="M24.7 19.68a3.63 3.63 0 0 0 1.47-2.06c.74-2.77-.46-4.87-3.2-5.6l.89-3.33a.23.23 0 0 0-.16-.28l-1.32-.35a.23.23 0 0 0-.28.15l-.89 3.33-1.75-.47.88-3.32a.23.23 0 0 0-.16-.28l-1.31-.35a.23.23 0 0 0-.28.15l-.9 3.33-3.73-1a.23.23 0 0 0-.27.16l-.36 1.33c-.03.12.04.25.16.28l.22.06a1.83 1.83 0 0 1 1.28 2.24l-1.9 7.09a1.83 1.83 0 0 1-2.07 1.33.23.23 0 0 0-.24.12l-.69 1.24a.23.23 0 0 0 0 .2c.02.07.07.12.14.13l3.67.99-.89 3.33c-.03.12.04.24.16.27l1.32.35c.12.03.24-.04.28-.16l.89-3.32 1.76.47-.9 3.33c-.02.12.05.24.16.27l1.32.35c.12.03.25-.04.28-.16l.9-3.32.87.23c2.74.74 4.83-.48 5.57-3.25.35-1.3-.05-2.6-.92-3.48zm-5.96-5.95l2.64.7a1.83 1.83 0 0 1 1.28 2.24 1.83 1.83 0 0 1-2.23 1.3l-2.64-.7.95-3.54zm1.14 9.8l-3.51-.95.95-3.54 3.51.94a1.83 1.83 0 0 1 1.28 2.24 1.83 1.83 0 0 1-2.23 1.3z" fill="#FFF"></path></g></svg>
+                                <span class="h1">BITCOIN WALLET</span>
+                            </span>
+
+                        </div>
+                    </div>
+
+                    <!-- /.contact-details-cell -->
+                </div>
+                <div style="width:100%;height:50px"></div>
+                @using (Html.BeginForm("Buy", "Dashboard", FormMethod.Post, new { id = "BuyForm" , novalidate = "novalidate" }))
+                {
+                    <div class="row col-md-12">
+                        <div class="col-md-6">
+                            <label>ENTER AMOUNT</label>
+                            <input type="number" required name="eth" id="ETHBuy" class="contact-details-cell col-md-12" placeholder="0.0 ETH" />
+                        </div>
+                        <div class="col-md-6">
+                            <label>YOU WILL GET BTC</label>
+                            <input type="number" required name="btc" id="btcBuy" class="contact-details-cell col-md-12" placeholder="0.0 BTC" />
+                        </div>
+                        <div class="col-md-12">
+                            <label>ENTER 2 FA CODE</label>
+                            <input type="number" name="code" required class="contact-details-cell col-md-12" placeholder="TWO FACTOR CODE" />
+                            @if (ViewBag.twoFA != null)
+                            {
+                                <label class=""><a href="@Url.Action("TwoFactorAuthentication","Dashboard")" class="use-loader">Click here</a> to activate two factor authentication</label>
+                            }
+                            <label class="text-danger" id="bFee"> Transection Fee: @ViewBag.fee</label>
+
+                        </div>
+                    </div>
+                    <div style="width:100%;height:50px"></div>
+                    <div class="row col-md-12">
+                        <div class="col-md-12">
+                            <input type="submit" value="BUY BITCOIN" class="btn btn-success col-md-12" />
+                        
+                        </div>
+                    </div>
+                }
+                <div style="width:100%;height:50px"></div>
+
+            </div>
+
+            <!-- /.widget-body -->
+        </div>
+        <!-- /.widget-bg -->
+    </div>
+    <div class="col-12 col-md-6 widget-holder widget-full-content">
+        <div class="widget-bg" >
+            <div class="widget-body clearfix">
+                <div style="width:100%;height:10px"></div>
+
+                <h2 class="text-center">
+                    <span style="">SELL BITCOIN (BUY ETHEREUM)</span>
+                </h2>
+                <p class="text-center">@Model.Wallets.Where(m=>m.Currency=="BTC").First().Balance.Value.ToString("0.00000") BTC</p>
+                <!-- /.widget-user-profile -->
+                <div style="width:100%;height:50px"></div>
+                <div class="row col-md-12">
+                    <div class="col-md-12">
+                        <div class="contact-details-cell col-md-12">
+                            <small class="heading-font-family fw-500">SELL FROM </small>
+                            <span>
+                                <svg width="15" height="15" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg" class="CurrencyIcon-iuzqsK gFNfZa"><g fill="none" fill-rule="evenodd"><circle fill="#FFAD02" cx="19" cy="19" r="19"></circle><path d="M24.7 19.68a3.63 3.63 0 0 0 1.47-2.06c.74-2.77-.46-4.87-3.2-5.6l.89-3.33a.23.23 0 0 0-.16-.28l-1.32-.35a.23.23 0 0 0-.28.15l-.89 3.33-1.75-.47.88-3.32a.23.23 0 0 0-.16-.28l-1.31-.35a.23.23 0 0 0-.28.15l-.9 3.33-3.73-1a.23.23 0 0 0-.27.16l-.36 1.33c-.03.12.04.25.16.28l.22.06a1.83 1.83 0 0 1 1.28 2.24l-1.9 7.09a1.83 1.83 0 0 1-2.07 1.33.23.23 0 0 0-.24.12l-.69 1.24a.23.23 0 0 0 0 .2c.02.07.07.12.14.13l3.67.99-.89 3.33c-.03.12.04.24.16.27l1.32.35c.12.03.24-.04.28-.16l.89-3.32 1.76.47-.9 3.33c-.02.12.05.24.16.27l1.32.35c.12.03.25-.04.28-.16l.9-3.32.87.23c2.74.74 4.83-.48 5.57-3.25.35-1.3-.05-2.6-.92-3.48zm-5.96-5.95l2.64.7a1.83 1.83 0 0 1 1.28 2.24 1.83 1.83 0 0 1-2.23 1.3l-2.64-.7.95-3.54zm1.14 9.8l-3.51-.95.95-3.54 3.51.94a1.83 1.83 0 0 1 1.28 2.24 1.83 1.83 0 0 1-2.23 1.3z" fill="#FFF"></path></g></svg>
+                                <span class="h1">BITCOIN WALLET</span>
+                            </span>
+
+                        </div>
+                    </div>
+
+                    <!-- /.contact-details-cell -->
+                </div>
+                @using (Html.BeginForm("Sell", "Dashboard", FormMethod.Post, new { id = "SellForm" ,novalidate="novalidate"}))
+                {
+                    <div style="width:100%;height:50px"></div>
+                    <div class="row col-md-12">
+                        <div class="col-md-6">
+                            <label>ENTER AMOUNT</label>
+                            <input type="number" name="btc" required id="btcSell" class="contact-details-cell col-md-12" placeholder="0.0 BTC" />
+                        </div>
+                        <div class="col-md-6">
+                            <label>YOU WILL GET ETH</label>
+                            <input type="number" name="eth" required id="ETHSell" class="contact-details-cell col-md-12" placeholder="0.0 ETH" />
+                        </div>
+                        <div class="col-md-12">
+                            <label>ENTER 2 FA CODE</label>
+                            <input type="number" name="code" required class="contact-details-cell col-md-12" placeholder="TWO FACTOR CODE" />
+                           @if (ViewBag.twoFA != null)
+                           {
+                               <label class=""><a href="@Url.Action("TwoFactorAuthentication","Dashboard")" class="use-loader">Click here</a> to activate two factor authentication</label>
+                           }
+                            <label class="text-danger" id="sFee"> Transection Fee: @ViewBag.fee</label>
+                        </div>
+                    </div>
+                        <div style="width:100%;height:50px"></div>
+                        <div class="row col-md-12">
+                            <div class="col-md-12">
+                                <input type="submit" value="SELLL BITCOIN" class="btn btn-danger col-md-12" />
+                            </div>
+                        </div>
+                }
+                <div style="width:100%;height:50px"></div>
+
+            </div>
+
+            <!-- /.widget-body -->
+        </div>
+        <!-- /.widget-bg -->
+    </div>
+</div>
+@section scripts{
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+        $("#BuyForm").validate();
+        $("#SellForm").validate();
+        $("#bFee,#sFee").hide();
+        var fee = parseFloat( '@ViewBag.fee');
+        var btcPrice = '@priceBtc';
+
+        $("#btcBuy").keyup(function () {
+
+            var value = $(this).val();
+            var ETH = parseFloat( value) * parseFloat(btcPrice);
+            $("#ETHBuy").val(ETH);
+            $("#bFee").html("Transation Fee: " +(((0.05*parseFloat(value))/100) + fee));
+            $("#bFee").show();
+            $("#sFee").hide();
+        });
+        $("#ETHBuy").keyup(function () {
+            var value = $(this).val();
+            var btc = parseFloat(value) / parseFloat(btcPrice);
+            $("#btcBuy").val(btc);
+            $("#bFee").html("Transation Fee: " +(((0.05 *parseFloat(btc))/100) + fee));
+            $("#bFee").show();
+            $("#sFee").hide();
+        });
+        ////////////////SELL
+        $("#btcSell").keyup(function () {
+            var value = $(this).val();
+            var ETH = parseFloat(value) * parseFloat(btcPrice);
+            $("#ETHSell").val(ETH);
+            $("#sFee").html("Transation Fee: " +(((0.05 * parseFloat(value)) / 100) + fee));
+            $("#sFee").show();
+            $("#bFee").hide();
+        });
+        $("#ETHSell").keyup(function () {
+            var value = $(this).val();
+            var btc = parseFloat(value) / parseFloat(btcPrice);
+            $("#btcSell").val(btc);
+            $("#sFee").html("Transation Fee: "+(((0.05 * parseFloat(btc)) / 100) + fee));
+            $("#sFee").show();
+            $("#bFee").hide();
+        });
+
+        $("#BuyForm,#SellForm").submit(function (e) {
+            e.preventDefault();
+            var form = $(this);
+            form.validate();
+            if (form.valid())
+            {
+                $.blockUI();
+                $.post(form.attr("action"), form.serialize(), function (res) {
+                    $.unblockUI();
+                    if (res.error == false) {
+                        bootbox.alert(res.msg, function () {
+                            $.blockUI();
+                            location.reload();
+                        });
+                    } else {
+                        bootbox.alert(res.msg);
+                    }
+                });
+            }
+        })
+
+    </script>
+}

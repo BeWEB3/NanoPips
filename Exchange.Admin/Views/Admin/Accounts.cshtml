@@ -1,0 +1,56 @@
+﻿@using Exchange.DTO
+@{
+    Layout = "~/Views/Shared/_masterAdmin.cshtml";
+    ViewBag.Title = "Manage Accounts";
+}
+
+@{
+    var ac = SessionItems.Get(SessionKey.ACCOUNT) as Account;
+    byte? userType = ac.UserRoles.FirstOrDefault().UserRoleTypeId;
+}
+
+<input type="hidden" id="hdnUserType" value="@userType" />
+<div class="content-block">
+    <div class="row no-gutters">
+        <!-- <div class="col-lg-12"><label class="border-left pl-2 text-muted">DataTables</label> </div> -->
+
+        <div class="col-12 col-md-6 col-lg-12 p-2">
+            <!-- col -->
+            <div class="card flat border-bottom">
+                <!-- card -->
+                <button class="btn btn-primary" id="usertradeloses" type="button" style="position:absolute; top:69px; left:40%; cursor:pointer; z-index:1">Total10: </button>
+                <div class="card-header">@ViewBag.title</div>
+                <div class="card-body px-0">
+                    @Html.Partial("_MVCGridToolbar", new Exchange.UI.Models.MVCGridToolbarModel()
+                    {
+                        MVCGridName  = "AccountsGrid",
+                        PageSize     = true,
+                        ColumnVisibility = true,
+                        Export       = true,
+                        GlobalSearch = true
+                    })
+                    <br />
+                    <div class="dataTables_wrapper table-responsive container-fluid dt-bootstrap4">
+                        @Html.MVCGrid("AccountsGrid")
+                    </div>
+                </div>
+            </div> <!-- end card -->
+        </div> <!-- end col -->
+
+    </div> <!-- end row -->
+</div>
+
+@section scripts{
+    <script>
+        $("#usertradeloses").click(function () {
+            $.get("@Url.Action("_GetBelow10Losses", "Admin")", function (data) {
+                $("#usertradeloses").text('Total10:  ' + data.totalLoses + ' USD ')
+            })
+        });
+        var userType = $("#hdnUserType").val();
+        if (userType == 3) {
+            $("#MVCGridTable_AccountsGrid th:last-child, #MVCGridTable_AccountsGrid td:last-child").remove();
+        }
+    </script>
+
+}

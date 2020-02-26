@@ -1,0 +1,185 @@
+﻿@using Exchange.Common
+@model List<Exchange.DTO.Payment>
+@{
+    ViewBag.Title = "Transaction History";
+}
+
+<div class="row">
+
+    <div class="col-md-6 widget-holder">
+        <div class="widget-bg">
+            <div class="widget-body clearfix">
+                <div class="panel panel-primary">
+                    <h5 class="panel-heading">
+                        Withdrawl History
+                    </h5>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+
+                        </div>
+                        <div class="panel-body" style="width:100%;overflow:auto" >
+                            <table class="table">
+                                <thead>
+                                    <tr class="" style="font-weight:bold">
+                                        <td>Currency</td>
+                                        <td>Address</td>
+                                        <td>Amount</td>
+                                        <td>Status</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.Where(m => m.PaymentType == PaymentType.WITHDRAW.ToString()).ToList())
+                                    {
+                                        <tr>
+                                            <td>@item.Currency</td>
+                                            <td>@(new string(item.ToWalletAddress.Take(5).ToArray()))....</td>
+                                            <td>@item.Amount</td>
+                                            <td>@item.StatusMessage</td>
+                                        </tr>
+                                    }
+                             
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 widget-holder">
+        <div class="widget-bg">
+            <div class="widget-body clearfix">
+                <div class="panel panel-primary">
+                    <h5 class="panel-heading">
+                        Deposit History
+                    </h5>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+
+                        </div>
+                        <div class="panel-body" style="width:100%;overflow:auto">
+                            <table class="table">
+                                <thead>
+                                    <tr class="" style="font-weight:bold">
+                                        <td>Currency</td>
+                                        <td>Address</td>
+                                        <td>Amount</td>
+                                        <td>No. of Confirms</td>
+                                        <td>Status</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.Where(m => m.PaymentType == PaymentType.DEPOSIT.ToString()).ToList())
+                                    {
+                                        <tr>
+
+                                            <td>@item.Currency</td>
+                                            <td>@(new string(item.ToWalletAddress.Take(5).ToArray()))....</td>
+                                            <td>@item.Amount</td>
+                                            <td>@item.Confirms</td>
+                                            <td>@item.StatusMessage</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 widget-holder">
+        <div class="widget-bg">
+            <div class="widget-body clearfix">
+                <div class="panel panel-primary">
+                    <h5 class="panel-heading">
+                        Buy History
+                    </h5>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+
+                        </div>
+                        <div class="panel-body" style="width:100%;overflow:auto">
+                            <table class="table">
+                                <thead>
+                                    <tr class="" style="font-weight:bold">
+                                        <td>Currency</td>
+                                        <td>Address</td>
+                                        <td>Amount</td>
+                                        <td>No. of Confirms</td>
+                                        <td>Status</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.Where(m => m.PaymentType == PaymentType.BUY.ToString()).ToList())
+                                    {
+                                    <tr>
+
+                                        <td>@item.Currency</td>
+                                        <td>@(new string(item.ToWalletAddress.Take(5).ToArray()))....</td>
+                                        <td>@item.Amount</td>
+                                        <td>@item.Confirms</td>
+                                        <td>@item.StatusMessage</td>
+                                    </tr>
+                                    }
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 widget-holder">
+        <div class="widget-bg">
+            <div class="widget-body clearfix">
+                <div class="panel panel-primary">
+                    <h5 class="panel-heading">
+                        Sell History
+                    </h5>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+
+                        </div>
+                        <div class="panel-body" style="width:100%;overflow:auto">
+                            <table class="table">
+                                <thead>
+                                    <tr class="" style="font-weight:bold">
+                                        <td>Currency</td>
+                                        <td>Address</td>
+                                        <td>Amount</td>
+                                        <td>No. of Confirms</td>
+                                        <td>Status</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.Where(m => m.PaymentType == PaymentType.SELL.ToString()).ToList())
+                                    {
+                                        <tr>
+
+                                            <td>@item.Currency</td>
+                                            <td>@(new string(item.ToWalletAddress.Take(5).ToArray()))....</td>
+                                            <td>@item.Amount</td>
+                                            <td>@item.Confirms</td>
+                                            <td>@item.StatusMessage</td>
+                                        </tr>
+                                    }
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    
+}

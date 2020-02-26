@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "New WithDrawl";
+}
+<div class="row">
+    <div class="widget-bg">
+        <div class="widget-body col-md-12">
+            <h5 class="h5">
+                @ViewBag.currency > Withdrawl
+            </h5>
+            <div class="col-md-12 row">
+                @using (Html.BeginForm("NewWithDrawl", "Dashboard", FormMethod.Post, new { id = "withdrawl-form", novalidate = "novalidate" }))
+                {
+                    @Html.Hidden("currency", ViewBag.currency as object)
+                    <div class="col-md-12 row">
+                        <div class="form-group col-md-12">
+                            <label>Select WiteList Address <i class="fa fa-info-circle"  id="info"></i></label>
+                            @Html.DropDownList("address", ViewBag.address as List<SelectListItem>, new { @class = "form-control", required = "required" })
+                          <label class="text-warning">you can use only whitelist address to withdraw.<span class="text-info" ><a class="text-info" href="@Url.Action("AddressBook","Dashboard")"> Click here to add</a></span> </label>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label>Enter Amount</label>
+                            <input type="number" class="form-control" name="amount" required />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>From</label>
+                            <select class="form-control" name="from">
+                                <option value="FUNDING"> Wallet</option>
+ 
+                            </select>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <input type="submit" class="btn btn-success" value="Request Withdrawl" />
+                        </div>
+                    </div>
+                        <div class="col-md-12">
+                            <div class="col-md-12 " style="background:#f0ad4e;border-radius:5px;padding:20px;color:white;margin-top:10px"><i class="fa fa-bullhorn"></i> Please be aware that withdrawals are currently backlogged. The current extraordinary demand for deposits and withdrawals exceeds what the wallets and staff can immediately process. Resources are being added to improve delays. In the meantime, withdrawals may take more than 24 hours to complete. Canceling pending withdrawals and resubmitting them will only cause more delays. Thank you for your patience.</div>
+                        </div>
+
+                }
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+@section scripts{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+        $(function () {
+            $("#withdrawl-form").submit(function (e) {
+
+                var form = $(this);
+                form.validate();
+                if (form.valid()) {
+                    $.blockUI();
+                } else {
+                    e.preventDefault();
+                }
+            })
+            $("#info").click(function () {
+                bootbox.alert({
+                    message: "you can use only whitelist address to withdraw <br> <a href='/Dashboard/AddressBook' style='color:#0094ff'>Click here to add whitelist address</a>",
+                    title: "<i class='fa fa-info'></i> Important"
+
+                })
+            })
+        })
+    </script>
+}

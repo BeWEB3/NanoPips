@@ -1,0 +1,107 @@
+﻿html {
+    background-color: rgb(32, 32, 32) !important;
+}
+body {
+    background-color: rgb(32, 32, 32);
+    color:#fff !important;
+}
+.borderRound {
+    border: 1px solid rgb(42, 42, 42);
+}
+.outline-primary {
+    color: #fff !important;
+    background-color: rgb(32, 32, 32) !important;
+}
+
+.DarkImg {
+    display: none !important;
+}
+
+.LightImg {
+    display: inline-block !important;
+}
+.nav > li > a:hover {
+    text-decoration: none;
+    background-color: #1a1a1a;
+}
+.navTab > li.active > a, .navTab > li.active > a:focus, .navTab > li.active > a:hover {
+    background-color: #1a1a1a;
+}
+tbody > tr:hover {
+    background-color: #1a1a1a;
+}
+.col2, .col10 {
+    border: 2px solid rgb(42, 42, 42);
+}
+.full-width {
+    background-color: rgb(32, 32, 32);
+}
+.txtLabel{
+    color:#fff !important;
+}
+.dropdownHover:hover {
+    background-color: #383636 !important;
+}
+.txtLabel1 {
+    color: #fff !important;
+}
+tbody > tr {
+    color: lightgray !important;
+
+}
+.modal-content {
+    background-color: rgb(32, 32, 32);
+    color:#fff !important;
+}
+.dropdown-menu,thead> th {
+    background-color: #1a1a1a !important;
+}
+.buttonToShow2 {
+    background-color: rgb(32, 32, 32) !important;
+}
+
+.buttonToShow3 {
+    background-color: #2a2a2a !important;
+}
+.colorWhite{
+    color:#fff !important;
+}
+.txtRegisterLogin {
+    color: #fff !important;
+}
+.borderNone {
+    border-color: rgb(42,42,42) !important;
+    background-color: #1a1a1a !important;
+}
+.inputField {
+    border: 1px solid rgb(42,42,42) !important;
+    background-color: #1a1a1a;
+}
+.panel-default {
+    border-color: rgb(42,42,42) !important;
+    background-color: #1a1a1a;
+}
+.txtPanelHeader{
+    color:#fff !important;
+}
+.InputDisabled {
+    background-color: #1a1a1a !important;
+    border: 1px solid rgb(42,42,42);
+}
+.user_funds{
+    color:#fff !important;
+}
+.btn-primary {
+    background-color: #1a1a1a !important;
+    border-color: rgb(42,42,42);
+    color: #fff !important;
+}
+
+.btnClose {
+    background-color: #1a1a1a !important;
+    font-size: 15px !important;
+}
+
+.dropdown-menu > li > a {
+    color: #fff !important;
+}

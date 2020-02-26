@@ -1,0 +1,619 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html class="no-js">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+    <title>CoinEXR</title>
+    <meta name="description" content="">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/DashboardAssets/img/logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" data-them="" href="../../css/styles.css">
+    <link rel="stylesheet" type="text/css" href="../../js/specific/revolution-slider/css/settings.css" media="screen" />
+    <!--[if IE]>
+           <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+          <![endif]-->
+    <!--[if lt IE 9]>
+           <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+          <![endif]-->
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:100,400,600,700,300" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic" rel="stylesheet" type="text/css">
+   
+    @*<link rel="shortcut icon" href="../../images/favicon.png" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="../../images/favicon.png" type="image/x-icon" />*@
+    <style>
+        .label-group-cus {
+            text-align: center;
+            color: #dedcd6;
+            background-color: none;
+            font-weight: 700;
+            padding: 5px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #dedcd6;
+        }
+
+        .form-group-cus {
+            background-color: white;
+            color: black;
+            border: 1px solid rgba(255, 255, 255, 0.00) !important;
+            border-bottom-left-radius: 3px !important;
+        }
+
+        .input-group-cus {
+            border: 1px solid #e8e8e8;
+        }
+
+        .addon-cus {
+            background-color: #182337;
+            color: white;
+            border: 1px solid #182337;
+        }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            /* display: none; <- Crashes Chrome on hover */
+            -webkit-appearance: none;
+            margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+        }
+    </style>
+
+</head>
+<body class="responsive">
+
+    <div class="all_content">
+
+        @*<div class="dima-loading">
+                <span class="loading-top"></span>
+                <span class="loading-bottom"></span>
+                <span class="spin-2">
+                    <p>LOADING</p>
+                </span><a href="#" class="load-close">X</a>
+            </div>*@
+
+
+        <div class="tp-banner-container">
+            <div class="tp-banner fullscreenOnePage">
+                <ul>
+
+                    <li data-transition="random-static" data-slotamount="7" data-masterspeed="500" data-saveperformance="on" data-title="Intro Slide">
+                        <img alt="slidebg1" src="../../images/dummy.png" data-lazyload="../../images/slides/slide-4.jpg" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+                        <h1 class="uppercase undertitle tp-caption skewfromleft customout rs-parallaxlevel-0" data-x="center" data-y="center" data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;" data-speed="530" data-start="700" data-easing="Power3.easeInOut" data-elementdelay="0.1" data-endelementdelay="0.1">
+                            Exchange <span class="theme-color">BITCOIN</span>
+
+                        </h1>
+                        <div class="flex-caption undertitle tp-caption  customout rs-parallaxlevel-0" data-x="center" data-y="385" data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;" data-speed="530" data-start="900" data-easing="Power3.easeInOut" data-elementdelay="0.1" data-endelementdelay="0.1">
+                            <p class="undertitle  text-center">
+                                Exchange is the easiest and most secure <br class="hidden-ld" /> Bitcoin  trading network in the world,<br class="hidden-ld" /> offering the best rate in the market.
+
+                                <br><br><br>
+                                <a data-animated-link="fadeOut" style="color:white" href="@Url.Action("SignUp","Account")" class="use-loader no-rounded uppercase fill small button">Sign up now</a>
+                            </p>
+                        </div>
+                        <div class="pattern-slider"></div>
+                    </li>
+
+
+                    <li data-transition="fade" data-slotamount="7" data-masterspeed="500" data-saveperformance="on" data-title="Intro Slide">
+                        <img alt="slidebg1" src="../../images/dummy.png" data-lazyload="../../images/slides/slide-2.jpg" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+                        <h1 class="uppercase undertitle tp-caption skewfromleft customout rs-parallaxlevel-0" data-x="center" data-y="center" data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;" data-speed="530" data-start="700" data-easing="Power3.easeInOut" data-elementdelay="0.1" data-endelementdelay="0.1">
+                            Buy and Sell <span class="theme-color">BITCOIN</span>
+                        </h1>
+                        <div class="flex-caption undertitle tp-caption skewfromleft customout rs-parallaxlevel-0" data-x="center" data-y="385" data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;" data-speed="530" data-start="900" data-easing="Power3.easeInOut" data-elementdelay="0.1" data-endelementdelay="0.1">
+                            <p class="undertitle text-center">
+                                Transfer from one wallet to another within seconds.<br /> You can also deposit or withdraw your money <br class="hidden-ld " /> to your local bank in an instant.
+                                <br /><br /><br />
+                                <a data-animated-link="fadeOut" href="@Url.Action("SignUp","Account")" class="use-loader no-rounded uppercase di_white stroke button" data-direction="down">Sign Up now</a>
+
+                            </p>
+                           
+                        </div>
+                        <div class="tp-caption lft rs-parallaxlevel-0 skewfromrightshort randomrotateout" data-x="center" data-y="475" data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;" data-speed="530" data-start="1100" data-easing="Power3.easeInOut" data-elementdelay="0.1" data-endelementdelay="0.1">
+                        </div>
+                        <div class="pattern-slider"></div>
+                    </li>
+
+
+                    <li data-transition="fade" data-slotamount="7" data-masterspeed="500" data-saveperformance="on" data-title="Intro Slide">
+                        <img alt="slidebg1" src="../../images/dummy.png" data-lazyload="../../images/slides/slider-1.png" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+                        <h1 class="uppercase undertitle tp-caption skewfromleft customout rs-parallaxlevel-0" data-x="center" data-y="center" data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;" data-speed="530" data-start="700" data-easing="Power3.easeInOut" data-elementdelay="0.1" data-endelementdelay="0.1">
+                            Invest in <span class="theme-color"> BITCOIN</span>
+                        </h1>
+                        <div class="flex-caption undertitle tp-caption skewfromleft customout rs-parallaxlevel-0" data-x="center" data-y="385" data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;" data-speed="530" data-start="900" data-easing="Power3.easeInOut" data-elementdelay="0.1" data-endelementdelay="0.1">
+                            <p class="undertitle hide-on-m text-center">
+                                Learn the best practices and strategies <br /> when investing in Bitcoin from millions of <br class="hidden-ld" /> experienced cryptocurrency traders and investors.
+
+                            </p>
+                        </div>
+                        <div class="pattern-slider"></div>
+                    </li>
+
+
+                    <li data-transition="fade" data-slotamount="7" data-masterspeed="500" data-saveperformance="on" data-title="Intro Slide">
+                       
+                        <img  src="../../images/dummy.png" data-lazyload="../../images/slides/slide-3.jpg" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+                        <h1 class="uppercase undertitle tp-caption skewfromleft customout rs-parallaxlevel-0" data-x="center" data-y="center" data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;" data-speed="530" data-start="700" data-easing="Power3.easeInOut" data-elementdelay="0.1" data-endelementdelay="0.1">
+                            Best Blockchain <span class="theme-color">Technology</span>
+                        </h1>
+                        <div class="flex-caption undertitle tp-caption skewfromleft customout rs-parallaxlevel-0" data-x="center" data-y="385" data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;" data-speed="530" data-start="900" data-easing="Power3.easeInOut" data-elementdelay="0.1" data-endelementdelay="0.1">
+                            <p class="undertitle hide-on-m text-center">
+                                Exchange uses the latest and most advanced <br class="hidden-ld" /> technology for  a secure and convenient <br  class="hidden-ld"/> trading platform without any hidden charges.
+
+                            </p>
+                        </div>
+                        <div class="pattern-slider"></div>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+
+        <header role="banner">
+            <div class="dima-navbar-wrap desk-nav dima-navbar-fixed-top-active">
+                <div class="dima-navbar fix-one">
+                    <div class="clearfix dima-nav-fixed"></div>
+                    <div class="container">
+
+                        <div class="logo">
+                            <h1>
+                                <a data-animated-link="fadeOut" href="#" title="">
+
+                                    <img src="../../images/logo.png" alt=" Logo" title="" style="width:100px">
+                                </a>
+                            </h1>
+                        </div>
+
+
+                        <nav role="navigation" class="clearfix">
+                            <ul class="dima-nav dima-onepage  ">
+                                <li>
+                                    <a data-animated-link="fadeOut" href="#gettingStarted">Getting started</a>
+                                </li>
+                                <li>
+                                    <a data-animated-link="fadeOut" href="#about">about</a>
+                                </li>
+                                <li>
+                                    <a data-animated-link="fadeOut" href="#InstantRates">Instant Rates</a>
+                                </li>
+
+                                <li>
+                                    <a data-animated-link="fadeOut" href="@Url.Action("BitcoinData","Home")" class="use-loader">Bitcoin Data</a>
+
+                                </li>
+                                <li>
+                                    <a data-animated-link="fadeOut" class="use-loader" href="@Url.Action("Login","Account")">Login</a>
+                                </li>
+                                <li>
+                                    <a data-animated-link="fadeOut" class="use-loader" href="@Url.Action("SignUp","Account")">Sign Up</a>
+                                </li>
+
+                            </ul>
+                        </nav>
+
+                    </div>
+
+                    <div id="search-box">
+                        <div class="container">
+                            <form>
+                                <input type="text" placeholder="Start Typing...">
+                            </form>
+                            <div id="close">
+                                <a data-animated-link="fadeOut" href="#">
+                                    <i class="di-close"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="clear-nav"></div>
+            </div>
+
+            <div class="dima-navbar-wrap mobile-nav">
+                <div class="dima-navbar fix-one">
+                    <div class="clearfix dima-nav-fixed"></div>
+                    <div class="container">
+
+                        <a class="dima-btn-nav" href="#"><i class="fa fa-bars"></i></a>
+
+                        <div class="logo">
+                            <h1>
+                                <a data-animated-link="fadeOut" href="#" title="">
+                                    <span class="vertical-middle"></span>
+                                    <img src="../../images/logo.png" alt="exchange Logo" title="">
+                                </a>
+                            </h1>
+                        </div>
+
+                        <nav role="navigation" class="clearfix">
+                            <ul class="dima-nav dima-onepage  ">
+                                <li>
+                                    <a data-animated-link="fadeOut" href="#gettingStarted">Getting Started</a>
+                                </li>
+                                <li>
+                                    <a data-animated-link="fadeOut" href="#about">about</a>
+                                </li>
+                                <li>
+                                    <a data-animated-link="fadeOut" href="#InstantRates">Instant Rates</a>
+                                </li>
+                                <li>
+                                    <a data-animated-link="fadeOut" href="@Url.Action("BitcoinData","Home")" class="use-loader">Bitcoin Data</a>
+                                </li>
+                               
+                                <li>
+                                    <a data-animated-link="fadeOut" class="use-loader" href="@Url.Action("Login","Account")">Login</a>
+                                </li>
+                                <li>
+                                    <a data-animated-link="fadeOut" class="use-loader" href="@Url.Action("SignUp","Account")">Sign Up</a>
+                                </li>
+
+                            </ul>
+                        </nav>
+                    </div>
+
+                </div>
+            </div>
+
+        </header>
+
+
+        <div class="dima-main">
+
+            <section class="section " id="gettingStarted">
+                <div class="page-section-content overflow-hidden">
+                    <div class="container text-center">
+
+                        <h2 class="uppercase" data-animate="fadeInDown" data-delay="0">WELCOME TO CoinEXR</h2>
+                        <div class="topaz-line">
+                            <i class="di-separator"></i>
+                        </div>
+                        <p data-animate="fadeInUp" data-delay="100">
+                            Thinking of buying Bitcoins? CoinEXR lets you do that in three easy steps.
+
+                        </p>
+
+                        <div class="clear-section"></div>
+
+                        <div class="ok-row">
+                            <div class="ok-md-4 ok-xsd-12 ok-sd-4">
+                                <div class="topaz-hover features-box section-colored" data-bg="#3d3d39" data-animate="fadeInUp" data-delay="200">
+                                    <header role="banner">
+                                        <i class="di-user-r"></i>
+                                    </header>
+                                    <div class="features-content">
+                                        <h5 class="features-title uppercase">Sign Up</h5>
+                                        <p>Sign up for a free wallet and go through the easy verification process.
+</p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="ok-md-4 ok-xsd-12 ok-sd-4">
+                                <div class="topaz-hover features-box section-colored" data-bg="#3d3d39" data-animate="fadeInUp" data-delay="300">
+                                    <header role="banner">
+                                        <i class="di-dollar"></i>
+                                    </header>
+                                    <div class="features-content">
+                                        <h5 class="features-title uppercase">Add money
+</h5>
+                                        <p>Select your preferred deposit method and add money to your wallet.
+</p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="ok-md-4 ok-xsd-12 ok-sd-4">
+                                <div class="topaz-hover features-box section-colored" data-bg="#3d3d39" data-animate="fadeInUp" data-delay="400">
+                                    <header role="banner">
+                                        <i class="di-coin-dollar"></i>
+                                    </header>
+                                    <div class="features-content">
+                                        <h5 class="features-title uppercase">Buy Bitcoin</h5>
+                                        <p>You can now buy some Bitcoins! Use them in your financial transactions.
+</p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="section section-colored" data-bg="#3d3d39" id="about">
+                <div class="page-section-content overflow-hidden">
+                    <div class="container text-center">
+                        <div class="ok-row">
+
+                            <h2 class="uppercase" data-animate="fadeInDown" data-delay="0">ABOUT
+</h2>
+                            <div class="topaz-line">
+                                <i class="di-separator"></i>
+                            </div>
+                            <p data-animate="fadeInUp" data-delay="100">When it comes to managing money, people want a simple and secure platform. At CoinEXR, we aim to provide a user-friendly, convenient, and stable system to let you buy, invest, earn, and even transport your money securely. We are dedicated to building a powerful peer-to-peer payment logistics platform that will ultimately define the future of trading and investing.
+</p>
+
+                            <div class="clear-section"></div>
+                            <div class="ok-md-6 ok-xsd-12 text-start">
+                                <h5 class="uppercase" data-animate="fadeInUp" data-delay="200">We provide</h5>
+                                @*<p data-animate="fadeInUp" data-delay="220">Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit <a data-animated-link="fadeOut" href="#">consequat</a> ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Nec sagittis sem nibh id elit. Aenean sollicitudin, lorem quis bibendum auctor. Nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate.</p>*@
+                                <div class="double-clear"></div>
+
+                                <div class="ok-md-4 ok-xsd-6" data-animate="bounceIn" data-delay="300">
+                                    <div class="circular-bar">
+                                        <input type="text" class="dial" data-fgColor="#1cbe91 " data-width="120" data-height="120" value="99">
+                                        <div class="circular-bar-content">
+                                            <label>Our blockchain implementation ensures secure transaction records.</label>
+                                        </div>
+                                        <strong>Safety Stability</strong>
+                                        @*<label>Our blockchain implementation ensures secure transaction records.</label>*@
+                                    </div>
+                                </div>
+
+
+                                <div class="ok-md-4 ok-xsd-6" data-animate="bounceIn" data-delay="350">
+                                    <div class="circular-bar">
+                                        <input type="text" class="dial" data-fgColor="#1cbe91" data-width="120" data-height="120" value="100">
+                                        <div class="circular-bar-content">
+                                            <label></label>
+                                        </div>
+                                        <strong>High Performance</strong>
+                                    </div>
+                                </div>
+
+
+                                <div class="ok-md-4 ok-xsd-6 " data-animate="bounceIn" data-delay="400">
+                                    <div class="circular-bar">
+                                        <input type="text" class="dial" data-fgColor="#1cbe91" data-width="120" data-height="120" value="100">
+                                        <div class="circular-bar-content">
+                                            <label></label>
+                                        </div>
+                                        <strong>Transparency</strong>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="ok-md-6 ok-xsd-12">
+                                <div class="last second" data-animate="fadeInUp" data-delay="220">
+                                    <img src="../../images/devices/device-mac-book.png" class="topaz-div-bg" alt="">
+                                    <div class="device-content macbook">
+                                        <img src="../../images/mac-bg.gif" alt="">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="section " id="quote">
+                <div class="page-section-content overflow-hidden">
+                    <div class="background-image-hide parallax-background">
+                        <img class="background-image" alt="Background Image" src="../../images/sections/quote-bg.jpg">
+                    </div>
+                    <div class="dima-section-cover"></div>
+                    <div class="container page-section text-center" data-animate="bounceIn" data-delay="0">
+                        <div class="topaz-line quote">
+                            <i class="fa fa-quote-left"></i>
+                        </div>
+                        <div class="ok-md-8 ok-xsd-12 ok-offset-md-2 no-xsd-offset">
+                            <div class="owl-carousel">
+
+                                <div class="dima-testimonial quote-style">
+                                    <blockquote>
+                                        <p>
+                                            The goal of a successful trader is to make the best trades. Money is secondary.
+                                        </p>
+                                        <span class="dima-testimonial-meta">
+                                            <strong>-Alexander Elder-</strong>
+                                        </span>
+                                    </blockquote>
+                                </div>
+
+
+                                <div class="dima-testimonial quote-style">
+                                    <blockquote>
+                                        <p>
+                                            The goal of a successful trader is to make the best trades. Money is secondary.
+                                        </p>
+                                        <span class="dima-testimonial-meta">
+                                            <strong>-Alexander Elder-</strong>
+                                        </span>
+                                    </blockquote>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="section " id="InstantRates" style="background-color:#0e5c8f !important">
+                <div class="page-section-content overflow-hidden">
+                    <div class="container text-center ">
+
+                        <h2 class="uppercase" data-animate="fadeInDown" data-delay="0" style="color:white">1 Bitcoin = @ViewBag.BTCPrice ETH</h2>
+                        <div class="topaz-line">
+                            <i class="di-separator"></i>
+                        </div>
+                        <p data-animate="fadeInUp" data-delay="100" style="color:white">
+                            Bitcoin Calculator
+                        </p>
+
+                        <div class="clear-section"></div>
+                        <div class="row">
+
+                            <div class="col-xs-12 col-md-6 col-md-offset-3">
+                                <div class="form-group">
+                                    <div class="input-group input-group-cus">
+                                        <div class="label-group-cus">HOW MUCH YOU WANT TO BUY/SELL</div>
+                                        <input type="number" class="form-control form-group-cus" style="height:50px;color:white !important" id="eth" placeholder="0" step="0.00000001" name="btc_amount" aria-describedby="basic-addon2">
+                                        <span class="input-group-addon" id="basic-addon2" style="">  <span style="padding-left:6px;padding-right:6px;font-weight:bold;color:#1cbe91">ETH</span> </span>
+                                    </div>
+                                </div>
+                                <div class="form-group" style="margin-top:-10px">
+                                    <div class="input-group input-group-cus" style="border:1px solid #1cbe91;">
+                                        <div class="label-group-cus" style="border-bottom:1px solid #1cbe91;color:#1cbe91">YOU WILL GET</div>
+                                        <input type="number" class="form-control form-group-cus" style="height:50px;color:white !important" aria-describedby="basic-addon3" id="btc"  placeholder="0" step="0.00000001" name="btc_amount">
+                                        <span class="input-group-addon btn-warning" id="basic-addon3" style="background-color:#1cbe91"><span style="padding-left:7px;padding-right:7px;font-weight:bold">BTC</span> </span>
+                                    </div>
+                                </div>
+                                <a href="@Url.Action("Index","Dashboard")" data-animated-link="fadeOut" data-direction="down" class="btn use-loader btn-default btn-lg col-xs-6" style="border-radius:0px;border:1px solid #dedcd6;color:#dedcd6;background:none !important">BUY NOW</a>
+                                <a  href="@Url.Action("Index","Dashboard")" data-animated-link="fadeOut" class="btn btn-warning use-loader btn-lg col-xs-6" style="border-radius:0px;border:1px solid #1cbe91;color:#1cbe91;background:none !important">SELL NOW</a>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            
+
+
+
+
+        </div>
+
+
+        <div class="top-footer">
+            <div class="container">
+                <div class="ok-row">
+
+                    <div class=" ok-md-3 ok-xsd-12 ok-sd-6 widget">
+                        <h5 class="widget-titel uppercase">Social Links</h5>
+                        @*<div class="widget-content">
+                            <p>When it comes to managing money, people want a simple and secure platform. At CoinEXR, we aim to provide a user-friendly, convenient, and stable system to let you buy, invest, earn, and even transport your money securely. We are dedicated to building a powerful peer-to-peer payment logistics platform that will ultimately define the future of trading and investing.</p>
+                        </div>*@
+                        <div class="double-clear"></div>
+                        <div class="widget-content">
+                            <div class="dima-social-footer social-media social-medium">
+                                <ul class="inline clearfix">
+                                   
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class=" ok-md-3 ok-xsd-12 ok-sd-6 widget pull-right">
+                        <h5 class="widget-titel uppercase text-center" style="text-align:center">Contact us</h5>
+                        <div class="widget-content">
+                            <ul class="with-border featured-posts contact-icon">
+                              
+                               
+                            </ul>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+        <footer role="contentinfo" class="dima-footer">
+            <div class="container">
+                <div class="ok-row">
+
+                    <div class="ok-md-4 ok-xsd-12 ok-sd-12">
+                        <div class="dima-center-full copyright">
+                            <p>
+                                © @DateTime.Now.Year CoinEXR. All rights are reserved
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="ok-md-8 ok-xsd-12 ok-sd-12 hidden-xsd">
+                        <ul class="dima-center-full dima-menu">
+                            <li>
+                                <a data-animated-link="fadeOut" href="#gettingStarted">Getting Started</a>
+                            </li>
+                            <li>
+                                <a data-animated-link="fadeOut" href="#about">About us</a>
+                            </li>
+                            <li>
+                                <a data-animated-link="fadeOut" href="#InstantRates">Instant Rates</a>
+                            </li>
+                            <li>
+                                <a data-animated-link="fadeOut" href="@Url.Action("BitcoinData","Home")" class="use-loader">Bitcoin Data</a>
+
+                            </li>
+                            <li>
+                                <a data-animated-link="fadeOut" href="@Url.Action("Login","Account")" class="use-loader">Login</a>
+                            </li>
+                            <li>
+                                <a data-animated-link="fadeOut" href="@Url.Action("SignUp","Account")" class="use-loader">Sign Up</a>
+                            </li>
+
+
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+
+    <script src="../../js/core/jquery-2.1.1.min.js"></script>
+
+    <script src="../../js/core/load.js"></script>
+    <script src="../../js/core/jquery.easing.1.3.js"></script>
+    <script src="../../js/core/modernizr-2.8.2.min.js"></script>
+    <script src="../../js/core/imagesloaded.pkgd.min.js"></script>
+    <script src="../../js/core/respond.src.js"></script>
+    <script src="../../js/libs.min.js"></script>
+    <script type="text/javascript" src="../../js/specific/revolution-slider/js/jquery.themepunch.tools.min.js"></script>
+    <script type="text/javascript" src="../../js/specific/revolution-slider/js/jquery.themepunch.revolution.min.js"></script>
+    <script src="../../js/main.js"></script>
+    <script>
+        $(function () {
+
+            var bitcoinPrice =parseFloat('@ViewBag.BTCPrice');
+            $("#btc").keyup(function (e) {
+
+                var value = $(this).val();
+                if (value != "") {
+                    var r = bitcoinPrice * value;
+                    $("#eth").val(r);
+                }
+            });
+            $("#eth").keyup(function (e)
+            {
+
+                var value = $(this).val();
+                if (value != "") {
+                    var r =  value/bitcoinPrice;
+                    $("#btc").val(r);
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

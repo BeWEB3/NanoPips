@@ -1,0 +1,184 @@
+﻿.skin-purple-light .main-header .navbar {
+    background-color: rgb(255,255,255);
+}
+.searchingClass {
+    background-color: #ffffff;
+    color: #757e8a;
+}
+.fontToBeBlack {
+    color: #757e8a;
+}
+.modal-content{
+    background-color:#ffffff;
+}
+.modalToBeBlack {
+    color: #000000;
+}
+.navbar-nav > .messages-menu > .dropdown-menu > li.header, .navbar-nav > .notifications-menu > .dropdown-menu > li.header, .navbar-nav > .tasks-menu > .dropdown-menu > li.header {
+    background-color: #ffffff;
+    color: #757e8a;
+}
+.inpStyle {
+    color: #757e8a;
+}
+.nav-tabs .nav-link {
+    color: #757e8a !important;
+}
+.boxforNewWithDrawl {
+    background-color: #ffffff;
+}
+.bgChangeForCenterItem {
+    background: #FFFFFF;
+}
+#b-from {
+    color: #000000 !important;
+}
+.dropdownStyle {
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    margin-top: 10px;
+    color: #000000;
+}
+
+.navbar-custom-menu > .navbar-nav > li > .dropdown-menu {
+    background-color: #ffffff;
+}
+
+.skin-purple-light .content-header {
+    background-color: rgb(255,255,255);
+}
+
+.content-header > h1, .content-header > .container > h1 {
+    background-color: rgb(0,0,0);
+}
+
+.main-footer {
+    background-color: rgb(255,255,255);
+}
+
+.content-header > h1, .content-header > .container > h1 {
+    background-color: rgb(255,255,255);
+    color: rgb(0,0,0);
+}
+
+.bol {
+    color: #000 !important;
+}
+
+.sStyle {
+    color: #000 !important;
+}
+
+.MidSec {
+    background-color: #fff;
+}
+
+.Bcol {
+    background-color: #fff !important;
+}
+
+.panel-header {
+    background-color: #fff !important;
+}
+#b-to{
+    color:#000000 !important;
+}
+.element {
+    background-color: #fff !important;
+}
+
+.skin-purple-light .main-header .navbar .nav > li > a:hover {
+    background-color: transparent;
+}
+
+.skin-purple-light .wrapper, .skin-purple-light .main-sidebar, .skin-purple-light .left-side {
+    background-color: #5D5F75;
+}
+
+.Newbg {
+    background-color: #B0B0B0;
+}
+.fa fa-plus-square.panel-header {
+    color: #757e8a !important;
+}
+.goog-te-gadget-simple {
+    background-color: #fff;
+    color: #000 !important;
+}
+
+.goog-te-menu-value {
+    color: #000 !important;
+}
+.panel-header {
+    color: #757e8a !important;
+}
+
+.table {
+    background-color: #fff !important;
+    color: #000 !important;
+}
+
+p {
+    color: #000;
+}
+
+.skin-purple-light .content {
+    background-color: #fff !important;
+}
+
+label {
+    color: #757e8a !important;
+}
+
+.content-wrapper {
+    background-color: #fff;
+}
+
+.skin-purple-light .main-header .navbar .nav > li > a {
+    color: #3b424a !important;
+}
+
+.BlkType {
+    color: #000 !important;
+}
+
+goog-te-menu2-item-selected div, .goog-te-menu2-item-selected:link div, .goog-te-menu2-item-selected:visited div, .goog-te-menu2-item-selected:hover div, .goog-te-menu2-item-selected:active div {
+    background-color: #5DADE2 !important;
+}
+
+.Bgcolor {
+    color: #fff !important;
+}
+
+.dropbtn {
+    padding: 7px;
+    font-size: 14px;
+    border: 1px solid #FFFFFF;
+    cursor: pointer;
+    background-color: #FFFFFF;
+    color: #000000;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #FFFFFF;
+    min-width: 120px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    line-height: 25px;
+}
+
+.box {
+    background-color: #ffffff !important;
+}

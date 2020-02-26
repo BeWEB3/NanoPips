@@ -1,0 +1,1405 @@
+@model Exchange.UI.Models.ProfileModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nanopips</title>
+    <link rel="shortcut icon" href="https://www.nanopips.com/img/favicon.ico" type="image/x-icon" />
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="~/TradeAssets/js/popper.min.js"></script>
+    <link href="~/Assets/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/TradeAssets/js/bootbox.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Rubik:400,700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" rel="stylesheet">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" media="all" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
+    <link href="~/Assets/css/simple-line-icons.min.css" rel="stylesheet" />
+    <link href="~/Assets/css/main.css" rel="stylesheet" />
+
+    @*<script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
+
+    <script>
+        var zoomEvents = [];
+        if (screen.width <= 768) {
+            var device = 'mobile';
+            var zoomValue = '60';
+        } else {
+            var device = 'desktop';
+            var zoomValue = '190';
+        }
+        var lastSecond = '';
+
+/**/</script>
+    <style>
+        .auto-margin-block {
+            margin: auto;
+            display: block;
+        }
+
+        .width-100px {
+            width: 75px;
+        }
+
+        /*.modal {
+            top: 10%;
+        }*/
+
+        .btn-primary {
+            background: #00fcb1;
+            border-color: #00fcb1;
+        }
+
+        .mar-top-20 {
+            margin-top: 20px;
+        }
+
+        .width-50-per {
+            width: 50%;
+        }
+
+        .width-100-per {
+            width: 100% !important;
+        }
+
+        .width-90-per {
+            width: 90%;
+        }
+
+        .font-size-10 {
+            font-size: 10px;
+        }
+
+        .mar-left-15 {
+            margin-left: 15px;
+        }
+
+        .model-header {
+            border: 1px solid rgba(102, 184, 92, 1);
+            padding: 15px;
+            height: 50px;
+            color: rgba(102, 184, 92, 1)
+        }
+
+            .model-header:hover {
+                background: rgba(102, 184, 92, 1);
+                color: white !important;
+            }
+    </style>
+</head>
+<body style="font-family: 'Rubik', sans-serif;">
+    <nav class="navbar navbar-default navbar-static-top login-navbar">
+        <div class="col-md-2 col-sm-3 col-xs-3">
+            <div class="logo-header logo-page-header">
+                <img src="~/android-icon-48x48.png" >
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 profile-settings-container">
+                <div class="profile-container-body">
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="well well-lg profile-well">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <img src="~/Assets/images/Account Verification.png" class="width-100px" />
+                                </div>
+                                <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                                    <div>
+                                        <span class="heading">Account Verification</span>
+                                    </div>
+                                    <div class="spacer text-center">
+                                        @if (Model.GetAccount.AccountType_Id == 1)
+                                        {
+                                            <span class="text-bold text-center">
+                                                Upload your documents
+                                            </span>
+                                            <br />
+                                            <button type="button" data-toggle="modal" data-target="#myModal" style="background: transparent;border: #ffffff;">
+                                                <span class="text-center">
+                                                    <img src="~/Assets/images/Upload.png" style="height:50px;" />
+                                                </span>
+                                            </button>
+                                            <br />
+                                            <span class="text-center">
+                                                Note: Verification can take upto 24 hours.
+                                            </span>
+                                        }
+                                        else if (Model.GetAccount.AccountType_Id == 3)
+                                        {
+                                            <span class="text-bold text-center text-danger">
+                                                Your Document's are Rejected by Admin, Please Upload valid Document.
+                                            </span>
+                                            <br />
+                                            <button type="button" data-toggle="modal" data-target="#myModal" style="background: transparent;border: #ffffff;">
+                                                <span class="text-center">
+                                                    <img src="~/Assets/images/Upload.png" style="height:50px;" />
+                                                </span>
+                                            </button>
+                                            <br />
+                                            <span class="text-center">
+                                                Note: Verification can take upto 24 hours.
+                                            </span>
+                                        }
+                                        else if (Model.GetAccount.AccountType_Id == 4)
+                                        {
+                                            <span class="text-center" style="font-weight:bold;">
+                                                Your Account is Verified
+                                            </span>
+                                            <br />
+                                            <span class="text-center">
+                                                <img src="~/Assets/images/TickMark.png" style="height:50px;" />
+                                            </span>
+                                            <br />
+                                            <span class="text-center">
+                                                Contact clientservice@nanopips.com to make changes to your Account Information.
+                                            </span>
+                                        }
+                                        else if (Model.GetAccount.AccountType_Id == 2)
+                                        {
+                                            <br />
+                                            <span class="text-center">
+                                                Please allow upto 24 hours for your documents to verified.
+                                            </span>
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="well well-lg profile-well">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <img src="~/Assets/images/Email Verification.png" class="width-100px" />
+                                </div>
+                                <div class="col-md-9">
+                                    <div>
+                                        <span class="heading">Email Authentication</span>
+                                    </div>
+                                    <div class="spacer text-center">
+                                        <span class="text-bold">Your Email Address is Verified.</span>
+                                        <br>
+                                        <span>
+                                            <img src="~/Assets/images/check mark.png" />
+                                        </span>
+                                        <br />
+                                        <span>
+                                            Contact: <email>clientservice@nanopips.com</email> to change your email address.
+                                        </span>
+                                    </div>
+                                    <div class="spacer verification-code-status">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="well well-lg profile-well">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <img src="~/Assets/images/Account Verification.png" class="width-100px" />
+                                </div>
+                                <div class="col-md-9">
+                                    <div>
+                                        <span class="heading">Security</span>
+                                    </div>
+                                    <div class="spacer">
+                                        <button type="button" data-toggle="modal" data-target="#myModal1" class="btn outline-primary btn-lg full-width">Change Password</button>
+                                    </div>
+                                    <div class="spacer">
+                                        <button type="button" data-toggle="modal" data-target="#myModal2" class="btn outline-primary btn-lg full-width" style="font-size: 17px;">Change Secret Questions</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div class="well well-lg profile-well">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <img src="~/Assets/images/Manage Account.png" class="width-100px" />
+                                </div>
+                                <div class="col-md-9">
+                                    <div>
+                                        <span class="heading">Account</span>
+                                    </div>
+                                    <div class="spacer">
+                                        <button class="btn outline-primary btn-lg full-width" type="button" data-toggle="modal" data-target="#depositModel">Deposit Funds</button>
+                                    </div>
+                                    <div class="spacer">
+                                        <button class="btn outline-primary btn-lg full-width" type="button" data-toggle="modal" data-target="#withDrawModel">Withdraw Funds</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 back-button-container">
+                    <i class="fa fa-arrow-circle-left text-primary back-button display-none"></i>
+                </div>
+                <div class="modal fade" id="withDrawModel" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-body row">
+                                <form enctype="multipart/form-data">
+                                    <div class="col-md-12 spacer text-center">
+                                        <img src="~/Assets/images/Account Verification.png" class="width-100px" />
+                                    </div>
+                                    <div class="col-md-12  col-sm-12 col-xs-12 spacer">
+                                        <p class="text-bold text-center">Withdrawal Request</p>
+                                    </div>
+                                    <div class="col-md-offset-4 col-md-4">
+                                        @*<div class="btn-group" style="width: 100%;">
+                                            <button id="selectedcurrencyWithDraw" type="button" class="mar-top-20 btn btn-lg outline-primary dropdown-toggle dropdown-filter" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:inherit;">
+                                                Select Currency <span class="caret" style="margin-left:5px;"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                @foreach (var item in Model.CurrencyList as List<Exchange.DTO.Currency>)
+                                                {
+                                                    <li><a href="#" class="candle-select-range currencyclickWithDraw">@item.ThreeDigitName</a></li>
+                                                }
+                                            </ul>
+                                        </div>*@
+                                    </div>
+                                    <div class="col-md-12 spacer text-center">
+                                        <button type="button" data-toggle="modal" data-target="#myModal4" class="btn btn-primary btn-lg submit_form_btn width-50-per">Wire Transfer</button>
+                                    </div>
+                                    <div class="col-md-12 spacer text-center">
+                                        <button type="button" data-toggle="modal" data-target="#cryptoWithdrawModel" class="btn btn-primary btn-lg submit_form_btn width-50-per">Cryptocurrency Transfer</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="cryptoWithdrawModel" role="dialog">
+                    <div class="modal-dialog ">
+                        <div class="modal-content">
+                            <div class="modal-body row">
+                                <form enctype="multipart/form-data">
+                                    <div class="col-md-12 spacer text-center">
+                                        <img src="~/Assets/images/Account Verification.png" class="width-100px" />
+                                    </div>
+                                    <div class="col-md-12  col-sm-12 col-xs-12 spacer">
+                                        <p class="text-bold">Cryptocurrency Withdrawal Request Form</p>
+                                    </div>
+                                    <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12 spacer">
+                                        <select id="selectAddress" class="width-100-per" style="padding: 10px;"></select>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 spacer">
+                                        <p class="text-center"> Withdrawls will only be sent to the whitelist address. 
+                                        <a data-toggle="modal" data-target="#myModal7" class="whiteAddressToAdd">Add Now</a>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 spacer">
+                                        <input id="withdrawAmount" name="profile_files2" type="number" placeholder="Amount in USD" class="pull-left width-100-per" style="padding:10px;">
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 spacer">
+                                        <div style="display: inline-flex;">
+                                            <input type="checkbox" name="checkbox" value="check"> <p class="mar-left-15 text-center">
+                                                I understand that withdrawals to a Cryptocurrency wallets are my sole responsibility.
+                                                I understand that by sending to the wrong address and any errors in withdrawing Cryptocurrency are my sole responsibility and that
+                                                once a withdrawal is processed it is permanent and final. I understand that nanopips will not be held responsible for any errors with my Cryptocurrency
+                                                Withdrawals.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 spacer text-center">
+                                        <button id="submitCryptoWithDrawl" type="button" data-toggle="modal" class="btn btn-primary btn-lg submit_form_btn">Submit Withdraw Request</button>
+                                    </div>
+
+                                    <div class="col-md-12 col-sm-12 spacer">
+                                        <p class="text-bold text-center">
+                                            NOTE: Your Withdrawal will be processed.<br />
+                                            Please allow upto 24 hours for the withdrawal process.
+                                        </p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="myModal7" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-body row">
+                                <form enctype="multipart/form-data">
+                                    <div class="col-md-12 spacer text-center">
+                                        <img src="~/Assets/images/Account Verification.png" class="width-100px" />
+                                    </div>
+                                    <div class="col-md-12  col-sm-12 col-xs-12 spacer">
+                                        <p class="text-bold">Save upto 5 Addresses. </p>
+                                    </div>
+                                    @for (int i = 1; i <= 5; i++)
+                                    {
+                                        <div class="col-md-10 col-sm-10 spacer">
+                                            <input name="profile_files1" id="whiteAddress-@i" placeholder="WhiteList Address @i" class="width-100-per pull-left text-center" style="padding:10px;">
+                                        </div>
+                                        <div class="col-md-2 col-sm-2 spacer">
+                                            <i class="fa fa-check classForAdding" id="addWhiteAddress-@i" style="margin-top:15px;"></i>
+                                            <i class="fa fa-times classForDelete" id="deleteWhiteAddress-@i" style="color:red; margin-left:8px;"></i>
+                                        </div>
+                                    }
+                                    <div class="col-md-12 spacer text-center">
+                                        <button id="submit_authorize" type="submit" class="btn btn-primary btn-lg submit_form_btn">AUTHORIZE</button>
+                                    </div>
+                                    <div class="col-md-12 spacer text-center">
+                                        <a href="@Url.Action("Profile","Account")" class="btn-lg">Cancel</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="depositModel" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-body row">
+                                <form enctype="multipart/form-data">
+                                    <div class="col-md-12 spacer text-center">
+                                        <img src="~/Assets/images/Account Verification.png" class="width-100px" />
+                                    </div>
+                                    <div class="col-md-12  col-sm-12 col-xs-12 spacer">
+                                        <p class="text-bold text-center">Deposit to your Nanopips Account.</p>
+                                    </div>
+                                    <div class="col-md-12 spacer text-center">
+                                        <button type="button" data-toggle="modal" data-target="#interacdeposit_model" class="btn btn-primary btn-lg submit_form_btn width-50-per">Interac e-Transfer</button>
+                                    </div>
+                                    <div class="col-md-12 spacer text-center">
+                                        <button type="button" data-toggle="modal" data-target="#wiredeposit_model" class="btn btn-primary btn-lg submit_form_btn width-50-per">Direct Deposit | Wire Transfer</button>
+                                    </div>
+                                    <div class="col-md-12 spacer text-center">
+                                        <button type="button" data-toggle="modal" data-target="#cryptoDeposit" class=" btnCryptoDeposit btn btn-primary btn-lg submit_form_btn width-50-per confirmation-Modal">Cryptocurrency Transfer</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    $('.btnCryptoDeposit').click(function () {
+                        $('#cryptoDeposit').css("overflow-y", "auto");
+                        $('body').css("overflow-y", "none");
+                    });
+                </script>
+                <div class="modal fade" id="cryptoDeposit" role="dialog">
+                    <div class="modal fade classToDelete" style="top:35%;" id="cryptoDepositConfirmation" data-backdrop="static" data-keyboard="false" role="dialog">
+                        <div class="modal-dialog bbb">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-body row">
+                                    <form enctype="multipart/form-data">
+                                        <div class="col-md-12 col-sm-12 col-xs-12 spacer">
+                                            <p class="text-center">
+                                                I understand Deposit made without including my full <br />
+                                                Name and Email Address in the Specail Notes/Memo can be lost.
+                                            </p>
+                                        </div>
+                                        <div class="col-md-12 spacer text-center">
+                                            <button type="button" data-toggle="modal" data-target="" class="btn btn-primary submit_form_btn classDeleteOnClick">I Agree & Continue</button>
+                                            <button type="button" onclick="location.href = '/Account/Profile';" class="btn">Cancel</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-dialog " style="margin: 0px auto;">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-body row">
+                                <form enctype="multipart/form-data">
+                                    <div class="col-md-12 spacer text-center">
+                                        <img src="~/Assets/images/Account Verification.png" class="width-100px" />
+                                    </div>
+                                    <div class="col-md-offset-4 col-md-4">
+                                        @*<div class="btn-group" style="width: 100%;">
+                                            <button id="selectedcurrency" type="button" class="mar-top-20 btn btn-lg outline-primary dropdown-toggle dropdown-filter" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:inherit;">
+                                                Select Currency <span class="caret" style="margin-left:5px;"></span>
+                                            </button>
+                                            <ul id="sortable1" class="dropdown-menu">
+                                                @foreach (var item in Model.CurrencyList as List<Exchange.DTO.Currency>)
+                                                {
+                                                    <li><a href="#" class="candle-select-range currencyclick">@item.ThreeDigitName</a></li>
+                                                }
+                                            </ul>
+                                        </div>*@
+                                    </div>
+                                    <div class="col-md-12  col-sm-12 col-xs-12 spacer">
+                                        <p class="text-bold text-center">
+                                            Scan QR Code to deposit.<br />
+                                            or<br />
+                                            Deposit directly from your crypto wallet by sending to the address below.
+                                        </p>
+                                    </div>
+                                    <div class="col-md-12 spacer text-center qrImage">
+
+                                    </div>
+                                    <div class="col-md-12 spacer text-center">
+                                        <input id="addressdeposit" name="profile_files2" type="text" readonly class="addressdeposit text-center width-100-per" style="padding:10px;">
+                                    </div>
+                                    <div class="col-md-12 spacer text-center">
+                                        <button id="copyToClipboard" type="button" class="btn btn-primary btn-lg submit_form_btn width-50-per">Copy Address to clipboard</button>
+                                    </div>
+                                    <div class="col-md-12 spacer text-center">
+                                        <p class="text-center">
+                                            Send any amount to your NanoPips Account and it will be credited to your balance after confirmation.
+                                            <br />
+                                            Note:This can take anywhere from 1 hour-24 hours.
+                                        </p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="myModal4" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            @using (Html.BeginForm("WireTransfer", "Account", FormMethod.Post, new { enctype = "multipart/form-data", id = "wireTransfer" }))
+                            {
+                                <div class="modal-body row">
+                                    <div class="col-md-12 spacer text-center">
+                                        <img src="~/Assets/images/Account Verification.png" class="width-100px" />
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12 spacer">
+                                        <h2 class="text-bold text-center">Withdraw Fund Request Form</h2>
+                                    </div>
+                                    @Html.HiddenFor(m => m.Payment.PaymentId)
+                                    <div class="col-md-6 col-sm-6 col-xs-12 spacer">
+                                        @Html.TextBoxFor(m => m.Payment.BankAccountTitle, new { @class = "pull-left width-90-per", placeholder = "Full Name", Required = "" })
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 spacer">
+                                        @Html.TextBoxFor(m => m.Payment.FiatAmount, new { @class = "pull-left width-90-per", placeholder = "USD Amount To be Withdrawn", Required = "" })
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 spacer">
+                                        @Html.TextBoxFor(m => m.Payment.PaymentDate, new { @class = "pull-left width-90-per", placeholder = "Date of request", Required = "" })
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 spacer">
+                                        <input placeholder="@Model.GetAccount.Email" class="width-90-per pull-left" readonly>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 spacer">
+                                        <label class="font-size-10">Bank Name</label> <br />
+                                        @Html.TextBoxFor(m => m.Payment.BankName, new { @class = "pull-left width-90-per", placeholder = "BankName", Required = "" })
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 spacer">
+                                        <label class="font-size-10">ABA Routing #, IBN #,SWIFT Code</label> <br />
+                                        @Html.TextBoxFor(m => m.Payment.IBAN, new { @class = "pull-left width-90-per", placeholder = "###", Required = "" })
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 spacer">
+                                        <label class="font-size-10">Bank Location, City, State/Povince, Country</label> <br />
+                                        @Html.TextBoxFor(m => m.Payment.BankAddress, new { @class = "pull-left width-90-per", placeholder = "Address", Required = "" })
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 spacer">
+                                        <label class="font-size-10">Account Name/Title, Account Number</label> <br />
+                                        @Html.TextBoxFor(m => m.Payment.BankAccountNumber, new { @class = "pull-left width-90-per", placeholder = "###", Required = "" })
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 spacer">
+                                        <label class="font-size-10">(If applicable) Special Notes: For further Credit to Bank Name, Location, Account Name/Number </label>
+                                        @Html.TextAreaFor(m => m.Payment.Reason, new { @class = "file pull-left width-100-per", rows = "4" })
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 spacer">
+                                        <div style="display: inline-flex;">
+                                            <input type="checkbox" name="checkbox" value="check"><p class="mar-left-15 text-center"> I agree and consent that this information is correct. I understand withdrawls will only be processed to the bank to the bank account number that matches my nanopips account name.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 spacer">
+                                        <p>
+                                            NOTE TO CLIENTS: The IBAN,SWIFT Code, ABA routing #, Account # are all given by your bank.
+                                            <br />
+                                        </p>
+                                        <p>
+                                            <span class="text-center font-size-10">Please contact your bank for this information.</span>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-12 spacer text-center">
+                                        <button id="wire_withdraw" type="submit" class="btn btn-primary btn-lg">Submit Withdraw Request</button>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal fade" id="wiredeposit_model" role="dialog">
+                    <div class="modal-dialog" style="width: 85%;">
+                        <!-- Modal content-->
+                        <div class="modal-content" style="padding: 25px;">
+                            <div class="modal-title">
+                                <div class="model-header"><b >Wire Transfer</b></div>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6" style="font-size:13px">
+                                        <b> INSTRUCTIONS: </b> <br />
+                                        1. Present this information to your bank to fund your NanoPips Account.
+                                        <br />
+                                        2. The Name of the Bank Account must match the name of your NanoPips Account.
+                                        <br />
+                                        3. Funds sent in foreign currency will be displayed as USD U.S. Dollars.
+                                        <br /><br />
+                                        Transfer Time: 1-7 Days
+                                        <br /> <br />
+                                        NanoPips does not charge any fees for incoming transfers.
+                                        <br /> <br />
+                                        Intermediary fees may apply for foreign currency transfers.
+                                        <br /> <br />
+                                        Contact: clientservice@nanopips.com
+                                    </div>
+                                    <div class="col-md-3 col-xs-3" style="font-size:13px">
+                                        <b>Recipient First Name / Last Name</b>
+                                        <br />
+                                        NanoPips
+                                        <br /><br />
+                                        <b>Beneficiary Transit # at Bank</b>
+                                        <br />
+                                        00002
+                                        <br /><br />
+                                        <b>Beneficiary Account # at Bank</b>
+                                        <br />
+                                        000020559814
+                                        <br /><br />
+                                        <b>Recipient Address</b>
+                                        <br />
+                                        125-720 King Street West
+                                        <br /> Toronto, Ontario, M5V 3S5
+                                        <br /><br />
+                                        <b>Instructions for Beneficiary</b>
+                                        @Model.GetAccount.FirstName
+                                        <br />
+                                        @Model.GetAccount.Email
+                                    </div>
+                                    <div class="col-md-3 col-xs-3" style="font-size:13px">
+                                        <b>Beneficiary Bank Name</b>
+                                        <br />
+                                        CIBC
+                                        <br /><br />
+                                        <b>Beneficiary Bank ABA #</b>
+                                        <br />
+                                        026005092
+                                        <br /><br />
+                                        <b>Beneficiary Bank SWIFT Code</b>
+                                        <br />
+                                        CIBCCATT
+                                        <br /><br />
+                                        <b>Beneficiary Bank Address</b>
+                                        <br />
+                                        199 Bay Street
+                                        <br /> Toronto, Ontario, M5L 1G9
+                                        <br /><br />
+                                        <b>Number</b>
+                                        <br />
+                                        < Your Best Contact Number >
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="modal-footer" style="border-top:1px solid rgba(102, 184, 92, 1)">
+                                 <div class="" style="float:left;" >
+                                     Have more questions? 
+                                     <a href="@Url.Action("contact","Account")">Contact us</a>
+                                 </div> 
+                                 <div class="" style="float:right; font-size:20px" >
+                                     <a href="https://www.facebook.com/nanopips/"><i class="fa fa-facebook-f" style="margin-right:15px;"></i></a>                    
+                                     <a href="https://twitter.com/nanopips"><i class="fa fa-twitter"></i></a>
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="interacdeposit_model" role="dialog">
+                    <div class="modal-dialog" style="width: 85%;">
+                        <!-- Modal content-->
+                        <div class="modal-content" style="padding: 25px;">
+                            <div class="modal-title">
+                                <div class="model-header"><b>Interac e-Transfer</b></div>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-9" style="font-size:14px">
+                                        <b> INSTRUCTIONS: </b> <br />
+                                        1. Send an Interac e-Transfer to <span style="color:darkblue;"><b><u>clientservice@nanopips.com</u></b></span>. (Canada Only)
+                                        <br />
+                                        2. Name: NanoPips Ltd.
+                                        <br />
+                                        3. Include your <b>Full Name</b> and NanoPips Verified <b>Email Address</b> in the Special Notes.
+                                        <br /><br />
+                                        Transfer Time: 1-24 Hours.
+                                        <br/><br/>
+                                        NanoPips does not charge any fees for incoming transfers.
+                                        <br /> <br />
+                                        Intermediary fees may apply.
+                                        <br /> <br />
+                                        Contact: <span style="color:darkblue;"><b><u>clientservice@nanopips.com</u></b></span>
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="modal-footer" style="border-top:1px solid rgba(102, 184, 92, 1)">
+                                 <div class="" style="float:left;" >
+                                     Have more questions? 
+                                     <a href="@Url.Action("contact","Account")">Contact us</a>
+                                 </div> 
+                                 <div class="" style="float:right; font-size:20px" >
+                                     <a href="https://www.facebook.com/nanopips/"><i class="fa fa-facebook-f" style="margin-right:15px;"></i></a>                    
+                                     <a href="https://twitter.com/nanopips"><i class="fa fa-twitter"></i></a>
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="myModal5" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-body row">
+                                <form enctype="multipart/form-data" id="">
+                                    <div class="col-md-12 spacer text-center">
+                                        <img src="~/Assets/images/Account Verification.png" class="width-100px" />
+                                    </div>
+                                    <div class="col-md-12  col-sm-12 col-xs-12 spacer">
+                                        <p class="text-bold text-center">Completed</p>
+                                    </div>
+                                    <div class="col-md-12  col-sm-12 col-xs-12 spacer">
+                                        <p class="text-center">
+                                            Your withdrawl request has been submitted.<br />
+                                            please allow up to 24 hours for it to be reviewed.<br />
+                                            Once approved your withdrawl will be processed.
+                                        </p>
+                                    </div>
+                                    <div class="col-md-12 spacer text-center">
+                                        <button type="submit" class="btn btn-primary btn-lg submit_form_btn">Go back to NanoPips</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-body row">
+                                @using (Html.BeginForm("KYC", "Account", FormMethod.Post, new { enctype = "multipart/form-data", id = "kyc_form" }))
+                                {
+                                    <div class="col-md-12 spacer text-center">
+                                        <img src="~/Assets/images/Account Verification.png" class="width-100px" />
+                                    </div>
+                                    <div class="col-md-12  col-sm-12 col-xs-12 spacer">
+                                        <p class="text-bold">Please upload: </p>
+                                    </div>
+                                    <div class="col-md-6  col-sm-6 col-xs-12 spacer">
+                                        1 Valid Government Issued Photo ID.
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 spacer">
+                                        @Html.TextBoxFor(m => m.KYC.FirstDocument, new { @class = "form-control file pull-left", type = "file" })
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 spacer">
+                                        1 Valid Proof of Address within the past 60 days.
+                                    </div>
+                                    <div class="col-md-6  col-sm-6 spacer">
+                                        @Html.TextBoxFor(m => m.KYC.SecondDocument, new { @class = "form-control file pull-left", type = "file" })
+                                    </div>
+                                    <div class="col-md-12 spacer text-center">
+                                        <button type="submit" class="btn btn-primary btn-lg submit_form_btn">Submit</button>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- authentication -->
+                <div class="authentication-container-body profile-sub display-none text-center">
+                    <div class="authentication-loader">
+                        <div class="loader" style="width:50px; height: 50px;"></div>
+                    </div>
+                    <div class="authentication-input-body display-none">
+                        <div class="col-md-4 col-md-offset-4 spacer">
+                            <h1>Enter the 6 digit code</h1>
+                            <input type="text" class="form-control authentication-code" placeholder="CODE">
+                        </div>
+                        <div class="col-md-12 spacer text-center">
+                            <button type="button" class="btn btn-primary btn-lg authentication-code-send">Send</button>
+                        </div>
+                    </div>
+                    <div class="authentication-response-body display-none">
+                        <div class="col-md-4- col-md-offset-0 spacer">
+                        </div>
+                        <div class="col-md-12 spacer text-center authentication-resend-button hide-on-profile-init display-none">
+                            <button class="btn btn-primary authenticationBtn">Resend</button>
+                        </div>
+                        <div class="col-md-12 spacer text-center authentication-retry-button hide-on-profile-init display-none">
+                            <button class="btn btn-primary authenticationRetryBtn">Retry</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- change password -->
+                <div class="modal fade" id="myModal1" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body row">
+                                <div class="text-center">
+                                    <div class="change-security-container">
+                                        <div class="col-md-12 spacer text-center">
+                                            <img src="~/Assets/images/Account Verification.png" class="width-100px" />
+                                        </div>
+                                        <div class="col-md-12 spacer text-center">
+                                            <h1>Change Password</h1>
+                                        </div>
+                                        <div class="col-md-12 spacer">
+                                            <input type="password" class="form-control" id="oldPassword" placeholder="Type old password">
+                                        </div>
+                                        <div class="col-md-12 spacer">
+                                            <input type="password" class="form-control" id="password1" placeholder="Type new password">
+                                        </div>
+                                        <div class="col-md-12 spacer">
+                                            <input type="password" class="form-control" id="password2" placeholder="Retype new password">
+                                        </div>
+                                        <div class="col-md-12 spacer text-center">
+                                            <button type="button" id="confirmChangePasswordBtn" class="btn btn-primary btn-lg">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- change secret -->
+                <div class="modal fade" id="myModal2" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body row">
+                                <div class="text-center">
+                                    <div class="">
+                                        <div class="col-md-12 spacer text-center">
+                                            <img src="~/Assets/images/Account Verification.png" class="width-100px" />
+                                        </div>
+                                        <div class="col-md-12 spacer text-center">
+                                            <h3>Change Secrect Question</h3>
+                                        </div>
+                                        @using (Html.BeginForm("SecurityDetails", "Account", FormMethod.Post, new { enctype = "multipart/form-data", id = "SecurityQuestion_form" }))
+                                        {
+                                            <div class="col-md-6 spacer">
+                                                <select class="secretQuestions form-control q1" name="firstQuestion">
+                                                    <option>-- select question --</option>
+                                                    <option value="Name of your first pet">Name of your first pet</option>
+                                                    <option value="Name of your first employer">Name of your first employer</option>
+                                                    <option value="Mothers maiden name">Mothers maiden name</option>
+                                                    <option value="Name of your first school">Name of your first school</option>
+                                                    <option value="Name of your favorite car">Name of your favorite car</option>
+                                                    <option value="Name of city you grew up in">Name of city you grew up in</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 spacer">
+                                                @*@Html.TextBoxFor(m => m.securityAnswer.SecAns1, new { @class = "form-control secretAnswer a2", type = "text", placeholder = "Type answer" })*@
+                                                <input type="text" class="form-control secretAnswer a2" name="SecAns1" placeholder="Type answer" />
+                                            </div>
+                                            <div class="col-md-6 spacer">
+                                                <select class="secretQuestions form-control q1" name="secondQuestion">
+                                                    <option>-- select question --</option>
+                                                    <option value="Name of your first pet">Name of your first pet</option>
+                                                    <option value="Name of your first employer">Name of your first employer</option>
+                                                    <option value="Mothers maiden name">Mothers maiden name</option>
+                                                    <option value="Name of your first school">Name of your first school</option>
+                                                    <option value="Name of your favorite car">Name of your favorite car</option>
+                                                    <option value="Name of city you grew up in">Name of city you grew up in</option>
+                                                </select>
+                                            </div><div class="col-md-6 spacer">
+                                                @*@Html.TextBoxFor(m => m.securityAnswer.SecAns2, new { @class = "form-control secretAnswer a2", type = "text", placeholder = "Type answer"})*@
+                                                <input type="text" class="form-control secretAnswer a2" name="SecAns2" placeholder="Type answer" />
+                                            </div>
+                                            <div class="col-md-6 spacer">
+                                                <select class="secretQuestions form-control q1" name="thirdQuestion">
+                                                    <option>-- select question --</option>
+                                                    <option value="Name of your first pet">Name of your first pet</option>
+                                                    <option value="Name of your first employer">Name of your first employer</option>
+                                                    <option value="Mothers maiden name">Mothers maiden name</option>
+                                                    <option value="Name of your first school">Name of your first school</option>
+                                                    <option value="Name of your favorite car">Name of your favorite car</option>
+                                                    <option value="Name of city you grew up in">Name of city you grew up in</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 spacer">
+                                                @*@Html.TextBoxFor(m => m.securityAnswer.SecAns3, new { @class = "form-control secretAnswer a2", type = "text", placeholder = "Type answer" })*@
+                                                <input type="text" class="form-control secretAnswer a2" name="SecAns3" placeholder="Type answer" />
+                                            </div>
+                                            <div class="col-md-12 spacer text-center">
+                                                <button class="btn btn-primary btn-lg confirmChangeSecretBtn" value="Send">SAVE</button>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- deposit-withdraw -->
+                <div class="deposit-withdraw-container-body profile-sub display-none text-center">
+                    <div class="deposit-withdraw-loader display-none">
+                        <div class="loader" style="width:50px; height: 50px;"></div>
+                    </div>
+                    <div class="deposit-withdraw-container">
+                        <div class="col-md-12" style="margin-left: 62px;">
+                            <button class="btn btn-primary btn-lg confirmDepositWithdrawBtn" style="float: left;
+                                width: 200px; height: 85px; font-size: 1.5em; font-weight: bold;"></button>
+                        </div>
+                        <div class="col-md-12" style="margin-left: 62px; margin-top: 12px">
+                            <div class="withdrawBalanceMessage" style="text-align:left; font-size: 1.2em; font-weight: bold;"></div>
+                        </div>
+                        <div class="col-md-12 spacer text-center">
+                            <h1 class="deposit-withdraw-title"></h1>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="well well-lg profile-well">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center">Date</th>
+                                                    <th class="text-center">Amount</th>
+                                                    <th class="text-center">ID</th>
+                                                    <th class="text-center">Notes</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="deposit-withdraw-history"></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="withdraw-container profile-sub">
+                    <div class="col-md-12">
+                        <h3>Please fill your information.</h3>
+                        <h3>A NanoPips Specialist will contact you shortly.</h3>
+                    </div>
+                    <div class="col-md-12 spacer">
+                        <input type="text" class="form-control" id="fullName" placeholder="Full Name">
+                    </div>
+                    <div class="col-md-12 spacer">
+                        <input type="text" class="form-control" id="address" placeholder="Address">
+                    </div>
+                    <div class="col-md-12 spacer">
+                        <input type="number" class="form-control" id="widthdrawAmount" placeholder="Amount">
+                    </div>
+                    <div class="col-md-12 spacer text-center">
+                        <button class="btn btn-primary btn-lg sendWithdrawRequest">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+
+       
+        $('.confirmation-Modal').click(function () {
+            $('#cryptoDepositConfirmation').modal('show');
+        });
+        $('.classDeleteOnClick').click(function () {
+            $('.classToDelete').css('display', 'none');
+            $('#cryptoDepositConfirmation').modal('hide');
+        });
+    </script>
+
+    <script type="text/javascript" language="JavaScript">
+          $(document).ready(function () {
+              if ("@ViewBag.ShowPopUp" === "True") {
+                  $("#depositModel").modal();
+              }
+              
+            var msg = "@Session["msg"]";
+            if (msg != null && msg != "") {
+                alert(msg);
+                msg = '';
+            }
+
+            $.get("/Dashboard/GetDepositDetail?cur=BTC", function (obj) {
+                $("#selectedcurrency").text("BTC").append("<span class='caret' style='margin-left: 5px;'></span>");
+                $(".addressdeposit").val(obj.address);
+                $("#qrCodeImage").remove();
+                var image = new Image();
+                image.src = 'data:image/png;base64,' + obj.barCode;
+                image.style = 'width:200px';
+                image.id = 'qrCodeImage';
+                $("div .qrImage").append(image);
+            });
+
+            currency = "";
+            var addressIdList;
+            //$(".currencyclick").click(function () {
+            //    var cur = $(this).text();
+            //    $.get("/Dashboard/GetDepositDetail?cur=" + cur, function (obj) {
+            //        $("#selectedcurrency").text(cur).append("<span class='caret' style='margin-left: 5px;'></span>");
+            //        $(".addressdeposit").val(obj.address);
+            //        $("#qrCodeImage").remove();
+            //        var image = new Image();
+            //        image.src = 'data:image/png;base64,' + obj.barCode;
+            //        image.style = 'width:200px';
+            //        image.id = 'qrCodeImage';
+            //        $("div .qrImage").append(image);
+            //    });
+            //});
+
+            //$("#wire_withdraw").click(function (event) {
+            //    event.preventDefault();
+            //    var form = $("#wireTransfer");
+            //    form.validate();
+            //    if (form.valid()) {
+            //        form.submit();
+            //    }
+            //    else {
+            //        event.preventDefault();
+            //    }
+            //});
+            //$("#wireTransfer").bind('submit', function (obj) {
+
+            $("#submitCryptoWithDrawl").click(function () {
+                $.blockUI();
+                var address = $("#selectAddress option:selected").text();
+                var amount = $('#withdrawAmount').val();
+                if (amount == "") {
+                    alert("Amount is not valid");
+                }
+                else if (address == "") {
+                    alert("Please select the address first.");
+                }
+                else {
+                    $.get("/Dashboard/CryptoWithDrawl?address=" + address + "&symbol=" + "USD" + "&amount=" + amount, function (obj) {
+                        $.unblockUI();
+                        if (!obj.status) {
+                            alert(obj.message);
+                        }
+                        else {
+                            $("#myModal5").modal();
+                        }
+                    });
+                }
+            });
+
+            $(".whiteAddressToAdd").click(function () {
+                $.get("/Dashboard/GetAddressList?cur=BTC", function (obj) {
+                    adlist = obj.addresses;
+                    addressIdList = obj.addressId;
+                    for (var i = 0; i < obj.addresses.length; i++) {
+                        $("#whiteAddress-" + (i + 1)).attr("value", obj.addresses[i]);
+                    }
+                });
+            });
+
+            $("#submit_authorize").click(function () {
+                $.get("/Dashboard/AddressAuthorize?cur=BTC", function (obj) {
+                    if (obj.status === true) { alert("Email has been sent"); } else { alert("An Error Occured!"); }
+                });
+            });
+
+            $(".classForAdding").on('click', function () {
+                var id = $(this).attr('id');
+                if (id == "addWhiteAddress-1") {
+                    var address = $('#whiteAddress-1').val();
+                    $.get("/Dashboard/AddAddress?cur=" + currency + "&address=" + address + "&addressid=" + addressIdList[0], function (obj) {
+                        if (obj.status === true) { alert("Address Saved successfully"); } else { alert("Error! Address not saved"); }
+                    });
+                }
+                else if (id == "addWhiteAddress-2") {
+                    var address = $('#whiteAddress-2').val();
+                    $.get("/Dashboard/AddAddress?cur=" + currency + "&address=" + address + "&addressid=" + addressIdList[1], function (obj) {
+                        if (obj.status == true) { alert("Address Saved successfully"); } else { alert("Error! Address not saved"); }
+                    });
+                }
+                else if (id == "addWhiteAddress-3") {
+                    var address = $('#whiteAddress-3').val();
+                    $.get("/Dashboard/AddAddress?cur=" + currency + "&address=" + address + "&addressid=" + addressIdList[2], function (obj) {
+                        if (obj.status === true) { alert("Address Saved successfully"); } else { alert("Error! Address not saved"); }
+                    });
+                }
+                else if (id == "addWhiteAddress-4") {
+                    var address = $('#whiteAddress-4').val();
+                    $.get("/Dashboard/AddAddress?cur=" + currency + "&address=" + address + "&addressid=" + addressIdList[3], function (obj) {
+                        if (obj.status === true) { alert("Address Saved successfully"); } else { alert("Error! Address not saved"); }
+                    });
+                }
+                else if (id == "addWhiteAddress-5") {
+                    var address = $('#whiteAddress-5').val();
+                    $.get("/Dashboard/AddAddress?cur=" + currency + "&address=" + address + "&addressid=" + addressIdList[4], function (obj) {
+                        if (obj.status === true) { alert("Address Saved successfully"); } else { alert("Error! Address not saved"); }
+                    });
+                }
+            });
+
+            $(".classForDelete").on('click', function () {
+                var id = $(this).attr('id');
+                if (id == "deleteWhiteAddress-1") {
+                    var address = $('#whiteAddress-1').val();
+                    $.get("/Dashboard/DeleteAddress?cur=" + currency + "&address=" + address + "&addressid=" + addressIdList[0], function (obj) {
+                        if (obj.status === true) { $("#whiteAddress-1").attr("value", obj.addresses[0]); alert("Address Delete successfully"); } else { alert("Error! Address not Delete"); }
+                    });
+                }
+                else if (id == "deleteWhiteAddress-2") {
+                    var address = $('#whiteAddress-2').val();
+                    $.get("/Dashboard/DeleteAddress?cur=" + currency + "&address=" + address + "&addressid=" + addressIdList[1], function (obj) {
+                        if (obj.status == true) { alert("Address Delete successfully"); } else { alert("Error! Address not Delete"); }
+                    });
+                }
+                else if (id == "deleteWhiteAddress-3") {
+                    var address = $('#whiteAddress-3').val();
+                    $.get("/Dashboard/DeleteAddress?cur=" + currency + "&address=" + address + "&addressid=" + addressIdList[2], function (obj) {
+                        if (obj.status === true) { alert("Address Delete successfully"); } else { alert("Error! Address not Delete"); }
+                    });
+                }
+                else if (id == "deleteWhiteAddress-4") {
+                    var address = $('#whiteAddress-4').val();
+                    $.get("/Dashboard/DeleteAddress?cur=" + currency + "&address=" + address + "&addressid=" + addressIdList[3], function (obj) {
+                        if (obj.status === true) { alert("Address Delete successfully"); } else { alert("Error! Address not Delete"); }
+                    });
+                }
+                else if (id == "deleteWhiteAddress-5") {
+                    var address = $('#whiteAddress-5').val();
+                    $.get("/Dashboard/DeleteAddress?cur=" + currency + "&address=" + address + "&addressid=" + addressIdList[4], function (obj) {
+                        if (obj.status === true) { alert("Address Delete successfully"); } else { alert("Error! Address not Delete"); }
+                    });
+                }
+              });
+
+              $.get("/Dashboard/GetAddressList?cur=BTC", function (obj) {
+                  //$("#selectedcurrencyWithDraw").text(curw).append("<span class='caret' style='margin-left: 5px;'></span>");
+                  $('#selectAddress option').remove();
+                  $.each(obj.addresses, function (key, value) {
+                      $('#selectAddress').append($("<option></option>").attr("value", key).text(value));
+                      accId = obj.accId;
+                      //currency = curw;
+                  });
+
+              });
+
+            //$(".currencyclickWithDraw").click(function () {
+            //    var curw = $(this).text();
+            //    currency = curw;
+            //    $.get("/Dashboard/GetAddressList?cur=" + curw, function (obj) {
+            //        $("#selectedcurrencyWithDraw").text(curw).append("<span class='caret' style='margin-left: 5px;'></span>");
+            //        $('#selectAddress option').remove();
+            //        $.each(obj.addresses, function (key, value) {
+            //            $('#selectAddress').append($("<option></option>").attr("value", key).text(value));
+            //            accId = obj.accId;
+            //            currency = curw;
+            //        });
+
+            //    });
+            //});
+
+            $("#copyToClipboard").click(function () {
+                var copyText = document.getElementById("addressdeposit");
+                copyText.select();
+                document.execCommand("copy");
+                bootbox.alert("Copied to Clipboard");
+            });
+
+
+            $('.back-button').click(function () {
+                $(this).addClass('display-none');
+                $('.profile-sub').removeClass('show-margin');
+                setTimeout(function () {
+                    $('.profile-settings-container').removeClass('col-md-12').addClass('col-md-7');
+                    $('.last-login-container').removeClass('display-none');
+                    $('.profile-input-container-body').addClass('display-none');
+                    $('.authentication-container-body').addClass('display-none');
+                    $('.change-password-container-body').addClass('display-none');
+                    $('.change-secret-container-body').addClass('display-none');
+                    $('.deposit-withdraw-container-body').addClass('display-none');
+                    $('.profile-container-body').removeClass('display-none');
+                }, 200);
+            });
+
+            $('.depositWithdrawBtn').click(function () {
+                $('.profile-settings-container').removeClass('col-md-7').addClass('col-md-12');
+                $('.last-login-container').addClass('display-none');
+                $('.back-button').removeClass('display-none');
+                $action = $(this).attr('data-action');
+                $('.profile-container-body').addClass('display-none');
+                $('.deposit-withdraw-container-body').removeClass('display-none');
+                setTimeout(function () {
+                    $('.deposit-withdraw-container-body').addClass('show-margin');
+                }, 100);
+                if ($action == 'deposit') {
+                    $('.deposit-withdraw-title').text('Deposit History');
+
+                    $('.confirmDepositWithdrawBtn').attr('href', 'funding.html').text('Deposit');
+                    $(".confirmDepositWithdrawBtn").click(function () {
+                        location.href = 'funding.html';
+                    });
+
+                    $('.confirmDepositWithdrawBtn').after('<p align="left"style="padding-top:40px;"> &nbsp;&nbsp;Follow these steps to deposite into your account</p>');
+                    $('.withdrawBalanceMessage').html('');
+                    // get deposit History
+                    $.ajax({
+                        url: 'Controller/user.php?action=transaction-history',
+                        type: 'post',
+                        dataType: 'json',
+                        success: function (r) {
+                            $dTable = '';
+                            for ($r = 0; $r < r.length; $r++) {
+                                $dTable += '<tr><td>' + r[$r].timestamp + '</td><td>$' + r[$r].price_in_usd + '</td><td>' + r[$r].invoice_id + '</td><td>' + r[$r].notes + '</td></tr>';
+                            }
+
+                            $('.deposit-withdraw-history').html($dTable);
+                        },
+                        data: {
+                            param: {
+                                userId: $userId,
+                                action: 'deposit'
+                            }
+                        }
+                    });
+
+
+                } else {
+                    $('.deposit-withdraw-title').text('Withdraw History');
+                    $('.confirmDepositWithdrawBtn').attr('data-action', 'withdraw').text('Withdraw Funds');
+                    $('.withdrawBalanceMessage').html('To Process your withdrawal request download and fill out the wire request form.<br>Once complete email it back to clientservice@nanopips.com');
+                    $('.confirmDepositWithdrawBtn').click(function () {
+                        location.href = 'download.html?form=withdraw';
+                    });
+                }
+
+                //    $('.confirmDepositWithdrawBtn').click(function(){
+                //     $action = $(this).attr('data-action');
+                //  if($action == 'deposit'){
+                //      location.href = 'buy-funds.php';
+                //  }else{
+                //  $('.profile-container-body').addClass('display-none');
+                // $('.withdraw-container').removeClass('display-none');
+                //        }
+                // });
+            })
+
+            $('.changeSecretQuestionBtn').click(function () {
+                $('.profile-settings-container').removeClass('col-md-7').addClass('col-md-12');
+                $('.last-login-container').addClass('display-none');
+                $('.back-button').removeClass('display-none');
+                $('.profile-container-body').addClass('display-none');
+                $('.change-secret-container-body').removeClass('display-none');
+                setTimeout(function () {
+                    $('.change-secret-container-body').addClass('show-margin');
+                }, 100);
+                $('.confirmChangeSecretBtn').unbind().click(function () {
+                    $('.change-secret-loader').removeClass('display-none');
+                    $secretQA = [];
+                    if ($('.q1').val() != '' && $('.a1').val() != '') {
+                        $secretQA.push([$('.q1').val(), $('.a1').val()]);
+                        if ($('.q2').val() != '' && $('.a2').val() != '') {
+                            $secretQA.push([$('.q2').val(), $('.a2').val()]);
+                        }
+                        if ($('.q3').val() != '' && $('.a3').val() != '') {
+                            $secretQA.push([$('.q3').val(), $('.a3').val()]);
+                        }
+                        $.ajax({
+                            url: 'Controller/user.php?action=change-secret',
+                            type: 'post',
+                            dataType: 'json',
+                            success: function (rspdata) {
+                                $('.change-secret-loader').addClass('display-none');
+                                alert('Secret question successfully updated.');
+                                $('.back-button').trigger('click');
+                            },
+                            data: {
+                                param: {
+                                    userId: $userId,
+                                    qa: $secretQA
+                                }
+                            }
+                        });
+                    } else {
+                        alert('Please input secret answer to make an update');
+                    }
+                });
+            });
+
+            $('.changePasswordBtn').click(function () {
+                $('.profile-settings-container').removeClass('col-md-7').addClass('col-md-12');
+                $('.last-login-container').addClass('display-none');
+                $('.back-button').removeClass('display-none');
+                $('.profile-container-body').addClass('display-none');
+                $('.change-password-container-body').removeClass('display-none');
+                setTimeout(function () {
+                    $('.change-password-container-body').addClass('show-margin');
+                }, 100);
+            });
+
+            $('#confirmChangePasswordBtn').click(function () {
+                //$('.change-security-container').addClass('display-none');
+                //$('.change-security-loader').removeClass('display-none');
+                var oldPassword = $('#oldPassword').val();
+                var password1 = $('#password1').val();
+                var password2 = $('#password2').val();
+                if (password1 === password2) {
+                    $.get("/Account/ChangePassword?oldPassword=" + oldPassword + "&newPassword=" + password1, function (obj) {
+                        if (obj.status === true) { alert(obj.message); } else { alert(obj.message); }
+                    });
+                }
+                else {
+                    //$('.change-security-container').removeClass('display-none');
+                    //$('.change-security-loader').addClass('display-none');
+                    alert('New password doesnt match.');
+                }
+            });
+            $('.authenticationBtn').unbind().click(function () {
+                $('.profile-settings-container').removeClass('col-md-7').addClass('col-md-12');
+                $('.last-login-container').addClass('display-none');
+                $('.back-button').removeClass('display-none');
+                $('.profile-container-body').addClass('display-none');
+                $('.authentication-container-body').removeClass('display-none');
+                setTimeout(function () {
+                    $('.authentication-container-body').addClass('show-margin');
+                    $('.authentication-resend-button').addClass('display-none');
+                    $('.authentication-response-body').addClass('display-none');
+                }, 100);
+                $.ajax({
+                    url: 'Controller/user.php?action=request-authentication',
+                    type: 'post',
+                    dataType: 'json',
+                    success: function (rspdata) {
+                        $('.authentication-loader').addClass('display-none');
+                        $('.authentication-input-body').removeClass('display-none');
+
+                        $('.authentication-code-send').click(function () {
+                            $authCode = $('.authentication-code').val();
+                            $('.authentication-loader').removeClass('display-none');
+                            $('.authentication-input-body').addClass('display-none');
+                            $.ajax({
+                                url: 'Controller/user.php?action=confirm-authentication',
+                                type: 'post',
+                                dataType: 'json',
+                                success: function (rspdata) {
+                                    $('.authentication-loader').addClass('display-none');
+                                    $('.authentication-input-body').addClass('display-none');
+                                    $('.authentication-response-body').removeClass('display-none');
+
+                                    if (rspdata.type == 2) {
+                                        $ahtml = '<h3>' + rspdata.message + '</h3><br>'
+                                        $('.authentication-resend-button').removeClass('display-none');
+                                    } else if (rspdata.type == 3) {
+                                        $ahtml = '<h3>' + rspdata.message + '</h3><br>'
+                                        $('.authentication-retry-button').removeClass('display-none');
+                                        $('.authenticationRetryBtn').click(function () {
+                                            $(this).addClass('display-none');
+                                            $('.authentication-response-body').addClass('display-none');
+                                            $('.authentication-input-body').removeClass('display-none');
+                                        });
+                                    } else {
+                                        $ahtml = '<h3>' + rspdata.message + '</h3>';
+                                        $('.verification-code-status').html('<h4 class="text-success verified">VERIFIED</h4>' +
+                                            '<small>To update your verification email please contact admin@nanopips.com</small>');
+                                    }
+
+
+                                    $('.authentication-response-body').find('div:eq(0)').html($ahtml);
+                                    console.log(rspdata);
+                                },
+                                data: { param: { userId: $userId, code: $authCode } }
+                            });
+                        });
+                    },
+                    data: { param: { userId: $userId } }
+                });
+            });
+
+            $('.submitInfoBtn').click(function () {
+                $('.profile-settings-container').removeClass('col-md-7').addClass('col-md-12');
+                $('.last-login-container').addClass('display-none');
+                $('.back-button').removeClass('display-none');
+                $('#profile_form').removeClass('display-none');
+                $('.profile_form_message').addClass('display-none');
+                $('.profile-container-body').addClass('display-none');
+                $('.profile-input-container-body').removeClass('display-none');
+                setTimeout(function () {
+                    $('.profile-input-container-body').addClass('show-margin');
+                }, 100);
+            });
+
+            $('.date-from').datepicker({
+                format: 'mm/dd/yyyy',
+            });
+            $('.date-to').datepicker({
+                format: 'mm/dd/yyyy'
+            });
+
+            $('.sendWithdrawRequest').click(function () {
+
+                if ($('#fullName').val() == '' || $('#address').val() == '' || $('#widthdrawAmount').val() == '') {
+                    alert('Please complete the input required.');
+                } else {
+                    $sendData = {
+                        userId: $userId,
+                        fullName: $('#fullName').val(),
+                        address: $('#address').val(),
+                        amount: $('#widthdrawAmount').val()
+                    }
+
+                    $.ajax({
+                        url: 'Controller/user.php?action=request-withdraw',
+                        type: 'post',
+                        dataType: 'json',
+                        success: function (data) {
+                            alert('Request successfully sent.');
+                            $('#profileModal').modal('hide');
+                        },
+                        data: { param: JSON.stringify($sendData) }
+                    });
+                }
+
+            });
+
+            $('.show-withdraw-form').click(function () {
+                $('.porfile-container-body').css('display', 'none');
+                $('.porfile-input-container-body').css('display', 'block');
+            });
+            $('.changeSecretQuestionBtn').click(function () {
+                $('.changeSecretQuestionBtn').removeClass('display-none');
+            })
+            $('#profileBtn').click(function () {
+                $('.profile-settings-container').removeClass('col-md-7').addClass('col-md-12');
+                $('.last-login-container').addClass('display-none');
+                $('.profile-container-body').removeClass('display-none');
+                $('.profile-sub').addClass('display-none');
+                $('.authentication-response-body').addClass('display-none');
+                $('.hide-on-profile-init').addClass('display-none');
+                $('#profileModal').modal('show');
+            });
+
+        });
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127217195-1"></script>
+    <script src="~/TradeAssets/js/popper.min.js"></script>
+    <script src="~/DashboardAssets/vendor_components/blockUI/jquery.blockUI.js"></script>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-127217195-1');
+    </script>
+</body>
+</html>

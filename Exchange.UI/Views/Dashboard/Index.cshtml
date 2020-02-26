@@ -1,0 +1,2419 @@
+﻿@model Exchange.UI.Models.IndexModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>NanoPips</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link href="~/Assets/css/bootstrap.css" rel="stylesheet" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" media="all" />
+    <link href="https://fonts.googleapis.com/css?family=Rubik:400,700&display=swap" rel="stylesheet">
+    <link href="~/Assets/css/switchery.min.css" rel="stylesheet" />
+
+    <link href="~/Assets/css/indexStyle.css" rel="stylesheet" />
+    @if (Session["DARK"] != null)
+    {
+        <link href="~/TradeAssets/css/indexStyleDark.css" rel="stylesheet" />
+    }
+    <link href="~/Assets/css/simple-line-icons.min.css" rel="stylesheet" />
+    @*<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />*@
+    <script src="~/DashboardAssets/js/switchery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
+    <link href="~/Assets/css/candlestick-chart.css" rel="stylesheet" />
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <link href="~/Assets/css/main.css" rel="stylesheet" />
+    <script src="~/DashboardAssets/vendor_components/popper/dist/popper.min.js"></script>
+    <script src="~/DashboardAssets/js/common.js"></script>
+    <script src="~/Scripts/require.js"></script>
+    @*<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.2.0/require.js"></script>*@
+    <script type="text/javascript" src="~/dist/i18n/i18n.en.js"></script>
+    <link href="~/uikit/css/uikit.min.css" rel="stylesheet" />
+    <link href="~/uikit/jquery.qtip.min.css" rel="stylesheet" />
+    <link href="~/jquery-minicolors/jquery.minicolors.css" rel="stylesheet" />
+    <link href="~/dist/iguanachart.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+        require.config({
+            paths: {
+                jquery: 'https://code.jquery.com/jquery-1.12.4.min',
+                uikit: 'https://iguanacharts.com/iguana_charts/dependencies/uikit/js/uikit.min',
+                'jquery.eventmove': 'https://iguanacharts.com/iguana_charts/dependencies/jquery.event.move',
+                'jquery.hammer': 'https://iguanacharts.com/iguana_charts/dependencies/jquery.hammer',
+                'jsrender': "https://iguanacharts.com/iguana_charts/dependencies/jsrender.min",
+                'jquery.minicolors': 'https://iguanacharts.com/iguana_charts/dependencies/jquery-minicolors/jquery.minicolors.min',
+                'jquery.qtip': 'https://iguanacharts.com/iguana_charts/dependencies/jquery.qtip.min',
+                //'jquery.easing': 'https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min',
+                'jquery.mousewheel': 'https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min',
+                'iguanachart': '/dist/iguanachart',
+                'hammerjs': 'https://iguanacharts.com/iguana_charts/dependencies/hammer.min'
+            },
+            shim: {
+                'uikit': {
+                    deps: [
+                        'jquery'
+                    ]
+                },
+                jsrender: {
+                    deps: [
+                        'jquery'
+                    ]
+                },
+                iguanachart: {
+                    deps: [
+                        'jquery',
+                        'uikit',
+                        'jquery.eventmove',
+                        'jquery.hammer',
+                        'jsrender',
+                        'jquery.minicolors',
+                        'jquery.qtip',
+                        //'jquery.easing',
+                        'jquery.mousewheel'
+                    ]
+                }
+            }
+        })
+    </script>
+
+    <style>
+
+        .ui-datepicker {
+            text-align: center;
+        }
+
+        .ui-datepicker-trigger {
+            margin: 0 0 0 5px;
+            vertical-align: text-top;
+        }
+
+        .ui-datepicker {
+            font-family: Open Sans, Arial, sans-serif;
+            margin-top: 2px;
+            padding: 0 !important;
+            border-color: #c9f0f5 !important;
+        }
+
+        .ui-datepicker {
+            width: 256px;
+        }
+
+        .openemr-calendar .ui-datepicker {
+            width: 191px;
+        }
+
+        .ui-datepicker table {
+            width: 256px;
+            table-layout: fixed;
+        }
+
+        .openemr-calendar .ui-datepicker table {
+            width: 191px;
+            table-layout: fixed;
+        }
+
+        .ui-datepicker-header {
+            background-color: #3e9aba !important;
+            background-image: none !important;
+            border-radius: 0;
+        }
+
+        .openemr-calendar .ui-datepicker-header {
+            background-color: #e6f7f9 !important;
+            border-width: 1px;
+            border-color: #c9f0f5;
+            border-style: solid;
+        }
+
+        .ui-datepicker-title {
+            line-height: 35px !important;
+            margin: 0 10px !important;
+        }
+
+        .openemr-calendar .ui-datepicker-title {
+            line-height: 20px !important;
+        }
+
+        .ui-datepicker-prev span {
+            display: none !important;
+        }
+
+        .ui-datepicker-next {
+            text-align: center;
+        }
+
+            .ui-datepicker-next span {
+                display: none !important;
+            }
+
+        .ui-datepicker-prev {
+            background-color: transparent !important;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAMCAYAAACulacQAAAAUklEQVQYlXWPwQnAMAwDj9IBOlpH8CjdJLNksuujFIJjC/w6WUioFBcqJ7sGEAD5Y/hpqLRghRv4YQlUjqXI3Kql2MixraGbEhVcDXcFUR/1egEHNuTBpFW0NgAAAABJRU5ErkJggg==') !important;
+            height: 12px !important;
+            width: 7px !important;
+            margin: 14px 12px;
+            display: inline-block;
+            left: 0 !important;
+            top: 0 !important;
+        }
+
+        .openemr-calendar .ui-datepicker-prev {
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAOCAYAAAD9lDaoAAAAuUlEQVQokXXRsUtCYRAA8J8pDQ1CVIgIgtBU2NDiZIuDS4uLf6WDS1O0tLREEE8icBNKS3lTs8/B78XHw3dwcHA/juOuqjzucYJVrQQMcYctvo4OgEFIeMK6iPphCjzjEWLUC3vACx7yRo5uMUIFr5gii1EL41AvMIkBVPGH04DrSLEsIvjEOZq4wi9+iijDR0ANXOMbmxjlcIY2LtANO6YxymGCDs5wg/ciYv+KBJeY4+2A+Y9j4Y47RtUkrNXeDxUAAAAASUVORK5CYII=') !important;
+            height: 14px !important;
+            width: 9px !important;
+            margin: 5px !important;
+        }
+
+        .ui-datepicker-next {
+            cursor: pointer;
+        }
+
+        .ui-datepicker-prev {
+            cursor: pointer;
+        }
+
+        .ui-datepicker-next {
+            background-color: transparent !important;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAMCAYAAABfnvydAAAAVUlEQVQYlXWQ0Q3AIAhEL07gKI7kKN2kI3Wk1w9to3KQEELucQEECOizhhTQGHFnwOdgobWx0GkZILfYBhXl0STVbPoBarbkL7ozN/F8VBBXh8uJgF5r2hrI4GHUkAAAAABJRU5ErkJggg==') !important;
+            height: 12px !important;
+            width: 8px !important;
+            margin: 14px 12px;
+            display: inline-block;
+            right: 0 !important;
+            top: 0 !important;
+        }
+
+        .openemr-calendar .ui-datepicker-next {
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAOCAYAAAASVl2WAAAAtElEQVQYlXXQsUpCcRQH4I97EQyHa1pgIEE0hBGYL+BjNLRFjxXh4rM4F21BS4S4FAgqQioOngt/RM/6+zi/w4EanlA4MDkecYsO3vG/D8a4Rx03eMMqBQt8oodTXAdalwBm+IpNDVxG3aYEMMU3ujjDBT5SAH9R2cE58mwPFOgneJSCGp7RjLoXTEtQjbCFOV7xCxkqdp9sYxnhpFyb4QFXdh8c4Cc9Ko++OwzjFwfn5FiwBVeuI/K2UCkSAAAAAElFTkSuQmCC') !important;
+            height: 14px !important;
+            width: 8px !important;
+            margin: 5px;
+        }
+
+        .ui-datepicker-month {
+            border-radius: 2px;
+            background-color: #3985a0;
+            width: 110px !important;
+            height: 22px;
+            font-family: Open Sans !important;
+            color: #fff;
+            font-size: 14px !important;
+            font-weight: 600;
+            text-align: left;
+            border: none !important;
+            margin-right: 17px !important;
+            vertical-align: text-top;
+        }
+
+        .openemr-calendar .ui-datepicker-month {
+            font-family: Open Sans, Arial, sans-serif;
+            color: rgba(34, 34, 34, 0.87);
+            font-size: 12px !important;
+            font-weight: 700;
+            text-align: center;
+            transform: scaleX(1.0029)
+        }
+
+        .ui-datepicker-year {
+            border-radius: 2px;
+            background-color: #3985a0;
+            width: 61px !important;
+            height: 22px;
+            border: none !important;
+            font-family: Open Sans !important;
+            color: #fff;
+            font-size: 14px !important;
+            font-weight: 600;
+            text-align: left;
+            vertical-align: text-top;
+        }
+
+        .openemr-calendar .ui-datepicker-year {
+            font-family: Open Sans, Arial, sans-serif;
+            color: rgba(34, 34, 34, 0.87);
+            font-size: 12px !important;
+            font-weight: 700;
+            text-align: center;
+            transform: scaleX(1.0029)
+        }
+
+        .ui-datepicker-month option,
+        .ui-datepicker-year option {
+            color: #3985a0 !important;
+            background-color: #fff !important;
+            font-family: Open Sans !important;
+            font-size: 14px !important;
+            font-weight: 600;
+        }
+
+            .ui-datepicker-month option[selected],
+            .ui-datepicker-year option[selected] {
+                background-color: #e5edf0 !important;
+            }
+
+        .ui-datepicker .ui-state-hover {
+            /*background: none !important;*/
+            border: 0 !important;
+        }
+
+        .ui-datepicker td {
+            vertical-align: top;
+        }
+
+        .ui-datepicker .ui-state-default {
+            border-radius: 2px;
+            border-color: #edebeb !important;
+            /*     background: white !important; */
+            width: 24px;
+            height: 24px;
+            padding: 0 !important;
+            line-height: 24px;
+            text-align: center !important;
+            font-family: Open Sans, Arial, sans-serif;
+            color: #707070;
+            font-size: 13px;
+            font-weight: 400 !important;
+            margin: 7px 0 0 4px;
+        }
+
+            .ui-datepicker .ui-state-default.ui-state-highlight {
+                border-color: #dcdcdc;
+                background-color: #cff3f8 !important;
+                color: #3e9aba !important;
+            }
+
+        .openemr-calendar .ui-state-default {
+            font-size: 10px;
+            margin: 0;
+        }
+
+        .ui-datepicker td {
+            width: 33px;
+        }
+
+        .openemr-calendar .ui-datepicker td {
+            width: 26px;
+        }
+
+        .openemr-calendar .ui-state-default {
+            width: 26px;
+            height: 20px;
+            line-height: 20px;
+        }
+
+        .ui-state-default.ui-state-hover {
+            border-color: #dcdcdc;
+            background-color: #cff3f8 !important;
+        }
+
+        .ui-datepicker .ui-state-active {
+            border-color: #dcdcdc;
+            background-color: #cff3f8 !important;
+            color: #3e9aba !important;
+        }
+
+        .ui-datepicker-calendar thead tr th {
+            font-family: Open Sans, Arial, sans-serif;
+            color: #549fa8;
+            font-size: 12px;
+            font-weight: 400;
+            padding: 0.45em 0.3em !important;
+            /*   width: 15px !important; */
+        }
+
+        .openemr-calendar .ui-datepicker-calendar thead tr th {
+            font-size: 10px;
+        }
+
+        .ui-datepicker-close {
+            display: none;
+        }
+
+        .ui-datepicker thead {
+            background-color: #f5f5f5;
+        }
+
+        .openemr-calendar .ui-datepicker thead {
+            background: none;
+        }
+
+        .ui-state-default.ui-datepicker-current {
+            float: none !important;
+            font-family: Open Sans, Arial, sans-serif;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 400;
+            text-align: left;
+            border-width: 0 !important;
+            border: none;
+            vertical-align: top;
+            margin: 0 !important;
+            background-color: transparent !important;
+        }
+
+        .ui-datepicker-buttonpane.ui-widget-content {
+            text-align: center;
+            background-color: #3e9aba;
+            margin: 0 !important;
+            height: 28px;
+            padding: 0 !important;
+        }
+
+        .openemr-calendar .ui-datepicker-year {
+            background-color: transparent;
+        }
+
+        .openemr-calendar .ui-datepicker-month {
+            background-color: transparent;
+        }
+
+        .openemr-calendar .ui-state-default {
+            border: 0 !important;
+        }
+
+        .openemr-calendar .ui-datepicker-month {
+            margin-right: 10px !important;
+        }
+
+        .left-130 {
+            left: -130px;
+        }
+
+        .width-880 {
+            width: 880px;
+        }
+
+        .tabReg {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .txtRegBelow {
+            font-size: 17px;
+            font-weight: 500;
+        }
+
+        .pad-t-30 {
+            padding-top: 12px;
+        }
+
+        .pad-30 {
+            padding-top: 40px;
+            padding-right: 30px;
+            padding-bottom: 30px;
+            padding-left: 30px;
+        }
+
+        .pd-t-25 {
+            padding-left: 0px;
+            padding-top: 25px;
+        }
+
+        .width10 {
+            width: 60px;
+        }
+
+        .mg-t-50 {
+            margin-top: 50px;
+        }
+
+        .dropdown-menu ul li a {
+            color: #000 !important;
+        }
+
+            .dropdown-menu ul li a:hover {
+                text-decoration: none;
+            }
+    </style>
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/5e37c35f298c395d1ce5dc73/default';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
+</head>
+
+<body style="overflow-x:hidden; margin-top:-6px !important; font-family:'Rubik', sans-serif;">
+
+    <div class="modal fade modalWidth in" id="loginSignup_model" data-backdrop="static" data-keyboard="false" role="dialog">
+        <div class="modal-dialog left-130">
+            <div class="modal-content width-880">
+                <div class="modal-body row" style="height:475px;">
+                    <div class="col-md-7 col-xs-12">
+                        <ul class="nav nav-tabs navTab navbarRegister" style="border:none;" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link txtRegisterLogin txtRegisterLogin1 active" data-toggle="tab" href="#home1">Register</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link txtRegisterLogin txtRegisterLogin2" data-toggle="tab" href="#menu1">Login</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content tabContentPadding1">
+                            <div id="home1" class=" tab-pane pad-t-30 active">
+                                <span class="txtLabel tabReg">REGISTER</span><br />
+                                <span class="txtLabel txtRegBelow">Fill out your basic information such as Name.</span>
+                                <div class="row pad-t-30">
+                                    @using (Html.BeginForm("SignUp", "Dashboard", FormMethod.Post, new { id = "s-form1" }))
+                                    {
+                                        <div class="col-md-6 col-xs-6">
+                                            <label class="Label txtLabel">Email</label><br />
+                                            @Html.TextBoxFor(m => m.UserRoles.Username, new { @class = "form-control inputField txtLabel", placeholder = "Email", id = "email" })
+                                            <p class="text-danger"> @Html.ValidationMessageFor(m => m.UserRoles.Username)</p>
+                                            <p class="text-danger" id="ae">Email Already Exist</p>
+
+                                            <label class="Label txtLabel">Password</label> <br />
+                                            @Html.PasswordFor(m => m.UserRoles.Password, new { @class = "form-control txtLabel", placeholder = "Password" })
+                                            <p class="text-danger">@Html.ValidationMessageFor(m => m.UserRoles.Password)</p>
+                                            <lable class="Label txtLabel">Terms & Conditions </lable>
+                                            <div class="form-control" style="margin-top: 4px;">
+                                                <div class="form-inline">
+                                                    <input type="checkbox" class="checkbox" id="termsCondition">
+                                                    <span class="txtLabel" style="font-size:12px;">I Agree</span>
+
+                                                </div>
+                                            </div>
+                                            <label class="error-message" style="color:#a94442;font-weight:500; margin-top:10px;"></label>
+                                        </div>
+                                        <div class="col-md-6 col-xs-6">
+                                            <label class="Label txtLabel">Name</label><br />
+                                            @Html.TextBoxFor(m => m.UserRoles.Username, new { @class = "form-control inputField txtLabel", placeholder = "Name" })
+                                            <p class="text-danger"> @Html.ValidationMessageFor(m => m.UserRoles.Name)</p>
+
+                                            <label class="Label">Confirm Password</label><br />
+                                            @Html.PasswordFor(m => m.UserRoles.ConfirmPassword, new { @class = "form-control txtLabel", placeholder = "Confirm Password" })
+                                            <p class="text-danger">@Html.ValidationMessageFor(m => m.UserRoles.ConfirmPassword)</p>
+
+                                            <label class="Label">Referral Code</label><br />
+                                            @Html.TextBoxFor(m => m.UserRoles.RefferenceNumber, new { @class = "form-control txtLabel", style = "text-align:center", id = "refferenceNumber", placeholder = "Referral Code" })
+                                        </div>
+                                        <div class="col-md-12 col-xs-12" style="margin-top:10px;margin-bottom:0px;">
+                                            <button type="submit" class="btn btn-block nanoBtn btnSignup">SIGN UP</button>
+                                            <br />
+                                        </div>
+                                        <br />
+                                    }
+                                </div>
+                            </div>
+
+                            <div id="menu1" class=" tab-pane pad-t-30 " style="padding-left:10px;">
+                                <div class="row" style="margin-bottom:0px;">
+                                    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                                        <div class="row">
+                                            <div style="position:center; margin-left:10px">
+                                                <span class="tabReg">LOGIN</span> <br />
+                                                <span style="padding-left:0px;" class="txtRegBelow">Access your trading account.</span>
+                                                <div class="col-md-12 col-xs-12 pd-t-25">
+                                                    @using (Html.BeginForm("Login", "Dashboard", FormMethod.Post, new { id = "l-form1" }))
+                                                    {
+                                                        <input type="hidden" class="utcTime" name="utcTime" />
+                                                        <label class="Label">Email</label><br />
+                                                        @Html.TextBoxFor(m => m.UserRoles.Username, new { @class = "form-control inputField", placeholder = "Email" })
+                                                        <p class="text-danger">@Html.ValidationMessageFor(m => m.UserRoles.Username)</p>
+                                                        <br />
+                                                        <label class="Label">Password</label><br />
+                                                        @Html.PasswordFor(m => m.UserRoles.Password, new { @class = "form-control inputField", placeholder = "Password" })
+                                                        <p class="text-danger">@Html.ValidationMessageFor(m => m.UserRoles.Password)</p>
+                                                        <p id="login_invalid" class="text-danger"></p>
+                                                        <a class="txtForgotPass" style="margin-bottom:10px; float: right;color: #66B85C;font-size:11px;" href="#">Forgot Password</a>
+                                                        <div class="" style="margin-top:0px !important;">
+                                                            <button type="submit" class="btn btn-block nanoBtn btnLogin">LOGIN</button>
+                                                            <br />
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="menu3" class=" tab-pane tabReg " style="padding-left: 10px;">
+                                <div class="row" style="margin-bottom:0px;">
+                                    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                                        <div class="row">
+                                            <div style="position:center; margin-left:10px">
+                                                <span class="tabReg">RESET</span> <br />
+                                                <span style="padding-left:0px;" class="txtRegBelow">Password Reset Request.</span>
+                                                <div class="col-md-12 col-xs-12 pd-t-25" style="padding-left:0px;">
+                                                    @using (Html.BeginForm("ForgotPassword", "Dashboard", FormMethod.Post, new { id = "f-form1" }))
+                                                    {
+                                                        <input type="hidden" class="utcTime" name="utcTime" />
+                                                        <label class="Label">Email</label><br />
+                                                        @Html.TextBoxFor(m => m.UserRoles.Username, new { @class = "form-control inputField", placeholder = "Email", id = "forgotEmail1" })
+                                                        <p class="text-danger">@Html.ValidationMessageFor(m => m.UserRoles.Username)</p>
+                                                        <br />
+                                                        <div class="mg-t-50">
+                                                            <button type="submit" class="btn btn-block nanoBtn btnLogin">Request Password Reset Link </button>
+                                                            <br />
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-xs-12 pad-30">
+                        <div class="panel panel-default">
+                            <div class="panel-header txtPanelHeader">How safe is it to deposit into a Nanopips Account?</div>
+                            <div class="panel-body txtPanelbody">
+                                We ensure your funds are handled with the highest level of care and dedication to security.
+                                Each client can only wire funds to and from the single listed account under his/her name and must verify identity once doing so.
+                                This means that your funds can only be in control by you, the single owner of the account alone and nobody else.<br><br>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-header txtPanelHeader">How can I withdraw my funds from a Nanopips Account ?</div>
+                            <div class="panel-body txtPanelbody">
+                                Funds can be withdrawn by filling out the Wire Request Form and emailing it back to <b>clientservice@nanopips.com.</b>
+                                Requests before 4 PM EST are proccessed the same day and fund requests after 4 PM EST are proccessed the next business day from the request.
+                                Transfer to your account can take up to 15 days depending on your bank.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        $(".txtRegisterLogin1").click(function () {
+            $("#menu3").css('display', 'none');
+            $("#menu1").css('display', 'none');
+        });
+
+        $(".txtRegisterLogin2").click(function () {
+            $("#menu1").css('display', 'block');
+            $("#menu3").css('display', 'none');
+        });
+
+        $(".txtForgotPass").click(function () {
+            $("#menu3").css('display', 'block');
+            $("#menu1").css('display', 'none');
+        });
+
+    </script>
+
+    <div class="modal in fade" id="loadOnReady" data-backdrop="static" data-keyboard="false" role="dialog" style="overflow-y:auto">
+        <div class="modal-dialog">
+            <div class="modal-content borderGreen">
+                <div class="modal-body row">
+                    <form enctype="multipart/form-data">
+                        <div class="col-md-12  col-sm-12 col-xs-12 spacer">
+                            <h2 class="text-center text-bold">Disclamier</h2>
+                            <p class="text-left" style="font-size:12px; padding:10px">
+                                You are about to activate One Click Trading mode. By clicking "I Accept these Terms and Conditions" below, you acknowledge that you have read and understood the following terms and conditions, and you agree to be bound hereby. Your current version of the platform allows you to choose between the following modes for order submission. You agree that you will be bound by the procedures and conditions specified herein with respect to each such mode.
+                                <br /> <br />1. The Default mode for order submission is a two-step process: you first select a new market window then you select an order quantity amount to submit by clicking either Buy or Sell buttons depending on the particular market selected and your trading intentions. Your order will not be submitted until you have completed both of the aforementioned steps.
+                                <br /> <br /> 2. The One Click Trading mode for order submission is a one-step process. Your order will be submitted when you:
+                                - click either bid (SELL) or ask (BUY) rate buttons on this platform on the right side panel.
+                                <br /> <br />THERE WILL BE NO SUBSEQUENT CONFIRMATION PROMPT FOR YOU TO CLICK. YOU WILL NOT BE ABLE TO WITHDRAW OR CHANGE YOUR ORDER ONCE YOU CLICK. UNDER NORMAL MARKET CONDITIONS AND SYSTEM PERFORMANCE, A MARKET ORDER WILL BE PROMPTLY FILLED AFTER SUBMISSION AND YOU WILL HAVE ENTERED INTO A BINDING TRANSACTION.
+                                <br /> <br />By activating this platform and the One Click Trading mode, you understand that your orders will be submitted by clicking the Buy or Sell buttons as described above, without any further order confirmation. You agree to accept all risks associated with the use of the order submission mode you have chosen, including, without limitation, the risk of errors, omissions or mistakes made in submitting any order.
+                                <br /> <br />You agree to fully indemnify and hold harmless NanoPips Ltd. from any and all losses, costs and expenses that it may incur as a result of any such errors, omissions or mistakes by you, your trading manager or any other person inputting trades on the platform on your behalf.
+                            </p>
+                        </div>
+                        <div class="col-md-12 col-xs-12 spacer text-center">
+                            <button type="button" id="accepttermok_bt" data-toggle="modal" data-dismiss="modal" data-target="" class="btn btn-Custom submit_form_btn classDeleteOnClick">I Accept These Terms & Conditions</button> <br /><br />
+                            <button type="button" id="accepttermcancel_bt" class="btn closeDialogue" data-dismiss="modal" style="color:blue;">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="tradeErrorDialog" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content borderGreenThin">
+                <div class="modal-body row">
+                    <form enctype="multipart/form-data">
+                        <div class="col-md-12  col-sm-12 col-xs-12 spacer">
+                            <h3 class="text-center text-bold txtLabel1">Error: Not Enough Margin</h3>
+                            <h5 class="text-center txtLabel">
+                                You need more Balance for this Order Quantity.
+                            </h5>
+                            <h4 class="text-bold text-center txtLabel">
+                                Quantity Permitted<br />
+                                <span>10 per $50</span>
+                            </h4>
+                        </div>
+                        <div class="col-md-12 col-xs-12 spacer text-center txtLabel">
+                            <a href="@Url.Action("Profile","Account", new { showPopUp = true})" class="btn btn-success">Deposit Now</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row main-container"></div>
+    </div>
+
+    <div class="container-bottom">
+        <div class="width-100">
+            <div class="col10">
+                @*<label style="color:red; font-size:14px;" id="errorMessage"></label>*@
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 chartPaddMobile">
+                    <div id="iChart" class="iChart chartHeight" style="position:relative !important;"></div>
+
+                    <script type="text/javascript">
+                            var chartDataSource = { @Html.Raw(Model.GetCandles) };
+                        require(['jquery', 'iguanachart'], function ($) {
+                                @*iChartDataSource.data = chartDataSource;*@
+                            $('#iChart').on("iguanaChartEvents", function (e, name, data) {
+                                if (name == "drawComplete") {
+                                    //if (name != "hashChanged" && name != "RenderChartSuccess" && name != "indicatorsChanged" && name != "chartDataReceived"
+                                    //    && name != "chartDataReady" && name != "intervalRestriction" && name != "initComplete" && name != "setTheme") {
+                                    console.log("DrawComplete");
+                                    $("[name='SelectInstrument']").removeClass("active");
+                                }
+                            }).iguanaChart({
+                                lib_path: "/dist",
+                                ticker: "@Model.MarketName",
+                                chartOptions: {
+                                    minHeight: $('#iChart').height(),
+                                    futureAmount: 1,
+                                    floatingLegend: true,
+                                    floatingLegendFontSize: 13,
+                                    floatingLegendTextColor: "#444444",
+                                    floatingLegendBorderColor: "rgba(82,175,201,1)",
+                                    floatingLegendBackground: "rgba(82,175,201,.6)",
+                                    uiTools: { top: true },
+                                },
+                                dataSource: $.extend(true, {}, chartDataSource)
+                                });
+
+                            $(document).on("click", "[name='SelectInstrument']", function () {
+                                $("#iChart").iguanaChart("toolStart", $(this).data("instrument"));
+                                $("[name='SelectInstrument']").removeClass("active");
+                                $(this).addClass("active");
+                            });
+
+                                @if (Session["DARK"] != null)
+                                {
+                                    @:$("#iChart").iguanaChart("setTheme", "Dark");
+                                }
+                                else {
+                                    @:$("#iChart").iguanaChart("setTheme", "White");
+                                }
+
+                            setInterval(function () {
+                                var pair = "@Model.MarketName";
+                                var timeF = "@Model.TimeFrameValue";
+                                $.post("@Url.Action("GetCandlesData", "Dashboard")", { pair: pair, timeFrame: timeF }, function (data) {
+
+                                    var tm = data.obj.Ticker, vl = data.obj.Volume, preHloc = [], hloc = [];
+                                    var point = $("#iChart").data("iguanaChart").getLastPoint();
+
+                                    preHloc[0] = data.obj.High;
+                                    preHloc[1] = data.obj.Low;
+                                    preHloc[2] = data.obj.Open;
+                                    preHloc[3] = data.obj.Close;
+
+                                    hloc[0] = Math.max.apply(null, preHloc);
+                                    hloc[1] = Math.min.apply(null, preHloc);
+                                    hloc[2] = preHloc[2];
+                                    hloc[3] = preHloc[3];
+
+                                    var result = {
+                                        "hloc":    {},
+                                        "vl":      {},
+                                        "xSeries": {}
+                                    };
+
+                                    result["hloc"][Object.keys(point.xSeries)[0]]    = [hloc];
+                                    result["vl"][Object.keys(point.xSeries)[0]]      = [vl];
+                                    result["xSeries"][Object.keys(point.xSeries)[0]] = [tm];
+                                    $("#iChart").iguanaChart("addPoint", result);
+
+                                });
+                            }, 2000)
+
+                            var isLogin = "@Model.IsLogin";
+                            if (isLogin === 'True') {
+                                setInterval(function () {
+                                    var offset = new Date().getTimezoneOffset();
+                                    var pair   = "@Model.MarketName";
+                                    var point  = $("#iChart").data("iguanaChart").getLastPoint();
+                                    var ticker = point.xSeries['LKOH'][0];
+                                    $.get("@Url.Action("GetTradeOnChart", "Dashboard")", { timeOffset: offset, pair: pair, point: ticker }, function (dt) {
+                                        $("#iChart").on("iguanaChartEvents", function (e, name, data) {
+                                            if (dt.res.length != 0) {
+                                                $("#iChart").data("iguanaChart").removeTransactions();
+                                                $("#iChart").data("iguanaChart").addTransactions(dt.res, 2);
+                                            }
+                                            else {
+                                                $("#iChart").data("iguanaChart").removeTransactions();
+                                            }
+                                        });
+                                    });
+                                }, 3000)
+                            }
+                        });
+                    </script>
+                </div>
+            </div>
+
+            @*col2 start*@
+            <div class="col2">
+                <div class="col-md-12 col-xs-12">
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding-left:0px; padding-right: 0px; border:none">
+                        <div class="borderRound" style="text-align: center;">
+                            <div class="col-md-6 pad-top" style="padding-left:0px; padding-right:0px;border-right:1px solid #ccc">
+                                <a class="managefunds_hover manageFundAmount" href="@Url.Action("Profile","Account")">
+                                    <div class="txtAmount user_funds col-md-12"></div>
+                                    <div class="manage_funds txtManageFund txtManageFundonHover">Manage Funds</div>
+                                </a>
+                            </div>
+                            <div class="col-md-6" style="padding-top: 7px !important;font-size: 14px;padding: 0px;">
+                                <button type="button" class="aa btn dropdown-toggle expire-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style=" color:#66b85c; background-color:transparent">
+                                    Profile
+                                </button>
+                                @*<button class="btn btnbtm abcd"> <i class="fa fa-user"></i></button>*@
+                                <div class="dropdown-menu ABC btm-left" style="text-decoration: none !important;">
+                                    <ul style="list-style:none; padding-left:10px;">
+                                        <li>
+                                            <div class="divider"></div>
+                                            <a data-toggle="modal" data-target="#tradeHistoryModal">
+                                                <span class="DarkImg" style="padding-left:8px;"><img src="/Assets/images/Chart.png" title="Trade History" class="topImages" /></span>
+                                                <span class="LightImg" style="padding-left:8px;"><img src="~/Assets/images/1-Chart.png" title="Trade History" class="topImages" /></span>
+                                                <span class="txtLabel" style="padding-left: 12px;">Trade History</span>
+                                            </a>
+                                            <div class="divider"></div>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("Help","Account")">
+                                                <span class="DarkImg" style="padding-left:3px;"><img src="/Assets/images/Help.png" title="Help" class="topImages" /></span>
+                                                <span class="LightImg" style="padding-left:3px;"><img src="~/Assets/images/1-Help.png" title="Help" class="topImages" /></span>
+                                                <span class="txtLabel" style="padding-left:3px; padding-left:12px;">Help</span>
+                                            </a>
+                                            <div class="divider"></div>
+                                        </li>
+                                        <li>
+                                            <a id="refferalBtn" href="#">
+                                                <span class="DarkImg" style="padding-left:3px;"><img src="/Assets/images/LoginSignUp (1).png" title="Login/SignUp" class="topImages" /></span>
+                                                <span class="LightImg" style="padding-left:3px;"><img src="~/Assets/images/1-Lot Men.png" title="Login/SignUp" class="topImages" /></span>
+                                                <span class="txtLabel" style="padding-left:3px;padding-left:12px;">Partner</span>
+                                            </a>
+                                            <div class="divider"></div>
+                                        </li>
+                                        <li>
+                                            <a id="profile_btn" href="#">
+                                                <span class="DarkImg" style="padding-left:3px;"><img src="/Assets/images/User.png" title="Account" class="topImages" /></span>
+                                                <span class="LightImg" style="padding-left:3px;"><img src="~/Assets/images/1-Men.png" title="Account" class="topImages" /></span>
+                                                <span class="txtLabel" style="padding-left:3px;padding-left:12px;">Profile</span>
+                                            </a>
+                                            <div class="divider"></div>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("Logout","Account")">
+                                                <span class="DarkImg" style="padding-left:3px;"><img src="/Assets/images/logout.png" title="Logout" class="topImages" /></span>
+                                                <span class="LightImg" style="padding-left:3px;"><img src="~/Assets/images/1-Logout.png" title="Logout" class="topImages" /></span>
+                                                <span class="txtLabel" style="padding-left:3px;padding-left:12px;">Logout</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12 txtLabel" style=" padding-left:0px;padding-top:10px; border:none;margin-top:0px;">
+                        <span class="font-12">Market</span>
+                        <br>
+                        <div class="btn-group full-width" style="border:none">
+                            <button type="button" class="borderNone form-control market-btn btn btn-sm outline-primary dropdown-toggle full-width dropdown-filter" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                @Model.MarketName <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu full-width">
+                                @foreach (var item in Model.GetPairs as List<Exchange.DTO.Pair>)
+                                {
+                                    <li><a class="txtLabel dropdownHover select_coin" href="@Url.Action("Index","Dashboard", new { symbol = item.MarketSymbol, timeFrame = Model.TimeFrameValue, utcTime = Model.timeOffset })" data-coin=@item.MarketCurrency data-pair=@item.BaseCurrency>@item.MarketSymbol</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12 txtLabel pull-left" style="padding: 0px; padding-top:5px; border:none">
+                        <span class="font-12">Chart Time Frame</span>
+                        <br>
+                        <div class="btn-group" style="width: 100%;">
+                            <button id="frame_time_buttond" type="button" class="btn borderNone btn-sm outline-primary dropdown-toggle full-width expire-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="expire-dropdown-current">@Model.TimeFrameValue</span><span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu full-width">
+                                <li>
+                                    <a href="@Url.Action("Index","Dashboard", new { symbol = Model.MarketName, timeFrame = "1m", utcTime = Model.timeOffset })" class="candle-select-range  dropdownHover txtLabel
+                                       timeframe" data-value="1M">1M</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index","Dashboard", new { symbol = Model.MarketName, timeFrame = "3m", utcTime = Model.timeOffset })" class="candle-select-range  dropdownHover txtLabel
+                                       timeframe" data-value="3M">3M</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index","Dashboard", new { symbol = Model.MarketName, timeFrame = "5m", utcTime = Model.timeOffset })" class="candle-select-range  dropdownHover txtLabel
+                                       timeframe" data-value="5M">5M</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index","Dashboard", new { symbol = Model.MarketName, timeFrame = "15m", utcTime = Model.timeOffset })" class="candle-select-range dropdownHover txtLabel
+                                       timeframe" data-value="15M">15M</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index","Dashboard", new { symbol = Model.MarketName, timeFrame = "30m", utcTime = Model.timeOffset })" class="candle-select-range dropdownHover txtLabel
+                                       timeframe" data-value="30M">30M</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index","Dashboard", new { symbol = Model.MarketName, timeFrame = "1h", utcTime = Model.timeOffset })" class="candle-select-range  dropdownHover txtLabel
+                                       timeframe" data-value="1H">1H</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index","Dashboard", new { symbol = Model.MarketName, timeFrame = "1d", utcTime = Model.timeOffset })" class="candle-select-range  dropdownHover txtLabel
+                                       timeframe" data-value="1D">1D</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index","Dashboard", new { symbol = Model.MarketName, timeFrame = "3d", utcTime = Model.timeOffset })" class="candle-select-range  dropdownHover txtLabel
+                                       timeframe" data-value="3D">3D</a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index","Dashboard", new { symbol = Model.MarketName, timeFrame = "1w", utcTime = Model.timeOffset })" class="candle-select-range  dropdownHover txtLabel
+                                       timeframe" data-value="1W">1W</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
+                    <div id="candlestick-container">
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-4 col-xs-4" style="padding-top:5px;">
+                    <span class="txtLabel dropdownHover font-12">Auto Close</span>
+                    <br>
+                    <div class="btn-group full-width">
+                        <button id="expire_time_buttond" type="button" class="btn btn-sm borderNone outline-primary dropdown-toggle full-width expire-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="expire-dropdown-current">0 min</span> <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu full-width">
+                            <li class="expires select_expiry    txtLabel dropdownHover  dropdownHover1 expiretime" id="minute0" data-min-value="0 min" data-value="0">0 min</li>
+                            <li class="expires select_expiry    txtLabel dropdownHover  dropdownHover1 selected-expire expiretime" data-min-value="1 min" data-value="60">1 min</li>
+                            <li class="expires select_expiry    txtLabel dropdownHover  dropdownHover1 expiretime" id="minute2" data-min-value="2 min" data-value="120">2 min</li>
+                            <li class="expires select_expiry    txtLabel dropdownHover  dropdownHover1 expiretime" id="minute3" data-min-value="3 min" data-value="180">3 min</li>
+                            <li class="expires select_expiry    txtLabel dropdownHover  dropdownHover1 expiretime" id="minute5" data-min-value="5 min" data-value="300">5 min</li>
+                            <li class="expires select_expiry    txtLabel dropdownHover  dropdownHover1 expiretime" id="minute15" data-min-value="15 min" data-value="900">15 min</li>
+                            <li class="expires select_expiry    txtLabel dropdownHover  dropdownHover1 expiretime" id="minute30" data-min-value="30 min" data-value="1800">30 min</li>
+                            <li class="expires select_expiry    txtLabel dropdownHover  dropdownHover1 expiretime" id="minute60" data-min-value="60 min" data-value="3600">60 min</li>
+                        </ul>
+                    </div>
+                    <div class="form-inline">
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-4 col-xs-4" style="padding-top:5px;">
+                    <div class="form-inline">
+                        <input type="hidden" id="current_price">
+                        <input type="hidden" class="max-quadpips">
+                        <input type="hidden" class="max-dollar-price">
+                        <span class="txtLabel font-12 ">Order Quantity</span>
+                        <input id="orderQuantityd" type="number" value="0.01" placeholder="0" min="0" class="form-control txtLabel borderNone full-width text-center" aria-label="3.5" style="margin-top: 0px;">
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12" style="padding-right:4px;">
+                    <div class="form-inline buttonToShow2">
+                        <button readonly class="form-control heightbtn borderNone txtLabel full-width buttonToShow" aria-label="3.5">
+                            Market
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12" style="padding-left:4px;">
+                    <div class="form-inline">
+                        <button readonly class="form-control heightbtn full-width txtLabel borderNone tableToShow" aria-label="3.5" style="white-space:nowrap;">
+                            Level ||
+                        </button>
+                    </div>
+                </div>
+                <div class="marketButtonToshow">
+                    <div class="col-md-12 col-sm-12 col-xs-12 spacer">
+                        <button id="pangad" class="btn-lg full-width buyBtn buyBtnNewd" data-target="" data-toggle="modal">Buy</button>
+                    </div>
+                    <div id="wadapangad" data-target="" data-toggle="modal" class="col-md-12 col-sm-12 col-xs-12">
+                        <button class="btn-lg full-width sellBtn sellBtnNewd">Sell</button>
+                    </div>
+                    <div class="col-md-6 spacer">
+                        <a href="@Url.Action("Light","Dashboard")" class="full-width heightbtn borderNone form-control moonPadding" id="light_theme">
+                            <i class="fa fa-sun-o font-15" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <div class="col-md-6 spacer">
+                        <a href="@Url.Action("Dark","Dashboard")" class="full-width heightbtn borderNone form-control moonPadding" id="dark_theme">
+                            <i class="fa fa-moon-o font-15" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="levelButtonToshow">
+                    <div class="col-md-12 spacer">
+                        <table id="buysell_table" class="table trade-table tableBuySell" style="margin-bottom:10px;">
+                            <thead class="font-12 txtLabel" style="border: 2px solid black; border-collapse: collapse;">
+                                <tr>
+                                    <th style="text-align: center" scope="col">BUY</th>
+                                    <th style="text-align: center" scope="col">PRICE</th>
+                                    <th style="text-align: center" scope="col">SELL</th>
+                                </tr>
+                            </thead>
+                            <tbody id="orderbooklist_tb"></tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-6" style="margin-bottom:10px;">
+                        <button class="full-width heightbtn borderNone form-control moonPadding">
+                            <i class="fa fa-sun-o " style="font-size:15px;" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="full-width heightbtn borderNone form-control moonPadding">
+                            <i class="fa fa-moon-o" style=" font-size:15px;" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col5">
+        <div class="col-xs-12">
+            <input id="orderQuantity" type="number" value="0.01" placeholder="0" min="0" class="form-control txtLabel borderNone full-width text-center margin-top-mobile" aria-label="3.5" style="height: 45px;border: 2px solid #ccc; margin-bottom:15px;color: #000;font-size: 16px;">
+        </div>
+    </div>
+
+    <div class="col7">
+        <ul class="nav nav-tabs " style="border:none;" role="tablist">
+            <li class="nav-item col-xs-6 text-center" style="padding-right:5px;">
+                <a class="nav-link btnMarket active" data-toggle="tab" href="#tabMarket">Market</a>
+            </li>
+            <li class="nav-item col-xs-6 text-center" style="padding-left:5px;">
+                <a class="nav-link btnMarket" data-toggle="tab" href="#tabLevel">Level ||</a>
+            </li>
+        </ul>
+        <div class="tab-content tabContentPadding">
+            <div id="tabMarket" class=" tab-pane pad-t-30 active">
+                <div class="marketButtonToshow" style="padding-left:10px;">
+                    <div class="col-md-12 col-sm-12 col-xs-6 spacer" id="panga" style="padding:5px; margin-left:-20px;">
+                        <button class="btn-lg full-width buyBtn buyBtnNew" data-target="" data-toggle="modal">Buy</button>
+                    </div>
+                    <div id="wadapanga" data-target="" data-toggle="modal" class="col-md-12 col-sm-12 col-xs-6" style="margin-bottom:15px;margin-left:5px; margin-top:20px;padding:5px;">
+                        <button class="btn-lg full-width sellBtn sellBtnNew">Sell</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tabLevel" class=" tab-pane pad-t-30 " style=" padding-left: 10px;">
+                <div class="col-md-12 spacer" style="margin-left:-30px;">
+                    <table id="buysell_table" class="table trade-table tableBuySell" style="margin-bottom:10px;">
+                        <thead class="font-12 txtLabel" style="border: 2px solid black; border-collapse: collapse;">
+                            <tr>
+                                <th style="text-align: center" scope="col">BUY</th>
+                                <th style="text-align: center" scope="col">PRICE</th>
+                                <th style="text-align: center" scope="col">SELL</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orderbooklist_tb"><tr style="border:2px solid black; border-collapse: collapse; text-align: center;"><td class="buyside" id="buysideOrders3" indexprice="8246.57000000"></td><td id="buy-price-3" style="font-weight:bold;font-size:10px;">8246.57000000</td><td class="sellside" id="sellsideOrders3" indexprice="8246.57000000"></td></tr><tr style="border:2px solid black; border-collapse: collapse; text-align: center;"><td class="buyside" id="buysideOrders2" indexprice="8246.68000000"></td><td id="buy-price-2" style="font-weight:bold;font-size:10px;">8246.68000000</td><td class="sellside" id="sellsideOrders2" indexprice="8246.68000000"></td></tr><tr style="border:2px solid black; border-collapse: collapse; text-align: center;"><td class="buyside" id="buysideOrders1" indexprice="8246.70000000"></td><td id="buy-price-1" style="font-weight:bold;font-size:10px;">8246.70000000</td><td class="sellside" id="sellsideOrders1" indexprice="8246.70000000"></td></tr><tr style="border:2px solid black; border-collapse: collapse; text-align: center;"><td class="buyside" id="buysideOrders0" indexprice="8246.73000000"></td><td id="buy-price-0" style="font-weight:bold;font-size:11px;color:green;">8246.73000000</td><td class="sellside" id="sellsideOrders0" indexprice="8246.73000000"></td></tr><tr style="border: 2px solid black; border-collapse:collapse; text-align: center;"><td class="buyside" id="buysideOrders0" indexprice="8247.99000000"> </td> <td id="sell-price-0" style="font-weight:bold;color:red;font-size:11px;">8247.99000000</td> <td class="sellside" id="sellsideOrders0" indexprice="8247.99000000"></td> </tr> <tr style="border: 2px solid black; border-collapse:collapse; text-align: center;"><td class="buyside" id="buysideOrders1" indexprice="8248.07000000"> </td> <td id="sell-price-1" style="font-weight:bold;font-size:10px;">8248.07000000</td> <td class="sellside" id="sellsideOrders1" indexprice="8248.07000000"></td> </tr> <tr style="border: 2px solid black; border-collapse:collapse; text-align: center;"><td class="buyside" id="buysideOrders2" indexprice="8248.08000000"> </td> <td id="sell-price-2" style="font-weight:bold;font-size:10px;">8248.08000000</td> <td class="sellside" id="sellsideOrders2" indexprice="8248.08000000"></td> </tr> <tr style="border: 2px solid black; border-collapse:collapse; text-align: center;"><td class="buyside" id="buysideOrders3" indexprice="8248.16000000"> </td> <td id="sell-price-3" style="font-weight:bold;font-size:10px;">8248.16000000</td> <td class="sellside" id="sellsideOrders3" indexprice="8248.16000000"></td> </tr> </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col4 row" style="margin:0px; ">
+
+    </div>
+    <div class="col4">
+        <div class="dis-flex">
+            <div class=" dropup">
+                <button style="background-color:transparent" type="button" id="" class=" btn  dropdown-toggle dropdown-filter" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="~/chart.png" />
+                </button>
+                <ul class="dropdown-menu full-width" style="-webkit-overflow-scrolling:auto">
+                    <div class="divider"></div>
+                    @foreach (var item in Model.GetPairs as List<Exchange.DTO.Pair>)
+                    {
+                        <li><a class="txtLabel dropdownHover select_coin" href="@Url.Action("Index","Dashboard", new { symbol = item.MarketSymbol, timeFrame = Model.TimeFrameValue, utcTime = Model.timeOffset })" data-coin=@item.MarketCurrency data-pair=@item.BaseCurrency>@item.MarketSymbol</a><div class="divider"></div></li>
+                    }
+                </ul>
+            </div>
+
+            <div class="dropup">
+                <button style="background-color:transparent" id="frame_time_button" type="button" class="btn  dropdown-toggle  expire-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="~/TimeFrame.png" />
+                </button>
+                <ul class="dropdown-menu full-width">
+                    <div class="divider"></div>
+                    <li style="color:#000;text-align:center">
+                        <a href="@Url.Action("Index","Dashboard", new { symbol = Model.MarketName, timeFrame = "1m", utcTime = Model.timeOffset })" class="candle-select-range  dropdownHover txtLabel
+                                       timeframe" data-value="1M">1M</a>
+                        <div class="divider"></div>
+                    </li>
+
+                    <li style="color:#000;text-align:center">
+                        <a href="@Url.Action("Index","Dashboard", new { symbol = Model.MarketName, timeFrame = "3m", utcTime = Model.timeOffset })" class="candle-select-range  dropdownHover txtLabel
+                                       timeframe" data-value="3M">3M</a>
+                        <div class="divider"></div>
+                    </li>
+                    <li style="color:#000;text-align:center">
+                        <a href="@Url.Action("Index","Dashboard", new { symbol = Model.MarketName, timeFrame = "5m", utcTime = Model.timeOffset })" class="candle-select-range  dropdownHover txtLabel
+                                       timeframe" data-value="5M">5M</a>
+                        <div class="divider"></div>
+                    </li>
+                    <li style="color:#000;text-align:center">
+                        <a href="@Url.Action("Index","Dashboard", new { symbol = Model.MarketName, timeFrame = "15m", utcTime = Model.timeOffset })" class="candle-select-range dropdownHover txtLabel
+                                       timeframe" data-value="15M">15M</a>
+                        <div class="divider"></div>
+                    </li>
+                    <li style="color:#000;text-align:center">
+                        <a href="@Url.Action("Index","Dashboard", new { symbol = Model.MarketName, timeFrame = "30m", utcTime = Model.timeOffset })" class="candle-select-range dropdownHover txtLabel
+                                       timeframe" data-value="30M">30M</a>
+                        <div class="divider"></div>
+                    </li>
+                    <li style="color:#000;text-align:center">
+                        <a href="@Url.Action("Index","Dashboard", new { symbol = Model.MarketName, timeFrame = "1h", utcTime = Model.timeOffset })" class="candle-select-range  dropdownHover txtLabel
+                                       timeframe" data-value="1H">1H</a>
+                        <div class="divider"></div>
+                    </li>
+                    <li style="color:#000;text-align:center">
+                        <a href="@Url.Action("Index","Dashboard", new { symbol = Model.MarketName, timeFrame = "1d", utcTime = Model.timeOffset })" class="candle-select-range  dropdownHover txtLabel
+                                       timeframe" data-value="1D">1D</a>
+                        <div class="divider"></div>
+                    </li>
+                    <li style="color:#000;text-align:center">
+                        <a href="@Url.Action("Index","Dashboard", new { symbol = Model.MarketName, timeFrame = "3d", utcTime = Model.timeOffset })" class="candle-select-range  dropdownHover txtLabel
+                                       timeframe" data-value="3D">3D</a>
+                        <div class="divider"></div>
+                    </li>
+                    <li style="color:#000;text-align:center">
+                        <a href="@Url.Action("Index","Dashboard", new { symbol = Model.MarketName, timeFrame = "1w", utcTime = Model.timeOffset })" class="candle-select-range  dropdownHover txtLabel
+                                       timeframe" data-value="1W">1W</a>
+                        <div class="divider"></div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="dropup">
+
+                <button style="background-color:transparent" id="expire_time_buttond" type="button" class=" aa btn  dropdown-toggle expire-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="~/autoclose.png" />
+                </button>
+                <ul class="dropdown-menu full-width">
+                    <div class="divider"></div>
+                    <li class="expires select_expiry    txtLabel dropdownHover  dropdownHover1 expiretime" id="minute0" data-min-value="0 min" data-value="0">0 min</li>
+                    <div class="divider"></div>
+                    <li class="expires select_expiry    txtLabel dropdownHover  dropdownHover1 selected-expire expiretime" data-min-value="1 min" data-value="60">1 min</li>
+                    <div class="divider"></div>
+                    <li class="expires select_expiry    txtLabel dropdownHover  dropdownHover1 expiretime" id="minute2" data-min-value="2 min" data-value="120">2 min</li>
+                    <div class="divider"></div>
+                    <li class="expires select_expiry    txtLabel dropdownHover  dropdownHover1 expiretime" id="minute3" data-min-value="3 min" data-value="180">3 min</li>
+                    <div class="divider"></div>
+                    <li class="expires select_expiry    txtLabel dropdownHover  dropdownHover1 expiretime" id="minute5" data-min-value="5 min" data-value="300">5 min</li>
+                    <div class="divider"></div>
+                    <li class="expires select_expiry    txtLabel dropdownHover  dropdownHover1 expiretime" id="minute15" data-min-value="15 min" data-value="900">15 min</li>
+                    <div class="divider"></div>
+                    <li class="expires select_expiry    txtLabel dropdownHover  dropdownHover1 expiretime" id="minute30" data-min-value="30 min" data-value="1800">30 min</li>
+                    <div class="divider"></div>
+                    <li class="expires select_expiry    txtLabel dropdownHover  dropdownHover1 expiretime" id="minute60" data-min-value="60 min" data-value="3600">60 min</li>
+                    <div class="divider"></div>
+                </ul>
+            </div>
+
+            @*<div class=" dropup">
+
+                    <button style="background-color:transparent" type="button" id="current_price" class=" btn  dropdown-toggle dropdown-filter" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                        <img src="~/60x60-3.png" />
+                    </button>
+                </div>*@
+
+            <div class="dropup">
+                <button type="button" class=" aa btn dropdown-toggle expire-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color:transparent">
+                    <img src="~/User.png" />
+                </button>
+                @*<button class="btn btnbtm abcd"> <i class="fa fa-user"></i></button>*@
+                <div class="dropdown-menu ABC btm-left">
+                    <ul style="list-style:none; padding-left:10px;">
+                        <div class="divider"></div>
+                        <li>
+                            <a class="managefunds_hover manageFundAmount" href="@Url.Action("Profile","Account")">
+                                <div class="txtAmount user_funds col-md-12"></div>
+                                <div class="manage_funds txtManageFund txtManageFundonHover">Manage Funds</div>
+                            </a>
+                            <div class="divider"></div>
+                        </li>
+
+                        <li>
+                            <a data-toggle="modal" data-target="#tradeHistoryModal">
+                                <span>Trade History</span>
+                            </a>
+                            <div class="divider"></div>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Help","Account")">
+                                <span style="padding-left:3px;">Help</span>
+                            </a>
+                            <div class="divider"></div>
+                        </li>
+                        <li>
+                            <a id="refferalBtnm" href="#">
+                                <span style="padding-left:3px;">Referral</span>
+                            </a>
+                            <div class="divider"></div>
+                        </li>
+                        <li>
+                            <a id="profile_btnm" href="#">
+                                <span style="padding-left:3px;">Profile</span>
+                            </a>
+                            <div class="divider"></div>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Logout","Account")">
+                                <span style="padding-left:3px;">Logout</span>
+                            </a>
+                            <div class="divider"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @* moblie Responsive End make Col2 for mobile *@
+
+    @* table start Belown  *@
+
+    <div class="container width-80 margin-left-0" style="margin-top:25px;  padding-left:10px; padding-right:0px;">
+        <table class="table trade-table">
+            <thead>
+                <tr class="txtLabel1 font-13">
+                    <th scope="col">
+                        <div class="width10">
+                            Market
+                        </div>
+                    </th>
+                    <th scope="col">
+                        <div class="width10">
+                            Entry Price
+                        </div>
+                    </th>
+                    <th scope="col">
+                        <div class="width10">
+                            Position
+                        </div>
+                    </th>
+                    <th scope="col">
+                        <div class="width250">
+                            Entry Time
+                        </div>
+                    </th>
+                    <th scope="col">
+                        <div style="width:150px;">
+                            S/T
+                        </div>
+                    </th>
+                    <th scope="col">
+                        <div class="width10">
+                            Exit Time
+                        </div>
+                    </th>
+                    <th scope="col">
+                        <div class="width100">
+                            Cost
+                        </div>
+                    </th>
+                    <th scope="col">
+                        <div class="width100">
+                            Exit Price
+                        </div>
+                    </th>
+                    <th scope="col">
+                        <div class="width100">
+                            PnL
+                        </div>
+                    </th>
+                    <th scope="col">
+
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="pendingOrderstBody" class="font-12"></tbody>
+        </table>
+    </div>
+    @* table end Belown  *@
+
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                @*<div class="table-loader text-center">
+                            <div class="loader" style="width:50px; height: 50px;"></div>
+                    </div>*@
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="disclaimerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content modal-disclaimer">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h3>Disclaimer</h3>
+                        </div>
+                        <div class="col-md-12 text-justify">
+                            <p>You are about to activate One Click Trading mode. By clicking "I Accept these Terms and Conditions" below, you acknowledge that you have read and understood the following terms and conditions, and you agree to be bound hereby. Your current version of the platform allows you to choose between the following modes for order submission. You agree that you will be bound by the procedures and conditions specified herein with respect to each such mode.</p>
+                            <p>1. The Default mode for order submission is a two-step process: you first select a new market window then you select an order quantity amount to submit by clicking either Buy or Sell buttons depending on the particular market selected and your trading intentions. Your order will not be submitted until you have completed both of the aforementioned steps.</p>
+                            <p>2. The One Click Trading mode for order submission is a one-step process. Your order will be submitted when you:</p>
+                            <p>- click either bid (SELL) or ask (BUY) rate buttons on this platform on the right side panel.</p>
+                            <p>THERE WILL BE NO SUBSEQUENT CONFIRMATION PROMPT FOR YOU TO CLICK. YOU WILL NOT BE ABLE TO WITHDRAW OR CHANGE YOUR ORDER ONCE YOU CLICK. UNDER NORMAL MARKET CONDITIONS AND SYSTEM PERFORMANCE, A MARKET ORDER WILL BE PROMPTLY FILLED AFTER SUBMISSION AND YOU WILL HAVE ENTERED INTO A BINDING TRANSACTION.</p>
+                            <p>By activating this platform and the One Click Trading mode, you understand that your orders will be submitted by clicking the Buy or Sell buttons as described above, without any further order confirmation. You agree to accept all risks associated with the use of the order submission mode you have chosen, including, without limitation, the risk of errors, omissions or mistakes made in submitting any order.</p>
+                            <p>You agree to fully indemnify and hold harmless NanoPips Inc. from any and all losses, costs and expenses that it may incur as a result of any such errors, omissions or mistakes by you, your trading manager or any other person inputting trades on the platform on your behalf. </p>
+                        </div>
+                        <div class="col-md-12 text-center spacer">
+                            <button class="btn outline-success accept-disclaimer">I Accept These Terms & Conditions</button>
+                        </div>
+                        <div class="col-md-12 text-center spacer">
+                            <a href="#" data-dismiss="modal" aria-label="Close">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="depositModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h1 class="no-funds-text">Error: No Funds Available</h1>
+                        </div>
+                        <div class="col-md-12 text-center" style="margin-top:24px;">
+                            <a href="" class="btn btn-primary btn-lg">Deposit Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade in" id="tradeHistoryModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body row" style="margin-right:0px;">
+                    <div class="">
+                        <div class="col-md-11 col-xs-11">
+                            <h2 class="modal-title text-center txtLabel">Trade History Report</h2>
+                        </div>
+                        <div class="col-md-1 col-xs-1">
+                            <button type="button" class="btnClose txtLabel close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="col-md-12 col-xs-12 form-inline form-inline2">
+                            @*<div class="input-group date form-inline">
+                                    <input type="date" class="form-controle txtLabel borderNone date-from form-control date-history date" style=" cursor:pointer;" placeholder="from date">
+                                    @*<div class="input-group-addon borderNone buttonToShow3">
+                                        <span class="fa fa-calendar colorWhite"></span>
+                                    </div>
+                                </div>*@
+                            <div id="datepicker-container" style="margin-right:5px;" class="input-group date form-inline datepicker-container">
+                                <span class="outline-element-container">
+                                    <input style="font-size:13px; height:35px;" id="datepicker_input_from" type="text" class="openemr-datepicker input-textbox outline-element incorrect txtLabel borderNone date-from" placeholder="Date From" objtype="7" name="action_element" objindex="" aria-label="Select Date"> <span class="correct-incorrect-icon"> </span>
+                                </span>
+                                <div id="datepicker"></div>
+                            </div>
+                            <div id="datepicker-container" style="margin-right:5px;" class="input-group date form-inline datepicker-container">
+                                <span class="outline-element-container">
+                                    <input style="font-size:13px; height:35px;" id="datepicker_input_to" type="text" class="openemr-datepicker input-textbox outline-element incorrect txtLabel borderNone date-from" placeholder="Date To" objtype="7" name="action_element" objindex="" aria-label="Select Date"> <span class="correct-incorrect-icon"> </span>
+                                </span>
+                                <div id="datepicker"></div>
+                            </div>
+                            @*<div class="input-group date form-inline">
+                                    <input type="date" class="form-controle txtLabel borderNone date-to form-control date-history date" placeholder="to date">
+                                        <div class="input-group-addon borderNone buttonToShow3">
+                                    <span class="fa fa-calendar colorWhite"></span>
+                                </div>
+                                </div>*@
+                            <span class="btn btn-sm btn-primary filterData">Filter</span>
+                            <span class="pull-right txtLabel totalPNL">Total PnL: <span class="totalPnL"></span></span>
+                        </div>
+                        <div class="col-md-12 col-xs-12" style="overflow-x:scroll">
+                            <table class="table trade-table">
+                                <thead>
+                                    <tr class="txtLabel">
+                                        <th scope="col">Market</th>
+                                        <th scope="col">Entry Price</th>
+                                        <th scope="col">Position</th>
+                                        <th scope="col">Entry Time</th>
+                                        <th scope="col">Cost</th>
+                                        <th scope="col">Exit Price</th>
+                                        <th scope="col">PnL</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tradeHistoryBody" />
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade modalWidth in" id="loginSignup_modelNew" role="dialog">
+        <div class="modal-dialog left-130">
+            <div class="modal-content width-880">
+                <div class="modal-body row" style="height:475px;">
+                    <div class="col-md-7 col-xs-12">
+                        <ul class="nav nav-tabs navTab navbarRegister" style="border:none;" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link txtRegisterLogin txtRegisterLogin3 active" data-toggle="tab" href="#home2">Register</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link txtRegisterLogin txtRegisterLogin4" data-toggle="tab" href="#menu2">Login</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content tabContentPadding1">
+                            <div id="home2" class=" tab-pane pad-t-30 active">
+                                <span class="txtLabel tabReg">REGISTER</span><br />
+                                <span class="txtLabel txtRegBelow">Fill out your basic information such as Name.</span>
+
+                                <div class="row pad-t-30">
+                                    @using (Html.BeginForm("SignUp", "Dashboard", FormMethod.Post, new { id = "s-form2" }))
+                                    {
+                                        <div class="col-md-6 col-xs-6">
+                                            <label class="Label txtLabel">Email</label><br />
+                                            @Html.TextBoxFor(m => m.UserRoles.Username, new { @class = "form-control inputField txtLabel", placeholder = "Email", id = "email2" })
+                                            <p class="text-danger"> @Html.ValidationMessageFor(m => m.UserRoles.Username)</p>
+                                            @*<p class="text-danger" id="ae">Email Aready Exist</p>*@
+
+                                            <label class="Label txtLabel">Password</label> <br />
+                                            @Html.PasswordFor(m => m.UserRoles.Password, new { @class = "form-control inputField txtLabel", placeholder = "Password" })
+                                            <p class="text-danger">@Html.ValidationMessageFor(m => m.UserRoles.Password)</p>
+                                            <label class="checkbox-inline " style="width:100%; margin-top: -15px;">
+                                                <br />
+                                                <input type="checkbox" class="checkbox" id="termsCondition2">
+                                                <span class="txtLabel" style="font-size:12px;">Terms & Conditions</span>
+                                            </label>
+                                            <label class="error-message" style="color:red; margin-top: 10px;"></label>
+                                        </div>
+                                        <div class="col-md-6 col-xs-6">
+                                            <label class="Label txtLabel">Name</label> <br />
+                                            @Html.TextBoxFor(m => m.UserRoles.Username, new { @class = "form-control inputField txtLabel", placeholder = "Name" })
+                                            <p class="text-danger"> @Html.ValidationMessageFor(m => m.UserRoles.Username)</p>
+
+                                            <label class="Label">Confirm Password</label> <br />
+                                            @Html.PasswordFor(m => m.UserRoles.ConfirmPassword, new { @class = "form-control inputField txtLabel", placeholder = "Confirm Password" })
+                                            <p class="text-danger">@Html.ValidationMessageFor(m => m.UserRoles.ConfirmPassword)</p>
+                                        </div>
+                                        <div class="col-md-12 col-xs-12" style="margin-top:0px !important;margin-bottom:0px !important;">
+                                            <button type="submit" class="btn btn-block nanoBtn btnSignup">SIGN UP</button>
+                                            <br />
+                                        </div>
+                                        <br />
+                                    }
+                                </div>
+                            </div>
+
+                            <div id="menu2" class=" tab-pane pad-t-30 " style=" padding-left: 10px;">
+                                <div class="row" style="margin-bottom: 0px;">
+                                    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                                        <div class="row">
+                                            <div class=" " style="position:center; margin-left:10px">
+                                                <span class="tabReg">LOGIN</span><br />
+                                                <span stype="padding-left: 0px;" class="txtRegBelow">Access your trading account.</span>
+                                                <div class="col-md-12 col-xs-12 pd-t-25" style="padding-left:0px;">
+                                                    @using (Html.BeginForm("Login", "Dashboard", FormMethod.Post, new { id = "l-form2" }))
+                                                    {
+                                                        <input type="hidden" class="utcTime" name="utcTime" />
+                                                        <label class="Label">Email</label><br />
+                                                        @Html.TextBoxFor(m => m.UserRoles.Username, new { @class = "form-control inputField", placeholder = "Email" })
+                                                        <p class="text-danger">@Html.ValidationMessageFor(m => m.UserRoles.Username)</p>
+                                                        <br />
+                                                        <label class="Label">Password</label> <br />
+                                                        @Html.PasswordFor(m => m.UserRoles.Password, new { @class = "form-control inputField", placeholder = "Password" })
+                                                        <p class="text-danger">@Html.ValidationMessageFor(m => m.UserRoles.Password)</p>
+                                                        <a class="txtForgotPass txtForgetPassMenu2" style="margin-bottom:10px; float: right;color: #66B85C;font-size:11px;" href="#">Forgot Password</a>
+                                                        <div class="" style="margin-top:0px !important;">
+                                                            <button type="submit" class="btn btn-block nanoBtn btnLogin">LOGIN</button>
+                                                            <br />
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="menu4" class=" tab-pane  pad-t-30" style="padding-left: 10px;">
+                                <div class="row" style="margin-bottom:0px;">
+                                    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                                        <div class="row">
+                                            <div style="position:center; margin-left:10px">
+                                                <span class="tabReg">RESET</span> <br />
+                                                <span style="padding-left:0px; " class="txtRegBelow">Password Reset Request.</span>
+                                                <div class="col-md-12 col-xs-12" style="padding-left:0px;padding-top: 25px;">
+                                                    @using (Html.BeginForm("ForgotPassword", "Dashboard", FormMethod.Post, new { id = "f-form2" }))
+                                                    {
+                                                        <input type="hidden" class="utcTime" name="utcTime" />
+                                                        <label class="Label">Email</label><br />
+                                                        @Html.TextBoxFor(m => m.UserRoles.Username, new { @class = "form-control inputField", placeholder = "Email", id = "forgotEmail2" })
+                                                        <p class="text-danger">@Html.ValidationMessageFor(m => m.UserRoles.Username)</p>
+                                                        <br />
+                                                        <div class="mg-t-50">
+                                                            <button type="submit" class="btn btn-block nanoBtn btnLogin">Request Password Reset Link </button>
+                                                            <br />
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @*<script>
+                            alert("a");
+                            $("#click").click(function () {
+                                alert("a");
+                                this.children()
+                                var stop = $(this).children("#stoploss").val();
+                                alert(stop);
+                                $("#stoplossm").val(stop);
+                            });
+                        </script>*@
+                    <script>
+                        $(".txtRegisterLogin3").click(function () {
+                            $("#menu2").css('display', 'none');
+                            $("#menu4").css('display', 'none');
+                        });
+                        $(".txtRegisterLogin4").click(function () {
+                            $("#menu4").css('display', 'none');
+                            $("#menu2").css('display', 'block');
+                        });
+                        $(".txtForgotPass").click(function () {
+                            $("#menu4").css('display', 'block');
+                            $("#menu2").css('display', 'none');
+                        });
+                    </script>
+
+                    <div class="col-md-5 col-xs-12 pad-30">
+                        <div class="panel panel-default">
+
+                            <div class="panel-header txtPanelHeader">How safe is it to deposit into a Nanopips Account?</div>
+                            <div class="panel-body txtPanelbody">
+                                We ensure your funds are handled with the highest level of care and dedication to security.
+                                Each client can only wire funds to and from the single listed account under his/her name and must verify identity once doing so.
+                                This means that your funds can only be in control by you, the single owner of the account alone and nobody else.<br><br>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+
+                            <div class="panel-header txtPanelHeader">How can I withdraw my funds from a Nanopips Account?</div>
+                            <div class="panel-body txtPanelbody">
+                                Funds can be withdrawn by filling out the Wire Request Form and emailing it back to <b>clientservice@nanopips.com.</b>
+                                Requests before 4 PM EST are proccessed the same day and fund requests after 4 PM EST are proccessed the next business day from the request.
+                                Transfer to your account can take up to 15 days depending on your bank.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="stmodel" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content ModelWidth">
+                <div class="modal-header">
+                    <h2 class="modal-title text-center">Stop Loss & Take Profit</h2>
+                </div>
+                <div class="modal-body">
+                    <label>Stop Loss</label><br />
+                    <input id="stoplossm" type="number" value="" />
+                    <label>Take Profit</label><br />
+                    <input id="takeprom" type="number" value="" />
+                    <input id="tradeIdFromOrder" type="text" value="" hidden disabled readonly />
+                    <button onclick="saveST()" type="button" class="btn btn-info">Save</button>
+                    <button style="float:right" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    var isLogin = '@Model.IsLogin';
+    var reff    = '@Model.referral';
+    if (isLogin === 'False') {
+        $("#refferenceNumber").val(reff);
+        $('#loginSignup_model').modal('show');
+        $('.uk-icon-close').removeClass('modalCloseImg');
+        //$(document).ready(function() {
+        //    $.wait = function (callback, seconds) {
+        //        return window.setTimeout(callback, seconds * 1000);
+        //    }
+
+        //    $.wait(function () {
+        //        $('#loginSignup_model').delay(10000).modal('show');
+        //        $('.uk-icon-close').delay(10000).removeClass('modalCloseImg');
+        //        $('#panga').attr('data-target', '#loginSignup_model');
+        //        $('.uk-icon-close').removeClass('modalCloseImg');
+        //    }, 5);
+        //});
+
+
+        //$(window).load(function () {
+        //    function show_popup() {
+        //        $('#loginSignup_model').modal('show');
+        //        $('.uk-icon-close').removeClass('modalCloseImg');
+        //    };
+        //    window.setTimeout(show_popup, 15000);
+        //});
+
+        //$(document.body).click(function () {
+        //    $('#loginSignup_model').modal('show');
+        //    $('.uk-icon-close').removeClass('modalCloseImg');
+        ////$('#wadapanga').attr('data-target', '#loginSignup_modelNew');
+        ////$('.uk-icon-close').removeClass('modalCloseImg');
+        //});
+    }
+
+    $('#refferalBtn').click(function () {
+        if (isLogin == 'True') {
+            $('#refferalBtn').attr('href', '@Url.Action("Referral","Account")');
+        }
+    });
+        $('#refferalBtnm').click(function () {
+        if (isLogin == 'True') {
+            $('#refferalBtnm').attr('href', '@Url.Action("Referral","Account")');
+        }
+    });
+
+    //$('#login_signup_btn').click(function () {
+    // if (isLogin == 'True') {
+    //     $('#loginSignup_model').modal('show');
+    //     $('.uk-icon-close').removeClass('modalCloseImg');
+    // }
+    //});
+
+    $(document).on('click','#profile_btn',function () {
+        if (isLogin === 'True') {
+            $('#profile_btn').attr("href", "@Url.Action("Profile","Account")");
+        }
+        else {
+            $('#loginSignup_model').modal('show');
+            $('.uk-icon-close').removeClass('modalCloseImg');
+        }
+    });
+        $(document).on('click','#profile_btnm',function () {
+        if (isLogin === 'True') {
+            $('#profile_btnm').attr("href", "@Url.Action("Profile","Account")");
+        }
+        else {
+            $('#loginSignup_model').modal('show');
+            $('.uk-icon-close').removeClass('modalCloseImg');
+        }
+    });
+
+    $(document).on('click', ".buyBtnNewd", function () {
+        if (isLogin === 'True') {
+        var row  = $(this).closest("tr").index();
+        var rate = $('#sell_rate-' + row).html();
+        var quantity = $('#orderQuantityd').val();
+        //var trade_rate  =  $('#trade_rate').val();
+        var tradetype = 1;
+        var flag = true;
+
+        if (quantity == "" || quantity == undefined || quantity == 0) {
+            flag = false;
+            alert("Quantity is required..!");
+        }
+        if (rate == 0 || rate == "") {
+            flag = false;
+            alert("Rate is not available..!");
+        }
+        else if (rate != undefined) {
+            tradetype = 1;
+        }
+        else if (rate == undefined) {
+            tradetype = 2;
+            rate = -1;
+        }
+
+        if (time == 0) { time = -1; }
+
+        if (flag == true) {
+            $.post("@Url.Action("Buy","Dashboard")", { amount: quantity, pair: sym, rate: rate, type: tradetype, expirytime: time, timeOffset: offset }, function (response) {
+                if (response !== "") {
+                    jQuery.noConflict();
+                    $('#tradeErrorDialog').modal('show');
+                }
+            });
+        }
+    }
+    else {
+        //$('#panga').attr('data-target', '#loginSignup_modelNew');
+        //$('.uk-icon-close').removeClass('modalCloseImg');
+    }
+});
+
+$(document).on('click', ".sellBtnNewd", function () {
+if (isLogin === 'True') {
+    var row  = $(this).closest("tr").index();
+    var rate = $('#buy_rate-' + row).html();
+    var quantity  = $('#orderQuantityd').val();
+    var tradetype = 1;
+    var flag      = true;
+
+    if (quantity == "" || quantity == undefined || quantity == 0) {
+        flag = false;
+        alert("Quantity is required..!");
+    }
+    if (rate == 0 || rate == "") {
+        flag = false;
+        alert("Rate is not available..!");
+    }
+    else if (rate != undefined) {
+        tradetype = 1;
+    }
+    else if (rate == undefined) {
+        tradetype = 2;
+        rate = -1;
+    }
+
+    if (time == 0) { time = -1; }
+
+    if (flag == true) {
+        $.post("@Url.Action("Sell","Dashboard")", { amount: quantity, pair: sym, rate: rate, type: tradetype, expirytime: time, timeOffset: offset }, function (response) {
+            if (response !== "") {
+                jQuery.noConflict();
+                $('#tradeErrorDialog').modal('show');
+            }
+        });
+    }
+}
+else {
+    //$('#wadapanga').attr('data-target', '#loginSignup_modelNew');
+    //$('.uk-icon-close').removeClass('modalCloseImg');
+}
+});
+
+    $(document).on('click', ".buyBtnNew", function () {
+    if (isLogin === 'True') {
+        var row = $(this).closest("tr").index();
+        var rate = $('#sell_rate-' + row).html();
+        var quantity = $('#orderQuantity').val();
+        //var trade_rate  =  $('#trade_rate').val();
+        var tradetype = 1;
+        var flag = true;
+
+        if (quantity == "" || quantity == undefined || quantity == 0) {
+            flag = false;
+            alert("Quantity is required..!");
+        }
+        if (rate == 0 || rate == "") {
+            flag = false;
+            alert("Rate is not available..!");
+        }
+        else if (rate != undefined) {
+            tradetype = 1;
+        }
+        else if (rate == undefined) {
+            tradetype = 2;
+            rate = -1;
+        }
+
+        if (time == 0) { time = -1; }
+
+        if (flag == true) {
+            $.post("@Url.Action("Buy","Dashboard")", { amount: quantity, pair: sym, rate: rate, type: tradetype, expirytime: time, timeOffset: offset }, function (response) {
+                if (response !== "") {
+                    jQuery.noConflict();
+                    $('#tradeErrorDialog').modal('show');
+                }
+            });
+        }
+    }
+    else {
+        //$('#panga').attr('data-target', '#loginSignup_modelNew');
+        //$('.uk-icon-close').removeClass('modalCloseImg');
+    }
+});
+
+$(document).on('click', ".sellBtnNew", function () {
+if (isLogin === 'True') {
+    var row = $(this).closest("tr").index();
+    var rate = $('#buy_rate-' + row).html();
+    var quantity = $('#orderQuantity').val();
+    var tradetype = 1;
+    var flag      = true;
+
+    if (quantity == "" || quantity == undefined || quantity == 0) {
+        flag = false;
+        alert("Quantity is required..!");
+    }
+    if (rate == 0 || rate == "") {
+        flag = false;
+        alert("Rate is not available..!");
+    }
+    else if (rate != undefined) {
+        tradetype = 1;
+    }
+    else if (rate == undefined) {
+        tradetype = 2;
+        rate = -1;
+    }
+
+    if (time == 0) { time = -1; }
+
+    if (flag == true) {
+        $.post("@Url.Action("Sell","Dashboard")", { amount: quantity, pair: sym, rate: rate, type: tradetype, expirytime: time, timeOffset: offset }, function (response) {
+            if (response !== "") {
+                jQuery.noConflict();
+                $('#tradeErrorDialog').modal('show');
+            }
+        });
+    }
+}
+else {
+    //$('#wadapanga').attr('data-target', '#loginSignup_modelNew');
+    //$('.uk-icon-close').removeClass('modalCloseImg');
+}
+});
+
+</script>
+
+    <script type="text/javascript">
+
+        var offset = new Date().getTimezoneOffset();
+        var isLogin = '@Model.IsLogin';
+        var from = '';
+        var to = '';
+        var sym = "@Model.MarketName";
+        var time = 0;
+
+        function saveST() {
+            var trId     = $('#tradeIdFromOrder').val();
+            var stLoss   = $('#stoplossm').val();
+            var taProfit = $('#takeprom').val();
+            if (trId == null || trId == undefined || stLoss == null || stLoss == undefined || taProfit == null || taProfit == undefined) {
+                alert("An Error Occured, Please Refresh Page")
+            }
+            else {
+                $.post("@Url.Action("UpdateST", "Dashboard")", { tradeId: trId, stopLoss: stLoss, takeProfit: taProfit }, function (response) {
+                    if (response === 'True') {
+                        $("#stmodel").modal('toggle');
+                        alert("Successfully updated!");
+                    }
+                    else {
+                        alert("Some thing went wrong");
+                    }
+                });
+            } }
+
+        setInterval(function () {
+        if (isLogin === 'True') {
+            $.get("@Url.Action("GetPendingOrders", "Dashboard")", function (data) {
+                var pendingTable = "";
+                for (var i = 0; i < data.pendingOrders.orders.length; i++) {
+                    var exprTime = "";
+                    var chk = false;
+                    if (data.pendingOrders.orders[i].Direction === "BUY") {
+                        if (data.pendingOrders.orders[i].PnL >= 0) {
+                            chk = true;
+                        }
+                        else {
+                            chk = false;
+                        }
+                    }
+                    else if (data.pendingOrders.orders[i].Direction === "SELL") {
+                        if (data.pendingOrders.orders[i].PnL >= 0) {
+                            chk = false;
+                        }
+                        else {
+                            chk = true;
+                        }
+                    }
+                    else {
+                        chk = true;
+                    }
+
+                    if (data.pendingOrders.orders[i].expiryTime === -1) {
+                        exprTime = "∞";
+                    }
+                    else {
+                        exprTime = data.pendingOrders.orders[i].expiryTime + " Sec"
+                    }
+
+                    data.pendingOrders.orders[i]
+                    var tradeDate = new Date(data.pendingOrders.orders[i].TradeDate);
+                    tradeDate.setHours(tradeDate.getHours() - (tradeDate.getTimezoneOffset() / 60));
+                    var tempPnL = (data.pendingOrders.orders[i].PnL == null) ? "N/A" : (Math.abs(data.pendingOrders.orders[i].PnL)).toFixed(6);
+
+                    pendingTable += "<tr><td style='vertical-align:middle'>"
+                        + data.pendingOrders.orders[i].Symbol + " </td><td style='vertical-align:middle'> "
+                        + data.pendingOrders.orders[i].Rate.toFixed(5) + " </td><td style='vertical-align:middle'> "
+                        + data.pendingOrders.orders[i].Direction + " </td><td style='vertical-align:middle'> "
+                        + tradeDate.toLocaleDateString() + " : " + tradeDate.toLocaleTimeString() + " </td><td style='padding:2px;vertical-align:middle'>"
+                        + "<input readonly id='takepro" + data.pendingOrders.orders[i].TradeId + "'style='width:100px; text-align:center;margin:0px;' value='" + data.pendingOrders.orders[i].DownPrice.toFixed(3) + "'/><span data-toggle='modal' data-target='#stmodel' id='toGetRate" + data.pendingOrders.orders[i].TradeId + "' style='margin:10px !important; cursor:pointer; vertical-align: middle; color:green; font-size:19px;'><i class='fa fa-edit'></i></span>"
+                        + "<br/><input readonly id='stoploss" + data.pendingOrders.orders[i].TradeId + "'class='getValueOnClick' style='width:100px; text-align:center;margin:0px;' value='" + data.pendingOrders.orders[i].UpPrice.toFixed(3) + "'/><span data-toggle='modal' data-target='#stmodel' id='toGetAmount" + data.pendingOrders.orders[i].TradeId + "' style='margin:10px !important; cursor:pointer; vertical-align: middle; color:green; font-size:19px;'><i class='fa fa-edit'></i</span></td><td style='vertical-align:middle'> "
+                        + exprTime + " </td><td style='vertical-align:middle'> "
+                        + (data.pendingOrders.orders[i].Amount * data.pendingOrders.orders[i].Value) + " </td><td style='vertical-align:middle'> "
+                        + ((data.pendingOrders.orders[i].ExitPrice === null) ? "N/A" : data.pendingOrders.orders[i].ExitPrice.toFixed(5)) +
+                        " </td><td  style=" + ((chk === true) ? 'color:green' : 'color:red') + ";font-weight:bold;vertical-align:middle>" +
+                        tempPnL + "</td><td style='vertical-align:middle' orderId='" + data.pendingOrders.orders[i].TradeId + "' class='closeorderbt' ><span style='text-align:center;vertical-align:middle; border:1px solid gray; padding:10px;'>x</span></td></tr>";
+                }
+                $("#pendingOrderstBody").html(pendingTable);
+                for (var i = 0; i < data.pendingOrders.orders.length; i++) {
+                    //$('#stoploss'+data.pendingOrders.orders[i].TradeId).click(function () {
+                    $('#toGetAmount'+data.pendingOrders.orders[i].TradeId).click(function () {
+                        var str = $(this).attr('id');
+                        var res = str.split("toGetAmount");
+                        var value2 = $('#takepro' + res[1]).val();
+                        var value1 = $('#stoploss' + res[1]).val();
+                        $('#stoplossm').val(value2);
+                        $('#takeprom').val(value1);
+                        $('#tradeIdFromOrder').val(res[1]);
+                     });
+                    //$('#takepro'+data.pendingOrders.orders[i].TradeId).click(function () {
+                     $('#toGetRate'+data.pendingOrders.orders[i].TradeId).click(function () {
+                        var str = $(this).attr('id');
+                        var res = str.split("toGetRate");
+                        var value1 = $('#stoploss' + res[1]).val();
+                        var value2 = $('#takepro' + res[1]).val();
+                        $('#takeprom').val(value1);
+                        $('#stoplossm').val(value2);
+                        $('#tradeIdFromOrder').val(res[1]);
+                    });
+                }
+            })
+        }
+    }, 2000)
+
+    setInterval(function () {
+        if (isLogin === 'True') {
+            $.post("@Url.Action("UpdateBalance", "Dashboard")", function (data) {
+                $('.user_funds').text("$" + data.balance.bal.toFixed(1));
+            });
+        }
+    }, 2000);
+
+    $("#datepicker_input_from").datepicker({
+        showButtonPanel: true,
+        dateFormat: "mm-dd-yy",
+        changeMonth: true,
+        changeYear: true,
+        yearRange: "c-100:c+10",
+        dayNamesMin: ["S", "M", "T", "W", "T", "F", "S"],
+        defaultDate: +1,
+        buttonImageOnly: true,
+        buttonImage: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAATCAYAAAB2pebxAAABGUlEQVQ4jc2UP06EQBjFfyCN3ZR2yxHwBGBCYUIhN1hqGrWj03KsiM3Y7p7AI8CeQI/ATbBgiE+gMlvsS8jM+97jy5s/mQCFszFQAQN1c2AJZzMgA3rqpgcYx5FQDAb4Ah6AFmdfNxp0QAp0OJvMUii2BDDUzS3w7s2KOcGd5+UsRDhbAo+AWfyU4GwnPAYG4XucTYOPt1PkG2SsYTbq2iT2X3ZFkVeeTChyA9wDN5uNi/x62TzaMD5t1DTdy7rsbPfnJNan0i24ejOcHUPOgLM0CSTuyY+pzAH2wFG46jugupw9mZczSORl/BZ4Fq56ArTzPYn5vUA6h/XNVX03DZe0J59Maxsk7iCeBPgWrroB4sA/LiX/R/8DOHhi5y8Apx4AAAAASUVORK5CYII=",
+        buttonText: "Pick Date",
+        showOn: "button",
+    });
+
+    $("#datepicker_input_to").datepicker({
+        showButtonPanel: true,
+        dateFormat: "mm-dd-yy",
+        changeMonth: true,
+        changeYear: true,
+        yearRange: "c-100:c+10",
+        dayNamesMin: ["S", "M", "T", "W", "T", "F", "S"],
+        defaultDate: +1,
+        buttonImageOnly: true,
+        buttonImage: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAATCAYAAAB2pebxAAABGUlEQVQ4jc2UP06EQBjFfyCN3ZR2yxHwBGBCYUIhN1hqGrWj03KsiM3Y7p7AI8CeQI/ATbBgiE+gMlvsS8jM+97jy5s/mQCFszFQAQN1c2AJZzMgA3rqpgcYx5FQDAb4Ah6AFmdfNxp0QAp0OJvMUii2BDDUzS3w7s2KOcGd5+UsRDhbAo+AWfyU4GwnPAYG4XucTYOPt1PkG2SsYTbq2iT2X3ZFkVeeTChyA9wDN5uNi/x62TzaMD5t1DTdy7rsbPfnJNan0i24ejOcHUPOgLM0CSTuyY+pzAH2wFG46jugupw9mZczSORl/BZ4Fq56ArTzPYn5vUA6h/XNVX03DZe0J59Maxsk7iCeBPgWrroB4sA/LiX/R/8DOHhi5y8Apx4AAAAASUVORK5CYII=",
+        buttonText: "Pick Date",
+        showOn: "button",
+    });
+
+
+
+    $(".utcTime").val(offset);
+    $(function () {
+        //$('.date').datepicker({ autoclose: true });
+        $(".filterData").click(function () {
+            if (isLogin === 'True') {
+                from = $("#datepicker_input_from").val();
+                to = $("#datepicker_input_to").val();
+                if (from === null || from === '') {
+                    alert('From Field Should not be empty');
+                    to = '';
+                }
+                else if (to === null || to === '') {
+                    alert('To Field Should not be empty');
+                    from = '';
+                }
+                else {
+                    $.post("@Url.Action("GetTradeHistorySpecific", "Dashboard")", { dateFrom: from, dateTo: to }, function (data) {
+                        var tradeTable = "";
+                        var total = 0;
+                        for (var i = 0; i < data.list.length; i++) {
+                            var perTradeProfit = 0;
+                            var tradeDate = new Date(data.list[i].TradeDate);
+                            tradeDate.setHours(tradeDate.getHours() - (tradeDate.getTimezoneOffset() / 60));
+                            if (data.list[i].isTradeOrder === true) {
+                                if (data.list[i].PnL != null) {
+                                    perTrade = 0;
+                                    var chk = false;
+                                    if (data.list[i].Direction === "BUY") {
+                                        if (data.list[i].PnL >= 0) {
+                                            chk = true;
+                                            perTradeProfit = (data.list[i].PnL);
+                                        }
+                                        else {
+                                            perTradeProfit = (data.list[i].PnL);
+                                            chk = false;
+                                        }
+                                    }
+                                    else if (data.list[i].Direction === "SELL") {
+                                        if (data.list[i].PnL >= 0) {
+                                            perTradeProfit = (Math.abs(data.list[i].PnL) * (-1));
+                                            chk = false;
+                                        }
+                                        else {
+                                            perTradeProfit = (Math.abs(data.list[i].PnL));
+                                            chk = true;
+                                        }
+                                    }
+                                    tradeTable += "<tr><td> "
+                                        + data.list[i].Symbol + " </td><td> "
+                                        + data.list[i].Rate + " </td><td> "
+                                        + data.list[i].Direction + " </td><td> "
+                                        + tradeDate.toLocaleDateString() + " : " + tradeDate.toLocaleTimeString() + " </td><td> "
+                                        + (data.list[i].Amount * data.list[i].Value) + " </td><td> "
+                                        + ((data.list[i].ExitPrice === null) ? "N/A" : data.list[i].ExitPrice) +
+                                        " </td><td style=" + ((chk === true) ? 'color:green' : 'color:red') + ";>" +
+                                        perTradeProfit.toFixed(3) + " USD" + "</td></tr>";
+                                    total += (perTradeProfit - (data.list[i].Amount * data.list[i].Value));
+                                }
+                            }
+                            else {
+                                tradeTable += "<tr><td> "
+                                    + data.list[i].Symbol + " </td><td> "
+                                    + "---" + " </td><td> "
+                                    + data.list[i].Direction + " </td><td> "
+                                    + tradeDate.toLocaleDateString() + " : " + tradeDate.toLocaleTimeString() + " </td><td> "
+                                    + (data.list[i].Amount) + " </td><td> "
+                                    + "---" + " </td><td " +
+                                    "style=" + ((data.list[i].Symbol === 'DEPOSIT') ? 'color:green' : 'color:red') + ";>" +
+                                    data.list[i].Amount.toFixed(3) + " USD" + "</td></tr>";
+                            }
+                        }
+                        $(".totalPnL").html(total.toFixed(1) + " USD");
+                        $("#tradeHistoryBody").html(tradeTable);
+                    });
+                }
+            }
+        });
+    });
+
+        $(function () {
+        var val = '@Model.AcceptTermConditions';
+        if (val === 'False') {
+            $('#loadOnReady').show();
+        }
+
+        $("#accepttermok_bt").click(function () {
+            $.post("@Url.Action("SetAcceptTerms", "Dashboard")", { value: true }, function (data) {
+                $('#loadOnReady').hide();
+            });
+        });
+
+        $("#accepttermcancel_bt").click(function () {
+            $.post("@Url.Action("SetAcceptTerms", "Dashboard")", { value: false }, function (data) {
+                $('#loadOnReady').hide();
+            });
+        });
+
+        $(".minute_1").on('click', function () {
+            alert("Button Click");
+        });
+
+        if (isLogin === 'False') {
+            $(".manage_funds").show();
+            $(".user_funds").hide();
+            $(".manageFundAmount").attr("href", "#");
+        }
+
+        if (isLogin === 'True') {
+            $('.managefunds_hover').mouseenter(function () {
+                $(".user_funds").hide();
+                $(".manage_funds").show();
+            });
+
+            $('.managefunds_hover').mouseleave(function () {
+                $(".user_funds").show();
+                $(".manage_funds").hide();
+            });
+        }
+
+        $(".buttonToShow").click(function () {
+            $(".marketButtonToshow").css("display", "block");
+            $(".levelButtonToshow").css("display", "none");
+        });
+
+        $(".tableToShow").click(function () {
+            $(".levelButtonToshow").css("display", "block");
+            $(".marketButtonToshow").css("display", "none");
+        });
+
+        $(function () {
+            var msg = "@TempData["Message"]";
+            if (msg != null && msg != "") {
+                alert(msg);
+                msg = '';
+            }
+            })
+            $(function () {
+            var msg = "@TempData["errorLoading"]";
+                if (msg != null && msg != "") {
+                alert(msg);
+                $("#login_invalid").text(msg).attr("data-target","#menu1");
+                msg = '';
+            }
+        })
+
+        $(".expiretime").click(function () {
+            var extime = $(this).attr('data-value');
+            time = extime;
+            $("#expire_time_buttond").text($(this).attr('data-min-value')).append("<span class='caret' style='margin-left: 5px;'></span>");
+        });
+
+        $(".expiretime").click(function () {
+            var extime = $(this).attr('data-value');
+            time = extime;
+            $("#expire_time_button").text($(this).attr('data-min-value')).append("<span class='caret' style='margin-left: 5px;'></span>");
+        });
+
+        $(function () {
+            var msg = "@ViewBag.msg"
+            if (msg != "") {
+                $("#errorMessage").text(msg);
+            }
+        })
+
+        $(document).on('mouseenter', '.closeorderbt',
+            function () {
+                $(this).css({ "font-weight": "bold", "font-size": "small" });
+            });
+        $(document).on('mouseleave', '.closeorderbt',
+            function () {
+                $(this).css("border", "o");
+            });
+
+
+        $(document).on('click', '.closeorderbt', function () {
+            var tradeid = $(this).attr("orderId");
+            $.post("@Url.Action("CloseOrder", "Dashboard")", { orderId: tradeid }, function (data) {
+            });
+        });
+
+        setInterval(function () {
+            var sym = "@Model.MarketName";
+            $.post("@Url.Action("GetOrderBook", "Dashboard")", { pair: sym }, function (data) {
+                var orderBookTable = "";
+                for (var i = 3; i >= 0; i--) {
+                    orderBookTable +=
+                        "<tr style='border:2px solid black; border-collapse: collapse; text-align: center;'>" +
+                        "<td class='buyside' id='buysideOrders" + i + "'indexprice='" + data.orderBook.book.bids[i][0] + "'>" + "" + "</td>" +
+                        "<td id='buy-price-" + i + "'" +
+                        ((i === 0) ? "style='font-weight:bold;font-size:11px;color:green;'" : "style='font-weight:bold;font-size:10px;'") + ">" + data.orderBook.book.bids[i][0] + "</td>" +
+                        "<td class='sellside' id='sellsideOrders" + i + "'indexprice='" + data.orderBook.book.bids[i][0] + "'>" + "" + "</td></tr>";
+                }
+                for (var i = 0; i < 4; i++) {
+                    orderBookTable +=
+                        "<tr style='border: 2px solid black; border-collapse:collapse; text-align: center;'>" +
+                        "<td class='buyside' id='buysideOrders" + i + "' indexprice='" + data.orderBook.book.asks[i][0] + "'>" + "" + " </td> " +
+                        "<td id='sell-price-" + i + "'" +
+                        ((i === 0) ? "style='font-weight:bold;color:red;font-size:11px;'" : "style='font-weight:bold;font-size:10px;'") + ">" + data.orderBook.book.asks[i][0] + "</td> " +
+                        "<td class='sellside' id='sellsideOrders" + i + "'indexprice='" + data.orderBook.book.asks[i][0] + "'>" + "" + "</td> " +
+                        "</tr> ";
+                }
+                $("#orderbooklist_tb").html(orderBookTable);
+            })
+        }, 1500)
+
+////////////////////Buy Hover //////////
+                // Green Dark: #02e4a1 ///////
+            $(document).on('mouseenter', '.buyside', function () {
+                row = $(this).parent().index();
+                var atr = $(this).attr("id");
+                $("#" + atr).parents('tr').css("background-color", "#9efee1");
+            });
+
+            $(document).on('mouseleave', '.buyside', function () {
+                var atr = $(this).attr("id");
+                $("#" + atr).parents('tr').css("background-color", "none");
+                });
+
+////////////////// Sell Hover //////////////
+                //// Red Dark:  #ff0000  /////
+            $(document).on('mouseenter', '.sellside', function () {
+                row = $(this).parent().index();
+                var atr = $(this).attr("id");
+                $("#" + atr).parents('tr').css("background-color", "#ff7979");
+            });
+
+            $(document).on('mouseleave', '.sellside', function () {
+                var atr = $(this).attr("id");
+                $("#" + atr).parents('tr').css("background-color", "none");
+            });
+
+            $(document).on('click', ".buyside", function () {
+                var tradeRate = $(this).attr("indexprice");
+            });
+
+            $(document).on('click', ".sellside", function () {
+                var tradeRate = $(this).attr("indexprice");
+            });
+
+            setInterval(function () {
+                if (isLogin === 'True') {
+                    $.post("@Url.Action("GetTradeHistorySpecific", "Dashboard")", { dateFrom: from, dateTo: to }, function (data) {
+                        var tradeTable = "";
+                        var total = 0;
+                        var perTradeProfit;
+                        for (var i = 0; i < data.list.length; i++) {
+                            var tradeDate = new Date(data.list[i].TradeDate);
+                            tradeDate.setHours(tradeDate.getHours() - (tradeDate.getTimezoneOffset() / 60));
+                            if (data.list[i].isTradeOrder === true) {
+                                if (data.list[i].PnL != null) {
+                                    perTrade = 0;
+                                    var chk = false;
+                                    if (data.list[i].Direction === "BUY") {
+                                        if (data.list[i].PnL >= 0) {
+                                            chk = true;
+                                            perTradeProfit = (data.list[i].PnL);
+                                        }
+                                        else {
+                                            perTradeProfit = (data.list[i].PnL);
+                                            chk = false;
+                                        }
+                                    }
+                                    else if (data.list[i].Direction === "SELL") {
+                                        if (data.list[i].PnL >= 0) {
+                                            perTradeProfit = (data.list[i].PnL * (-1));
+                                            chk = false;
+                                        }
+                                        else {
+                                            perTradeProfit = (Math.abs(data.list[i].PnL));
+                                            chk = true;
+                                        }
+                                    }
+                                    tradeTable += "<tr><td> "
+                                        + data.list[i].Symbol + " </td><td> "
+                                        + data.list[i].Rate + " </td><td> "
+                                        + data.list[i].Direction + " </td><td> "
+                                        + tradeDate.toLocaleDateString() + " : " + tradeDate.toLocaleTimeString() + " </td><td> "
+                                        + (data.list[i].Amount * data.list[i].Value) + " </td><td> "
+                                        + ((data.list[i].ExitPrice === null) ? "N/A" : data.list[i].ExitPrice) +
+                                        " </td><td style=" + ((chk === true) ? 'color:green' : 'color:red') + ";>" +
+                                        perTradeProfit.toFixed(3) + " USD" + "</td></tr>";
+
+                                    total += (perTradeProfit - (data.list[i].Amount * data.list[i].Value));
+                                }
+                            }
+                            else {
+                                tradeTable += "<tr><td> "
+                                    + data.list[i].Symbol + " </td><td> "
+                                    + "---" + " </td><td> "
+                                    + data.list[i].Direction + " </td><td> "
+                                    + tradeDate.toLocaleDateString() + " : " + tradeDate.toLocaleTimeString() + " </td><td> "
+                                    + (data.list[i].Amount) + " </td><td> "
+                                    + "---" + " </td><td " +
+                                    "style=" + ((data.list[i].Symbol === 'DEPOSIT') ? 'color:green' : 'color:red') + ";>" +
+                                    data.list[i].Amount.toFixed(3) + " USD" + "</td></tr>";
+                            }
+                        }
+                        $(".totalPnL").html(total.toFixed(1) + " USD");
+                        $("#tradeHistoryBody").html(tradeTable);
+                    });
+                }
+            }, 10000);
+        });
+
+    </script>
+
+    <script src="~/Scripts/jquery.validate.new.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <script type="text/javascript">
+
+    $("#l-form1").submit(function (e) {
+    var form = $(this);
+    form.validate();
+    if (form.valid()) {
+
+    }
+    });
+
+    $("#l-form2").submit(function (e) {
+        var form = $(this);
+        form.validate();
+    if (form.valid()) {}
+        });
+
+    $("#s-form1").submit(function (e) {
+        e.preventDefault();
+    if ($('#termsCondition').is(':checked')) {
+        $('.error-message').text('');
+    var form = $(this);
+    form.validate();
+    if (form.valid()) {
+        $.post(form.attr('action'), form.serialize(), function (msg) {
+            if (msg == "reCaptcha validation failed, please try again") {
+                $("#rec").text(msg);
+            }
+            else {
+                $("#s-form1").html("<h6 >" + msg + "</h6><br>")
+            }
+        });
+    }
+    else e.preventDefault();
+    }
+    else {
+        e.preventDefault();
+        $('.error-message').text('Please accept the Terms & Conditions');
+    }
+    });
+
+    $("#s-form2").submit(function (e) {
+    e.preventDefault();
+    if ($('#termsCondition2').is(':checked')) {
+        $('.error-message').text('');
+    var form = $(this);
+    form.validate();
+    if (form.valid()) {
+        $.post(form.attr('action'), form.serialize(), function (msg) {
+            $("#s-form2").html("<h6 >" + msg + "</h6><br>")
+        });
+    }
+    else e.preventDefault();
+    }
+    else {
+        e.preventDefault();
+        $('.error-message').text('Please accept the Terms & Conditions');
+    }
+    });
+
+    $("#f-form1").submit(function (e) {
+    e.preventDefault();
+    var form = $(this);
+    form.validate();
+    if (form.valid()) {
+        var email = $("#forgotEmail1").val();
+        $.post(form.attr('action'), form.serialize(), function (msg) {
+        $("#f-form1").html("<h6 >" + msg + "</h6><br>")
+    });
+    } })
+
+    $("#f-form2").submit(function (e) {
+    e.preventDefault();
+    var form = $(this);
+    form.validate();
+    if (form.valid()) {
+        var email = $("#forgotEmail2").val();
+        $.post(form.attr('action'), form.serialize(), function (msg) {
+        $("#f-form2").html("<h6 >" + msg + "</h6><br>")
+    });
+    } })
+
+    $("#ae").hide();
+    $("#email").blur(function () {
+    var value = $(this).val();
+    $.get("@Url.Action("CheckEmail", "Account")", { email: value }, function (flag) {
+    if (flag == "True") {
+        $("#ae").show();
+        $("#email").val("");
+    }
+    else { $("#ae").hide(); }
+    })
+    })
+
+    </script>
+</body>
+
+</html>
+
+@*//function changePoint() {
+    //    var page = iChart.parseQueryString(location.hash.substr(1));
+    //    var point = $("#iChart").data("iguanaChart").getLastPoint();
+    //    var rand = Math.random();
+    //    var from = point.hloc[Object.keys(point.hloc)][0][3] * (rand * 0.0001);
+    //    var to   = point.hloc[Object.keys(point.hloc)][0][3] * 0.00005;
+    //    //point.hloc[Object.keys(point.hloc)][0][3] += point.hloc[Object.keys(point.hloc)][0][3] * (Math.random() * (0.0002) - 0.0001);
+    //    point.hloc[Object.keys(point.hloc)][0][3] += from - to;
+    //    point.hloc[Object.keys(point.hloc)][0][0]  = Math.max.apply(null, point.hloc[Object.keys(point.hloc)][0]);
+    //    point.hloc[Object.keys(point.hloc)][0][1]  = Math.min.apply(null, point.hloc[Object.keys(point.hloc)][0]);
+    //    var time = point.xSeries[Object.keys(point.xSeries)];
+    //    $("#iChart").iguanaChart("addPoint", point);
+    //}
+
+    //function addNewPoint() {
+    //    var page = iChart.parseQueryString(location.hash.substr(1));
+    //    var point = $("#iChart").data("iguanaChart").getLastPoint();
+    //    var newPoint = genPoint(point);
+    //    var time = point.xSeries[Object.keys(point.xSeries)];
+
+    //    $("#iChart").iguanaChart("addPoint", newPoint);
+    //};
+
+    //if (addNewPointInterval) { clearInterval(addNewPointInterval); }
+    //var addNewPointInterval = setInterval(function () { addNewPoint(); }, 10000);
+
+    //if (changePointInterval) {
+    //    clearInterval(changePointInterval);
+    //}
+    //var changePointInterval = setInterval(function () { changePoint(); }, 700);*@
+
+
+
+@*function genPoint(point) {
+        //var tm = point.xSeries[Object.keys(point.xSeries)[0]][0] + chartDataSource.dataSettings.timeframe * 60,
+        //    vl = Math.round(point.vl[Object.keys(point.vl)][0][0] + (point.vl[Object.keys(point.vl)][0][0] * Math.random() * (0.6) - 0.3)),
+        //    avg = point.hloc[Object.keys(point.hloc)][0].reduce(function (a, b) { return a + b }) / 1,
+        //    preHloc = [], hloc = [];
+        var tm = point.xSeries[Object.keys(point.xSeries)[0]][0] + 30,
+            vl = Math.round(point.vl[Object.keys(point.vl)][0][0] +
+                (point.vl[Object.keys(point.vl)][0][0] * Math.floor(Math.random() * (60 - 10 + 1) + 5) - 0.3)),
+            avg = point.hloc[Object.keys(point.hloc)][0].reduce(function (a, b) { return a + b }) / 4,
+            preHloc = [], hloc = [];
+
+        preHloc[0] = avg + avg * (Math.random() * (0.002) - 0.0005);
+        preHloc[1] = avg + avg * (Math.random() * (0.002) - 0.0005);
+        preHloc[2] = point.hloc[Object.keys(point.hloc)][0][3];
+        preHloc[3] = (Math.random() * (Math.abs(Math.max.apply(null, preHloc) - Math.min.apply(null, preHloc))) + Math.min.apply(null, preHloc));
+
+        hloc[0] = Math.max.apply(null, preHloc);
+        hloc[1] = Math.min.apply(null, preHloc);
+        hloc[2] = preHloc[2];
+        hloc[3] = preHloc[3];
+
+        var result = {
+            "hloc": {},
+            "vl": {},
+            "xSeries": {}
+        };
+
+        result["hloc"][Object.keys(point.xSeries)[0]]    = [hloc];
+        result["vl"][Object.keys(point.xSeries)[0]]      = [vl];
+        result["xSeries"][Object.keys(point.xSeries)[0]] = [tm];
+        return result;
+    };*@

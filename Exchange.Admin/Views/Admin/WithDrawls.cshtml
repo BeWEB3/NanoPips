@@ -1,0 +1,197 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_masterAdmin.cshtml";
+    ViewBag.Title = "Withdrawl Report";
+    var withdraws = ViewBag.requestedWithdrawals as List<Exchange.DTO.Payment>;
+}
+
+
+
+<div class="content-block">
+    <div class="row no-gutters">
+        <!-- row -->
+        <!-- <div class="col-lg-12"><label class="border-left pl-2 text-muted">DataTables</label> </div> -->
+
+        <div class="col-12 col-lg-12 p-2">
+            <!-- col -->
+            <div class="card flat border-bottom">
+                <!-- card -->
+                <div class="card-header bg-primary">Card Loads</div>
+                <div class="card-body px-0">
+                    @Html.Partial("_MVCGridToolbar", new Exchange.UI.Models.MVCGridToolbarModel()
+                    {
+                        MVCGridName = "CardLoadGrid",
+                        PageSize = true,
+                        ColumnVisibility = true,
+                        Export = true,
+                        GlobalSearch = true
+                    })
+                    <br />
+                    <div class="dataTables_wrapper table-responsive container-fluid dt-bootstrap4">
+                        @Html.MVCGrid("CardLoadGrid")
+                    </div>
+                </div>
+            </div> <!-- end card -->
+        </div> <!-- end col -->
+
+    </div> <!-- end row -->
+</div>
+<div class="content-block">
+    <div class="row no-gutters">
+        <!-- row -->
+        <!-- <div class="col-lg-12"><label class="border-left pl-2 text-muted">DataTables</label> </div> -->
+
+        <div class="col-12 col-lg-12 p-2">
+            <!-- col -->
+            <div class="card flat border-bottom">
+                <!-- card -->
+                <div class="card-header bg-primary">Crypto Withdrawal Requests</div>
+                <div class="card-body px-0">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Currency</th>
+                                <th>ToWalletAddress</th>
+                                <th>Account</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (withdraws.Count == 0)
+                            {
+                                <tr>No Data Found</tr>
+                            }
+                            else
+                            {
+                                foreach (var item in withdraws)
+                                {
+                                    <tr>
+                                        <td>@item.PaymentDate</td>
+                                        <td>@item.Amount</td>
+                                        <td>@item.Currency</td>
+                                        <td>@item.ToWalletAddress</td>
+                                        <td>@item.Account.Email</td>
+                                        <td><a class="btn btn-warning approvedAdminWithdraw" href="@Url.Action("AdminApprovedWithdraw","Admin", new { pId = item.PaymentId, currency = item.Currency, address = item.ToWalletAddress, amount = item.Amount })">Approve</a> <a class="btn btn-danger rejectedAdminWithdraw" href="@Url.Action("AdminRejectedWithdraw","Admin", new { pId = item.PaymentId, currency = item.Currency, address = item.ToWalletAddress, amount = item.Amount })">Reject</a> </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div> <!-- end card -->
+        </div> <!-- end col -->
+
+    </div> <!-- end row -->
+</div>
+<div class="content-block">
+    <div class="row no-gutters">
+        <!-- row -->
+        <!-- <div class="col-lg-12"><label class="border-left pl-2 text-muted">DataTables</label> </div> -->
+
+        <div class="col-12 col-lg-12 p-2">
+            <!-- col -->
+            <div class="card flat border-bottom">
+                <!-- card -->
+                <div class="card-header bg-primary">FIAT Withdrawal</div>
+                <div class="card-body px-0">
+                    @Html.Partial("_MVCGridToolbar", new Exchange.UI.Models.MVCGridToolbarModel()
+                    {
+                        MVCGridName = "FiatWithdrawGrid",
+                        PageSize = true,
+                        ColumnVisibility = true,
+                        Export = true,
+                        GlobalSearch = true
+                    })
+                    <br />
+                    <div class="dataTables_wrapper table-responsive container-fluid dt-bootstrap4">
+                        @Html.MVCGrid("FiatWithdrawGrid")
+                    </div>
+                </div>
+            </div> <!-- end card -->
+        </div> <!-- end col -->
+
+    </div> <!-- end row -->
+</div>
+<div class="content-block">
+    <div class="row no-gutters">
+        <!-- row -->
+        <!-- <div class="col-lg-12"><label class="border-left pl-2 text-muted">DataTables</label> </div> -->
+
+        <div class="col-12 col-lg-12 p-2">
+            <!-- col -->
+            <div class="card flat border-bottom">
+                <!-- card -->
+                <div class="card-header bg-primary">Crypto Withdrawal</div>
+                <div class="card-body px-0">
+                    @Html.Partial("_MVCGridToolbar", new Exchange.UI.Models.MVCGridToolbarModel()
+                    {
+                        MVCGridName = "WithdrawGrid",
+                        PageSize = true,
+                        ColumnVisibility = true,
+                        Export = true,
+                        GlobalSearch = true
+                    })
+                    <br />
+                    <div class="dataTables_wrapper table-responsive container-fluid dt-bootstrap4">
+                        @Html.MVCGrid("WithdrawGrid")
+                    </div>
+                </div>
+            </div> <!-- end card -->
+        </div> <!-- end col -->
+
+    </div> <!-- end row -->
+</div>
+
+@section scripts{
+    <script>
+        $(".approvedAdminWithdraw").click(function (e) {
+            e.preventDefault();
+            var url = $(this).attr("href");
+            $("#verifySecuritymodal").modal("show");
+            $(".verifyBtn").click(function (e) {
+                e.preventDefault();
+                $.blockUI();
+                var pin = $(".verifyPin").val();
+                var verifyUrl = $("#verify-form").attr("action");
+                $.get(verifyUrl + "?verifyPin=" + pin, function (response) {
+                    if (response === "True") {
+                        $(".verifyPin").val(null);
+                        $("#verifySecuritymodal").modal("hide");
+                        location.href = url;
+                    } else {
+                        $.unblockUI();
+                        $(".verifyPin").val(null);
+                        $("#verifySecuritymodal").modal("hide");
+                        bootbox.alert("Your Pin is wrong!")
+                    }
+                });
+            });
+        });
+        $(".rejectedAdminWithdraw").click(function (e) {
+            e.preventDefault();
+            var url = $(this).attr("href");
+            $("#verifySecuritymodal").modal("show");
+            $(".verifyBtn").click(function (e) {
+                e.preventDefault();
+                $.blockUI();
+                var pin = $(".verifyPin").val();
+                var verifyUrl = $("#verify-form").attr("action");
+                $.get(verifyUrl + "?verifyPin=" + pin, function (response) {
+                    if (response === "True") {
+                        $(".verifyPin").val(null);
+                        $("#verifySecuritymodal").modal("hide");
+                        location.href = url;
+                    } else {
+                        $.unblockUI();
+                        $(".verifyPin").val(null);
+                        $("#verifySecuritymodal").modal("hide");
+                        bootbox.alert("Your Pin is wrong!")
+                    }
+                });
+            });
+        });
+    </script>
+    }
+

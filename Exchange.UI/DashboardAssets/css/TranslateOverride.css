@@ -1,0 +1,43 @@
+﻿.goog-te-menu2 {
+    width: 175px !important;
+    padding: 0 !important;
+    border: 1px solid #272c33 !important;
+}
+
+.goog-te-menu2 * {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+        font-size: 14px !important;
+}
+.goog-te-menu2-item-selected div, .goog-te-menu2-item-selected:link div, .goog-te-menu2-item-selected:visited div, .goog-te-menu2-item-selected:hover div, .goog-te-menu2-item-selected:active div {
+    color: #fff;
+    background: #272c33;
+    font-weight: bold;
+}
+.goog-te-menu2-item div,
+.goog-te-menu2-item:link div,
+.goog-te-menu2-item:visited div,
+.goog-te-menu2-item:active div {
+    background-color: #272c33;
+    color: #757e8a !important;
+}
+
+.goog-te-menu2-item div, .goog-te-menu2-item-selected div {
+    padding: 10px 16px !important;
+    height: 20px !important;
+}
+
+.goog-te-menu2-item:hover div {
+    background: #f3f3f3 !important;
+}
+
+.goog-te-menu2-item-selected .indicator {
+    display: none;
+}
+
+.goog-te-menu2-item-selected .text {
+    padding: 0 !important;
+}
+
+.goog-te-menu2 > table {
+    width: 100% !important;
+}

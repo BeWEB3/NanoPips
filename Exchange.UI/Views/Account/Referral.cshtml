@@ -1,0 +1,818 @@
+﻿@model Exchange.Common.RefferalData
+
+@{
+    Layout = null;
+}
+
+<html>
+<head>
+    <title>NanoPips</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="~/TradeAssets/js/bootbox.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="  https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+            color: #495057;
+            background-color: #fff;
+            border-color: #66b85c;
+        }
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: none;
+            text-align: left;
+            padding: 8px;
+        }
+
+        .tableHeader {
+            background-color: #dddddd;
+        }
+
+        .txtRefer {
+            color: #fff;
+            font-size: 54px;
+            font-weight: 500;
+            padding-bottom: 20px;
+        }
+
+        .table2header {
+            border-top: 1px solid;
+            border-left: 1px solid;
+            border-right: 1px solid;
+            border-bottom: 1px;
+            border-style: dashed;
+        }
+
+        .btnInvite {
+            width: 85%;
+            margin-left: 50px;
+            background-color: #66b85c;
+            color: #fff;
+            border: none;
+            font-size: 24px;
+            height: 70px;
+        }
+
+        .pad-top-btm-15-500 {
+            padding-top: 150px;
+            padding-bottom: 500px;
+        }
+
+        .btnInvite:hover {
+            background: #0000;
+            color: #00fcb1;
+            border: 1px solid #00fcb1;
+        }
+
+        .btnFacebook {
+            height: 40px;
+            font-size: 14px;
+            margin-left: 50px;
+        }
+
+        .btnTwiter {
+            height: 40px;
+            font-size: 14px;
+            margin-left: 30px;
+        }
+
+        .btnGmail {
+            height: 40px;
+            font-size: 14px;
+            margin-left: 30px;
+        }
+
+        .txtInviteFriend {
+            font-size: 24px;
+            font-weight: 400;
+            text-align: center;
+        }
+
+        .nav-tabs .nav-link {
+            border: 1px solid transparent;
+            border-radius: 0px;
+        }
+
+        .topGreenColor {
+            background-color: #66b85c;
+            height: 325px !important;
+        }
+
+        .txtReferPadding {
+            padding-top: 15px;
+            padding-right: 0px;
+            padding-bottom: 20px;
+            padding-left: 150px;
+        }
+
+        .txtBelowRefer {
+            font-size: 24px;
+            color: #fff;
+        }
+
+        .cardWhiteBg {
+            margin-left: 120px;
+            box-shadow: 1px 4px 9px 0px;
+            height: 350px;
+            position: relative;
+            padding: 0px 30px 0px 15px;
+            background-color: #fff;
+        }
+
+        .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link:hover {
+            color: #00fcb1;
+            background-color: #fff;
+            border-color: #00fcb1;
+        }
+
+        .nav-tabs .nav-tabs .nav-link:hover {
+            border-color: #00fcb1;
+        }
+
+        a {
+            color: #000;
+        }
+
+            a:hover {
+                color: #00fcb1;
+                border: 1px solid #00fcb1;
+            }
+
+        .txtLiveState {
+            font-size: 32px;
+            text-transform: uppercase;
+            padding-top: 10px;
+            font-weight: 400;
+            color: #000;
+        }
+
+        .txtDailyUpdate {
+            font-size: 17px;
+            font-weight: 300;
+            color: #000;
+        }
+
+        .boxTotalEarn {
+            width: 100%;
+            text-align: center;
+            border: 2px solid rgba(47, 46, 46, 0.17);
+            border-radius: 14px;
+            color: #000;
+            font-size: 16px;
+            padding: 20px 10px;
+        }
+
+        .txtBoxRanking {
+            width: 100%;
+            text-align: center;
+            border: 2px solid rgba(47, 46, 46, 0.17);
+            border-radius: 14px;
+            color: #000;
+            font-size: 16px;
+            padding: 7px 12px;
+        }
+
+        .txtShareLink {
+            font-size: 30px;
+            font-weight: 400;
+            text-align: center;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 0.2rem 2rem;
+        }
+
+        .txtComHistory {
+            padding-top: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .btnQR:hover {
+            background: #000;
+            color: #00fcb1;
+            border: 1px solid #00fcb1;
+        }
+
+        .btnInviteNow {
+            width: 25%;
+            font-size: 10px;
+            height: 40px;
+            color: #66b85c;
+            border: 1px solid #66b85c;
+        }
+
+            .btnInviteNow:hover {
+                background: #000;
+                color: #00fcb1;
+                border: 1px solid #00fcb1;
+            }
+
+        .btnleftInviteNow {
+            width: 70%;
+            text-align: left;
+            height: 40px;
+            font-size: 10px;
+        }
+
+            .btnleftInviteNow:hover {
+                background: #000;
+                color: #00fcb1;
+                border: 1px solid #00fcb1;
+            }
+
+        .txtViewLoader {
+            font-size: 12px;
+            cursor: pointer;
+            color: #66b85c;
+        }
+
+        .txt10000 {
+            font-size: 26px;
+            font-weight: 400;
+        }
+
+        .pd-top-70 {
+            padding-top: 70px;
+        }
+
+        .font-weight-500 {
+            font-weight: 500;
+        }
+
+        .font-weight-400 {
+            font-weight: 400;
+        }
+
+        .font-weight-300 {
+            font-weight: 300;
+        }
+
+        .font-weight-200 {
+            font-weight: 200;
+        }
+
+        .font-weight-bold {
+            font-weight: bold;
+        }
+
+        .socialLogo {
+            float: left;
+            padding-top: 4px;
+        }
+
+        .pd-btm-20 {
+            padding-bottom: 20px;
+        }
+
+        .pd-btm-50 {
+            padding-bottom: 50px;
+        }
+
+        .btnQR {
+            width: 100%;
+            height: 40px;
+            margin-bottom: 20px;
+        }
+
+        .qrImg {
+            width: 150px;
+            height: 150px;
+        }
+
+        .QRTable {
+            border: 1px solid #000;
+            padding: 50px;
+        }
+
+        .txtViewReport {
+            color: #66b85c;
+            cursor: pointer;
+        }
+
+            .txtViewReport:hover {
+                color: #00fcb1;
+                text-decoration: underline;
+            }
+
+        .txtDownloadHistory {
+            float: right;
+            padding-top: 15px;
+            color: #66b85c;
+            cursor: pointer;
+        }
+
+            .txtDownloadHistory:hover {
+                color: #00fcb1;
+                text-decoration: underline;
+            }
+
+        .txtstylereferrl {
+            padding-top: 80px;
+            margin-bottom: -20px;
+        }
+
+        marg-0 {
+            padding-top: 80px !important;
+        }
+
+        .pd-80 {
+            padding-top: 80px;
+        }
+
+        width-85 {
+            width: 85%;
+        }
+
+        @@media only screen and (max-width: 320px) {
+            .trade-table {
+                font-size: 11px;
+            }
+
+            .trade-table2 {
+                font-size: 12px;
+            }
+
+            .btnleftInviteNow {
+                width: 76%;
+                font-size: 7px;
+            }
+
+            .btnInviteNow {
+                width: 22%;
+            }
+        }
+
+        @@media only screen and (max-width: 360px) and (min-width: 321px) {
+            .trade-table {
+                font-size: 11px;
+            }
+
+            .trade-table2 {
+                font-size: 12px;
+            }
+
+            .btnleftInviteNow {
+                width: 76%;
+                font-size: 8px;
+            }
+
+            .btnInviteNow {
+                width: 22%;
+            }
+        }
+
+        @@media only screen and (max-width: 375px) and (min-width: 361px) {
+            .trade-table {
+                font-size: 11px;
+            }
+
+            .trade-table2 {
+                font-size: 12px;
+            }
+
+            .btnleftInviteNow {
+                width: 76%;
+                font-size: 8px;
+            }
+
+            .btnInviteNow {
+                width: 22%;
+            }
+        }
+
+        @@media only screen and (max-width: 414px) and (min-width: 376px) {
+
+            .btnleftInviteNow {
+                width: 76%;
+                font-size: 9px;
+            }
+
+            .btnInviteNow {
+                width: 22%;
+            }
+        }
+
+        @@media only screen and (max-width: 600px) and (min-width: 320px) {
+
+            .txtReferPadding {
+                padding-left: 25px;
+            }
+
+            .pd-top-70 {
+                padding-top: 0px;
+            }
+
+            .topGreenColor {
+                height: 750px !important;
+            }
+
+            .cardWhiteBg {
+                margin-left: 25px;
+                height: 560px;
+                width: 88%;
+            }
+
+            .txtRefer {
+                font-size: 28px;
+                font-weight: bold;
+                padding-bottom: 0px !important;
+            }
+
+            .txtBelowRefer {
+                font-size: 16px;
+            }
+
+            .txtstylereferrl {
+                padding-top: 10px;
+                margin-bottom: 0px;
+            }
+
+            .btnInvite {
+                width: 97%;
+                margin-left: 15px;
+            }
+
+            .mag-0 {
+                margin-left: 0px;
+                margin-right: 0px;
+            }
+
+            marg-0 {
+                padding-top: 10px;
+            }
+
+            .pad-top-btm-15-500 {
+                padding-top: 0px;
+                padding-bottom: 100px;
+            }
+
+            width-85 {
+                width: 100%;
+            }
+
+            .pd-80 {
+                padding-top: 0px;
+            }
+        }
+    </style>
+</head>
+
+<body style="overflow-x:hidden">
+
+    <div class="pd-top-70">
+        <div class="topGreenColor">
+            <div class="row mag-0">
+
+                <div class="txtReferPadding">
+                    <div class="txtRefer">
+                        Refer Others.
+                        <br />
+                        Earn Together.
+                    </div>
+                    <div class="txtBelowRefer">
+                        Earn up to 60% commissions every time<br />
+                        someone makes a trade on NanoPips
+                    </div>
+                </div>
+                <div class="col-md-5 col-xs-10 card cardWhiteBg">
+                    <div class="txtLiveState"> Live Stats</div>
+                    <div class="txtDailyUpdate">Updated Daily</div>
+                    <div class="row" style="    padding-top: 10px;">
+                        <div class="col-md-4" style="padding: 15px 0px 25px 15px;">
+                            <div class="boxTotalEarn">
+                                <span class="font-weight-500"> Total Earned </span> <br />
+                                <span class="font-weight-500"><span>$</span>@Model.earning</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4" style="padding:15px 0px 25px 15px;">
+                            <div class="boxTotalEarn">
+                                <span class="font-weight-400"> Total Referrals</span> <br />
+                                <span>@Model.refferalCount</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4" style="padding:15px 0px 0px 15px;">
+                            <div class="txtBoxRanking">
+                                <span class="font-weight-200" style="font-size: 12px;"> Your Ranking </span> <br />
+                                <span class="txt10000"> >10000</span><br />
+                                <span data-toggle="modal" data-target="#viewleaderboard" class="txtViewLoader">View Leader Board</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row" style="padding-top: 20px;">
+                        <button class="btnInvite" data-toggle="modal" data-target="#invitenow">Invite Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="txtstylereferrl">Your Referral Account</div>
+                    <br>
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" style="border: none;" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#home">USD</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#homeBtc">BTC</a>
+                        </li>
+                    </ul>
+                    <div class="txtComHistory">Latest Commissions History (Displays four weeks of the month by default)</div>
+                </div>
+                <div class="col-md-6 pd-80">
+                    <div style="font-size:12px;" class=" marg-0">Your 60% referral link</div>
+                    <button id="btnleftInviteNow" class="btnleftInviteNow">https://nanopips.com/Dashboard/Index?referral=@Model.referralCode<span style="float: right;"><i class="fa fa-clipboard" aria-hidden="true"></i></span> </button>
+                    <button class="btnInviteNow" data-toggle="modal" data-target="#invitenow">Invite Now</button><br>
+                    <div class="txtDownloadHistory">Download Full History</div>
+                </div>
+            </div>
+        </div>
+        <!-- Tab panes -->
+        <div class="tab-content container">
+            <div id="home" class=" tab-pane active">
+                <br>
+                <table class="table trade-table2">
+                    <tr class="tableHeader">
+                        <th>Commissions Earned This Week</th>
+                        <th>Referrals History</th>
+                        <th>Date</th>
+                    </tr>
+                    <tr>
+                        <td><span>$</span>@Model.earning</td>
+                        <td class="txtViewReport" data-toggle="modal" data-target="#refferals_table">View Full Report</td>
+                        <td>@Model.dateTime</td>
+                    </tr>
+                </table>
+                <hr>
+            </div>
+
+            <div id="homeBtc" class=" tab-pane">
+                <br>
+                <table class="table trade-table2">
+                    <tr class="tableHeader">
+                        <th>Commissions Earned This Week</th>
+                        <th>Referrals History</th>
+                        <th>Date</th>
+                    </tr>
+                    <tr>
+                        <td><span>$</span>@Model.earning</td>
+                        <td class="txtViewReport" data-toggle="modal" data-target="#refferals_table">View Full Report</td>
+                        <td>@Model.dateTime</td>
+                    </tr>
+                </table>
+                <hr>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade in" id="refferals_table" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content width-85">
+                <div class="modal-body row" style="margin-right:auto;margin-left:auto;">
+                    <div class="row" style="padding-top: 10px;">
+                        <div class="col-md-12 col-xs-12">
+                            <table class="table trade-table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.refferalUsers as List<userList>)
+                                    {
+                                        <tr>
+                                            <td scope="col">@item.email</td>
+                                            <td scope="col">@item.amount</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade in" id="viewleaderboard" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content width-85">
+                <div class="modal-body row" style="margin-right:auto;margin-left:auto;">
+                    <div class="row" style="padding-top:10px;">
+                        <div class="col-md-12 col-xs-12">
+                            <div class="txtShareLink" style="margin-bottom:10px;">Leader Board</div>
+
+                            <table class="table trade-table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Rank</th>
+                                        <th scope="col">Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.rankList as List<rank>)
+                                    {
+                                        <tr>
+                                            <td scope="col">@item.email</td>
+                                            <td scope="col">@item.rankIndex</td>
+                                            <td scope="col">@item.amount<span>M</span></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade in" id="invitenow" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content width-85">
+                <div class="modal-body row" style="margin-right:auto;margin-left:auto;">
+                    <div class="row" style="padding-top: 10px;">
+                        <div class="col-md-12 col-xs-12">
+                            <div class="txtShareLink">Share Your Referral Link</div>
+                            <div style="text-align:center; padding-bottom:20px;">
+                                <div class="qrImage">
+                                </div>
+                                <button id="btnQr" class="btnQR">https://nanopips.com/Dashboard/Index?referral=@Model.referralCode<span style="float: right;"><i class="fa fa-clipboard" aria-hidden="true"></i></span> </button>
+                                @*<div class="txtInviteFriend pd-btm-20">More Ways To Invite Your Friends</div>
+                                    <div class="row pd-btm-50">
+                                        <button class="col-md-3 btnFacebook"><span><i class="fa fa-facebook-official socialLogo" aria-hidden="true"></i></sapn>Share on Facebook </button>
+                                        <button class="col-md-3 btnTwiter"><span><i class="fa fa-twitter-square socialLogo" aria-hidden="true"></i></span>Share on Twitter </button>
+                                        <button class="col-md-3 btnGmail"><span><i class="fa fa-google-plus-square socialLogo" aria-hidden="true"></i></span>Invite from Gmail</button>
+                                    </div>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var code = '@Model.referralCode';
+        $.get("/Account/GetQrCode?code=" + code, function (obj) {
+            $("#qrCodeImage").remove();
+            var image = new Image();
+            image.src = 'data:image/png;base64,' + obj.barCode;
+            image.style = 'width:200px';
+            image.id = 'qrCodeImage';
+            $("div .qrImage").append(image);
+        });
+
+        $('#btnQr, btnleftInviteNow').click(function () {
+            var el = document.createElement('textarea');
+            el.value = $('#btnQr').text();
+            el.setAttribute('readonly', '');
+            el.style = { position: 'absolute', left: '-9999px' };
+            document.body.appendChild(el);
+
+            if (navigator.userAgent.match(/ipad|ipod|iphone/i)) {
+                // save current contentEditable/readOnly status
+                var editable = el.contentEditable;
+                var readOnly = el.readOnly;
+
+                // convert to editable with readonly to stop iOS keyboard opening
+                el.contentEditable = true;
+                el.readOnly        = true;
+
+                // create a selectable range
+                var range = document.createRange();
+                range.selectNodeContents(el);
+
+                // select the range
+                var selection = window.getSelection();
+                selection.removeAllRanges();
+                selection.addRange(range);
+                el.setSelectionRange(0, 999999);
+
+                // restore contentEditable/readOnly to original state
+                el.contentEditable = editable;
+                el.readOnly = readOnly;
+            }
+            else {
+                el.select();
+            }
+            document.execCommand('copy');
+            document.body.removeChild(el);
+
+            //var $temp = $("<input>");
+            //$("body").append($temp);
+            //var isiOSDevice = navigator.userAgent.match(/ipad|iphone/i);
+            //if (isiOSDevice) {
+            //    var editable = $temp.val($('#btnQr').text()).contentEditable;
+            //    var readOnly = $temp.val($('#btnQr').text()).readOnly;
+            //    $temp.val($('#btnQr').text()).contentEditable = true;
+            //    $temp.val($('#btnQr').text()).readOnly = false;
+            //    var range = document.createRange();
+            //    range.selectNodeContents($temp.val($('#btnQr')));
+            //    var selection = window.getSelection();
+            //    selection.removeAllRanges();
+            //    selection.addRange(range);
+            //    $temp.val($('#btnQr').text()).setSelectionRange(0, 999999);
+            //    $temp.val($('#btnQr').text()).contentEditable = editable;
+            //    $temp.val($('#btnQr').text()).readOnly = readOnly;
+            //}
+            //else {
+            //    $temp.val($('#btnQr').text()).select();
+            //}
+            //document.execCommand("copy");
+            //$temp.remove();
+            bootbox.alert("Copied to Clipboard");
+        });
+
+        $('#btnleftInviteNow').click(function () {
+            var el = document.createElement('textarea');
+            el.value = $('#btnQr').text();
+            el.setAttribute('readonly', '');
+            el.style = { position: 'absolute', left: '-9999px' };
+            document.body.appendChild(el);
+
+            if (navigator.userAgent.match(/ipad|ipod|iphone/i)) {
+                // save current contentEditable/readOnly status
+                var editable = el.contentEditable;
+                var readOnly = el.readOnly;
+
+                // convert to editable with readonly to stop iOS keyboard opening
+                el.contentEditable = true;
+                el.readOnly = true;
+
+                // create a selectable range
+                var range = document.createRange();
+                range.selectNodeContents(el);
+
+                // select the range
+                var selection = window.getSelection();
+                selection.removeAllRanges();
+                selection.addRange(range);
+                el.setSelectionRange(0, 999999);
+
+                // restore contentEditable/readOnly to original state
+                el.contentEditable = editable;
+                el.readOnly = readOnly;
+            }
+            else {
+                el.select();
+            }
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            bootbox.alert("Copied to Clipboard");
+        });
+    </script>
+
+</body>
+</html>
+
+
+@*<div class="row pad-top-btm-15-500">
+        <div class="col-md-1"></div>
+        <div class="col-md-10" style="font-size: 16px;">
+            Logic Flow:<br />
+            <br />
+
+            Junaid account has 6 digit link for his account. <br />
+            Example: nanopips.com/XXY652<br />
+            <br />
+
+            Junaid give this link to Aman. Aman register on this link.<br />
+            <br />
+
+            Now Aman email shows here in Junaid login and will show Junaid 15% from Aman TRADE LOSSES<br />
+            When Aman USD or USD Copy(BTC) balance touches 10 or below, show 15% of Aman TRADE LOSSES in Junaid account here.<br />
+            <br />
+            <p class="font-weight-bold">
+                NOTE: This is NOT connected to any exchange it's simply math we do in our login back end to display here.<br />
+                NOTE: Only show the amount here in Junaid login when Aman Balance touch 10 or below.<br />
+                NOTE: Only show 15% of Aman balance here once account go to 10 or below from TRADE LOSSES.<br />
+                DO NOT add withdrawal credit balance in this calculation.<br />
+            </p>
+            <br />
+            Example:<br />
+            Aman balance of 100 goes to 50 from TRADE LOSSES<br />
+            Now Aman withdraw credit balance -40<br />
+            This made Aman balance go to 10 (that now activated 10 or below)<br />
+            Now simply the TRADE LOSSES total from the balance will show here in Junaid login<br />
+            Aman 100 balance had TRADE LOSSES of 50 when we withdraw credit balance -40 to make it go to 10.<br />
+            Junaid account here will show 7.5 because 50 TRADE LOSSES x 15% = 7.5<br />
+            ​<br />
+        </div>
+        <div class="col-md-1"></div>
+    </div>*@

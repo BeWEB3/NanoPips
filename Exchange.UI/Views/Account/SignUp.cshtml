@@ -1,0 +1,249 @@
+@model Exchange.DTO.UserRole
+@{
+    Layout = null;
+}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>NanoPips</title>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="shortcut icon" href="https://www.nanopips.com/img/favicon.ico" type="image/x-icon" />
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Rubik:400,700&display=swap" rel="stylesheet">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" media="all" />
+    <link href="~/Assets/css/main.css" rel="stylesheet" />
+    <link href="~/Assets/css/custom.css" rel="stylesheet" />
+    <style>
+        .panel-body {
+        }
+
+        .display-block {
+            display: block;
+        }
+
+        .display-none {
+            display: none;
+        }
+    </style>
+</head>
+
+<body style="background-image:url(../../Assets/images/back.bmp); background-repeat: round;font-family: 'Rubik', sans-serif;">
+
+    <header>
+        <!-- Top navbar -->
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="col-xs-4 col-sm-4">
+                    <div class="logo pull-left">
+                        <a href="@Url.Action("LandingPage","Account")"><img src="~/android-icon-36x36.png" class="" alt="NanoPips" /></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+        <div class="container containersignup">
+            <div class="row" style="margin-bottom: 36px;">
+
+                <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12">
+                    <div class="signup-wrapper">
+                        <div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12" style="position:center; margin-left:10px">
+                                    <h2>CREATE AN ACCOUNT</h2>
+                                </div>
+                                @using (Html.BeginForm("SignUp", "Account", FormMethod.Post, new { id = "s-form" }))
+                                {
+                                <div class="col-md-8  col-md-offset-2 spacer-2x">
+                                    <div class="col-md-12 spacer">
+                                        <div class="input-group">
+                                            @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "Email", id = "email" })
+                                            @*<input type="text" id="email" class="form-control" aria-label="Email" placeholder="Email">*@
+                                            <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                        </div>
+                                        <p class="text-danger"> @Html.ValidationMessageFor(m => m.Username)</p>
+                                        <p class="text-danger" id="ae">Email Already Exist</p>
+                                    </div>
+                                    <div class="col-md-12 spacer">
+                                        <div class="input-group">
+                                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
+                                            @*<input type="password" id="password1" class="form-control" aria-label="Password" placeholder="Password">*@
+                                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                        </div>
+                                        <p class="text-danger">@Html.ValidationMessageFor(m => m.Password)</p>
+                                    </div>
+                                    <div class="col-md-12 spacer">
+                                        <div class="input-group">
+                                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Confirm Password" })
+                                            @*<input type="password" id="password2" class="form-control" aria-label="Confirm password" placeholder="Confirm password">*@
+                                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                        </div>
+                                        <p class="text-danger">@Html.ValidationMessageFor(m => m.ConfirmPassword)</p>
+                                    </div>
+                                    <div class="col-md-12 spacer">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading text-left">
+                                                <input type="checkbox" id="termsCondition">
+                                                <a href="#" data-toggle="collapse" data-target="#panel-body" aria-expanded="false" aria-controls="panel-body" class="nanoTxt">Terms and Conditions *</a>
+                                                <label class="error-message" style="color:red; margin-left: 10px;"></label>
+                                            </div>
+                                            <div class="panel-body collapse text-justify" id="panel-body">
+                                                <h4>READ FULL DISCLOSURE.</h4>
+                                                <p>Nanopips.com is compensated through the bid/ask spread and/or commissions on transactions. </p>
+                                                <p></p>
+                                                <p></p>
+                                                <p>RISK WARNING: Trading of financial contracts, contracts for difference, derivatives and other investment products which are leveraged, can carry a high level of risk. These products may not be suitable for all investors. It is possible to lose more than your initial investment. You should carefully consider whether trading is suitable for you in light of your circumstances, knowledge, and financial resources. Opinions, market data, and recommendations are subject to change at any time. All funds committed should be risk capital. Past performance is not necessarily indicative of future results.</p>
+                                                <p></p>
+                                                <p></p>
+                                                <p>IMPORTANT INFORMATION:  No offer or solicitation to buy or sell securities, securities derivative or financial products of any kind, or any type of trading or investment advice, recommendation or strategy, is made, given or in any manner endorsed by any NanoPips affiliate and the information made available on this Website is not an offer or solicitation of any kind.</p>
+                                                <p></p>
+                                                <p></p>
+                                                <p>Past performance, whether actual or indicated by historical tests of strategies, is no guarantee of future performance or success. There is a possibility that you may sustain a loss equal to or greater than your entire investment regardless of which asset class you trade; therefore, you should not invest or risk money that you cannot afford to lose. Options trading is not suitable for all investors. Before trading any asset class, customers must read the relevant risk disclosure statements. System access and trade placement and execution may be delayed or fail due to market volatility and volume, quote delays, system and software errors, Internet traffic, outages and other factors.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-8 col-md-offset-2" style="margin-bottom: 48px;">
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn btn-block nanoBtn"style="margin:auto;display:block; width:70%; height:50px">SIGN UP</button>
+                                        <br/>
+                                    </div>
+                                    <br />
+                                    <div class="col-md-12 text-center" >
+                                        <a href="@Url.Action("Login","Account")" style="font-size: 1.3em; line-height:3;" class="nanoTxt">Already have an account</a>
+                                    </div>
+                                </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12" style="padding-top:0px">
+
+                    <div class="panel-group" id="accordion">
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading panel-heading-custom" style="background:#fff;">
+                                <h4 class="panel-title">
+                                    <a class="collapseOneToClose" style="color:#888;font-size:20px;background-color: transparent;
+                                        text-decoration: none; cursor:pointer;">How safe is it to deposit into a Nanopips Account?</a>
+                                </h4>
+                            </div>
+                            <div id="collapse1" class="display-none">
+                                <div class="panel-body" style="text-align:left;color:#888">
+                                    We ensure your funds are handled with the highest level of care and dedication to security.
+                                    Each client can only wire funds to and from the single listed account under his/her name and must verify identity once doing so.
+                                    This means that your funds can only be in control by you, the single owner of the account alone and nobody else.<br><br>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading panel-heading-custom" style="background:#fff;">
+                                <h4 class="panel-title">
+                                    <a class="collapseTwoToClose" style="color:#888;font-size:20px;background-color: transparent;
+                                        text-decoration: none; cursor:pointer;">How can I withdraw my funds from a Nanopips Account?</a>
+                                </h4>
+                            </div>
+
+                            <div id="collapse2" class="display-none">
+                                <div class="panel-body" style="text-align:left;color:#888">
+                                    Funds can be withdrawn by filling out the Wire Request Form and emailing it back to clientservice@nanopips.com.
+                                    Requests before 4 PM EST are proccessed the same day and fund requests after 4 PM EST are proccessed the next business day from the request.
+                                    Transfer to your account can take up to 15 days depending on your bank.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <span class="footer">
+                        2018 NanoPips.com | All Rights Reserved
+                    </span>
+                </div>
+            </div>
+            </div>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Assets/vendor/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/DashboardAssets/vendor_components/blockUI/jquery.blockUI.js"></script>
+
+    <script>
+        $('.collapseOneToClose').on('click', function () {
+            if ($('#collapse1').hasClass("display-none")) {
+                $('#collapse1').removeClass('display-none');
+                //$('#collapse2').addClass('display-none');
+            }
+            else {
+                $('#collapse1').addClass('display-none');
+            }
+        });
+        $('.collapseTwoToClose').on('click', function () {
+            if ($('#collapse2').hasClass('display-none')) {
+                $('#collapse2').removeClass('display-none');
+                //$('#collapse1').addClass('display-none');
+            }
+            else {
+                $('#collapse2').addClass('display-none');
+            }
+        });
+        $(function () {
+            $('#termsCondition').on('click', function () {
+                $('.error-message').text('');
+            });
+
+        $("#s-form").submit(function (e) {
+            e.preventDefault();
+            if ($('#termsCondition').is(':checked')) {
+                $('.error-message').text('');
+                var form = $(this);
+                form.validate();
+                if (form.valid()) {
+                    $.blockUI();
+                    $.post(form.attr('action'), form.serialize(), function (msg) {
+                        $.unblockUI();
+                        if (msg == "reCaptcha validation failed, please try again") {
+                            $("#rec").text(msg);
+                        }
+                        else {
+                            $("#s-form").html("<h6 >" + msg + "</h6><br>")
+                        }
+                    });
+                }
+                else e.preventDefault();
+            }
+            else {
+                e.preventDefault();
+                $('.error-message').text('Please accept the Term & Conditions');
+            }
+        });
+        $("#ae").hide();
+        $("#email").blur(function () {
+            var value = $(this).val();
+            $.get("@Url.Action("CheckEmail", "Account")", { email: value }, function (flag)
+            {
+                if (flag == "True")
+                {
+                    $("#ae").show();
+                    $("#email").val("");
+                }
+                else {
+                    $("#ae").hide();
+                }
+            })
+        })
+    });
+    </script>
+
+</body>
+</html>

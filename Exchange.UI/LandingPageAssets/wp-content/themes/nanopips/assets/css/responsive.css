@@ -1,0 +1,113 @@
+@media (min-width:1440px) and (max-width:3000px) {
+
+}
+
+@media (min-width: 1200px) and (max-width: 1440px) {
+    .banner {
+        background-position: left top;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .banner {
+        background-position: left top;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    button.navbar-toggler i {
+        color: #fff;
+        padding: 4px;
+    }
+    
+    header {
+        background-color: #333;
+    }
+    
+    header ul#menu-mainmenu li {
+        margin-left: 0;
+    }
+    
+    header ul#menu-mainmenu li a {
+        color: #fff;
+    }
+    
+    .header-btns {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+    
+    #menu-mainmenu {
+        margin-top: 20px;
+    }
+    
+    header {
+        padding-bottom: 15px;
+    }
+    h2.widget-title {
+        margin-top: 30px;
+    }
+    
+    .footer-logo {
+        text-align: center;
+    }
+    
+    .copyright-text {
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    h2.widget-title {
+        margin-top: 30px;
+    }
+    
+    .footer-logo {
+        text-align: center;
+    }
+    
+    .copyright-text {
+        text-align: center;
+        margin-top: 15px;
+    }
+    
+    .textwidget {
+        text-align: center;
+    }
+    
+    footer .menu {
+        text-align: center;
+    }
+    
+    h2.widget-title {
+        text-align: center;
+    }
+    
+    ul.social-media-icons {
+        text-align: center;
+    }
+    
+    ul.social-media-icons li:last-child {
+        margin-right: 0;
+    }
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+
+}
+
+@media only screen and (max-width: 767px) {
+
+}
+
+@media only screen and (min-width: 360px) and (max-width: 767px) {
+
+}
+
+@media only screen and (min-width: 375px) and (max-width: 767px) {
+
+}
+
+@media only screen and (min-width: 414px) and (max-width: 767px) {
+
+}

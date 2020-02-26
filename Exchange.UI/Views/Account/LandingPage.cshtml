@@ -1,0 +1,975 @@
+﻿@model Exchange.DTO.UserRole
+@{
+    Layout = null;
+}
+<doctype html>
+    <html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="profile" href="https://gmpg.org/xfn/11">
+        <title>Nanopips &#8211; </title>
+        <meta name='robots' content='noindex,nofollow' />
+        <link rel='dns-prefetch' href='//fonts.googleapis.com' />
+        <link rel='dns-prefetch' href='//s.w.org' />
+        <link rel="alternate" type="application/rss+xml" title="Nanopips &raquo; Feed" href="~/LandingPageAssets/feed/index.html" />
+        <link rel="alternate" type="application/rss+xml" title="Nanopips &raquo; Comments Feed" href="~/LandingPageAssets/comments/feed/index.html" />
+        <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+        <script src="~/Assets/vendor/js/bootstrap.min.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+        <script src="~/DashboardAssets/vendor_components/blockUI/jquery.blockUI.js"></script>
+
+        <style type="text/css">
+            img.wp-smiley,
+            img.emoji {
+                display: inline !important;
+                border: none !important;
+                box-shadow: none !important;
+                height: 1em !important;
+                width: 1em !important;
+                margin: 0 .07em !important;
+                vertical-align: -0.1em !important;
+                background: none !important;
+                padding: 0 !important;
+            }
+        </style>
+
+        <link rel='stylesheet' id='wp-block-library-css' href='~/LandingPageAssets/wp-includes/css/dist/block-library/style.min.css?ver=5.3.2' type='text/css' media='all' />
+        <link rel='stylesheet' id='user-registration-general-css' href='~/LandingPageAssets/wp-content/plugins/user-registration/assets/css/user-registration.css?ver=1.7.5' type='text/css' media='all' />
+        <link rel='stylesheet' id='user-registration-smallscreen-css' href='~/LandingPageAssets/wp-content/plugins/user-registration/assets/css/user-registration-smallscreen.css?ver=1.7.5' type='text/css' media='only screen and (max-width: 768px)' />
+        <link rel='stylesheet' id='user-registration-my-account-layout-css' href='~/LandingPageAssets/wp-content/plugins/user-registration/assets/css/my-account-layout.css?ver=1.7.5' type='text/css' media='all' />
+        <link rel='stylesheet' id='dashicons-css' href='~/LandingPageAssets/wp-includes/css/dashicons.min.css?ver=5.3.2' type='text/css' media='all' />
+        <link rel='stylesheet' id='google-font-css' href='//fonts.googleapis.com/css?family=Rubik%3A400%2C500%2C600%2C700&#038;display=swap&#038;ver=5.3.2' type='text/css' media='all' />
+        <link rel='stylesheet' id='linear-icons-css' href='~/LandingPageAssets/wp-content/themes/nanopips/assets/css/linearicons.css?ver=5.3.2' type='text/css' media='all' />
+        <link rel='stylesheet' id='fontawesome-css' href='~/LandingPageAssets/wp-content/themes/nanopips/assets/css/font-awesome.min.css?ver=5.3.2' type='text/css' media='all' />
+        <link rel='stylesheet' id='bootstrap-css' href='~/LandingPageAssets/wp-content/themes/nanopips/assets/css/bootstrap.css?ver=5.3.2' type='text/css' media='all' />
+        <link rel='stylesheet' id='magnificpopup-css' href='~/LandingPageAssets/wp-content/themes/nanopips/assets/css/magnific-popup.css?ver=5.3.2' type='text/css' media='all' />
+        <link rel='stylesheet' id='owlcarousel-css' href='~/LandingPageAssets/wp-content/themes/nanopips/assets/css/owl.carousel.min.css?ver=5.3.2' type='text/css' media='all' />
+        <link rel='stylesheet' id='maincss-css' href='~/LandingPageAssets/wp-content/themes/nanopips/assets/css/main.css?ver=5.3.2' type='text/css' media='all' />
+        <link rel='stylesheet' id='nanopips-style-css' href='~/LandingPageAssets/wp-content/themes/nanopips/style.css?ver=1578058345' type='text/css' media='all' />
+        <link rel='stylesheet' id='responsive-css' href='~/LandingPageAssets/wp-content/themes/nanopips/assets/css/responsive.css?ver=1578058345' type='text/css' media='all' />
+        <link rel='stylesheet' id='elementor-icons-css' href='~/LandingPageAssets/wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.min.css?ver=5.5.0' type='text/css' media='all' />
+        <link rel='stylesheet' id='elementor-animations-css' href='~/LandingPageAssets/wp-content/plugins/elementor/assets/lib/animations/animations.min.css?ver=2.8.2' type='text/css' media='all' />
+        <link rel='stylesheet' id='elementor-frontend-css' href='~/LandingPageAssets/wp-content/plugins/elementor/assets/css/frontend.min.css?ver=2.8.2' type='text/css' media='all' />
+        <link rel='stylesheet' id='font-awesome-5-all-css' href='~/LandingPageAssets/wp-content/plugins/elementor/assets/lib/font-awesome/css/all.min.css?ver=2.8.2' type='text/css' media='all' />
+        <link rel='stylesheet' id='font-awesome-4-shim-css' href='~/LandingPageAssets/wp-content/plugins/elementor/assets/lib/font-awesome/css/v4-shims.min.css?ver=2.8.2' type='text/css' media='all' />
+        <link rel='stylesheet' id='elementor-global-css' href='~/LandingPageAssets/wp-content/uploads/elementor/css/global.css?ver=1577770663' type='text/css' media='all' />
+        <link rel='stylesheet' id='elementor-post-10-css' href='~/LandingPageAssets/wp-content/uploads/elementor/css/post-10.css?ver=1577903992' type='text/css' media='all' />
+        <link rel='stylesheet' id='google-fonts-1-css' href='https://fonts.googleapis.com/css?family=Rubik%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&#038;ver=5.3.2' type='text/css' media='all' />
+        <link rel='stylesheet' id='elementor-icons-shared-0-css' href='~/LandingPageAssets/wp-content/plugins/elementor/assets/lib/font-awesome/css/fontawesome.min.css?ver=5.9.0' type='text/css' media='all' />
+        <link rel='stylesheet' id='elementor-icons-fa-solid-css' href='~/LandingPageAssets/wp-content/plugins/elementor/assets/lib/font-awesome/css/solid.min.css?ver=5.9.0' type='text/css' media='all' />
+        <script type='text/javascript' src='~/LandingPageAssets/wp-includes/js/jquery/jquery.js?ver=1.12.4-wp'></script>
+        <script type='text/javascript' src='~/LandingPageAssets/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+        <script type='text/javascript' src='~/LandingPageAssets/wp-content/plugins/elementor/assets/lib/font-awesome/js/v4-shims.min.js?ver=2.8.2'></script>
+        <link rel='https://api.w.org/' href='~/LandingPageAssets/wp-json/index.html' />
+        <link rel="EditURI" type="application/rsd+xml" title="RSD" href="./xmlrpc.php?rsd" />
+        <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="~/LandingPageAssets/wp-includes/wlwmanifest.xml" />
+        <meta name="generator" content="WordPress 5.3.2" />
+        <link rel="canonical" href="@Url.Action("LandingPage","Account")" />
+        <link rel='shortlink' href='@Url.Action("LandingPage","Account")' />
+        <link rel="alternate" type="application/json+oembed" href="~/LandingPageAssets/wp-json/oembed/1.0/embed/index.html?url=.%2F" />
+        <link rel="alternate" type="text/xml+oembed" href="~/LandingPageAssets//wp-json/oembed/1.0/embed/index.html?url=.%2F&#038;format=xml" />
+
+        <style type="text/css">
+            .recentcomments a {
+                display: inline !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+        </style>
+
+    </head>
+
+    <body class="home page-template-default page page-id-10 wp-custom-logo elementor-default elementor-page elementor-page-10" style="font-family: 'Rubik', sans-serif;">
+
+        <div id="page" class="site">
+            <header id="masthead" class="site-header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <nav class="navbar navbar-expand-lg">
+                                <a href="@Url.Action("LandingPage","Account")" class="custom-logo-link" rel="home"><img width="196" height="38" src="~/LandingPageAssets/wp-content/uploads/2019/12/cropped-logo.png" class="custom-logo" alt="Nanopips" /></a>							<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                    <i class="fa fa-bars"></i>
+                                </button>
+                                <div class="collapse navbar-collapse" id="navbarNav">
+                                    <ul id="menu-mainmenu" class="navbar-nav ml-auto">
+                                        <li id="menu-item-16" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-10 current_page_item menu-item-16"><a href="@Url.Action("LandingPage","Account")" aria-current="page">Home</a></li>
+                                        <li id="menu-item-15" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15"><a href="@Url.Action("Help","Account")">Help</a></li>
+                                    </ul>
+                                    <div class="header-btns">
+                                        <a href="@Url.Action("Index","Dashboard")" class="solid-btn">Sign In</a>
+                                    </div>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </header><!-- #masthead -->
+
+            <div id="content" class="site-content">
+                <div data-elementor-type="wp-page" data-elementor-id="10" class="elementor elementor-10" data-elementor-settings="[]">
+                    <div class="elementor-inner">
+                        <div class="elementor-section-wrap">
+                            <section class="elementor-element elementor-element-54941fc elementor-section-stretched elementor-section-full_width elementor-section-height-default elementor-section-height-default elementor-section elementor-top-section" data-id="54941fc" data-element_type="section" data-settings="{&quot;stretch_section&quot;:&quot;section-stretched&quot;}">
+                                <div class="elementor-container elementor-column-gap-no">
+                                    <div class="elementor-row">
+                                        <div class="elementor-element elementor-element-4093a9a elementor-column elementor-col-100 elementor-top-column" data-id="4093a9a" data-element_type="column">
+                                            <div class="elementor-column-wrap  elementor-element-populated">
+                                                <div class="elementor-widget-wrap">
+                                                    <div class="elementor-element elementor-element-4e1f76b elementor-widget elementor-widget-banner" data-id="4e1f76b" data-element_type="widget" data-widget_type="banner.default">
+                                                        <div class="elementor-widget-container">
+
+                                                            <div class="banner" style="background-image:url(../../LandingPageAssets/wp-content/uploads/2019/12/banner-bg-shape.png);">
+                                                                <div class="banner-table-cell">
+                                                                    <div class="container">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-6 my-auto">
+                                                                                <div class="banner-text">
+                                                                                    <span>Earn 60% commissions<a href="@Url.Action("Help","Account")">Learn More</a></span>
+                                                                                    <h1>Trade Bitcoin, <br> Ethereum, Litecoin <br> & More</h1>
+                                                                                    <a href="#v-pills-Register" class="solid-btn">Open an Account</a>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6">
+                                                                                <div class="banner-thumbnail">
+                                                                                    <img src="~/LandingPageAssets/wp-content/uploads/2019/12/banner-thumb-1.png" alt="">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="elementor-element elementor-element-66f753e elementor-section-stretched elementor-section-full_width elementor-section-height-default elementor-section-height-default elementor-section elementor-top-section" data-id="66f753e" data-element_type="section" data-settings="{&quot;stretch_section&quot;:&quot;section-stretched&quot;}">
+                                <div class="elementor-container elementor-column-gap-no">
+                                    <div class="elementor-row">
+                                        <div class="elementor-element elementor-element-79846c5 elementor-column elementor-col-100 elementor-top-column" data-id="79846c5" data-element_type="column">
+                                            <div class="elementor-column-wrap  elementor-element-populated">
+                                                <div class="elementor-widget-wrap">
+                                                    <div class="elementor-element elementor-element-2c853e6 elementor-widget elementor-widget-get-started-area" data-id="2c853e6" data-element_type="widget" data-widget_type="get-started-area.default">
+                                                        <div class="elementor-widget-container">
+
+                                                            @*jQuery Script*@
+
+                                                            <div class="get-started-section">
+                                                                <div class="container">
+                                                                    <div class="row">
+                                                                        <div class="col-lg-12 text-center">
+                                                                            <div class="get-started-section-titler">
+                                                                                <h2>How to get started</h2>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-lg-5">
+                                                                            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                                                                <a class="nav-link" id="v-pills-Register-tab" data-toggle="pill" href="#v-pills-Register" role="tab" aria-controls="v-pills-Register" aria-selected="false">
+                                                                                    <img src="~/LandingPageAssets/wp-content/uploads/2019/12/register.png" alt="">
+                                                                                    <div class="tab-text">
+                                                                                        <h2>Register</h2>
+                                                                                        <p>
+                                                                                            Create a Digital Wallet and securely<br />
+                                                                                            store your currency
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </a>
+                                                                                <a class="nav-link" id="v-pills-Connect-tab" data-toggle="pill" href="#v-pills-Connect" role="tab" aria-controls="v-pills-Connect" aria-selected="false">
+                                                                                    <img src="~/LandingPageAssets/wp-content/uploads/2020/01/logo-2.png" alt="">
+                                                                                    <div class="tab-text">
+                                                                                        <h2>Connect</h2>
+                                                                                        <p>Connect your Secure Wallet Account so that you can trade digital currency with the fastest data capabilities possible.</p>
+                                                                                    </div>
+                                                                                </a>
+                                                                                <a class="nav-link" id="v-pills-Trade-tab" data-toggle="pill" href="@Url.Action("Index","Dashboard")" role="tab" aria-controls="v-pills-Trade" aria-selected="false">
+                                                                                    <img src="~/LandingPageAssets/wp-content/uploads/2020/01/logo-3.png" alt="">
+                                                                                    <div class="tab-text">
+                                                                                        <h2>Trade</h2>
+                                                                                        <p>Trade Long/Short using top-tier Bitcoin data and begin using the future of money.</p>
+                                                                                    </div>
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-7">
+                                                                            <div class="tab-content tab-form-custom" id="v-pills-tabContent">
+                                                                                <div class="tab-pane fade" id="v-pills-Register" role="tabpanel" aria-labelledby="v-pills-Register-tab">
+                                                                                    <h2>Register</h2>
+                                                                                    <p>Fill out your basic information</p>
+                                                                                    @using (Html.BeginForm("SignUpLandingPage", "Account", FormMethod.Post, new { id = "s-form" }))
+                                                                                    {
+                                                                                        <div class='ur-frontend-form' id=''>
+                                                                                            <form method='post' class='register'
+                                                                                                  data-enable-strength-password="yes" data-minimum-password-strength="3">
+                                                                                                <div class='ur-form-row'>
+                                                                                                    <div class="ur-form-grid ur-grid-1"
+                                                                                                         style="width:48%">
+                                                                                                        <div class="ur-field-item field-user_email">
+                                                                                                            <div class="form-row validate-required" id="user_email_field" data-priority="">
+                                                                                                                <label for="user_email" class="ur-label">Email <abbr class="required" title="required">*</abbr></label>
+                                                                                                                @Html.TextBoxFor(m => m.Username, new { @class = "form-control input-text input-email ur-frontend-field", type = "email", placeholder = "your@email.com", required = "required", id = "email" })
+                                                                                                                <p class="text-danger"> @Html.ValidationMessageFor(m => m.Username)</p>
+                                                                                                                <p class="text-danger" style="font-size:15px;" id="ae">Email Already Exist</p>
+                                                                                                                @*<input data-rules="" data-id="user_email" type="email" class="input-text input-email ur-frontend-field" name="user_email" id="user_email" placeholder="your@email.com" value="" required="required" data-label="Email" />*@
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div class="ur-field-item field-user_pass">
+                                                                                                            <div class="form-row validate-required hide_show_password" id="user_pass_field" data-priority="">
+                                                                                                                <label for="user_pass" class="ur-label">Password <abbr class="required" title="required">*</abbr></label><span class="password-input-group">
+                                                                                                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control input-text input-password ur-frontend-field", type = "password", placeholder = "Minimum 6 Characters", required = "required" })
+                                                                                                                    <p class="text-danger">@Html.ValidationMessageFor(m => m.Password)</p>
+                                                                                                                    @*<input data-rules="" data-id="user_pass" type="password" class="input-text input-password ur-frontend-field" name="user_pass" id="user_pass" placeholder="Minimum 6 Characters" value="" required="required" data-label="Password" />*@
+                                                                                                                </span>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="ur-form-grid ur-grid-2"
+                                                                                                         style="width:48%">
+                                                                                                        <div class="ur-field-item field-user_login">
+                                                                                                            <div class="form-row validate-required" id="user_login_field" data-priority="">
+                                                                                                                <label for="user_login" class="ur-label">Name <abbr class="required" title="required">*</abbr></label>
+                                                                                                                @Html.TextBoxFor(m => m.Username, new { @class = "form-control input-text input-text ur-frontend-field", type = "text", placeholder = "You Name", required = "required", id = "name" })
+
+                                                                                                                @*<input data-rules="" data-id="user_login" type="text" class="input-text input-text ur-frontend-field" name="user_login" id="user_login" placeholder="Your Name" value="" required="required" data-label="Name" />*@
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div class="ur-field-item field-user_confirm_password">
+                                                                                                            <div class="form-row validate-required hide_show_password" id="user_confirm_password_field" data-priority="">
+                                                                                                                <label for="user_confirm_password" class="ur-label">Confirm Password <abbr class="required" title="required">*</abbr></label><span class="password-input-group">
+                                                                                                                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control input-text input-password ur-frontend-field", type = "password", placeholder = "Minimum 6 Characters", required = "required", id = "user_confirm_password" })
+                                                                                                                    <p class="text-danger">@Html.ValidationMessageFor(m => m.ConfirmPassword)</p>
+                                                                                                                    @*<input data-rules="" data-id="user_confirm_password" type="password" class="input-text input-password ur-frontend-field" name="user_confirm_password" id="user_confirm_password" })*@
+                                                                                                                </span>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class='ur-form-row'>
+                                                                                                    <div class="ur-form-grid ur-grid-1"
+                                                                                                         style="width:99%">
+                                                                                                        <div class="ur-field-item field-checkbox">
+                                                                                                            <div class="form-row validate-required" id="check_box_1577736081_field" data-priority="">
+                                                                                                                <label class="ur-label" required="required" data-label="&nbsp;">&nbsp; <abbr class="required" title="required">*</abbr></label><ul>
+                                                                                                                    <li class="ur-checkbox-list">
+                                                                                                                        <input data-rules="" data-id="termsCondition" required="required" data-label="&nbsp;" data-value="Terms and Conditions *" type="checkbox" class="input-checkbox ur-frontend-field" name="check_box_1577736081[]" id="termsCondition" value="Terms and Conditions *" /> <label class="ur-checkbox-label" for="check_box_1577736081_Terms and Conditions *">Terms and Conditions *</label>
+                                                                                                                    </li>
+                                                                                                                </ul>
+                                                                                                                <label class="error-message" style="color:red; margin-left: 10px;"></label>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="ur-button-container">
+                                                                                                    <button type="submit" class="btn button ur-submit-button">
+                                                                                                        <span></span>
+                                                                                                        Submit
+                                                                                                    </button>
+                                                                                                </div>
+
+                                                                                                <div style="clear:both"></div>
+                                                                                                <input type="hidden" name="ur-user-form-id" value="48" />
+                                                                                                <input type="hidden" name="ur-redirect-url" value="" />
+                                                                                                <input type="hidden" id="ur_frontend_form_nonce" name="ur_frontend_form_nonce" value="63525866d6" />
+                                                                                            </form>
+                                                                                            <div style="clear:both"></div>
+                                                                                        </div>
+                                                                                    }
+                                                                                </div>
+
+                                                                                <script>
+
+                    $("#ae").hide();
+
+                    $("#s-form").submit(function (e) {
+                        e.preventDefault();
+                        if ($('#termsCondition').is(':checked')) {
+                            $('.error-message').text('');
+                            var form = $(this);
+                            form.validate();
+                            if (form.valid()) {
+                                $.post(form.attr('action'), form.serialize(), function (msg) {
+                                    $.unblockUI();
+                                    if (msg === "OK") {
+                                        window.location = "/Dashboard/Index/";
+                                    }
+                                    else {
+                                        alert(msg);
+                                    }
+                                });
+                            }
+                            else e.preventDefault();
+                        }
+                        else {
+                            e.preventDefault();
+                            $('.error-message').text('Please accept the Term & Conditions');
+                        }
+                    });
+
+                    $("#email").blur(function () {
+                        var value = $(this).val();
+                        $.get("@Url.Action("CheckEmail", "Account")", { email: value }, function (flag)
+                        {
+                            if (flag == "True")
+                            {
+                                $("#ae").show();
+                                $("#email").val("");
+                            }
+                            else {
+                                $("#ae").hide();
+                            }
+                        })
+                    })
+                                                                                </script>
+
+                                                                                <div class="tab-pane fade" id="v-pills-Connect" role="tabpanel" aria-labelledby="v-pills-Connect-tab">
+                                                                                    <h2>Connect</h2>
+                                                                                    <p>Fill out your basic information</p>
+                                                                                    <div class='user-registration ur-frontend-form' id='user-registration-form-48'>
+                                                                                        <form method='post' class='register'
+                                                                                              data-enable-strength-password="yes" data-minimum-password-strength="3">
+                                                                                            <div class='ur-form-row'>
+                                                                                                <div class="ur-form-grid ur-grid-1"
+                                                                                                     style="width:48%">
+                                                                                                    <div class="ur-field-item field-user_email">
+                                                                                                        <div class="form-row validate-required" id="user_email_field" data-priority=""><label for="user_email" class="ur-label">Email <abbr class="required" title="required">*</abbr></label><input data-rules="" data-id="user_email" type="email" class="input-text input-email ur-frontend-field" name="user_email" id="user_email" placeholder="your@email.com" value="" required="required" data-label="Email" /></div>
+                                                                                                    </div>
+                                                                                                    <div class="ur-field-item field-user_pass">
+                                                                                                        <div class="form-row validate-required hide_show_password" id="user_pass_field" data-priority=""><label for="user_pass" class="ur-label">Password <abbr class="required" title="required">*</abbr></label><span class="password-input-group"><input data-rules="" data-id="user_pass" type="password" class="input-text input-password ur-frontend-field" name="user_pass" id="user_pass" placeholder="Minimum 6 Characters" value="" required="required" data-label="Password" /></span></div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="ur-form-grid ur-grid-2"
+                                                                                                     style="width:48%">
+                                                                                                    <div class="ur-field-item field-user_login">
+                                                                                                        <div class="form-row validate-required" id="user_login_field" data-priority=""><label for="user_login" class="ur-label">Name <abbr class="required" title="required">*</abbr></label><input data-rules="" data-id="user_login" type="text" class="input-text input-text ur-frontend-field" name="user_login" id="user_login" placeholder="Your Name" value="" required="required" data-label="Name" /></div>
+                                                                                                    </div>
+                                                                                                    <div class="ur-field-item field-user_confirm_password">
+                                                                                                        <div class="form-row validate-required hide_show_password" id="user_confirm_password_field" data-priority=""><label for="user_confirm_password" class="ur-label">Confirm Password <abbr class="required" title="required">*</abbr></label><span class="password-input-group"><input data-rules="" data-id="user_confirm_password" type="password" class="input-text input-password ur-frontend-field" name="user_confirm_password" id="user_confirm_password" placeholder="Minimum 6 Characters" value="" required="required" data-label="Confirm Password" /></span></div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class='ur-form-row'>
+                                                                                                <div class="ur-form-grid ur-grid-1"
+                                                                                                     style="width:99%">
+                                                                                                    <div class="ur-field-item field-checkbox">
+                                                                                                        <div class="form-row validate-required" id="check_box_1577736081_field" data-priority=""><label class="ur-label" required="required" data-label="&nbsp;">&nbsp; <abbr class="required" title="required">*</abbr></label><ul><li class="ur-checkbox-list"><input data-rules="" data-id="check_box_1577736081" required="required" data-label="&nbsp;" data-value="Terms and Conditions *" type="checkbox" class="input-checkbox ur-frontend-field" name="check_box_1577736081[]" id="check_box_1577736081_Terms and Conditions *" value="Terms and Conditions *" /> <label class="ur-checkbox-label" for="check_box_1577736081_Terms and Conditions *">Terms and Conditions *</label> </li></ul></div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="ur-button-container">
+
+                                                                                                <button type="submit" class="btn button ur-submit-button">
+                                                                                                    <span></span>
+                                                                                                    Submit
+                                                                                                </button>
+                                                                                            </div>
+
+                                                                                            <div style="clear:both"></div>
+                                                                                            <input type="hidden" name="ur-user-form-id" value="48" />
+                                                                                            <input type="hidden" name="ur-redirect-url" value="" />
+                                                                                            <input type="hidden" id="ur_frontend_form_nonce" name="ur_frontend_form_nonce" value="63525866d6" />
+                                                                                        </form>
+                                                                                        <div style="clear:both"></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="tab-pane fade" id="v-pills-Trade" role="tabpanel" aria-labelledby="v-pills-Trade-tab">
+                                                                                    <h2>Trade</h2>
+                                                                                    <p>Fill out your basic information</p>
+                                                                                    <div class='user-registration ur-frontend-form' id='user-registration-form-48'>
+                                                                                        <form method='post' class='register'
+                                                                                              data-enable-strength-password="yes" data-minimum-password-strength="3">
+                                                                                            <div class='ur-form-row'>
+                                                                                                <div class="ur-form-grid ur-grid-1"
+                                                                                                     style="width:48%">
+                                                                                                    <div class="ur-field-item field-user_email">
+                                                                                                        <div class="form-row validate-required" id="user_email_field" data-priority=""><label for="user_email" class="ur-label">Email <abbr class="required" title="required">*</abbr></label><input data-rules="" data-id="user_email" type="email" class="input-text input-email ur-frontend-field" name="user_email" id="user_email" placeholder="your@email.com" value="" required="required" data-label="Email" /></div>
+                                                                                                    </div>
+                                                                                                    <div class="ur-field-item field-user_pass">
+                                                                                                        <div class="form-row validate-required hide_show_password" id="user_pass_field" data-priority=""><label for="user_pass" class="ur-label">Password <abbr class="required" title="required">*</abbr></label><span class="password-input-group"><input data-rules="" data-id="user_pass" type="password" class="input-text input-password ur-frontend-field" name="user_pass" id="user_pass" placeholder="Minimum 6 Characters" value="" required="required" data-label="Password" /></span></div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="ur-form-grid ur-grid-2"
+                                                                                                     style="width:48%">
+                                                                                                    <div class="ur-field-item field-user_login">
+                                                                                                        <div class="form-row validate-required" id="user_login_field" data-priority=""><label for="user_login" class="ur-label">Name <abbr class="required" title="required">*</abbr></label><input data-rules="" data-id="user_login" type="text" class="input-text input-text ur-frontend-field" name="user_login" id="user_login" placeholder="Your Name" value="" required="required" data-label="Name" /></div>
+                                                                                                    </div>
+                                                                                                    <div class="ur-field-item field-user_confirm_password">
+                                                                                                        <div class="form-row validate-required hide_show_password" id="user_confirm_password_field" data-priority=""><label for="user_confirm_password" class="ur-label">Confirm Password <abbr class="required" title="required">*</abbr></label><span class="password-input-group"><input data-rules="" data-id="user_confirm_password" type="password" class="input-text input-password ur-frontend-field" name="user_confirm_password" id="user_confirm_password" placeholder="Minimum 6 Characters" value="" required="required" data-label="Confirm Password" /></span></div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class='ur-form-row'>
+                                                                                                <div class="ur-form-grid ur-grid-1"
+                                                                                                     style="width:99%">
+                                                                                                    <div class="ur-field-item field-checkbox">
+                                                                                                        <div class="form-row validate-required" id="check_box_1577736081_field" data-priority=""><label class="ur-label" required="required" data-label="&nbsp;">&nbsp; <abbr class="required" title="required">*</abbr></label><ul><li class="ur-checkbox-list"><input data-rules="" data-id="check_box_1577736081" required="required" data-label="&nbsp;" data-value="Terms and Conditions *" type="checkbox" class="input-checkbox ur-frontend-field" name="check_box_1577736081[]" id="check_box_1577736081_Terms and Conditions *" value="Terms and Conditions *" /> <label class="ur-checkbox-label" for="check_box_1577736081_Terms and Conditions *">Terms and Conditions *</label> </li></ul></div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="ur-button-container">
+
+                                                                                                <button type="submit" class="btn button ur-submit-button">
+                                                                                                    <span></span>
+                                                                                                    Submit
+                                                                                                </button>
+                                                                                            </div>
+
+                                                                                            <div style="clear:both"></div>
+                                                                                            <input type="hidden" name="ur-user-form-id" value="48" />
+                                                                                            <input type="hidden" name="ur-redirect-url" value="" />
+                                                                                            <input type="hidden" id="ur_frontend_form_nonce" name="ur_frontend_form_nonce" value="63525866d6" />
+                                                                                        </form>
+                                                                                        <div style="clear:both"></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="elementor-element elementor-element-c5557a4 elementor-section-stretched elementor-section-full_width elementor-section-height-default elementor-section-height-default elementor-section elementor-top-section" data-id="c5557a4" data-element_type="section" data-settings="{&quot;stretch_section&quot;:&quot;section-stretched&quot;}">
+                                <div class="elementor-container elementor-column-gap-no">
+                                    <div class="elementor-row">
+                                        <div class="elementor-element elementor-element-b0d8576 elementor-column elementor-col-100 elementor-top-column" data-id="b0d8576" data-element_type="column">
+                                            <div class="elementor-column-wrap  elementor-element-populated">
+                                                <div class="elementor-widget-wrap">
+                                                    <div class="elementor-element elementor-element-d53da74 elementor-widget elementor-widget-features-section" data-id="d53da74" data-element_type="widget" data-widget_type="features-section.default">
+                                                        <div class="elementor-widget-container">
+
+                                                            <!-- start service area  -->
+                                                            <section class="features-area">
+                                                                <div class="container">
+                                                                    <div class="row">
+                                                                        <div class="col-lg-12">
+                                                                            <div class="section-title">
+                                                                                <h2>Interactive Features</h2>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row justify-content-center">
+                                                                        <div class="col-lg-10 offset-lg-2">
+                                                                            <div class="features-content-wrap">
+                                                                                <div class="row">
+                                                                                    <!-- single features item  -->
+                                                                                    <div class="col-lg-4 col-md-6">
+                                                                                        <div class="single-features-item features1">
+                                                                                            <div class="features-thumb">
+
+                                                                                                <img class="feature1" src="~/LandingPageAssets/wp-content/uploads/2019/12/features1.png" alt="">
+
+                                                                                            </div>
+                                                                                            <div class="features-content">
+                                                                                                <h4>Opt in to save 97% <br> more per trade</h4>
+                                                                                                <p>Quotes are pulled directly from our top-tier data providers; allowing our clients to trade on the lowest latency data with fees as low as 1¢</p>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <!-- single features item  -->
+                                                                                    <div class="col-lg-4 col-md-6">
+                                                                                        <div class="single-features-item features2">
+                                                                                            <div class="features-thumb">
+                                                                                                <img class="feature2" src="~/LandingPageAssets/wp-content/uploads/2019/12/features2.png" alt="">
+                                                                                            </div>
+                                                                                            <div class="features-content">
+                                                                                                <h4>Next Generation <br> NanoPips software</h4>
+                                                                                                <p>We offer the industry's first true low latency trading experience. Direct market access to trade cryptocurrency in bitcoin.</p>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <!-- single features item  -->
+                                                                                    <div class="col-lg-4 col-md-6">
+                                                                                        <div class="single-features-item features3">
+                                                                                            <div class="features-thumb">
+                                                                                                <img class="feature3" src="~/LandingPageAssets/wp-content/uploads/2019/12/features3.png" alt="">
+                                                                                            </div>
+                                                                                            <div class="features-content">
+                                                                                                <h4>Security Block <br>Technology</h4>
+                                                                                                <p>Get a NanoPips Account and start trading on the world's most popular cryptocurrency markets available. Securely through our superior data providers.</p>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <!-- single features item  -->
+                                                                                    <div class="col-lg-4 col-md-6">
+                                                                                        <div class="single-features-item features4">
+                                                                                            <div class="features-thumb">
+                                                                                                <img class="feature4" src="~/LandingPageAssets/wp-content/uploads/2019/12/features4.png" alt="">
+                                                                                            </div>
+                                                                                            <div class="features-content">
+                                                                                                <h4>#1 Tech Support &  Encrypted Data</h4>
+                                                                                                <p>Founded by Tech Experts. Operated by Tech Experts. Managed by Tech Experts. Your leading platform to buy and sell, bitcoin, ethereum, cryptocurrencies, gold and more.</p>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <!-- single features item  -->
+                                                                                    <div class="col-lg-4 col-md-6">
+                                                                                        <div class="single-features-item features5">
+                                                                                            <div class="features-thumb">
+                                                                                                <img class="feature5" src="~/LandingPageAssets/wp-content/uploads/2019/12/features5.png" alt="">
+                                                                                            </div>
+                                                                                            <div class="features-content">
+                                                                                                <h4>Superior Order <br>Execution</h4>
+                                                                                                <p>Our trading technology ensures that all of our clients trade on competitive prices and that their orders are routed/executed quickly.</p>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-lg-4 col-md-6">
+                                                                                        <div class="single-features-item features6">
+                                                                                            <div class="features-thumb">
+                                                                                                <img class="feature6" src="~/LandingPageAssets/wp-content/uploads/2019/12/features6.png" alt="">
+                                                                                            </div>
+                                                                                            <div class="features-content">
+                                                                                                <h4>Simple Fast  Trading</h4>
+                                                                                                <p>Our platform makes it simple for new traders and seasoned veterans to begin trading cryptocurrency almost instantly.</p>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <img class="features-shape" src="~/LandingPageAssets/wp-content/uploads/2019/12/features-thumb.png" alt="">
+                                                            </section>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="elementor-element elementor-element-4c138b87 elementor-section-boxed elementor-section-height-default elementor-section-height-default elementor-section elementor-top-section" data-id="4c138b87" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+                                <div class="elementor-container elementor-column-gap-default">
+                                    <div class="elementor-row">
+                                        <div class="elementor-element elementor-element-7aafaf4a elementor-column elementor-col-50 elementor-top-column" data-id="7aafaf4a" data-element_type="column">
+                                            <div class="elementor-column-wrap  elementor-element-populated">
+                                                <div class="elementor-widget-wrap">
+                                                    <div class="elementor-element elementor-element-2e5058a5 elementor-widget elementor-widget-heading" data-id="2e5058a5" data-element_type="widget" data-widget_type="heading.default">
+                                                        <div class="elementor-widget-container">
+                                                            <h2 class="elementor-heading-title elementor-size-default">Experience <br>the Difference</h2>
+                                                        </div>
+                                                    </div>
+                                                    <div class="elementor-element elementor-element-7ec9bc15 elementor-widget elementor-widget-text-editor" data-id="7ec9bc15" data-element_type="widget" data-widget_type="text-editor.default">
+                                                        <div class="elementor-widget-container">
+                                                            <div class="elementor-text-editor elementor-clearfix">
+                                                                Many of our traders and partners enjoy the benefit of simple,
+                                                                cost effective trading using our Order Routing Algorithm
+                                                                that gives you access to the lowest latency data.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="elementor-element elementor-element-ae643c5 elementor-widget elementor-widget-button" data-id="ae643c5" data-element_type="widget" data-widget_type="button.default">
+                                                        <div class="elementor-widget-container">
+                                                            <div class="elementor-button-wrapper">
+                                                                <a href="@Url.Action("Help","Account")" class="elementor-button-link elementor-button elementor-size-sm" role="button">
+                                                                    <span class="elementor-button-content-wrapper">
+                                                                        <span class="elementor-button-text">Learn More</span>
+                                                                    </span>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="elementor-element elementor-element-705ac7d7 elementor-column elementor-col-50 elementor-top-column" data-id="705ac7d7" data-element_type="column">
+                                            <div class="elementor-column-wrap  elementor-element-populated">
+                                                <div class="elementor-widget-wrap">
+                                                    <div class="elementor-element elementor-element-6860c504 elementor-widget elementor-widget-image" data-id="6860c504" data-element_type="widget" data-widget_type="image.default">
+                                                        <div class="elementor-widget-container">
+                                                            <div class="elementor-image">
+                                                                <img width="552" height="640" src="~/LandingPageAssets/wp-content/uploads/2019/12/ad-thumb.png" class="attachment-large size-large" alt="" srcset="~/LandingPageAssets/wp-content/uploads/2019/12/ad-thumb.png 552w, ~/LandingPageAssets/wp-content/uploads/2019/12/ad-thumb-259x300.png 259w" sizes="(max-width: 552px) 100vw, 552px" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="elementor-element elementor-element-68592843 elementor-section-boxed elementor-section-height-default elementor-section-height-default elementor-section elementor-top-section" data-id="68592843" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+                                <div class="elementor-container elementor-column-gap-default">
+                                    <div class="elementor-row">
+                                        <div class="elementor-element elementor-element-2000c269 elementor-column elementor-col-33 elementor-top-column" data-id="2000c269" data-element_type="column">
+                                            <div class="elementor-column-wrap  elementor-element-populated">
+                                                <div class="elementor-widget-wrap">
+                                                    <div class="elementor-element elementor-element-47270a86 elementor-position-left elementor-view-default elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="47270a86" data-element_type="widget" data-widget_type="icon-box.default">
+                                                        <div class="elementor-widget-container">
+                                                            <div class="elementor-icon-box-wrapper">
+                                                                <div class="elementor-icon-box-icon">
+                                                                    <span class="elementor-icon elementor-animation-">
+                                                                        <i aria-hidden="true" class="fas fa-check-circle"></i>
+                                                                    </span>
+                                                                </div>
+                                                                <div class="elementor-icon-box-content">
+                                                                    <h3 class="elementor-icon-box-title">
+                                                                        <span>Deep Liquidity Pool</span>
+                                                                    </h3>
+                                                                    <p class="elementor-icon-box-description">
+                                                                        Connect to Top-Tier Providers
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="elementor-element elementor-element-4a059cda elementor-position-left elementor-view-default elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="4a059cda" data-element_type="widget" data-widget_type="icon-box.default">
+                                                        <div class="elementor-widget-container">
+                                                            <div class="elementor-icon-box-wrapper">
+                                                                <div class="elementor-icon-box-icon">
+                                                                    <span class="elementor-icon elementor-animation-">
+                                                                        <i aria-hidden="true" class="fas fa-check-circle"></i>
+                                                                    </span>
+                                                                </div>
+                                                                <div class="elementor-icon-box-content">
+                                                                    <h3 class="elementor-icon-box-title">
+                                                                        <span>Competitive Prices</span>
+                                                                    </h3>
+                                                                    <p class="elementor-icon-box-description">Execute on a Fair Trade Environment</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="elementor-element elementor-element-54dbe620 elementor-position-left elementor-view-default elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="54dbe620" data-element_type="widget" data-widget_type="icon-box.default">
+                                                        <div class="elementor-widget-container">
+                                                            <div class="elementor-icon-box-wrapper">
+                                                                <div class="elementor-icon-box-icon">
+                                                                    <span class="elementor-icon elementor-animation-">
+                                                                        <i aria-hidden="true" class="fas fa-check-circle"></i>
+                                                                    </span>
+                                                                </div>
+                                                                <div class="elementor-icon-box-content">
+                                                                    <h3 class="elementor-icon-box-title">
+                                                                        <span>Seamless Order Execution</span>
+                                                                    </h3>
+                                                                    <p class="elementor-icon-box-description">Technology to Ensure Low Latency on Orders</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="elementor-element elementor-element-5d1caf7b elementor-column elementor-col-33 elementor-top-column" data-id="5d1caf7b" data-element_type="column">
+                                            <div class="elementor-column-wrap  elementor-element-populated">
+                                                <div class="elementor-widget-wrap">
+                                                    <div class="elementor-element elementor-element-79045f84 elementor-widget elementor-widget-image" data-id="79045f84" data-element_type="widget" data-widget_type="image.default">
+                                                        <div class="elementor-widget-container">
+                                                            <div class="elementor-image">
+                                                                <img width="282" height="339" src="~/LandingPageAssets/wp-content/uploads/2019/12/check-thumbnail.png" class="attachment-large size-large" alt="" srcset="~/LandingPageAssets/wp-content/uploads/2019/12/check-thumbnail.png 282w, ~/LandingPageAssets/wp-content/uploads/2019/12/check-thumbnail-250x300.png 250w" sizes="(max-width: 282px) 100vw, 282px" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="elementor-element elementor-element-22a16f74 elementor-column elementor-col-33 elementor-top-column" data-id="22a16f74" data-element_type="column">
+                                            <div class="elementor-column-wrap  elementor-element-populated">
+                                                <div class="elementor-widget-wrap">
+                                                    <div class="elementor-element elementor-element-5a0a8469 elementor-position-left elementor-view-default elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="5a0a8469" data-element_type="widget" data-widget_type="icon-box.default">
+                                                        <div class="elementor-widget-container">
+                                                            <div class="elementor-icon-box-wrapper">
+                                                                <div class="elementor-icon-box-icon">
+                                                                    <span class="elementor-icon elementor-animation-">
+                                                                        <i aria-hidden="true" class="fas fa-check-circle"></i>
+                                                                    </span>
+                                                                </div>
+                                                                <div class="elementor-icon-box-content">
+                                                                    <h3 class="elementor-icon-box-title">
+                                                                        <span>Low Cost Trading Capabilities</span>
+                                                                    </h3>
+                                                                    <p class="elementor-icon-box-description">$0.01 per 0.01 Order Quantity</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="elementor-element elementor-element-157eeb98 elementor-position-left elementor-view-default elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="157eeb98" data-element_type="widget" data-widget_type="icon-box.default">
+                                                        <div class="elementor-widget-container">
+                                                            <div class="elementor-icon-box-wrapper">
+                                                                <div class="elementor-icon-box-icon">
+                                                                    <span class="elementor-icon elementor-animation-">
+                                                                        <i aria-hidden="true" class="fas fa-check-circle"></i>
+                                                                    </span>
+                                                                </div>
+                                                                <div class="elementor-icon-box-content">
+                                                                    <h3 class="elementor-icon-box-title">
+                                                                        <span>Mobile Trading Supported</span>
+                                                                    </h3>
+                                                                    <p class="elementor-icon-box-description">Seamlessly Trade Between Multiple Devices</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="elementor-element elementor-element-6f15b643 elementor-position-left elementor-view-default elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="6f15b643" data-element_type="widget" data-widget_type="icon-box.default">
+                                                        <div class="elementor-widget-container">
+                                                            <div class="elementor-icon-box-wrapper">
+                                                                <div class="elementor-icon-box-icon">
+                                                                    <span class="elementor-icon elementor-animation-">
+                                                                        <i aria-hidden="true" class="fas fa-check-circle"></i>
+                                                                    </span>
+                                                                </div>
+                                                                <div class="elementor-icon-box-content">
+                                                                    <h3 class="elementor-icon-box-title">
+                                                                        <span>7 Days/Week Operational Support</span>
+                                                                    </h3>
+                                                                    <p class="elementor-icon-box-description">Dedicated Customer Support Operations</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="elementor-element elementor-element-552e8b96 elementor-section-boxed elementor-section-height-default elementor-section-height-default elementor-section elementor-top-section" data-id="552e8b96" data-element_type="section">
+                                <div class="elementor-container elementor-column-gap-default">
+                                    <div class="elementor-row">
+                                        <div class="elementor-element elementor-element-1c5b1f78 elementor-column elementor-col-100 elementor-top-column" data-id="1c5b1f78" data-element_type="column" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+                                            <div class="elementor-column-wrap  elementor-element-populated">
+                                                <div class="elementor-widget-wrap">
+                                                    <section class="elementor-element elementor-element-3765dc4a elementor-section-boxed elementor-section-height-default elementor-section-height-default elementor-section elementor-inner-section" data-id="3765dc4a" data-element_type="section">
+                                                        <div class="elementor-container elementor-column-gap-default">
+                                                            <div class="elementor-row">
+                                                                <div class="elementor-element elementor-element-1b803db4 elementor-column elementor-col-50 elementor-inner-column" data-id="1b803db4" data-element_type="column" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+                                                                    <div class="elementor-column-wrap  elementor-element-populated">
+                                                                        <div class="elementor-widget-wrap">
+                                                                            <div class="elementor-element elementor-element-541357ac elementor-widget elementor-widget-text-editor" data-id="541357ac" data-element_type="widget" data-widget_type="text-editor.default">
+                                                                                <div class="elementor-widget-container">
+                                                                                    <div class="elementor-text-editor elementor-clearfix"><p>Refer &amp; Earn <b>60%</b> Commissions</p></div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="elementor-element elementor-element-6405806e elementor-widget elementor-widget-button" data-id="6405806e" data-element_type="widget" data-widget_type="button.default">
+                                                                                <div class="elementor-widget-container">
+                                                                                    <div class="elementor-button-wrapper">
+                                                                                        <a href="@Url.Action("Help","Account")" class="elementor-button-link elementor-button elementor-size-sm" role="button">
+                                                                                            <span class="elementor-button-content-wrapper">
+                                                                                                <span class="elementor-button-text">Learn More</span>
+                                                                                            </span>
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="elementor-element elementor-element-61bbb853 elementor-column elementor-col-50 elementor-inner-column" data-id="61bbb853" data-element_type="column">
+                                                                    <div class="elementor-column-wrap  elementor-element-populated">
+                                                                        <div class="elementor-widget-wrap">
+                                                                            <div class="elementor-element elementor-element-612c7f46 elementor-widget elementor-widget-image" data-id="612c7f46" data-element_type="widget" data-widget_type="image.default">
+                                                                                <div class="elementor-widget-container">
+                                                                                    <div class="elementor-image">
+                                                                                        <img width="250" height="171" src="~/LandingPageAssets/wp-content/uploads/2019/12/cta-thumb.png" class="attachment-large size-large" alt="" />
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </section>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="elementor-element elementor-element-73305f2d elementor-section-boxed elementor-section-height-default elementor-section-height-default elementor-section elementor-top-section" data-id="73305f2d" data-element_type="section">
+                                <div class="elementor-container elementor-column-gap-default">
+                                    <div class="elementor-row">
+                                        <div class="elementor-element elementor-element-7f1d8179 elementor-column elementor-col-50 elementor-top-column" data-id="7f1d8179" data-element_type="column">
+                                            <div class="elementor-column-wrap  elementor-element-populated">
+                                                <div class="elementor-widget-wrap">
+                                                    <div class="elementor-element elementor-element-25ba2cf8 elementor-widget elementor-widget-heading" data-id="25ba2cf8" data-element_type="widget" data-widget_type="heading.default">
+                                                        <div class="elementor-widget-container">
+                                                            <h2 class="elementor-heading-title elementor-size-default">Foreign Exchange trading involves substantial risk of <br>loss and is not suitable <br>for all investors.</h2>
+                                                        </div>
+                                                    </div>
+                                                    <div class="elementor-element elementor-element-31175e38 elementor-widget elementor-widget-text-editor" data-id="31175e38" data-element_type="widget" data-widget_type="text-editor.default">
+                                                        <div class="elementor-widget-container">
+                                                            <div class="elementor-text-editor elementor-clearfix"><p><span style="color: #66c254;">NANOPIPS.COM</span> is compensated through the bid/ask spread and/or commissions on transactions.</p></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="elementor-element elementor-element-15bca2db elementor-widget elementor-widget-heading" data-id="15bca2db" data-element_type="widget" data-widget_type="heading.default">
+                                                        <div class="elementor-widget-container">
+                                                            <h2 class="elementor-heading-title elementor-size-default">RISK WARNING: </h2>
+                                                        </div>
+                                                    </div>
+                                                    <div class="elementor-element elementor-element-5aa54424 elementor-widget elementor-widget-text-editor" data-id="5aa54424" data-element_type="widget" data-widget_type="text-editor.default">
+                                                        <div class="elementor-widget-container">
+                                                            <div class="elementor-text-editor elementor-clearfix">
+                                                                Trading of foreign exchange contracts, contracts for
+                                                                difference, derivatives and other investment products which are leveraged, can carry a high level of risk. These products may not be suitable for all
+                                                                investors. It is possible to lose more than your initial investment. You should
+                                                                carefully consider whether trading is suitable for you in light of your
+                                                                circumstances, knowledge, and financial resources. Opinions, market data, and recommendations are subject to change at any time. All funds
+                                                                committed should be risk capital. Past performance is not necessarily
+                                                                indicative of future results.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="elementor-element elementor-element-20178844 elementor-column elementor-col-50 elementor-top-column" data-id="20178844" data-element_type="column">
+                                            <div class="elementor-column-wrap  elementor-element-populated">
+                                                <div class="elementor-widget-wrap">
+                                                    <div class="elementor-element elementor-element-2305aa16 elementor-widget elementor-widget-heading" data-id="2305aa16" data-element_type="widget" data-widget_type="heading.default">
+                                                        <div class="elementor-widget-container">
+                                                            <h2 class="elementor-heading-title elementor-size-default">IMPORTANT INFORMATION</h2>
+                                                        </div>
+                                                    </div>
+                                                    <div class="elementor-element elementor-element-512c8df2 elementor-widget elementor-widget-text-editor" data-id="512c8df2" data-element_type="widget" data-widget_type="text-editor.default">
+                                                        <div class="elementor-widget-container">
+                                                            <div class="elementor-text-editor elementor-clearfix"><p>No offer or solicitation to buy or sell securities, securities derivative or futures products of any kind, or any type of trading or investment advice, recommendation or strategy, is made, given or in any manner endorsed by any NanoPips affiliate and the information made available on this Website is not an offer or solicitation of any kind in any jurisdiction where any NanoPips affiliate is not authorized to do business.</p><p> </p><p>Past performance, whether actual or indicated by historical tests of strategies, is no guarantee of future performance or success. There is a possibility that you may sustain a loss equal to or greater than your entire investment regardless of which asset class you trade (equities, options forex or CFD&#8217;s ); therefore, you should not invest or risk money that you cannot afford to lose. Options trading is not suitable for all investors. Your account application to trade options will be considered and approved or disapproved based on all relevant factors, including your trading experience. </p><p>Before trading any asset class, customers must read the relevant risk disclosure statements. System access and trade placement and execution may be delayed or fail due to market volatility and volume, quote delays, system and software errors, Internet traffic, outages and other factors.</p></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- #content -->
+
+            <footer id="colophon" class="site-footer" style="background-image:url(../../LandingPageAssets/wp-content/uploads/2019/12/footer-bg.png);">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="textwidget">
+                                <p>NanoPips is the easiest, fastest and most reliable way to trade Bitcoin, Ethereum, Cryptocurrencies, and more. Made by Tech and Trading Experts.</p>
+                                <p>
+                                    ©2020 NanoPips Ltd. MSB<br />
+                                    (FINTRAC): M19495736
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <h2 class="widget-title">Products</h2><div class="menu-products-container">
+                                <ul id="menu-products" class="menu">
+                                    <li id="menu-item-20" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-20"><a href="@Url.Action("Index","Dashboard")">Trade</a></li>
+                                    <li id="menu-item-21" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-21"><a href="@Url.Action("funding","Account")">Funding Options</a></li>
+                                    <li id="menu-item-22" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-22"><a href="@Url.Action("pricing","Account")">Fees</a></li>
+                                    <li id="menu-item-23" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-23"><a href="@Url.Action("Help","Account")">FAQ&#8217;s</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <h2 class="widget-title">Company</h2><div class="menu-company-menu-container">
+                                <ul id="menu-company-menu" class="menu">
+                                    <li id="menu-item-24" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-24"><a href="@Url.Action("terms","Account")">Terms &#038; Privacy</a></li>
+                                    <li id="menu-item-25" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25"><a href="#">KYC Policy</a></li>
+                                    <li id="menu-item-26" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-26"><a href="@Url.Action("contact","Account")">Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <h2 class="widget-title">Social Media</h2>
+                            <h2 class="widget-title"></h2>
+                            <ul class="social-media-icons">
+                                <li><a href="https://www.facebook.com/nanopips/"><i class="fa fa-facebook-f" style="padding-top:15px;"></i></a></li>
+                                <li><a href="https://twitter.com/nanopips"><i class="fa fa-twitter" style="padding-top:15px;"></i></a></li>
+                                @*<li><a href=""><i class="fa fa-instagram"></i></a></li>
+                            <li><a href=""><i class="fa fa-youtube"></i></a></li>*@
+                            </ul>
+                            <p></p><p></p><p></p><p></p><p></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="footer-logo">
+                                    <a href="@Url.Action("LandingPage","Account")" class="custom-logo-link" rel="home"><img width="196" height="38" src="~/LandingPageAssets/wp-content/uploads/2019/12/cropped-logo.png" class="custom-logo" alt="Nanopips" /></a>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 text-right my-auto">
+                                <div class="copyright-text">
+                                    <p>&copy; NanoPips Ltd. | All Rights Reserved</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- #colophon -->
+        </div><!-- #page -->
+
+        <script type='text/javascript' src='~/LandingPageAssets/wp-content/themes/nanopips/assets/js/vendor/popper.min.js?ver=1.0'></script>
+        <script type='text/javascript' src='~/LandingPageAssets/wp-content/themes/nanopips/assets/js/vendor/bootstrap.min.js?ver=1.0'></script>
+        <script type='text/javascript' src='~/LandingPageAssets/wp-content/themes/nanopips/assets/js/jquery.magnific-popup.min.js?ver=1.0'></script>
+        <script type='text/javascript' src='~/LandingPageAssets/wp-content/themes/nanopips/assets/js/owl.carousel.min.js?ver=1.0'></script>
+        <script type='text/javascript' src='~/LandingPageAssets/wp-content/themes/nanopips/assets/js/jquery.sticky.js?ver=1.0'></script>
+        <script type='text/javascript' src='~/LandingPageAssets/wp-content/themes/nanopips/assets/js/main.js?ver=1578058345'></script>
+        <script type='text/javascript' src='~/LandingPageAssets/wp-content/themes/nanopips/js/navigation.js?ver=20151215'></script>
+        <script type='text/javascript' src='~/LandingPageAssets/wp-content/themes/nanopips/js/skip-link-focus-fix.js?ver=20151215'></script>
+        <script type='text/javascript' src='~/LandingPageAssets/wp-includes/js/wp-embed.min.js?ver=5.3.2'></script>
+        <script type='text/javascript' src='~/LandingPageAssets/wp-content/plugins/user-registration/assets/js/frontend/jquery.validate.min.js?ver=1.15.1'></script>
+        <script type='text/javascript' src='~/LandingPageAssets/wp-content/plugins/user-registration/assets/js/inputmask/jquery.inputmask.bundle.min.js?ver=4.0.0-beta.58'></script>
+
+        <script>
+            jQuery(document).ready(function ($) {
+                $(".tab-content .tab-pane:first-child").addClass("show active");
+                $(".get-started-section .nav-link:first-child").addClass("show active");
+            });
+        </script>
+
+        <script type='text/javascript'>
+            /* <![CDATA[ */
+            var user_registration_params = { "ajax_url": ".\/wp-admin\/admin-ajax.php", "user_registration_form_data_save": "f070a49d50", "form_required_fields": ["user_email", "user_pass"], "login_option": "default", "message_required_fields": "This field is required.", "message_email_fields": "Please enter a valid email address.", "message_url_fields": "Please enter a valid URL.", "message_number_fields": "Please enter a valid number.", "message_confirm_password_fields": "Password and confirm password not matched.", "message_confirm_email_fields": "Email and confirm email not matched.", "ursL10n": { "user_successfully_saved": "User successfully registered.", "user_under_approval": "User registered. Wait until admin approves your registration.", "user_email_pending": "User registered. Verify your email by clicking on the link sent to your email.", "captcha_error": "Captcha code error, please try again.", "hide_password_title": "Hide Password", "show_password_title": "Show Password", "password_strength_error": "Password strength is not strong enough" } };
+            /* ]]> */
+        </script>
+        <script type='text/javascript' src='~/LandingPageAssets/wp-content/plugins/user-registration/assets/js/frontend/user-registration.min.js?ver=1.7.5'></script>
+        <script type='text/javascript'>
+            /* <![CDATA[ */
+            var _zxcvbnSettings = { "src": "../../LandingPageAssets/wp-includes/js/zxcvbn-async.min.js?ver=1.0:1" };
+            /* ]]> */
+        </script>
+        <script type='text/javascript' src='~/LandingPageAssets/wp-includes/js/zxcvbn-async.min.js?ver=1.0'></script>
+        <script type='text/javascript'>
+            /* <![CDATA[ */
+            var pwsL10n = { "unknown": "Password strength unknown", "short": "Very weak", "bad": "Weak", "good": "Medium", "strong": "Strong", "mismatch": "Mismatch" };
+            /* ]]> */
+        </script>
+        <script type='text/javascript' src='~/LandingPageAssets/wp-admin/js/password-strength-meter.min.js?ver=5.3.2'></script>
+        <script type='text/javascript'>
+            /* <![CDATA[ */
+            var enable_strong_password = "yes";
+            var enable_strong_password = "yes";
+            var enable_strong_password = "yes";
+            var ur_password_strength_meter_params = { "home_url": ".", "i18n_password_error": "Please enter a stronger password.", "pwsL10n": { "shortpw": "Very Weak", "bad": "Weak", "good": "Medium", "strong": "Strong", "mismatch": "Password with confirm password not matched." }, "i18n_password_hint": "Hint: To make password stronger, use upper and lower case letters, numbers, and symbols like ! \" ? $ % ^ & )." };
+            /* ]]> */
+        </script>
+        <script type='text/javascript' src='~/LandingPageAssets/wp-content/plugins/user-registration/assets/js/frontend/password-strength-meter.min.js?ver=1.7.5'></script>
+        <script type='text/javascript' src='~/LandingPageAssets/wp-content/plugins/elementor/assets/js/frontend-modules.min.js?ver=2.8.2'></script>
+        <script type='text/javascript' src='~/LandingPageAssets/wp-includes/js/jquery/ui/position.min.js?ver=1.11.4'></script>
+        <script type='text/javascript' src='~/LandingPageAssets/wp-content/plugins/elementor/assets/lib/dialog/dialog.min.js?ver=4.7.3'></script>
+        <script type='text/javascript' src='~/LandingPageAssets/wp-content/plugins/elementor/assets/lib/waypoints/waypoints.min.js?ver=4.0.2'></script>
+        <script type='text/javascript' src='~/LandingPageAssets/wp-content/plugins/elementor/assets/lib/swiper/swiper.min.js?ver=4.4.6'></script>
+        <script type='text/javascript'>
+            var elementorFrontendConfig = { "environmentMode": { "edit": false, "wpPreview": false }, "is_rtl": false, "breakpoints": { "xs": 0, "sm": 480, "md": 768, "lg": 1025, "xl": 1440, "xxl": 1600 }, "version": "2.8.2", "urls": { "assets": ".\/wp-content\/plugins\/elementor\/assets\/" }, "settings": { "page": [], "general": { "elementor_global_image_lightbox": "yes" }, "editorPreferences": [] }, "post": { "id": 10, "title": "Home", "excerpt": "" } };
+        </script>
+        <script type='text/javascript' src='~/LandingPageAssets/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=2.8.2'></script>
+    </body>
+</html>

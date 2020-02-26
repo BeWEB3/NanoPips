@@ -1,0 +1,316 @@
+﻿@model Exchange.DTO.Account
+@{
+    ViewBag.Title = "Account Detail";
+    Layout = "~/Views/Shared/_masterAdmin.cshtml";
+    List<Exchange.DTO.Currency> currencies = ViewBag.currencies as List<Exchange.DTO.Currency>;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NanoPips</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+
+    <!-- Modal -->
+    <div class="modal fade" id="tradeHistoryModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width:fit-content">
+                <div class="modal-body row">
+                    <div class="">
+                        <div class="col-md-12">
+                            <table class="table trade-table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Market</th>
+                                        <th scope="col">Entry Price</th>
+                                        <th scope="col">Position</th>
+                                        <th scope="col">Entry Time</th>
+                                        <th scope="col">Order Quantity</th>
+                                        <th scope="col">Exit Price</th>
+                                        <th scope="col">PnL</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tradeHistoryBody" />
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <div class="row no-gutters">
+            <div class="col-12 col-md-12 col-lg-12 p-2">
+                <div class="card flat border-bottom ">
+                    <div class="card-header bg-primary">
+                        Personal Profile
+                        <div class="pull-right"><a href="@Url.Action("Accounts","Admin")" style="color:#fff">Go back</a> </div>
+                    </div>
+                    <div class="card-body">
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">First Name</label>
+                                <input type="text" class="form-control cs-form" readonly="readonly" value="@Model.FirstName">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword4">Last Name</label>
+                                <input type="text" class="form-control cs-form" readonly="readonly" value="@Model.LastName">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputAddress">Email</label>
+                            <input type="text" class="form-control cs-form" readonly="readonly" value="@Model.Email">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-12 p-2">
+                <div class="card flat border-bottom">
+                    <div class="card-header bg-warning">Verification Information</div>
+                    <div class="card-body">
+
+                        @*<div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label>Date of Birth</label>
+                                    <input type="text" class="form-control cs-form" value="@Model.DOBDay/@Model.DOBMonth/@Model.DOBYear" readonly="readonly">
+                                </div>
+                            </div>*@
+
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label>Address</label>
+                                <input type="text" class="form-control cs-form" readonly="readonly" value="@Model.Address1 @Model.Address2, @Model.Country">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">City</label>
+                                <input type="text" class="form-control cs-form" readonly="readonly" value="@Model.City">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword4">Country</label>
+                                <input type="text" class="form-control cs-form" readonly="readonly" value="@Model.Country">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label>Place of birth</label>
+                                <input type="text" class="form-control cs-form" readonly="readonly" value="@Model.PlaceOfBirth">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                @if (Model.AccountType_Id == (int) Exchange.Common.AccountTypes.REJECTED)
+                                {
+                                    <label>Account was Rejected</label>
+                                    <a href="@Url.Action("ApproveAccount","Admin",new { acId=Model.AccountId })" class="btn btn-success approveAccount">Approve</a>
+                                }
+                                else if (Model.AccountType_Id == (int) Exchange.Common.AccountTypes.VERIFIED)
+                                {
+                                    <label>Account was Verified</label>
+                                    <a href="@Url.Action("RejectAccount","Admin",new { acId=Model.AccountId })" id="rejectClick" class="btn btn-danger">Reject</a>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("ApproveAccount","Admin",new { acId=Model.AccountId })" class="btn btn-success approveAccount">Approve</a>
+                                    <a href="@Url.Action("RejectAccount","Admin",new { acId=Model.AccountId })" id="rejectClick" class="btn btn-danger">Reject</a>
+                                }
+                            </div>
+                        </div>
+
+                        @if (!String.IsNullOrEmpty(Model.IdentityProofURL))
+                        {
+                            <div class="col-md-12">
+                                <div class="contact-details-cell">
+                                    <small class="heading-font-family fw-500 ">Identity Number</small>
+                                    <span>
+                                        @Model.IdentityNumber
+                                    </span>
+                                </div>
+                                <!-- /.contact-details-cell -->
+                            </div>
+                            <div class="col-md-12">
+                                <div class="contact-details-cell">
+                                    <small class="heading-font-family fw-500 ">Identity Proof (NIC / Driving Liscense)</small>
+                                    <span>
+                                        @{
+                                            string url = "https://nanopips.com" + Model.IdentityProofURL;
+                                        }
+                                        <a href="@url" target="_blank" class="btn btn-default">Click here to download</a>
+                                    </span>
+                                </div>
+                                <!-- /.contact-details-cell -->
+                            </div>
+                            <div class="col-md-12">
+                                <div class="contact-details-cell">
+                                    <small class="heading-font-family fw-500 ">Proof of address</small>
+                                    <span>
+                                        @{
+                                            string url1 = "https://nanopips.com" + Model.IdentityProofURL2;
+                                        }
+                                        <a href="@url1" target="_blank" class="btn btn-default">Click here to download</a>
+                                    </span>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-12 p-2">
+                <div class="card flat border-bottom ">
+                    <div class="card-header bg-primary">Balances</div>
+                    <div class="card-body">
+                        <table class="table dt">
+                            <thead>
+                                <tr>
+                                    <td>
+                                        Currency
+                                    </td>
+                                    <td>Address</td>
+                                    <td>Balance</td>
+                                    <td></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in currencies)
+                                {
+                                    var wallet = Model.Wallets.Where(m => m.Currency == item.ThreeDigitName).ToList();
+                                    decimal? balance = 0;
+                                    <tr>
+                                        <td>@item.FullName (@item.ThreeDigitName)</td>
+                                        <td>
+                                            @if (wallet.Count != 0)
+                                            {
+                                                <span>
+                                                    @wallet.First().WalletAddress
+                                                </span>
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (wallet.Count != 0)
+                                            {
+                                                balance = wallet.First().Balance;
+                                                <span>
+                                                    @wallet.First().Balance
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                balance = 0;
+                                                <span>0</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            <a href="@Url.Action("CreditBalance", "Admin", new { cur = item.ThreeDigitName,bal = balance,acId=Model.AccountId })" class="btn btn-success creditUser">Credit Balance</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-12 p-2">
+                <div class="card flat border-bottom">
+                    <div class="card-header bg-warning">Security Information</div>
+                    <div class="card-body">
+
+                        <label>2 FA Status</label><br />
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+
+                                @if (Model.TwoFactorEnabled == true)
+                                {
+                                    <div class="col-md-12 btn btn-success">ENABLED</div>
+                                    <a href="@Url.Action("ResetTwofa","Admin",new { acId=Model.AccountId })" id="resetfa" class="btn btn-danger col-md-12">Reset Now</a>
+                                }
+                                else
+                                {
+                                    <div class="col-md-12 btn btn-danger" style="height:40px;">DISABLED</div>
+                                }
+                            </div>
+                            <button id="tradehistory_user" class="form-group btn btn-success col-md-6" data-toggle="modal" data-target="#tradeHistoryModal" style="height:40px;">Trade History</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <script type="text/javascript">
+
+        $('#tradehistory_user').click(function () {
+            var id = "@Model.AccountId";
+            $.get("@Url.Action("_GetTradeHistory", "Admin")", { accId: id }, function (data) {
+                console.log(data);
+                var tradeTable = "";
+                var total = 0;
+                var perTradeProfit;
+                for (var i = 0; i < data.list.length; i++) {
+                    var tradeDate = new Date(data.list[i].TradeDate);
+                    tradeDate.setHours(tradeDate.getHours() - (tradeDate.getTimezoneOffset() / 60));
+                    if (data.list[i].isTradeOrder === true) {
+                        if (data.list[i].PnL != null) {
+                            perTrade = 0;
+                            var chk = false;
+                            if (data.list[i].Direction === "BUY") {
+                                if (data.list[i].PnL >= 0) {
+                                    chk = true;
+                                    perTradeProfit = data.list[i].Amount * data.list[i].PnL;
+                                }
+                                else {
+                                    perTradeProfit = data.list[i].Amount * data.list[i].PnL;
+                                    chk = false;
+                                }
+                            }
+                            else if (data.list[i].Direction === "SELL") {
+                                if (data.list[i].PnL >= 0) {
+                                    perTradeProfit = (data.list[i].Amount * data.list[i].PnL) * (-1);
+                                    chk = false;
+                                }
+                                else {
+                                    perTradeProfit = Math.abs(data.list[i].Amount * data.list[i].PnL);
+                                    chk = true;
+                                }
+                            }
+                            tradeTable += "<tr><td> "
+                                + data.list[i].Symbol + " </td><td> "
+                                + data.list[i].Rate + " </td><td> "
+                                + data.list[i].Direction + " </td><td> "
+                                + tradeDate.toLocaleDateString() + " : " + tradeDate.toLocaleTimeString() + " </td><td> "
+                                + data.list[i].Amount + " USD" + " </td><td> "
+                                + ((data.list[i].ExitPrice === null) ? "N/A" : data.list[i].ExitPrice) +
+                                " </td><td style=" + ((chk === true) ? 'color:green' : 'color:red') + ";>" +
+                                perTradeProfit.toFixed(4) + " USD" + "</td></tr>";
+
+                            total += perTradeProfit - data.list[i].Amount;
+                        }
+                    }
+                    else {
+                        tradeTable += "<tr><td> "
+                            + data.list[i].Symbol + " </td><td> "
+                            + "---" + " </td><td> "
+                            + data.list[i].Direction + " </td><td> "
+                            + tradeDate.toLocaleDateString() + " : " + tradeDate.toLocaleTimeString() + " </td><td> "
+                            + data.list[i].Amount + " USD" + " </td><td> "
+                            + "---" + " </td><td " +
+                            "style=" + ((data.list[i].Symbol === 'DEPOSIT') ? 'color:green' : 'color:red') + ";>" +
+                            data.list[i].Amount.toFixed(4) + " USD" + "</td></tr>";
+                    }
+                }
+                $(".totalPnL").html(total.toFixed(3) + " USD");
+                $("#tradeHistoryBody").html(tradeTable);
+            });
+        });
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,117 @@
+﻿@model Exchange.UI.Models.SettingModel
+@{
+    /**/
+
+    Layout = "~/Views/Shared/_masterAdmin.cshtml";
+
+    ViewBag.Title = "Settings";
+}
+
+<div class="content-block">
+    <div class="row no-gutters">
+        <div class="col-12 col-md-12 col-lg-12 p-2">
+            <div class="card flat border-bottom">
+                <div class="card-header">Settings</div>
+                @using (Html.BeginForm("Settings", "Admin", FormMethod.Post, new { id = "settings-form", novalidate = "novalidate" }))
+                {
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="inputAddress">Network</label>
+                            @Html.DropDownListFor(m => m.Network, new List<SelectListItem>() {
+                                        new SelectListItem(){ Text="Slow", Value="Slow" },
+                                        new SelectListItem(){ Text="Medium", Value="Medium" },
+                                        new SelectListItem(){ Text="Fast", Value="Fast" },
+                                        new SelectListItem(){ Text="Normal", Value="Normal" },
+                                   }, new { @class = "form-control cs-form" })
+                        </div>
+                        <div class="form-row">
+                            @*<div class="form-group col-md-6">
+                                <label>CLP Buy Price (%)</label>
+                                @Html.TextBoxFor(m => m.BuyPrice, new { @class = "form-control cs-form", type = "number" })
+                                <label class="text-danger">@Html.ValidationMessageFor(m => m.BuyPrice)</label>
+                            </div>*@
+                            @Html.HiddenFor(m=>m.SellPrice)
+                            <div class="form-group col-md-6">
+                                <label>Trading Fee (%)</label>
+                                @Html.TextBoxFor(m => m.TradeFee, new { @class = "form-control cs-form", type = "number" })
+                                <label class="text-danger">@Html.ValidationMessageFor(m => m.TradeFee)</label>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputAddress">Withdrawl Limit (BTC)</label>
+                                @Html.TextBoxFor(m => m.WithdrawLimit, new { @class = "form-control cs-form", type = "number" })
+                                <label class="text-danger">@Html.ValidationMessageFor(m => m.WithdrawLimit)</label>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="inputAddress">Minimum Buy/Sell Limit (BTC)</label>
+                                @Html.TextBoxFor(m => m.MinimumLimit, new { @class = "form-control cs-form", type = "number" })
+                                <label class="text-danger">@Html.ValidationMessageFor(m => m.MinimumLimit)</label>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputAddress">Exchange Status</label>
+                                @Html.DropDownListFor(m => m.ExchangeStatus, new List<SelectListItem>() {
+                                    new SelectListItem(){ Text="Enable", Value="1" },
+                                    new SelectListItem(){ Text="Disable", Value="0" },
+
+                               }, new { @class = "form-control cs-form" })
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Card Fee Percentage</label>
+                                @Html.TextBoxFor(m => m.CardFee, new { @class = "form-control", type = "number" })
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" value="Update" class="btn btn-success" />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div> <!-- end row -->
+</div>
+
+
+@section scripts{
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <script>
+        $("#settings-form").submit(function (event) {
+            event.preventDefault();
+            var form = $(this);
+            form.validate();
+            if (form.valid()) {
+                $("#verifySecuritymodal").modal("show");
+                $(".verifyBtn").click(function (e) {
+                    e.preventDefault();
+                    $.blockUI();
+                    var pin = $(".verifyPin").val();
+                    var verifyUrl = $("#verify-form").attr("action");
+                    $.get(verifyUrl + "?verifyPin=" + pin, function (response) {
+                        if (response === "True") {
+                            $(".verifyPin").val(null);
+                            $("#verifySecuritymodal").modal("hide");
+                            form.submit();
+                        } else {
+                            $.unblockUI();
+                            $(".verifyPin").val(null);
+                            $("#verifySecuritymodal").modal("hide");
+                            bootbox.alert("Your Pin is wrong!")
+                        }
+                    });
+                });
+            } else {
+                event.preventDefault();
+            }
+        });
+    </script>
+}
+

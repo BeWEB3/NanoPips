@@ -1,0 +1,228 @@
+﻿@model CoinEXR.Admin.Models.DashboardModel
+@{
+    Layout = "~/Views/Shared/_masterAdmin.cshtml";
+    ViewBag.Title = "Summary";
+}
+
+
+<div class="content-block">
+    <!-- content-block -->
+    <div class="row no-gutters">
+        <!-- row -->
+
+        <div class="col-sm-12 col-md-6 col-lg-4 p-2">
+            <div class="info-box-3 bg-white border-bottom">
+                <div class="info-box-icon bg-maroon">
+                    <i class="gg-icon material-icons">people_outline</i>
+                </div>
+                <div class="info-box-body text-muted">
+                    <div class="info-box-title">Total Accounts</div>
+                    <div class="info-box-subtitle">@Model.TotalAccounts</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-4 p-2">
+            <div class="info-box-3 bg-white border-bottom">
+                <div class="info-box-icon bg-warning">
+                    <i class="gg-icon material-icons">people_outline</i>
+                </div>
+                <div class="info-box-body text-muted">
+                    <div class="info-box-title">Total System Accounts</div>
+                    <div class="info-box-subtitle">@Model.TotalSystemAccounts</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-4 p-2">
+            <div class="info-box-3 bg-white border-bottom">
+                <div class="info-box-icon bg-orange">
+                    <i class="gg-icon material-icons">cloud_upload</i>
+                </div>
+                <div class="info-box-body text-muted">
+                    <div class="info-box-title">Total Currencies</div>
+                    <div class="info-box-subtitle">@Model.TotalCurrencies</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-12 p-2">
+            <div class="card flat border-bottom">
+                <div class="card-header flat">
+                    Top System Accounts
+                </div>
+                <div class="card-body">
+                    <table class="table table-responsive-sm table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">First Name</th>
+                                <th scope="col">Last Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Account Type</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.adminAccountList)
+                            {
+                                <tr>
+                                    <td>@item.firstName</td>
+                                    <td>@item.lastName</td>
+                                    <td>@item.email</td>
+                                    <td>@item.accountType</td>
+                                </tr>
+                            }
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-12" style="margin-bottom: 50px;"></div>
+    </div>
+
+    <!-- end row -->
+</div>
+
+@*<div class="content-block">
+        <div class="row no-gutters">
+            <div class="col-sm-12 col-md-6 col-lg-6 p-2">
+                <div class="box border-bottom" style="height:320px;">
+                    <div class="box-heading bg-none border-0">
+                        <div class="box-title pl-2">
+                            <span class="gg-icon material-icons">chat_bubble_outline</span>Chats
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <div class="counter-gradient" style="text-align:center">
+                            <h3 class="fs-60 fw-600 mt-3 pt-1 h1 letter-spacing-minus"><span class="counter" id="counter-0">@(Model.Revenue ?? (decimal)0.00)</span></h3>
+                            <h5 class="mb-4 fw-500">Total Profit (BTC)</h5>
+                            <p class="text-muted">
+                                Total profit on CoinEXR
+                            </p>
+                        </div>
+                        <div class="h5" style="text-align:center">Buy/Sell Commission</div>
+                        <form action="@Url.Action("UpdateCommission","Admin")" method="POST" class="form-inline has-validation-callback">
+
+                            <div class="form-group" style="width:100%">
+                                <div class="input-group" style="width:100%">
+                                    <div class="input-group-addon">BTC </div>
+                                    <input class="form-control" id="exampleInputAmount" placeholder="commission" name="commission" required value="@ViewBag.commission" type="text">
+                                    <span class="input-group-addon"> + 0.5% Network Fee</span>
+                                    <button class="input-group-addon btn btn-default btn-lg" type="submit">UPDATE</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6 p-2">
+                <div class="box border-bottom">
+                    <div class="box-heading bg-none border-0">
+                        <div class="box-title pl-2">
+                            <span class="gg-icon material-icons"></span>All Users
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <div class="counter-gradient" style="text-align:center">
+                            <canvas id="chartJsNewUsers" style="height: 270px; display: block; width: 606px;" width="606" height="270"></canvas>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+@section scripts{
+    <script>
+        $(function ()
+        {
+            $.get("@Url.Action("_chartData", "Admin")", function (data) {
+                $.unblockUI();
+               /// alert(data.Total);
+              ////////////////////////////////
+            //// CHART
+            //////////////////////////////
+            var ctx = document.getElementById("chartJsNewUsers");
+            if (ctx === null) return;
+            ctx = ctx.getContext('2d');
+
+            var gradient = ctx.createLinearGradient(0, 20, 20, 270);
+            gradient.addColorStop(0, 'rgba(28, 190, 145, 0.89)');
+            gradient.addColorStop(1, 'rgba(28, 190, 145, 0.33)');
+
+            var data = {
+                labels:["Aug 2017","Sep 2017","Oct 2017","Nov 2017","Dec 2017","Jan 2017"], //data.Date,
+                datasets: [
+                    {
+                        label: 'Total Users',
+                        lineTension: 0,
+                        data: [55,230,500,350,520,600],//data.Total,
+                        backgroundColor: gradient,
+                        hoverBackgroundColor: gradient,
+                        borderColor: '#1cbe91',
+                        borderWidth: 2,
+                        pointRadius: 4,
+                        pointHoverRadius: 4,
+                        pointBackgroundColor: 'rgba(255,255,255,1)'
+                    }
+                ]
+            };
+
+            var chart = new Chart(ctx, {
+                type: 'line',
+                data: data,
+                responsive: true,
+                options: {
+                    maintainAspectRatio: false,
+                    legend: {
+                        display: false,
+                    },
+                    scales: {
+                        xAxes: [{
+                            gridLines: {
+                                display: false,
+                                drawBorder: false,
+                                tickMarkLength: 20,
+                            },
+                            ticks: {
+                                fontColor: "#bbb",
+                                padding: 10,
+                                fontFamily: 'Roboto',
+                            },
+                        }],
+                        yAxes: [{
+                            gridLines: {
+                                color: '#eef1f2',
+                                drawBorder: false,
+                                zeroLineColor: '#eef1f2',
+                            },
+                            ticks: {
+                                fontColor: "#bbb",
+                                stepSize: 50,
+                                padding: 20,
+                                fontFamily: 'Roboto',
+                            }
+                        }]
+                    },
+                },
+            });
+
+            $(document).on('SIDEBAR_CHANGED_WIDTH', function () {
+                chart.resize();
+            });
+
+            $(window).on('resize', function () {
+                chart.resize();
+            });
+                ////////////////////////////////////////////////
+                ////////////////END CHART//////////////////////
+                ///////////////////////////////////////////////
+
+            });
+        })
+
+    </script>
+}

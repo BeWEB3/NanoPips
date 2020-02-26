@@ -1,0 +1,274 @@
+
+/*------------------------------------------------------------------------------*/
+/*                    width : 1200px 
+/*------------------------------------------------------------------------------*/
+@media (min-width: 1200px) {
+
+}
+
+/*------------------------------------------------------------------------------*/
+/*                    width : 992px 
+/*------------------------------------------------------------------------------*/
+@media (min-width: 992px) and (max-width: 1199px) {
+     
+.marleft{
+    margin-left:100px;
+}
+
+.bottom{    
+    bottom: -413px;           
+}
+
+
+}
+
+/*------------------------------------------------------------------------------*/
+/*                    width : 768px 
+/*------------------------------------------------------------------------------*/
+@media (min-width: 768px) and (max-width: 991px) {
+.heading{
+	font-size:30px;
+}
+    .marleft{
+    margin-left:10px;
+}
+
+    
+    .bottom{
+        bottom:-53px
+    }    
+ 
+.openbtn{
+    	width: 100%;
+}
+
+    .carousel-inner .item .carousel-caption .content .sildetext h1{
+    font-size:50px;
+
+}
+.carousel-inner .item .carousel-caption .content .sildetext p{
+font-size:30px;
+    margin-top:-10px;
+    
+}
+
+.regform{
+padding: 80px 30px; 
+}
+.signform{
+    margin: 10px 10px;
+    padding: 10px 10px;
+    padding-bottom:100px;
+
+}
+
+
+
+
+}
+
+/*------------------------------------------------------------------------------*/
+/*                    Width : 480px
+/*------------------------------------------------------------------------------*/
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+    
+   
+.carousel-inner .item .carousel-caption .content .sildetext h1{
+	font-size:45px;
+
+}
+.carousel-inner .item .carousel-caption .content .sildetext p{
+font-size:25px;
+    margin-top:-10px;
+	
+}
+.openbtn{
+    	width: 100%;
+}
+    
+    .marleft{
+    margin-left:1px;
+}
+
+    
+    .bottom{
+        bottom:-53px
+    }    
+
+.logo{
+margin-left: -10px;
+}
+ul.nav.navbar-nav li {
+display:none;
+}
+
+.regform{
+padding: 80px 30px; 
+}
+.signform{
+    margin: 10px 10px;
+    padding: 10px 10px;
+    padding-bottom:100px;
+
+}
+
+
+
+}
+
+/*------------------------------------------------------------------------------*/
+/*                    Width : 321px
+/*------------------------------------------------------------------------------*/
+@media only screen and (min-width: 321px) and (max-width: 479px) {
+.carousel-inner .item .carousel-caption .content .img{
+width: auto !important; /*Keep the aspect ratio of the image*/
+height: 340px !important;
+}
+    
+    .carousel-inner .item .carousel-caption .content .sildetext h1{
+	font-size:25px;
+
+}
+
+.openbtn{
+    	width: 100%;
+}
+.carousel-inner .item .carousel-caption .content .sildetext p{
+font-size:20px;
+    margin-top:-50px;
+	
+}
+     .btn-mine11{
+	padding: 5px 10px;
+	font-size:20px;	
+  
+}
+
+
+
+    
+    .marleft{
+    margin-left:5px;
+}
+
+    
+    .bottom{
+        bottom:-53px
+    }    
+
+.logo{
+margin-left: -25px;
+   
+
+}
+    
+    .btn-mine, .btn-mine1 { 
+	padding: 10px 2px;
+	font-size:12px;
+
+}
+ 
+      
+    .btn-mine:hover, .btn-mine1:hover { 
+	padding: 10px 2px;
+	font-size:12px;
+
+}
+ 
+    
+ul.nav.navbar-nav li {
+display:none;
+}
+
+.regform{
+padding: 80px 30px; 
+}
+.signform{
+  margin: 10px;
+  padding: 10px;
+  padding-bottom:100px;
+
+}
+
+}
+
+/*------------------------------------------------------------------------------*/
+/*                    Any width smaller than 320px
+/*------------------------------------------------------------------------------*/
+@media only screen and (min-width: 0) and (max-width: 320px) {
+html,
+body,
+.container{
+font-size:14px;
+}
+.heading{
+font-size:25px;
+}
+.openbtn{
+    	width: 100%;
+}
+
+    .marleft{
+    margin-left:5px;
+}
+
+
+.carousel-inner .item .carousel-caption .content .img{
+width: auto !important; /*Keep the aspect ratio of the image*/
+height: 340px !important;
+}
+    
+    .carousel-inner .item .carousel-caption .content .sildetext h1{
+    font-size:20px;
+
+}
+.carousel-inner .item .carousel-caption .content .sildetext p{
+font-size:18px;
+    margin-top:-50px;
+    
+}
+ 
+    .btn-mine11{
+    padding: 5px 10px;
+    font-size:18px; 
+  
+}
+
+.navbar{
+	margin-top:-25px;
+}
+
+.carousel-inner .item .carousel-caption form{
+
+	border-radius:5px;
+	width:50px;
+    margin: 0 auto; 
+}
+
+.bottom{
+        bottom:-50px
+    }   
+.logo{
+margin-left: -30px;
+}
+.btn-mine, .btn-mine1 { 
+	padding: 5px 10px;
+	font-size:10px;
+
+}
+
+ul.nav.navbar-nav li {
+display:none;
+}
+.regform{
+padding: 80px 30px; 
+}
+.signform{
+    margin: 10px 10px;
+    padding: 10px 10px;
+    padding-bottom:100px;
+
+}
+
+
+}

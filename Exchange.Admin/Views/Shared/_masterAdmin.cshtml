@@ -1,0 +1,415 @@
+﻿@using Exchange.DTO
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>@ViewBag.title</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="~/AdminAssets/css/bootstrap.min.css">
+    <!-- icon -->
+    <link rel="stylesheet" type="text/css" href="~/AdminAssets/vendors/material-icon/css/material-icons.css">
+    <link href="~/AdminAssets/vendors/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="~/AdminAssets/css/xakti-bs.css">
+    <link rel="stylesheet" href="~/AdminAssets/css/main.css">
+    <link href="~/AdminAssets/vendors/DataTables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/AdminAssets/vendors/datatableEksport/buttons.dataTables.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/AdminAssets/vendors/datepicker/datepicker3.css">
+
+    <style>
+        .divide-10 {
+            width: 100%;
+            height: 10px;
+        }
+
+        .divide-20 {
+            width: 100%;
+            height: 20px;
+        }
+
+        .divide-30 {
+            width: 100%;
+            height: 30px;
+        }
+
+        .divide-40 {
+            width: 100%;
+            height: 40px;
+        }
+
+        .divide-50 {
+            width: 100%;
+            height: 50px;
+        }
+
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="views layout-default theme-indigo">
+        <nav class="navbar navbar-expand-md sticky-top shadow-1">
+            <div class="navbar-brand brand-1" href="#">
+                <a href="#" class="navbar-toggle hide-lg wave"><span class="gg-icon material-icons">menu</span></a>
+                <h1 style="color:white">NanoPips</h1>
+            </div>
+            <button class="btn btn-sm wave d-block d-sm-none btn-toggle-navbar-head"><span class="gg-icon material-icons">keyboard_arrow_down</span></button>
+            <a class="sb-toggle wave" href="javascript:void(0);"><span class="gg-icon material-icons">menu</span></a>
+
+            @{
+                var ac = SessionItems.Get(SessionKey.ACCOUNT) as Account;
+                byte? userType = ac.UserRoles.FirstOrDefault().UserRoleTypeId;
+            }
+
+            <!-- navbar head -->
+            <div class="navbar-head d-md-block ml-auto">
+                <ul class="navbar-nav">
+                    <!-- notification -->
+                    <li class="nav-item dropdown" style="margin-top: 1px;">
+                        <div id="not">
+                            @{Html.RenderAction("_notification", "Account");}
+
+                        </div>
+                    </li>
+                    <!-- end notification -->
+                    <!-- dropdown avatar -->
+                    <li class="nav-item dropdown">
+                        <!-- <a class="nav-link dropdown-toggle text-wrap" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
+                        <a class="nav-link text-wrap" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            admin@nanopips.com
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown01">
+                            <a class="dropdown-item wave" href="@Url.Action("ChangePassword","Admin")"><span class="gg-icon material-icons">settings</span>Change Password</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item wave" href="@Url.Action("Logout","Account")"> <span class="gg-icon material-icons">power_settings_new</span>Logout</a>
+
+                        </div>
+                    </li>
+                </ul>
+
+            </div> <!-- end navbar-head -->
+        </nav>
+        <!-- wrap -->
+        <div class="wrap">
+            <!-- sidebar -->
+            <section class="sidebar">
+                <!-- sidebar menu -->
+                <ul class="nav flex-column sidebar-nav" style="margin-top: 25px;">
+                    <li class="nav-item">
+                        <a class="nav-link wave" href="@Url.Action("Index","Admin")"><span class="gg-icon material-icons">home</span>Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link wave" href="@Url.Action("Accounts","Admin")"><span class="gg-icon material-icons">account_circle</span>Accounts</a>
+                    </li>
+                    @*<li class="nav-item">
+                            <a class="nav-link wave" href="@Url.Action("Settings","Admin")"><span class="gg-icon material-icons">settings</span>Settings</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link wave" href="@Url.Action("Wallet","Admin")"><span class="gg-icon material-icons">account_balance_wallet</span>Master Wallets</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link wave" href="@Url.Action("WalletBalances","Admin")"><span class="gg-icon material-icons">account_balance_wallet</span>Wallets Balances</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link wave" href="@Url.Action("ManageSpread","Admin")"><span class="gg-icon material-icons">adjust</span>Manage Spread</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link wave" href="@Url.Action("ERCTokens","Admin")"><span class="gg-icon material-icons">adjust</span>Add ERC Token</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link wave" href="@Url.Action("TransactionHistoryForAdmin","Admin")"><span class="gg-icon material-icons">attach_money</span>Transaction History</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link wave" href="@Url.Action("Currency","Admin")"><span class="gg-icon material-icons">attach_money</span>Manage Currencies</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link wave" href="@Url.Action("WithDrawls","Admin")"><span class="gg-icon material-icons">adjust</span>Withdrawals</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link wave" href="@Url.Action("NameScanKYC","Admin")"><span class="gg-icon material-icons">adjust</span>KYC API Data</a>
+                        </li>
+                        <li class="nav-item nav-toggle">
+                            <a class="nav-link wave" href="javascript:void(0);"><span class="gg-icon material-icons">assignment</span>Reports</a>
+                            <ul class="nav-dropdown">
+                                <li><a class="nav-link wave" href="@Url.Action("Deposits","Admin")"><span class="gg-icon material-icons font-18 ml-1">adjust</span>Deposits</a></li>
+                                <li><a class="nav-link wave" href="@Url.Action("BuySells","Admin")"><span class="gg-icon material-icons font-18 ml-1">adjust</span>Buy/Sell</a></li>
+                                <li><a class="nav-link wave" href="@Url.Action("Profit","Admin")"><span class="gg-icon material-icons font-18 ml-1">adjust</span>Profit</a></li>
+                            </ul>
+                        </li>*@
+                    @if (userType == Convert.ToInt32(EUserRoleType.SUPER_ADMIN))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link wave" href="@Url.Action("AdminAccounts","Admin")"><span class="gg-icon material-icons">account_circle</span> Manage Admin Accounts</a>
+                        </li>
+                    }
+
+
+                </ul> <!-- end sidebar menu items -->
+            </section> <!-- end sidebar -->    <!-- main content -->
+            <section class="main-content">
+                <nav aria-label="breadcrumb" role="navigation">
+                    <ol class="breadcrumb bg-white flat border-bottom p-2 font-14">
+                        <li class="breadcrumb-item"><a href="#"><span class="gg-icon mr-1 ml-1 material-icons font-20">home</span>Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">@ViewBag.title</li>
+                    </ol>
+                </nav>
+                <!-- this is your page -->
+                @RenderBody()
+                <!-- end content block -->
+                <!-- </div> -->
+            </section> <!-- end main content -->
+        </div>
+    </div><!-- end wrap -->
+    <!-- sidebar right -->
+    <div class="card flat sidebar-right scroll-lg" role="document" style="width: 400px;">
+        <div class="card-header flat bg-indigo py-3 shadow-2">
+            <b class="text-white"><span class="gg-icon material-icons">settings</span>Settings</b>
+        </div>
+        <div class="card-body">
+            <!-- skins -->
+            <p class="text-muted">Layout Options</p>
+            <div class="custom-control my-2 custom-checkbox">
+                <input type="checkbox" class="custom-control-input check-fixed-layout" id="check-fixed-layout">
+                <label class="custom-control-label" for="check-fixed-layout">Fixed Layout</label>
+            </div>
+            <div class="custom-control my-2 custom-checkbox">
+                <input type="checkbox" class="custom-control-input check-fixed-navbar-header" id="check-fixed-navbar-header">
+                <label class="custom-control-label" for="check-fixed-navbar-header">Fixed Navbar Header</label>
+            </div>
+            <div class="custom-control my-2 custom-checkbox">
+                <input type="checkbox" class="custom-control-input check-toggle-sidebar" id="check-toggle-sidebar">
+                <label class="custom-control-label" for="check-toggle-sidebar">Toggle Sidebar</label>
+            </div>
+            <div class="custom-control my-2 custom-checkbox">
+                <input type="checkbox" class="custom-control-input check-navbar-shadow" checked id="check-navbar-shadow">
+                <label class="custom-control-label" for="check-navbar-shadow">Toggle Navbar Shadow</label>
+            </div>
+            <div class="custom-control my-2 custom-checkbox">
+                <input type="checkbox" class="custom-control-input check-brand" checked id="check-brand">
+                <label class="custom-control-label" for="check-brand">Toggle Brand Color</label>
+            </div>
+
+            <p class="text-muted">Choose Layout Theme</p>
+            <div class="row">
+                <div class="col-6 col-md-4 col-lg-6">
+                    <a href="javascript:void(0)" class="btn-layout-theme_light bg-white border"></a>
+                    <div class="font-13 text-center">Light</div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-6">
+                    <a href="javascript:void(0)" class="btn-layout-theme_dark bg-dark"></a>
+                    <div class="font-13 text-center">Dark</div>
+                </div>
+            </div>
+            <p class="text-muted mt-3">Solid Color Theme</p>
+            <div class="row choose-solid-color">
+                <div class="col-6 col-md-4 col-lg-4">
+                    <a href="javascript:void(0)" class="gg-skins__btn bg-blue"></a>
+                    <div class="font-13 text-center">Blue/Primary</div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-4">
+                    <a href="javascript:void(0)" class="gg-skins__btn bg-indigo"></a>
+                    <div class="font-13 text-center">Indigo</div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-4">
+                    <a href="javascript:void(0)" class="gg-skins__btn bg-purple"></a>
+                    <div class="font-13 text-center">purple</div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-4">
+                    <a href="javascript:void(0)" class="gg-skins__btn bg-pink"></a>
+                    <div class="font-13 text-center">pink</div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-4">
+                    <a href="javascript:void(0)" class="gg-skins__btn bg-red"></a>
+                    <div class="font-13 text-center">red/danger</div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-4">
+                    <a href="javascript:void(0)" class="gg-skins__btn bg-orange"></a>
+                    <div class="font-13 text-center">orange</div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-4">
+                    <a href="javascript:void(0)" class="gg-skins__btn bg-yellow"></a>
+                    <div class="font-13 text-center">yellow/warning</div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-4">
+                    <a href="javascript:void(0)" class="gg-skins__btn bg-green"></a>
+                    <div class="font-13 text-center">green/success</div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-4">
+                    <a href="javascript:void(0)" class="gg-skins__btn bg-teal"></a>
+                    <div class="font-13 text-center">teal</div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-4">
+                    <a href="javascript:void(0)" class="gg-skins__btn bg-cyan"></a>
+                    <div class="font-13 text-center">cyan/info</div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-4">
+                    <a href="javascript:void(0)" class="gg-skins__btn bg-white"></a>
+                    <div class="font-13 text-center">white</div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-4">
+                    <a href="javascript:void(0)" class="gg-skins__btn bg-dark"></a>
+                    <div class="font-13 text-center">dark</div>
+                </div>
+            </div>
+            <p class="mt-4 text-muted mt-3">Gradient Color Theme</p>
+            <div class="row">
+
+                <div class="col-6 col-md-4 col-lg-4">
+                    <a href="javascript:void(0)" class="gg-skins__btn bg-red-orange"></a>
+                    <div class="font-13 text-center">red-orange</div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-4">
+                    <a href="javascript:void(0)" class="gg-skins__btn bg-red-pink"></a>
+                    <div class="font-13 text-center">red-pink</div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-4">
+                    <a href="javascript:void(0)" class="gg-skins__btn bg-pink-orange"></a>
+                    <div class="font-13 text-center">pink-orange</div>
+                </div>
+            </div>
+            <!-- end skins -->
+
+        </div>
+    </div> <!-- end sidebar right -->
+    <!-- Verify Security Modal Ends -->
+    <script type="text/javascript" src="~/AdminAssets/vendors/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="~/AdminAssets/vendors/popper.min.js"></script>
+    <script type="text/javascript" src="~/AdminAssets/js/bootstrap.min.js"></script>
+    <script src="~/MVCGridHandler.axd/script.js"></script>
+    <script src="~/AdminAssets/vendors/bootbox/bootbox.min.js"></script>
+    <!-- datatable -->
+    <script src="~/AdminAssets/vendors/DataTables/js/jquery.dataTables.min.js"></script>
+    <script src="~/AdminAssets/vendors/DataTables/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script>"
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>"
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>"
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>"
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>"
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>"
+
+    <script type="text/javascript" src="~/AdminAssets/js/xakti-bs.js"></script>
+    <script type="text/javascript" src="~/AdminAssets/js/main.js"></script>
+    <script src="~/AdminAssets/vendors/datepicker/bootstrap-datepicker.js"></script>
+
+    <script src="~/AdminAssets/vendors/blockUI/jquery.blockUI.js"></script>
+    @*<script src="~/DashboardAssets/vendors/Chart.js/2.4.0/Chart.min.js"></script>*@
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <script>
+        $(function () {
+            $(".dt").DataTable();
+            var getNotifications = setInterval(function () {
+                $.ajax({
+                    url: "@Url.Action("_notification","Admin")",
+                    type: "POST",
+                    success: function (html) {
+                        $("#not").html(html);
+                    },
+                    error: function () {
+                        clearInterval(getNotifications);
+                    }
+                });
+            }, 1000 * 10);
+            @*$(document).on("click", "#dropdownNotif", function () {
+
+                $.ajax({
+                    url: "@Url.Action("_ReadNotification","Admin")",
+                    type: "POST",
+                    success: function () {
+                    }
+                })
+            });*@
+
+        });
+    </script>
+
+    <script>
+        $(function () {
+
+            $(".use-loader").click(function () {
+                $.blockUI();
+            });
+            var msg = "@TempData["msg"]";
+            if (msg != "") {
+                bootbox.alert(msg);
+
+            }
+            var msg1 = "@ViewBag.msg";
+            if (msg1 != "") {
+                bootbox.alert(msg1);
+
+            }
+            var twoFA = '@ViewBag.twoFA';
+            if (twoFA == "False") {
+                bootbox.dialog({
+                    title: "<h6> <i class='fa fa-warning'></i> <span> Please set up two-factor authentication</span></h6>",
+                    message: "Please seriously consider enabling two-factor authentication. Enabling 2FA adds an extra layer of security to your account and protects you against the most common password crack and social engineering hacks.<br><p>To increase your security now, please proceed to the <a class='' href='/Dashboard/TwoFactorAuthentication' style='color:#0094ff' > Enable 2FA</a> and enable two-factor authentication. <br/> <strong>NOTE: You cannot buy/sell without 2FA</strong></p>",
+                    buttons: {
+                        ok: {
+                            label:"Ok, I understand the risk"
+                        }
+                    }
+                })
+            }
+        });
+
+    </script>
+    <script>
+        function afterLoading() {
+
+            $(".action").click(function (e) {
+                e.preventDefault();
+                var url = $(this).attr("href");
+                bootbox.confirm("Are you sure you want to " + $(this).attr("msg") + " this?", function (op) {
+                    if (op == true) {
+                        $.blockUI();
+                        location.href = url;
+                    }
+                });
+            })
+        }
+        afterLoading();
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $("#datatable").DataTable({
+                "scrollX": true,
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
+
+            $("#datatable1").DataTable({
+                "scrollX": true,
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
+        });
+    </script>
+    @RenderSection("scripts", false)
+</body>
+
+<!-- Mirrored from admin-bs.xakti.tech/pages/example-pages/blank-page.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Jun 2018 07:23:09 GMT -->
+</html>
