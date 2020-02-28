@@ -84,7 +84,7 @@
 
 
 .input-group {
-    width: 30%;
+    width: 25%;
 }
 
 .navTab > li > a:hover {
@@ -587,6 +587,8 @@ input[type=text], select, textarea {
 
     .left-130 {
         left: 0px !important;
+        justify-content: space-around;
+        display: flex;
     }
 
 
@@ -658,7 +660,7 @@ input[type=text], select, textarea {
 
 @media only screen and (max-width: 320px) {
     .ModelWidth {
-        width: 300px !important;
+        width: 100% !important;
         margin-left: 0px;
     }
 
@@ -670,10 +672,10 @@ input[type=text], select, textarea {
         left: -50% !important;
     }
 
-    .width-880 {
+    /*.width-880 {
         width: 295px !important;
         height: 48pc !important;
-    }
+    }*/
 
     .dropdown-menu {
         font-size: 9px;
@@ -711,14 +713,14 @@ input[type=text], select, textarea {
     }
 
     .ModelWidth {
-        width: 340px !important;
+        width: 100% !important;
         margin-left: 0px;
     }
 
-    .width-880 {
+    /*.width-880 {
         width: 335px !important;
         height: 46pc !important;
-    }
+    }*/
 
     .trade-table {
         font-size: 10px;
@@ -762,7 +764,7 @@ input[type=text], select, textarea {
     }
 
     .ModelWidth {
-        width: 355px !important;
+        width: 100% !important;
         margin-left: 0px;
     }
 
@@ -774,10 +776,10 @@ input[type=text], select, textarea {
         right: 15px !important;
     }
 
-    .width-880 {
+    /*.width-880 {
         width: 350px !important;
         height: 46pc !important;
-    }
+    }*/
 
     .dropdownHover1 {
         font-size: 10px !important;
@@ -813,7 +815,7 @@ input[type=text], select, textarea {
     }
 
     .ModelWidth {
-        width: 370px !important;
+        width: 100% !important;
         margin-left: 0px;
     }
 
@@ -829,10 +831,10 @@ input[type=text], select, textarea {
         right: 15px !important;
     }
 
-    .width-880 {
+    /*.width-880 {
         width: 365px !important;
         height: 46pc !important;
-    }
+    }*/
 
     .dropdownHover1 {
         font-size: 10px !important;
@@ -858,7 +860,7 @@ input[type=text], select, textarea {
 
 @media only screen and (max-width: 410px) and (min-width: 391px) {
     .ModelWidth {
-        width: 380px !important;
+        width: 100% !important;
         margin-left: 0px;
     }
 
@@ -883,10 +885,10 @@ input[type=text], select, textarea {
         right: 15px !important;
     }*/
 
-    .width-880 {
+    /*.width-880 {
         width: 380px !important;
         height: 46pc !important;
-    }
+    }*/
 
     /*.dropdownHover1 {
         font-size: 10px !important;
@@ -932,13 +934,30 @@ input[type=text], select, textarea {
         padding-left: 0px;
     }
 
-    .width-880 {
+    /*.width-880 {
         width: 390px !important;
         height: 46pc !important;
-    }
+    }*/
 
     .margin-top-mobile {
         margin-top: 95px !important;
+    }
+}
+
+
+@media only screen and (max-width: 600px) and (min-width: 415px) {
+
+    .col5 {
+        display: block !important;
+        margin-top: 100px;
+    }
+}
+
+
+@media only screen and (max-width: 600px) and (min-width: 415px) {
+    .ModelWidth {
+        width: 100% !important;
+        margin-left: 0px;
     }
 }
 

@@ -111,7 +111,7 @@ namespace OrderManagment
                                             }
                                             else
                                             {
-                                                if (tradeList[i].UpLimitValue.Value <= decimal.Parse(ticker.bidPrice) || tradeList[i].DownLimitValue.Value >= decimal.Parse(ticker.bidPrice))
+                                                if (tradeList[i].UpLimitValue.Value >= decimal.Parse(ticker.bidPrice) || tradeList[i].DownLimitValue.Value <= decimal.Parse(ticker.bidPrice))
                                                 {
                                                     dbWallet = db.Wallets.Where(m => m.Account_Id == accId && m.Currency == "USD").ToList();
 
@@ -137,7 +137,7 @@ namespace OrderManagment
                                                     tr.Status = status;
                                                     db.Configuration.ValidateOnSaveEnabled = false;
                                                     db.SaveChanges();
-                                                    Console.WriteLine("Order with Account Id: " + accId + " and Order Id:  " + tradeList[i].TradeId + " is Closed");
+                                                    Console.WriteLine("Order with Account Id: " + accId + " and Order Id:  " + tradeList[i].TradeId + " is Closed  :  Closed due to S/T ");
                                                 }
                                             }
                                         }

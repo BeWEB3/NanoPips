@@ -272,9 +272,9 @@ namespace Exchange.Services.Implementation
                     Symbol     = pair,
                     Amount     = (amount/mFactor),
                     Rate       = rate,
-                    StopLoss_TakeProfitEn = true,
-                    UpLimitValue   = rate + ((rate * 1) / 1000),
-                    DownLimitValue = rate - ((rate * 1) / 1000),
+                    //StopLoss_TakeProfitEn = true,
+                    //UpLimitValue = rate + ((rate * 70) / 100),
+                    //DownLimitValue = rate - ((rate * 70) / 100),
                     Value      = mFactor,
                     Fee        = 0,
                     Account_Id = acId,
@@ -345,9 +345,9 @@ namespace Exchange.Services.Implementation
                     Rate     = rate,
                     Value    = mFactor,
                     Fee      = 0,
-                    StopLoss_TakeProfitEn = true,
-                    UpLimitValue   = rate + ((rate * 1) / 1000),
-                    DownLimitValue = rate - ((rate * 1) / 1000),
+                    //StopLoss_TakeProfitEn = true,
+                    //UpLimitValue = rate + ((rate * 70) / 100),
+                    //DownLimitValue = rate - ((rate * 70) / 100),
                     expiryTime = expiretime,
                     Account_Id = acId,
                     Wallet_Id = dbWallet.FirstOrDefault().WalletId,
@@ -679,8 +679,18 @@ namespace Exchange.Services.Implementation
             else {
                 if (trade.Status == "PENDING")
                 {
-                    trade.UpLimitValue = takeProfit;
-                    trade.DownLimitValue = stopLoss;
+                    if (stopLoss == 0 && takeProfit == 0)
+                    {
+                        trade.UpLimitValue   = null;
+                        trade.DownLimitValue = null;
+                        trade.StopLoss_TakeProfitEn = null;
+                    }
+                    else
+                    {
+                        trade.UpLimitValue   = takeProfit;
+                        trade.DownLimitValue = stopLoss;
+                        trade.StopLoss_TakeProfitEn = true;
+                    }
                     _db.Configuration.ValidateOnSaveEnabled = false;
                     _db.SaveChanges();
                     return true;

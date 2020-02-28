@@ -948,6 +948,7 @@ namespace Exchange.Services.Implementation
             _db.SaveChanges();
             return kycDetail;
         }
+
         public Account GetAccount(long acId)
         {
             return _db.Accounts.Where(m => m.AccountId == acId).First();
@@ -988,11 +989,13 @@ namespace Exchange.Services.Implementation
         {
             return _db.Trades.Where(x => x.Account_Id == acId).ToList();
         }
+
         public List<Trade> GetPendingTrades(long acId)
         {
             _db.Configuration.ProxyCreationEnabled = false;
             return _db.Trades.Where(x => x.Account_Id == acId && x.Status == "PENDING").ToList();
         }
+
         public List<Trade> GetPendingTrades(long acId, string pair)
         {
             _db.Configuration.ProxyCreationEnabled = false;

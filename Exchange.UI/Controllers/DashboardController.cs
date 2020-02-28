@@ -351,9 +351,9 @@ namespace Exchange.UI.Controllers
                         expiryTime = rTime,
                         ExitPrice = res[t].ExitPrice,
                         PnL = res[t].PnL,
-                        UpPrice = res[t].UpLimitValue.Value,
-                        DownPrice = res[t].DownLimitValue.Value,
-                        ST_Enable = res[t].StopLoss_TakeProfitEn.Value,
+                        UpPrice   = res[t].UpLimitValue,
+                        DownPrice = res[t].DownLimitValue,
+                        ST_Enable = res[t].StopLoss_TakeProfitEn,
                     });
                 }
 
@@ -645,42 +645,50 @@ namespace Exchange.UI.Controllers
 
                     for (int x = 0; x < list.Count; x++)
                     {
-                        list[x].TradeDate = UnixTimeStampToDateTime(point).AddHours(-1 * (double)(timeOffset / 60)).AddMinutes(60);
+                        if (list[x].StopLoss_TakeProfitEn != null)
+                        {
+                            list[x].TradeDate = UnixTimeStampToDateTime(point).AddHours(-1 * (double)(timeOffset / 60)).AddMinutes(60);
+                            Random rnd;
 
-                        string dt = (list[x].TradeDate.Year + "-" + list[x].TradeDate.Month.ToString("D2") + "-" + list[x].TradeDate.Day.ToString("D2") + " " + list[x].TradeDate.Hour.ToString("D2") +
-                                                              ":" + list[x].TradeDate.Minute.ToString("D2") + ":" + list[x].TradeDate.Second.ToString("D2"));
-                        long upId = new Random().Next(1, 100000);
-                        tradeonCharts.Add(new GetTradeonChart()
-                        {
-                            id = upId,
-                            volume = list[x].Amount.Value.ToString(),
-                            price = (list[x].UpLimitValue).ToString(),
-                            splitPrice = list[x].UpLimitValue.Value,
-                            profit = (list[x].PnL == null) ? "0" : list[x].PnL.Value.ToString(),
-                            count = 1,
-                            summ = list[x].Amount.Value.ToString(),
-                            qb = "",
-                            time = dt,
-                            date_time = dt,
-                            security_id = upId,
-                            type_id = (list[x].Direction.Equals("BUY")) ? 1 : 2,
-                        });
-                        long downId = new Random().Next(100000, 100000000);
-                        tradeonCharts.Add(new GetTradeonChart()
-                        {
-                            id = downId,
-                            volume = list[x].Amount.Value.ToString(),
-                            price = (list[x].DownLimitValue).ToString(),
-                            splitPrice = list[x].DownLimitValue.Value,
-                            profit = (list[x].PnL == null) ? "0" : list[x].PnL.Value.ToString(),
-                            count = 1,
-                            summ = list[x].Amount.Value.ToString(),
-                            qb = "",
-                            time = dt,
-                            date_time = dt,
-                            security_id = downId,
-                            type_id = (list[x].Direction.Equals("BUY")) ? 1 : 2,
-                        });
+                            //list[x].TradeDate = list[x].TradeDate.AddHours(-1 * (double)(timeOffset / 60));
+                            string dt = (list[x].TradeDate.Year + "-" + list[x].TradeDate.Month.ToString("D2") + "-" + list[x].TradeDate.Day.ToString("D2") + " " + list[x].TradeDate.Hour.ToString("D2") +
+                                                                  ":" + list[x].TradeDate.Minute.ToString("D2") + ":" + list[x].TradeDate.Second.ToString("D2"));
+                            rnd = new Random();
+                            long upId   = rnd.Next(1, 1000);
+                            long downId = rnd.Next(1000, 10000);
+
+                            tradeonCharts.Add(new GetTradeonChart()
+                            {
+                                id = upId+x,
+                                volume = list[x].Amount.Value.ToString(),
+                                price = (list[x].UpLimitValue).ToString(),
+                                splitPrice = list[x].UpLimitValue.Value,
+                                profit = (list[x].PnL == null) ? "0" : list[x].PnL.Value.ToString(),
+                                count = 1,
+                                summ = list[x].Amount.Value.ToString(),
+                                qb = "",
+                                time = dt,
+                                date_time = dt,
+                                security_id = upId+x,
+                                type_id = (list[x].Direction.Equals("BUY")) ? 2 : 1,
+                            });
+
+                            tradeonCharts.Add(new GetTradeonChart()
+                            {
+                                id        = downId+x,
+                                volume    = list[x].Amount.Value.ToString(),
+                                price     = (list[x].DownLimitValue).ToString(),
+                                splitPrice = list[x].DownLimitValue.Value,
+                                profit    = (list[x].PnL == null) ? "0" : list[x].PnL.Value.ToString(),
+                                count     = 1,
+                                summ      = list[x].Amount.Value.ToString(),
+                                qb        = "",
+                                time      = dt,
+                                date_time = dt,
+                                security_id = downId+x,
+                                type_id   = (list[x].Direction.Equals("BUY")) ? 2 : 1,
+                            });
+                        }
                     }
                     //res = JsonConvert.SerializeObject(tradeonCharts);
                     res = tradeonCharts;

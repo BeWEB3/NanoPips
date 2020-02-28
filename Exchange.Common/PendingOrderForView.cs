@@ -25,8 +25,8 @@ namespace Exchange.Common
         public long    Ticker { get; set; }
         public long    expiryTime { get; set; }
         public bool    isTradeOrder { get; set; }
-        public decimal UpPrice { get; set; }
-        public decimal DownPrice { get; set; }
-        public bool    ST_Enable { get; set; }
+        public Nullable<decimal> UpPrice { get; set; }
+        public Nullable<decimal> DownPrice { get; set; }
+        public Nullable<bool>    ST_Enable { get; set; }
     }
 }
