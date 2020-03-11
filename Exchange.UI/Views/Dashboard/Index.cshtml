@@ -7,35 +7,34 @@
 <head>
 
     <title>NanoPips</title>
-    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <link href="~/Assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Assets/css/bootstrap.css" rel="stylesheet"/>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" media="all"/>
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,700&display=swap" rel="stylesheet">
-    <link href="~/Assets/css/switchery.min.css" rel="stylesheet" />
-
-    <link href="~/Assets/css/indexStyle.css" rel="stylesheet" />
+    <link href="~/Assets/css/switchery.min.css" rel="stylesheet"/>
+    <link href="~/Assets/css/indexStyle.css" rel="stylesheet"/>
     @if (Session["DARK"] != null)
     {
-        <link href="~/TradeAssets/css/indexStyleDark.css" rel="stylesheet" />
+        <link href="~/TradeAssets/css/indexStyleDark.css" rel="stylesheet"/>
     }
-    <link href="~/Assets/css/simple-line-icons.min.css" rel="stylesheet" />
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="~/Assets/css/simple-line-icons.min.css" rel="stylesheet"/>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <script src="~/DashboardAssets/js/switchery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
-    <link href="~/Assets/css/candlestick-chart.css" rel="stylesheet" />
+    <link href="~/Assets/css/candlestick-chart.css" rel="stylesheet"/>
     <script src="https://d3js.org/d3.v4.min.js"></script>
-    <link href="~/Assets/css/main.css" rel="stylesheet" />
+    <link href="~/Assets/css/main.css" rel="stylesheet"/>
     <script src="~/DashboardAssets/vendor_components/popper/dist/popper.min.js"></script>
     <script src="~/DashboardAssets/js/common.js"></script>
     <script src="~/Scripts/require.js"></script>
     @*<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.2.0/require.js"></script>*@
     <script type="text/javascript" src="~/dist/i18n/i18n.en.js"></script>
-    <link href="~/uikit/css/uikit.min.css" rel="stylesheet" />
-    <link href="~/uikit/jquery.qtip.min.css" rel="stylesheet" />
-    <link href="~/jquery-minicolors/jquery.minicolors.css" rel="stylesheet" />
-    <link href="~/dist/iguanachart.css" rel="stylesheet" />
+    <link href="~/uikit/css/uikit.min.css" rel="stylesheet"/>
+    <link href="~/uikit/jquery.qtip.min.css" rel="stylesheet"/>
+    <link href="~/jquery-minicolors/jquery.minicolors.css" rel="stylesheet"/>
+    <link href="~/dist/iguanachart.css" rel="stylesheet"/>
 
     <script type="text/javascript">
         require.config({
@@ -85,57 +84,71 @@
         .ui-datepicker {
             text-align: center;
         }
+
         .ui-datepicker-trigger {
             margin: 0 0 0 5px;
             vertical-align: text-top;
         }
+
         .ui-datepicker {
             font-family: Open Sans, Arial, sans-serif;
             margin-top: 2px;
             padding: 0 !important;
             border-color: #c9f0f5 !important;
         }
+
         .ui-datepicker {
             width: 256px;
         }
+
         .openemr-calendar .ui-datepicker {
             width: 191px;
         }
+
         .ui-datepicker table {
             width: 256px;
             table-layout: fixed;
         }
+
         .openemr-calendar .ui-datepicker table {
             width: 191px;
             table-layout: fixed;
         }
+
         .ui-datepicker-header {
             background-color: #3e9aba !important;
             background-image: none !important;
             border-radius: 0;
         }
+
         .openemr-calendar .ui-datepicker-header {
             background-color: #e6f7f9 !important;
             border-width: 1px;
             border-color: #c9f0f5;
             border-style: solid;
         }
+
         .ui-datepicker-title {
             line-height: 35px !important;
             margin: 0 10px !important;
         }
+
         .openemr-calendar .ui-datepicker-title {
             line-height: 20px !important;
         }
+
         .ui-datepicker-prev span {
             display: none !important;
         }
+
         .ui-datepicker-next {
             text-align: center;
         }
+
         .ui-datepicker-next span {
             display: none !important;
         }
+
         .ui-datepicker-prev {
             background-color: transparent !important;
             background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAMCAYAAACulacQAAAAUklEQVQYlXWPwQnAMAwDj9IBOlpH8CjdJLNksuujFIJjC/w6WUioFBcqJ7sGEAD5Y/hpqLRghRv4YQlUjqXI3Kql2MixraGbEhVcDXcFUR/1egEHNuTBpFW0NgAAAABJRU5ErkJggg==') !important;
@@ -146,18 +159,22 @@
             left: 0 !important;
             top: 0 !important;
         }
+
         .openemr-calendar .ui-datepicker-prev {
             background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAOCAYAAAD9lDaoAAAAuUlEQVQokXXRsUtCYRAA8J8pDQ1CVIgIgtBU2NDiZIuDS4uLf6WDS1O0tLREEE8icBNKS3lTs8/B78XHw3dwcHA/juOuqjzucYJVrQQMcYctvo4OgEFIeMK6iPphCjzjEWLUC3vACx7yRo5uMUIFr5gii1EL41AvMIkBVPGH04DrSLEsIvjEOZq4wi9+iijDR0ANXOMbmxjlcIY2LtANO6YxymGCDs5wg/ciYv+KBJeY4+2A+Y9j4Y47RtUkrNXeDxUAAAAASUVORK5CYII=') !important;
             height: 14px !important;
             width: 9px !important;
             margin: 5px !important;
         }
+
         .ui-datepicker-next {
             cursor: pointer;
         }
+
         .ui-datepicker-prev {
             cursor: pointer;
         }
+
         .ui-datepicker-next {
             background-color: transparent !important;
             background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAMCAYAAABfnvydAAAAVUlEQVQYlXWQ0Q3AIAhEL07gKI7kKN2kI3Wk1w9to3KQEELucQEECOizhhTQGHFnwOdgobWx0GkZILfYBhXl0STVbPoBarbkL7ozN/F8VBBXh8uJgF5r2hrI4GHUkAAAAABJRU5ErkJggg==') !important;
@@ -168,12 +185,14 @@
             right: 0 !important;
             top: 0 !important;
         }
+
         .openemr-calendar .ui-datepicker-next {
             background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAOCAYAAAASVl2WAAAAtElEQVQYlXXQsUpCcRQH4I97EQyHa1pgIEE0hBGYL+BjNLRFjxXh4rM4F21BS4S4FAgqQioOngt/RM/6+zi/w4EanlA4MDkecYsO3vG/D8a4Rx03eMMqBQt8oodTXAdalwBm+IpNDVxG3aYEMMU3ujjDBT5SAH9R2cE58mwPFOgneJSCGp7RjLoXTEtQjbCFOV7xCxkqdp9sYxnhpFyb4QFXdh8c4Cc9Ko++OwzjFwfn5FiwBVeuI/K2UCkSAAAAAElFTkSuQmCC') !important;
             height: 14px !important;
             width: 8px !important;
             margin: 5px;
         }
+
         .ui-datepicker-month {
             border-radius: 2px;
             background-color: #3985a0;
@@ -188,6 +207,7 @@
             margin-right: 17px !important;
             vertical-align: text-top;
         }
+
         .openemr-calendar .ui-datepicker-month {
             font-family: Open Sans, Arial, sans-serif;
             color: rgba(34, 34, 34, 0.87);
@@ -196,6 +216,7 @@
             text-align: center;
             transform: scaleX(1.0029)
         }
+
         .ui-datepicker-year {
             border-radius: 2px;
             background-color: #3985a0;
@@ -209,6 +230,7 @@
             text-align: left;
             vertical-align: text-top;
         }
+
         .openemr-calendar .ui-datepicker-year {
             font-family: Open Sans, Arial, sans-serif;
             color: rgba(34, 34, 34, 0.87);
@@ -217,6 +239,7 @@
             text-align: center;
             transform: scaleX(1.0029)
         }
+
         .ui-datepicker-month option,
         .ui-datepicker-year option {
             color: #3985a0 !important;
@@ -225,17 +248,21 @@
             font-size: 14px !important;
             font-weight: 600;
         }
+
         .ui-datepicker-month option[selected],
         .ui-datepicker-year option[selected] {
             background-color: #e5edf0 !important;
         }
+
         .ui-datepicker .ui-state-hover {
             /*background: none !important;*/
             border: 0 !important;
         }
+
         .ui-datepicker td {
             vertical-align: top;
         }
+
         .ui-datepicker .ui-state-default {
             border-radius: 2px;
             border-color: #edebeb !important;
@@ -251,35 +278,43 @@
             font-weight: 400 !important;
             margin: 7px 0 0 4px;
         }
+
         .ui-datepicker .ui-state-default.ui-state-highlight {
             border-color: #dcdcdc;
             background-color: #cff3f8 !important;
             color: #3e9aba !important;
         }
+
         .openemr-calendar .ui-state-default {
             font-size: 10px;
             margin: 0;
         }
+
         .ui-datepicker td {
             width: 33px;
         }
+
         .openemr-calendar .ui-datepicker td {
             width: 26px;
         }
+
         .openemr-calendar .ui-state-default {
             width: 26px;
             height: 20px;
             line-height: 20px;
         }
+
         .ui-state-default.ui-state-hover {
             border-color: #dcdcdc;
             background-color: #cff3f8 !important;
         }
+
         .ui-datepicker .ui-state-active {
             border-color: #dcdcdc;
             background-color: #cff3f8 !important;
             color: #3e9aba !important;
         }
+
         .ui-datepicker-calendar thead tr th {
             font-family: Open Sans, Arial, sans-serif;
             color: #549fa8;
@@ -288,18 +323,23 @@
             padding: 0.45em 0.3em !important;
             /*   width: 15px !important; */
         }
+
         .openemr-calendar .ui-datepicker-calendar thead tr th {
             font-size: 10px;
         }
+
         .ui-datepicker-close {
             display: none;
         }
+
         .ui-datepicker thead {
             background-color: #f5f5f5;
         }
+
         .openemr-calendar .ui-datepicker thead {
             background: none;
         }
+
         .ui-state-default.ui-datepicker-current {
             float: none !important;
             font-family: Open Sans, Arial, sans-serif;
@@ -313,6 +353,7 @@
             margin: 0 !important;
             background-color: transparent !important;
         }
+
         .ui-datepicker-buttonpane.ui-widget-content {
             text-align: center;
             background-color: #3e9aba;
@@ -320,61 +361,78 @@
             height: 28px;
             padding: 0 !important;
         }
+
         .openemr-calendar .ui-datepicker-year {
             background-color: transparent;
         }
+
         .openemr-calendar .ui-datepicker-month {
             background-color: transparent;
         }
+
         .openemr-calendar .ui-state-default {
             border: 0 !important;
         }
+
         .openemr-calendar .ui-datepicker-month {
             margin-right: 10px !important;
         }
+
         .left-130 {
             left: -130px;
         }
+
         .width-880 {
             width: 880px;
         }
+
         .tabReg {
             font-size: 20px;
             font-weight: bold;
         }
+
         .txtRegBelow {
             font-size: 17px;
             font-weight: 500;
         }
+
         .pad-t-30 {
             padding-top: 12px;
         }
+
         .pad-30 {
             padding-top: 40px;
             padding-right: 30px;
             padding-bottom: 30px;
             padding-left: 30px;
         }
+
         .pd-t-25 {
             padding-left: 0px;
             padding-top: 25px;
         }
+
         .width10 {
             width: 60px;
         }
+
         .mg-t-50 {
             margin-top: 50px;
         }
+
         .dropdown-menu ul li a {
             color: #000 !important;
         }
+
         .dropdown-menu ul li a:hover {
             text-decoration: none;
         }
+
         .modal-backdrop.in {
             filter: alpha(opacity=0);
             opacity: .0 !important;
         }
+
     </style>
 
     <!--Start of Tawk.to Script-->
@@ -428,10 +486,9 @@
                                                 <div class="form-inline">
                                                     <input type="checkbox" class="checkbox" id="termsCondition">
                                                     <span class="txtLabel" style="font-size:12px;">I Agree</span>
-
                                                 </div>
                                             </div>
-                                            <label class="error-message" style="color:#a94442;font-weight:500; margin-top:10px;"></label>
+                                            <label class="error-message" style="color:#a94442; font-weight:500; margin-top:10px;"></label>
                                         </div>
                                         <div class="col-md-6 col-xs-6">
                                             <label class="Label txtLabel">Name</label><br />
@@ -445,7 +502,7 @@
                                             <label class="Label">Referral Code</label><br />
                                             @Html.TextBoxFor(m => m.UserRoles.RefferenceNumber, new { @class = "form-control txtLabel", style = "text-align:center", id = "refferenceNumber", placeholder = "Referral Code" })
                                         </div>
-                                        <div class="col-md-12 col-xs-12" style="margin-top:10px;margin-bottom:0px;">
+                                        <div class="col-md-12 col-xs-12" style="margin-top:10px; margin-bottom:0px;">
                                             <button type="submit" class="btn btn-block nanoBtn btnSignup">SIGN UP</button>
                                             <br />
                                         </div>
@@ -499,7 +556,7 @@
                                                         <label class="Label">Email</label><br />
                                                         @Html.TextBoxFor(m => m.UserRoles.Username, new { @class = "form-control inputField", placeholder = "Email", id = "forgotEmail1" })
                                                         <p class="text-danger">@Html.ValidationMessageFor(m => m.UserRoles.Username)</p>
-                                                        <br />
+                                                        <br/>
                                                         <div class="mg-t-50">
                                                             <button type="submit" class="btn btn-block nanoBtn btnLogin">Request Password Reset Link </button>
                                                             <br />
@@ -613,7 +670,6 @@
     <div class="container-bottom">
         <div class="width-100">
             <div class="col10">
-                @*<label style="color:red; font-size:14px;" id="errorMessage"></label>*@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 chartPaddMobile">
                     <div id="iChart" class="iChart chartHeight" style="position:relative !important;"></div>
 
@@ -623,9 +679,6 @@
                                 @*iChartDataSource.data = chartDataSource;*@
                             $('#iChart').on("iguanaChartEvents", function (e, name, data) {
                                 if (name == "drawComplete") {
-                                    //if (name != "hashChanged" && name != "RenderChartSuccess" && name != "indicatorsChanged" && name != "chartDataReceived"
-                                    //    && name != "chartDataReady" && name != "intervalRestriction" && name != "initComplete" && name != "setTheme") {
-                                    console.log("DrawComplete");
                                     $("[name='SelectInstrument']").removeClass("active");
                                 }
                             }).iguanaChart({
@@ -659,7 +712,7 @@
                                 }
 
                             setInterval(function () {
-                                var pair = "@Model.MarketName";
+                                var pair  = "@Model.MarketName";
                                 var timeF = "@Model.TimeFrameValue";
                                 $.post("@Url.Action("GetCandlesData", "Dashboard")", { pair: pair, timeFrame: timeF }, function (data) {
 
@@ -686,7 +739,6 @@
                                     result["vl"][Object.keys(point.xSeries)[0]]      = [vl];
                                     result["xSeries"][Object.keys(point.xSeries)[0]] = [tm];
                                     $("#iChart").iguanaChart("addPoint", result);
-
                                 });
                             }, 2000)
 
@@ -708,7 +760,7 @@
                                             }
                                         });
                                     });
-                                }, 3000)
+                                }, 500)
                             }
                         });
                     </script>
@@ -718,7 +770,7 @@
             @*col2 start*@
             <div class="col2">
                 <div class="col-md-12 col-xs-12">
-                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding-left:0px; padding-right: 0px; border:none">
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding-left:0px; padding-right:0px; border:none">
                         <div class="borderRound" style="text-align: center;">
                             <div class="col-md-6 pad-top" style="padding-left:0px; padding-right:0px;border-right:1px solid #ccc">
                                 <a class="managefunds_hover manageFundAmount" href="@Url.Action("Profile","Account")">
@@ -768,7 +820,7 @@
                                         </li>
                                         <li>
                                             <a href="@Url.Action("Logout","Account")">
-                                                <span class="DarkImg" style="padding-left:3px;"><img src="/Assets/images/logout.png" title="Logout" class="topImages" /></span>
+                                                <span class="DarkImg"  style="padding-left:3px;"><img src="/Assets/images/logout.png" title="Logout" class="topImages" /></span>
                                                 <span class="LightImg" style="padding-left:3px;"><img src="~/Assets/images/1-Logout.png" title="Logout" class="topImages" /></span>
                                                 <span class="txtLabel" style="padding-left:3px;padding-left:12px;">Logout</span>
                                             </a>
@@ -778,7 +830,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12 col-sm-12 col-xs-12 txtLabel" style=" padding-left:0px;padding-top:10px; border:none;margin-top:0px;">
+                    <div class="col-md-12 col-sm-12 col-xs-12 txtLabel" style="padding-left:0px;padding-top:10px; border:none;margin-top:0px;">
                         <span class="font-12">Market</span>
                         <br>
                         <div class="btn-group full-width" style="border:none">
@@ -853,14 +905,14 @@
                             <span class="expire-dropdown-current">0 min</span> <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu full-width">
-                            <li class="expires select_expiry    txtLabel dropdownHover  dropdownHover1 expiretime" id="minute0" data-min-value="0 min" data-value="0">0 min</li>
-                            <li class="expires select_expiry    txtLabel dropdownHover  dropdownHover1 selected-expire expiretime" data-min-value="1 min" data-value="60">1 min</li>
-                            <li class="expires select_expiry    txtLabel dropdownHover  dropdownHover1 expiretime" id="minute2" data-min-value="2 min" data-value="120">2 min</li>
-                            <li class="expires select_expiry    txtLabel dropdownHover  dropdownHover1 expiretime" id="minute3" data-min-value="3 min" data-value="180">3 min</li>
-                            <li class="expires select_expiry    txtLabel dropdownHover  dropdownHover1 expiretime" id="minute5" data-min-value="5 min" data-value="300">5 min</li>
-                            <li class="expires select_expiry    txtLabel dropdownHover  dropdownHover1 expiretime" id="minute15" data-min-value="15 min" data-value="900">15 min</li>
-                            <li class="expires select_expiry    txtLabel dropdownHover  dropdownHover1 expiretime" id="minute30" data-min-value="30 min" data-value="1800">30 min</li>
-                            <li class="expires select_expiry    txtLabel dropdownHover  dropdownHover1 expiretime" id="minute60" data-min-value="60 min" data-value="3600">60 min</li>
+                            <li class="expires select_expiry txtLabel dropdownHover dropdownHover1 expiretime" id="minute0" data-min-value="0 min" data-value="0">0 min</li>
+                            <li class="expires select_expiry txtLabel dropdownHover dropdownHover1 selected-expire expiretime" data-min-value="1 min" data-value="60">1 min</li>
+                            <li class="expires select_expiry txtLabel dropdownHover dropdownHover1 expiretime" id="minute2" data-min-value="2 min" data-value="120">2 min</li>
+                            <li class="expires select_expiry txtLabel dropdownHover dropdownHover1 expiretime" id="minute3" data-min-value="3 min" data-value="180">3 min</li>
+                            <li class="expires select_expiry txtLabel dropdownHover dropdownHover1 expiretime" id="minute5" data-min-value="5 min" data-value="300">5 min</li>
+                            <li class="expires select_expiry txtLabel dropdownHover dropdownHover1 expiretime" id="minute15" data-min-value="15 min" data-value="900">15 min</li>
+                            <li class="expires select_expiry txtLabel dropdownHover dropdownHover1 expiretime" id="minute30" data-min-value="30 min" data-value="1800">30 min</li>
+                            <li class="expires select_expiry txtLabel dropdownHover dropdownHover1 expiretime" id="minute60" data-min-value="60 min" data-value="3600">60 min</li>
                         </ul>
                     </div>
                     <div class="form-inline">
@@ -933,7 +985,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 
     <div class="col5">
@@ -981,8 +1032,8 @@
     </div>
 
     <div class="col4 row" style="margin:0px; ">
-
     </div>
+
     <div class="col4">
         <div class="dis-flex">
             <div class=" dropup">
@@ -1323,10 +1374,10 @@
         </div>
     </div>
     @*<script>
-        let today = new Date().toISOString().substr(0, 10);
-        document.querySelector(".date1").value = today;
-        document.querySelector(".date2").value = today;
-    </script>*@
+            let today = new Date().toISOString().substr(0, 10);
+            document.querySelector(".date1").value = today;
+            document.querySelector(".date2").value = today;
+        </script>*@
     <div class="modal fade modalWidth in" id="loginSignup_modelNew" role="dialog">
         <div class="modal-dialog left-130">
             <div class="modal-content width-880">
@@ -1509,10 +1560,6 @@
         </div>
     </div>
 
-
-
-
-
     <script>
     var isLogin = '@Model.IsLogin';
     var reff    = '@Model.referral';
@@ -1568,7 +1615,7 @@
     // }
     //});
 
-    $(document).on('click','#profile_btn',function () {
+    $(document).on('click','#profile_btn', function () {
         if (isLogin === 'True') {
             $('#profile_btn').attr("href", "@Url.Action("Profile","Account")");
         }
@@ -1577,7 +1624,7 @@
             $('.uk-icon-close').removeClass('modalCloseImg');
         }
     });
-        $(document).on('click','#profile_btnm',function () {
+        $(document).on('click','#profile_btnm', function () {
         if (isLogin === 'True') {
             $('#profile_btnm').attr("href", "@Url.Action("Profile","Account")");
         }
@@ -1663,12 +1710,12 @@ if (isLogin === 'True') {
             }
         });
     }
-}
-else {
-    //$('#wadapanga').attr('data-target', '#loginSignup_modelNew');
-    //$('.uk-icon-close').removeClass('modalCloseImg');
-}
-});
+    }
+    else {
+        //$('#wadapanga').attr('data-target', '#loginSignup_modelNew');
+        //$('.uk-icon-close').removeClass('modalCloseImg');
+    }
+    });
 
     $(document).on('click', ".buyBtnNew", function () {
     if (isLogin === 'True') {
@@ -1710,7 +1757,7 @@ else {
         //$('#panga').attr('data-target', '#loginSignup_modelNew');
         //$('.uk-icon-close').removeClass('modalCloseImg');
     }
-});
+    });
 
     $(document).on('click', ".sellBtnNew", function () {
     if (isLogin === 'True') {
@@ -1739,7 +1786,7 @@ else {
         if (time == 0) { time = -1; }
 
         if (flag == true) {
-            $.post("@Url.Action("Sell","Dashboard")", { amount: quantity, pair: sym, rate: rate, type: tradetype, expirytime: time, timeOffset: offset }, function (response) {
+            $.post("@Url.Action("Sell", "Dashboard")", { amount: quantity, pair: sym, rate: rate, type: tradetype, expirytime: time, timeOffset: offset }, function (response) {
                 if (response !== "") {
                     jQuery.noConflict();
                     $('#tradeErrorDialog').modal('show');

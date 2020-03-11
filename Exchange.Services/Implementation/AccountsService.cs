@@ -37,13 +37,16 @@ namespace Exchange.Services.Implementation
                 return null;
             }
             else {
-                decimal totalEarn = 0;
+                decimal totalEarn          = 0;
                 RefferalData refferalData  = new RefferalData();
                 refferalData.refferalUsers = new List<userList>();
-                refferalData.rankList      = new List<rank>(); 
-                var refferalCount = _db.Accounts.Where(r => r.Referral_AccountId == acc.AccountId).ToList();
+                refferalData.refferalTier2Users = new List<userList>();
+                refferalData.rankList      = new List<rank>();
+                List<referralSubtractList> list = new List<referralSubtractList>();
+                var refferalCount          = _db.Accounts.Where(r => r.Referral_AccountId == acc.AccountId).ToList();
                 refferalData.refferalCount = refferalCount.Count();
                 refferalData.referralCode  = acc.RefferenceNumber;
+
                 for (int x = 0; x < refferalCount.Count(); x++) {
                     var id = refferalCount[x].AccountId;
                     var dbWallet =  _db.Wallets.Where(m => m.Account_Id == id && m.Currency == "USD").ToList();
@@ -102,8 +105,90 @@ namespace Exchange.Services.Implementation
                         });
                     }
                 }
-                refferalData.earning  = Math.Abs(totalEarn);
+
+                //////////////////////////////////////////////////////////////////////////
+
+                for (int t = 0; t < refferalCount.Count(); t++)
+                {
+                    var refId = refferalCount[t].AccountId;
+                    var tier2Referrals = _db.Accounts.Where(w => w.Referral_AccountId == refId).ToList();
+                    for(int n = 0; n < tier2Referrals.Count; n++)
+                    {
+                        var id = tier2Referrals[n].AccountId;
+                        var dbWallet = _db.Wallets.Where(m => m.Account_Id == id && m.Currency == "USD").ToList();
+                        if (dbWallet.Count() == 0)
+                        {
+                            refferalData.refferalTier2Users.Add(new userList()
+                            {
+                                email = tier2Referrals[n].Email,
+                                amount = 0,
+                            });
+                        }
+                        else if (dbWallet.FirstOrDefault().Balance <= 10)
+                        {
+                            var tradeList = _db.Trades.Where(m => m.Account_Id == id && m.Status == "COMPLETED").ToList();
+                            decimal total = 0;
+                            foreach (var trade in tradeList)
+                            {
+                                decimal perTradeProfit = 0;
+
+                                if (trade.Direction == "BUY")
+                                {
+                                    if (trade.PnL >= 0)
+                                    {
+                                        perTradeProfit = (trade.PnL.Value);
+                                    }
+                                    else
+                                    {
+                                        perTradeProfit = (trade.PnL.Value);
+                                    }
+                                }
+                                else if (trade.Direction == "SELL")
+                                {
+                                    if (trade.PnL >= 0)
+                                    {
+                                        perTradeProfit = (Math.Abs(trade.PnL.Value) * (-1));
+                                    }
+                                    else
+                                    {
+                                        perTradeProfit = (Math.Abs(trade.PnL.Value));
+                                    }
+                                }
+                                total += (perTradeProfit - (trade.Amount.Value * trade.Value.Value));
+                            }
+                            totalEarn += Math.Round(((Math.Abs(total) * 10) / 100), 1);
+                            refferalData.refferalTier2Users.Add(new userList()
+                            {
+                                email = tier2Referrals[n].Email,
+                                amount = Math.Round(((Math.Abs(total) * 10) / 100), 1),
+                            });
+                        }
+                        else
+                        {
+                            refferalData.refferalTier2Users.Add(new userList()
+                            {
+                                email = tier2Referrals[n].Email,
+                                amount = 0,
+                            });
+                        }
+                    }
+                }
+
+                var referralSubtract = _db.Payments.Where(t => t.PaymentType == "REFERRAL_SUBTRACT" && t.Account_Id == accId).ToList();
+                totalEarn += referralSubtract.Sum(s => s.Amount).Value;
+
+                foreach (var v in referralSubtract)
+                {
+                    list.Add(new referralSubtractList() {
+                        dateTime = v.PaymentDate.Value,
+                        reason   = v.Reason,
+                        amount   = v.Amount.Value,
+                    });
+                }
+
+                refferalData.earning  = Math.Round(totalEarn, 2);
                 refferalData.dateTime = DateTime.UtcNow;
+                refferalData.referralSubtract = list;
                 refferalData.rankList.Add(new rank("br*****in@*****.com", 1, (decimal)18.89));
                 refferalData.rankList.Add(new rank("za*******@*****.com", 2, (decimal)17.03));
                 refferalData.rankList.Add(new rank("li********@*****.com", 3, (decimal)16.41));
@@ -260,6 +345,11 @@ namespace Exchange.Services.Implementation
         public IQueryable<Account> Get()
         {
             return _db.Accounts;
+        }
+
+        public IQueryable<Wallet> GetWallet()
+        {
+            return _db.Wallets;
         }
 
         public bool DisableAccount(string code)

@@ -22,15 +22,15 @@
                 <div class="card-body px-0">
                     @Html.Partial("_MVCGridToolbar", new Exchange.UI.Models.MVCGridToolbarModel()
                     {
-                        MVCGridName  = "AccountsGrid",
-                        PageSize     = true,
-                        ColumnVisibility = true,
-                        Export       = true,
-                        GlobalSearch = true
+                    MVCGridName  = "AccountsGrid",
+                    PageSize     = true,
+                    ColumnVisibility = true,
+                    Export       = true,
+                    GlobalSearch = true
                     })
                     <br />
                     <div class="dataTables_wrapper table-responsive container-fluid dt-bootstrap4">
-                        @Html.MVCGrid("AccountsGrid")
+                        @Html.MVCGrid("AccountsLossGrid")
                     </div>
                 </div>
             </div> <!-- end card -->
@@ -40,16 +40,16 @@
 </div>
 
 @section scripts{
-    <script>
-        $("#usertradeloses").click(function () {
-            $.get("@Url.Action("_GetBelow10Losses", "Admin")", function (data) {
-                $("#usertradeloses").text('Total10:  ' + data.totalLoses + ' USD ')
-            })
-        });
-        var userType = $("#hdnUserType").val();
-        if (userType == 3) {
-            $("#MVCGridTable_AccountsGrid th:last-child, #MVCGridTable_AccountsGrid td:last-child").remove();
-        }
-    </script>
+<script>
+    $("#usertradeloses").click(function () {
+        $.get("@Url.Action("_GetBelow10Losses", "Admin")", function (data) {
+            $("#usertradeloses").text('Total10:  ' + data.totalLoses + ' USD ')
+        })
+    });
+    var userType = $("#hdnUserType").val();
+    if (userType == 3) {
+        $("#MVCGridTable_AccountsGrid th:last-child, #MVCGridTable_AccountsGrid td:last-child").remove();
+    }
+</script>
 
 }

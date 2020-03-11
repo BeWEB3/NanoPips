@@ -1,7 +1,9 @@
-<?xml version="1.0"?><!--
+﻿<?xml version="1.0"?>
+<!--
   For more information on how to configure your ASP.NET application, please visit
   https://go.microsoft.com/fwlink/?LinkId=301880
-  --><configuration>
+  -->
+<configuration>
   <configSections>
     <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
     <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false"/>
@@ -15,15 +17,13 @@
     <add key="webpages:Enabled" value="false"/>
     <add key="ClientValidationEnabled" value="true"/>
     <add key="UnobtrusiveJavaScriptEnabled" value="true"/>
-  
-	<add key="Microsoft.VisualStudio.Enterprise.AspNetHelper.VsInstrLocation" value="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Team Tools\Performance Tools\vsinstr.exe"/>
-	</appSettings>
+  </appSettings>
   <system.web>
     <customErrors mode="RemoteOnly">
       <error statusCode="404" redirect="Error404.html"/>
       <error statusCode="500" redirect="Error500.html"/>
     </customErrors>
-    <compilation targetFramework="4.5.2" debug="true" assemblyPostProcessorType="Microsoft.VisualStudio.Enterprise.Common.AspPerformanceInstrumenter, Microsoft.VisualStudio.Enterprise.AspNetHelper, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"/>
+    <compilation targetFramework="4.5.2" debug="true"/>
     <httpRuntime executionTimeout="500" maxRequestLength="52428800" targetFramework="4.5.2"/>
     <httpModules>
       <add name="ApplicationInsightsWebTracking" type="Microsoft.ApplicationInsights.Web.ApplicationInsightsHttpModule, Microsoft.AI.Web"/>
@@ -63,13 +63,7 @@
         <assemblyIdentity name="BouncyCastle.Crypto" publicKeyToken="0e99375e54769942" culture="neutral"/>
         <bindingRedirect oldVersion="0.0.0.0-1.8.2.0" newVersion="1.8.2.0"/>
       </dependentAssembly>
-    
-			<dependentAssembly>
-				<assemblyIdentity name="Microsoft.VisualStudio.Enterprise.AspNetHelper" publicKeyToken="b03f5f7f11d50a3a" culture="neutral"/>
-				<codeBase version="15.0.0.0" href="file:///C:/Program%20Files%20(x86)/Microsoft%20Visual%20Studio/Shared/Common/VSPerfCollectionTools/Microsoft.VisualStudio.Enterprise.AspNetHelper.DLL"/></dependentAssembly>
-			<dependentAssembly>
-				<assemblyIdentity name="VsWebSite.Interop" publicKeyToken="b03f5f7f11d50a3a" culture="neutral"/>
-				<codeBase version="8.0.0.0" href="file:///C:/Program%20Files%20(x86)/Microsoft%20Visual%20Studio/Shared/Common/VSPerfCollectionTools/VsWebSite.Interop.DLL"/></dependentAssembly></assemblyBinding>
+    </assemblyBinding>
   </runtime>
   <system.webServer>
     <httpProtocol>
@@ -116,4 +110,5 @@
       <compiler language="vb;vbs;visualbasic;vbscript" extension=".vb" type="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.VBCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" warningLevel="4" compilerOptions="/langversion:14 /nowarn:41008 /define:_MYTYPE=\&quot;Web\&quot; /optionInfer+"/>
     </compilers>
   </system.codedom>
-</configuration><!--ProjectGuid: 6DD2607B-03A2-473E-9268-C1747834C19D-->
+</configuration>
+<!--ProjectGuid: 6DD2607B-03A2-473E-9268-C1747834C19D-->

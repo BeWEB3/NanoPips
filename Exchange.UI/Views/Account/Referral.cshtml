@@ -1,5 +1,4 @@
 ﻿@model Exchange.Common.RefferalData
-
 @{
     Layout = null;
 }
@@ -12,7 +11,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="~/TradeAssets/js/bootbox.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="  https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <style type="text/css">
         .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
@@ -477,7 +476,7 @@
                 <div class="txtReferPadding">
                     <div class="txtRefer">
                         Refer Others.
-                        <br />
+                        <br/>
                         Earn Together.
                     </div>
                     <div class="txtBelowRefer">
@@ -488,7 +487,7 @@
                 <div class="col-md-5 col-xs-10 card cardWhiteBg">
                     <div class="txtLiveState"> Live Stats</div>
                     <div class="txtDailyUpdate">Updated Daily</div>
-                    <div class="row" style="    padding-top: 10px;">
+                    <div class="row" style="padding-top: 10px;">
                         <div class="col-md-4" style="padding: 15px 0px 25px 15px;">
                             <div class="boxTotalEarn">
                                 <span class="font-weight-500"> Total Earned </span> <br />
@@ -508,7 +507,6 @@
                                 <span data-toggle="modal" data-target="#viewleaderboard" class="txtViewLoader">View Leader Board</span>
                             </div>
                         </div>
-
                     </div>
                     <div class="row" style="padding-top: 20px;">
                         <button class="btnInvite" data-toggle="modal" data-target="#invitenow">Invite Now</button>
@@ -530,7 +528,7 @@
                             <a class="nav-link" data-toggle="tab" href="#homeBtc">BTC</a>
                         </li>
                     </ul>
-                    <div class="txtComHistory">Latest Commissions History (Displays four weeks of the month by default)</div>
+                    <div class="txtComHistory">Latest Commissions History </div>
                 </div>
                 <div class="col-md-6 pd-80">
                     <div style="font-size:12px;" class=" marg-0">Your 60% referral link</div>
@@ -551,7 +549,7 @@
                         <th>Date</th>
                     </tr>
                     <tr>
-                        <td><span>$</span>@Model.earning</td>
+                        <td class="txtViewReport" data-toggle="modal" data-target="#refferalsSubtract_table" style="cursor:pointer;"><span>$</span>@Model.earning</td>
                         <td class="txtViewReport" data-toggle="modal" data-target="#refferals_table">View Full Report</td>
                         <td>@Model.dateTime</td>
                     </tr>
@@ -568,7 +566,7 @@
                         <th>Date</th>
                     </tr>
                     <tr>
-                        <td><span>$</span>@Model.earning</td>
+                        <td class="txtViewReport" data-toggle="modal" data-target="#refferalsSubtract_table" style="cursor:pointer;"><span>$</span>@Model.earning</td>
                         <td class="txtViewReport" data-toggle="modal" data-target="#refferals_table">View Full Report</td>
                         <td>@Model.dateTime</td>
                     </tr>
@@ -579,6 +577,80 @@
     </div>
 
     <div class="modal fade in" id="refferals_table" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content width-85">
+
+                <ul class="nav nav-tabs" style="border: none;margin-top: 20px;justify-content: center;" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" style="font-weight:bold;" data-toggle="tab" href="#hom">Tire 1</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="font-weight:bold;" data-toggle="tab" href="#homBtc">Tire 2</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+
+                    <div class="tab-content container">
+                        <div id="hom" class=" tab-pane active">
+                            <div class="modal-body row">
+                                <div class="row" style="padding-top: 10px;">
+                                    <div class="col-md-12 col-xs-12">
+                                        <table class="table trade-table table-bordered table-striped" style="width:470px !important">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Email</th>
+                                                    <th scope="col">Amount</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model.refferalUsers as List<userList>)
+                                                {
+                                                    <tr>
+                                                        <td scope="col">@item.email</td>
+                                                        <td scope="col">@item.amount</td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="homBtc" class=" tab-pane">
+                            <div class="modal-body row" style="margin-right:auto;margin-left:auto;">
+                                <div class="row" style="padding-top: 10px;">
+                                    <div class="col-md-12 col-xs-12" style="padding:0;">
+                                        <table class="table trade-table  table-bordered table-striped" style="width:470px !important">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Email</th>
+                                                    <th scope="col">Amount</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model.refferalTier2Users as List<userList>)
+                                                {
+                                                    <tr>
+                                                        <td scope="col">@item.email</td>
+                                                        <td scope="col">@item.amount</td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*<div class="modal fade in" id="refferals_table" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content width-85">
                 <div class="modal-body row" style="margin-right:auto;margin-left:auto;">
@@ -606,8 +678,39 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>*@
 
+    <div class="modal fade in" id="refferalsSubtract_table" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content width-85">
+                <div class="modal-body row" style="margin-right:auto; margin-left:auto;">
+                    <div class="row" style="padding-top:10px;">
+                        <div class="col-md-12 col-xs-12">
+                            <table class="table trade-table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">DateTime</th>
+                                        <th scope="col">Transfer</th>
+                                        <th scope="col">Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.referralSubtract as List<referralSubtractList>)
+                                    {
+                                        <tr>
+                                            <td scope="col">@item.dateTime</td>
+                                            <td scope="col">@item.reason</td>
+                                            <td scope="col">@item.amount</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="modal fade in" id="viewleaderboard" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content width-85">

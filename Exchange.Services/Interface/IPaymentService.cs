@@ -13,14 +13,16 @@ namespace Exchange.Services.Interface
         Boolean AddressAuthorize(string cur, long id, string email);
         Account WithDrawlReqAdmin(Payment payment);
         Account WireWithDrawlReqAdmin(Payment payment);
-        string Sell(long acId, string pair, decimal rate, decimal amount, int type, int expiretime, decimal timeOffset);
-        string Buy(long acId, string pair, decimal rate, decimal amount, int type, int expirytime, decimal timeOffset);
+        string  Sell(long acId, string pair, decimal rate, decimal amount, int type, int expiretime, decimal timeOffset);
+        string  Buy(long acId, string pair, decimal rate, decimal amount, int type, int expirytime, decimal timeOffset);
         List<Trade> GetOrders();
         Trade CloseOrder(long tradeid, long accId);
-        bool CreditBalance(string email, string currency, decimal amount, string reason);
+        bool  CreditBalance(string email, string currency, decimal amount, string reason);
         List<Wallet> GetWallets(long id, string currency);
         List<Payment> GetSpecificPayments(long account_id, DateTime dateFrom, DateTime dateTo);
         List<Trade> GetOrdersById(long id);
         bool UpdateST(long tradeId, decimal stopLoss, decimal takeProfit);
+        string AddRefferal(string email, long accounId);
+        string refferalSubtract(decimal amount, long accounId, string reason);
     }
 }

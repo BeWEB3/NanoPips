@@ -15,49 +15,83 @@
                     @Html.Hidden("currency", ViewBag.currency as object)
                     @Html.Hidden("email", ViewBag.account as object)
                     @Html.Hidden("acId", ac_id as object)
-                <div class="col-md-12 row">
-                    <div class="form-group col-md-6">
-                        <label>Email Address</label>
-                        <input type="text" class="form-control disabled" value="@ViewBag.account" name="emailAddress" disabled="disabled" />
+                    <div class="col-md-12 row">
+                        <div class="form-group col-md-6">
+                            <label>Email Address</label>
+                            <input type="text" class="form-control disabled" value="@ViewBag.account" name="emailAddress" disabled="disabled" />
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Enter USD Amount</label>
+                            <input type="number" id="creditusd" class="form-control" name="amountusd" />
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Enter BTC Amount</label>
+                            <input type="number" id="creditbtc" class="form-control" name="amountbtc" />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Currency</label>
+                            <input type="text" value="@ViewBag.currency" disabled="disabled" class="form-control disabled" />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Reason</label>
+                            <input id="reason_text" type="text" class="form-control " name="reason" required />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Balance</label>
+                            <input type="text" value="@ViewBag.walletBalance" disabled="disabled" class="form-control disabled" />
+                            <div class="form-group col-md-3 mt-2" style="padding:0;">
+                                <input type="button" class="btn btn-success" id="creditBtn" value="Credit now" />
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Referral Email</label>
+                            <input id="emailInput" name="emailInput" type="email" value="" class="form-control " required />
+                            <div class="form-group col-md-3 mt-2 ml-auto mr-6" style="padding-left:25px;">
+                                <input type="button" class="btn btn-success" id="saveEmailBtn" value="Save" />
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Enter Referral Subtract</label>
+                            <input id="referralSubtract" type="number" value="" class="form-control" required />
+                            <div class="form-group col-md-3 mt-2 ml-auto" style="padding-left:25px;">
+                                <input type="button" class="btn btn-success" id="saveRefferalBtn" value="Save" />
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group col-md-3">
-                        <label>Enter USD Amount</label>
-                        <input type="number" id="creditusd" class="form-control" name="amountusd" />
-                    </div>
-                    <div class="form-group col-md-3">
-                        <label>Enter BTC Amount</label>
-                        <input type="number" id="creditbtc" class="form-control" name="amountbtc" />
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label>Currency</label>
-                        <input type="text" value="@ViewBag.currency" disabled="disabled" class="form-control disabled" />
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label>Reason</label>
-                        <input type="text" class="form-control " name="reason" required />
-                    </div>
-                    <div class="form-group col-md-3">
-                        <label>Balance</label>
-                        <input type="text" value="@ViewBag.walletBalance" disabled="disabled" class="form-control disabled" />
-                    </div>
-                    <div class="form-group col-md-3">
-                        <label>Referral Email</label>
-                        <input type="text" value="@ViewBag.walletBalance" disabled="disabled" class="form-control disabled" />
-                    </div>
-                    <div class="form-group col-md-3">
-                        <input type="button" class="btn btn-success" id="saveBtn" value="Save" />
-                    </div>
-                    <div class="form-group col-md-12">
-                        <input type="button" class="btn btn-success" id="creditBtn" value="Credit now" />
-                    </div>
-                </div>
                 }
             </div>
-
         </div>
     </div>
-
 </div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+    $("#saveEmailBtn").click(function (e) {
+    var email = $('#emailInput').val();
+    if (email == '') {
+        alert('Email should not empty.');
+    }
+    else {
+        $.get("@Url.Action("_AddRefferal", "Admin")", { email: email, accounId: @ac_id }, function (data) {
+            alert(data.msg);
+        });
+    }
+    });
+
+    $("#saveRefferalBtn").click(function (e) {
+        var amount = $('#referralSubtract').val();
+        if (amount == '') {
+            alert('Input field should not empty.');
+        }
+        else {
+            var reasonTxt = $("#reason_text").val();
+            $.get("@Url.Action("_refferalSubtract", "Admin")", { amount: parseFloat(amount).toFixed(2), accounId: @ac_id, reason: reasonTxt }, function (data) {
+                alert(data.msg);
+            });
+        }
+    });
+
+</script>
 
 @section scripts{
     <script>

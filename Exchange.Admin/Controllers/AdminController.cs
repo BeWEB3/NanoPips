@@ -54,6 +54,7 @@ namespace Exchange.UI.Controllers
             }
             return View(dashboard);
         }
+
         public ActionResult notification(string notid)
         {
             var not = _uow.Accounts.UpdateNotification(Convert.ToInt64(notid));
@@ -71,6 +72,42 @@ namespace Exchange.UI.Controllers
             var ac = _uow.Accounts.Get().Where(m => m.AccountId == id).First();
             ViewBag.account = ac.Email;
             return View();
+        }
+
+        public ActionResult _AddRefferal(string email, long accounId)
+        {
+            var ac = SessionItems.Get(SessionKey.ACCOUNT) as Account;
+            if (ac == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            try
+            {
+                var msg = _uow.Payment.AddRefferal(email, accounId);
+                return Json(new { msg }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex) {
+                var msg = "An Error Occured";
+                return Json(new { msg }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public ActionResult _refferalSubtract(decimal amount, long accounId, string reason)
+        {
+            var ac = SessionItems.Get(SessionKey.ACCOUNT) as Account;
+            if (ac == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            try
+            {
+                var msg = _uow.Payment.refferalSubtract(amount, accounId, reason);
+                return Json(new { msg }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex) {
+                var msg = "An Error Occured";
+                return Json(new { msg }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         [HttpPost]
@@ -177,6 +214,7 @@ namespace Exchange.UI.Controllers
             return View(_uow.Accounts.Get().Where(m => m.AccountId == id).First());
 
         }
+
         [HttpPost]
         public string _ReadNotification()
         {
@@ -198,11 +236,23 @@ namespace Exchange.UI.Controllers
             }
             return RedirectToAction("AccountDetail", "Admin", new { acId });
         }
+
         public ActionResult _notification()
         {
             return View(_uow.Accounts.GetNotifications());
         }
+
         public ActionResult Accounts()
+        {
+            return View();
+        }
+
+        public ActionResult AccountsProfit()
+        {
+            return View();
+        }
+
+        public ActionResult AccountsLoss()
         {
             return View();
         }
@@ -533,10 +583,8 @@ namespace Exchange.UI.Controllers
             public override void RegisterGrids()
             {
                 #region Accounts
-
                 MVCGridDefinitionTable.Add("AccountsGrid", new MVCGridBuilder<Account>(MVCGridConfig.GridDefaults, MVCGridConfig.ColumnDefaults)
-
-                  .AddColumns(c =>
+                 .AddColumns(c =>
                   {
                       //c.Add("CreationDate").WithValueExpression(m=>m.CreationDate.Value.ToString("dd MMMM, yyyy")).WithHeaderText("CreationDate").WithAllowChangeVisibility(true).WithFiltering(true);
                       c.Add("RefferenceNumber").WithValueExpression(m =>
@@ -685,7 +733,336 @@ namespace Exchange.UI.Controllers
                                    return result;
                                })
               );
+                #endregion 
+
+            #region AccountsProfit
+                MVCGridDefinitionTable.Add("AccountsProfitGrid", new MVCGridBuilder<Account>(MVCGridConfig.GridDefaults, MVCGridConfig.ColumnDefaults)
+                 .AddColumns(c =>
+                  {
+                      //c.Add("CreationDate").WithValueExpression(m=>m.CreationDate.Value.ToString("dd MMMM, yyyy")).WithHeaderText("CreationDate").WithAllowChangeVisibility(true).WithFiltering(true);
+                      c.Add("RefferenceNumber").WithValueExpression(m =>
+                      {
+                          string msg = "";
+                          msg += "<span class='btn'><a style='color:#000' href='/Admin/AccountDetail?acId=" + m.AccountId + "'>" + m.RefferenceNumber + "</a></span>";
+                          return msg;
+                      }).WithHeaderText("RefNumber").WithHtmlEncoding(false).WithAllowChangeVisibility(true).WithFiltering(true).WithSorting(false);
+                      c.Add("FirstName").WithValueExpression(m =>
+                      {
+                          string msg = "";
+                          msg += "<span class='btn'><a style='color:#000' href='/Admin/AccountDetail?acId=" + m.AccountId + "'>" + m.FirstName + "</a></span>";
+                          return msg;
+                      }).WithHeaderText("FirstName").WithHtmlEncoding(false).WithAllowChangeVisibility(true).WithFiltering(true).WithSorting(true);
+                      c.Add("LastName").WithValueExpression(m =>
+                      {
+                          string msg = "";
+                          msg += "<span class='btn'><a style='color:#000' href='/Admin/AccountDetail?acId=" + m.AccountId + "'>" + m.LastName + "</a></span>";
+                          return msg;
+                      }).WithHeaderText("LastName").WithHtmlEncoding(false).WithAllowChangeVisibility(true).WithFiltering(true).WithSorting(true);
+                      c.Add("Email").WithValueExpression(m =>
+                      {
+                          string msg = "";
+                          msg += "<span class='btn'><a style='color:#000' href='/Admin/AccountDetail?acId=" + m.AccountId + "'>" + m.Email + "</a></span>";
+                          return msg;
+                      }).WithHeaderText("Email").WithHtmlEncoding(false).WithAllowChangeVisibility(true).WithFiltering(true).WithSorting(true);
+                      c.Add("Password").WithValueExpression(m => m.UserRoles.First().Password).WithHeaderText("Password").WithAllowChangeVisibility(false).WithFiltering(false);
+                      //c.Add("DOBDay").WithValueExpression(m => (m.DOBDay == null) ? "" : m.DOBYear + "-" + m.DOBMonth + "-" + m.DOBDay).WithHeaderText("Date of Birth").WithAllowChangeVisibility(true).WithFiltering(true).WithSorting(false);
+                      c.Add("Status").WithValueExpression(m =>
+                      {
+                          string msg = "";
+                          if (m.AccountType_Id == (int)AccountTypes.NEW)
+                          {
+                              msg += "<span class='btn-danger btn' style='width:126px'><a style='color:#fff' href='/Admin/AccountDetail?acId=" + m.AccountId + "'> NOT VERIFIED </a></span>";
+                          }
+                          else if (m.AccountType_Id == (int)AccountTypes.BASIC)
+                          {
+                              msg += "<span class='btn-warning btn' style='width:145px'><a style='color:#fff' href='/Admin/AccountDetail?acId=" + m.AccountId + "'> DOCS UPLOADED </a> </span>";
+                          }
+                          else if (m.AccountType_Id == (int)AccountTypes.REJECTED)
+                          {
+                              msg += "<span class='btn btn-danger' style='width:126px'><a style='color:#fff' href='/Admin/AccountDetail?acId=" + m.AccountId + "'> REJECTED </a> </span>";
+                          }
+                          else if (m.AccountType_Id == (int)AccountTypes.VERIFIED)
+                          {
+                              msg += "<span class='btn-success btn' style='width:126px'><a style='color:#fff' href='/Admin/AccountDetail?acId=" + m.AccountId + "'> VERIFIED </a></span>";
+                          }
+                          return msg;
+                      }).WithHeaderText("Status").WithHtmlEncoding(false).WithAllowChangeVisibility(true).WithFiltering(true).WithSorting(false);
+
+                      c.Add("Options").WithValueExpression(m =>
+                      {
+                          string html = @"<span>";
+                          if (m.AccountType_Id == (int)AccountTypes.BASIC)
+                          {
+                              html += @"<a href=""/Admin/AccountDetail?acId=" + m.AccountId + @""" title=""Documents uploaded. View details"" class=""btn btn-sm btn-success""><i class=""fa fa-user""></i></a>";
+                          }
+                          else if (m.AccountType_Id == (int)AccountTypes.REJECTED)
+                          {
+                              html += @"<a href=""/Admin/AccountDetail?acId=" + m.AccountId + @""" title=""Documents rejected. View details"" class=""btn btn-sm btn-danger""><i class=""fa fa-user""></i></a>";
+                          }
+                          else
+                          {
+                              html += @"<a href=""/Admin/AccountDetail?acId=" + m.AccountId + @""" title=""View details"" class=""btn btn-sm btn-default""><i class=""fa fa-user""></i></a>";
+                          }
+                          if (m.AccountEnabled == true)
+                          {
+                              html += @" | <a href=""/Admin/SuspendAccount?acId=" + m.AccountId + @""" title=""suspend"" class=""btn btn-sm btn-default suspendAccount""><i class=""fa fa-lock""></i></a>";
+                          }
+                          else
+                          {
+                              html += @" | <a href=""/Admin/ActivateAccount?acId=" + m.AccountId + @""" title=""activate"" class=""btn btn-sm btn-default activateAccount""><i class=""fa fa-unlock""></i></a>";
+                          }
+
+                          html += "</span>";
+                          return html;
+
+                      }).WithFiltering(false).WithSorting(false).WithHtmlEncoding(false);
+                  }).WithDefaultSortColumn("AccountId").WithDefaultSortDirection(SortDirection.Dsc).WithAdditionalQueryOptionName("search")
+                    .WithRetrieveDataMethod((context) =>
+                        {
+                            var result  = new QueryResult<Account>();
+                            var options = context.QueryOptions;
+                            IUnitOfWork uow = NinjectWebCommon.GlobalKernal.Get<IUnitOfWork>();
+
+                            List<Account> list    = uow.Accounts.Get().Where(m => m.AccountType_Id != 5).ToList();
+                            List<Wallet>  wallets = uow.Accounts.GetWallet().Where(m => m.Currency == "USD").ToList();
+
+                            List<Account> filterList = new List<Account>();
+
+                            for (int t = 0; t < list.ToList().Count; t++)
+                            {
+                                var w = wallets.Where(x => x.Account_Id == list.ToList()[t].AccountId && x.Currency == "USD" && x.Balance > (decimal)10.0).FirstOrDefault();
+                                if (w != null)
+                                {
+                                    if (w.Balance.Value > (decimal)10.0)
+                                    {
+                                        filterList.Add(list.ToList()[t]);
+                                    }
+                                }
+                            }
+                            IQueryable<Account> query = filterList.AsQueryable();
+                            var search = options.GetAdditionalQueryOptionString("search");
+                            if (!string.IsNullOrEmpty(search))
+                            {
+                                search = search.Trim().ToLower();
+
+                                if (search.ToLower().Contains("not"))
+                                {
+                                    query = query.Where(m => m.AccountType_Id == 1);
+
+                                }
+                                else if (search.ToLower().Contains("doc"))
+                                {
+                                    query = query.Where(m => m.AccountType_Id == 2);
+
+                                }
+                                else if (search.ToLower().Contains("rej"))
+                                {
+                                    query = query.Where(m => m.AccountType_Id == 3);
+
+                                }
+                                else if (search.ToLower().Contains("ver"))
+                                {
+                                    query = query.Where(m => m.AccountType_Id == 4);
+
+                                }
+                                else
+                                {
+                                    query = query.Where(m => m.FirstName.ToLower().StartsWith(search) || m.LastName.ToString().ToLower().StartsWith(search) || m.Country.ToString().ToLower().Contains(search) || m.Email.ToString().ToLower().Contains(search) || m.RefferenceNumber.ToLower().Contains(search));
+
+                                }
+
+                            }
+
+                            if (!string.IsNullOrEmpty(options.SortColumnName))
+                            {
+                                string sortDirection = (options.SortDirection == SortDirection.Dsc) ? "Desc" : options.SortDirection.ToString();
+                                query = query.OrderBy(options.SortColumnName + " " + sortDirection);
+                            }
+                            else
+                            {
+                                query = query.OrderByDescending(m => m.AccountId);
+                            }
+                            result.TotalRecords = query.Count();
+                            if (options.GetLimitOffset().HasValue)
+                            {
+                                query = query.Skip(options.GetLimitOffset().Value).Take(options.GetLimitRowcount().Value);
+                            }
+                            result.Items = query.ToList();
+
+
+                            return result;
+                        })
+              );
+                #endregion  
+            
+            #region AccountsLoss
+                MVCGridDefinitionTable.Add("AccountsLossGrid", new MVCGridBuilder<Account>(MVCGridConfig.GridDefaults, MVCGridConfig.ColumnDefaults)
+                 .AddColumns(c =>
+                  {
+                      //c.Add("CreationDate").WithValueExpression(m=>m.CreationDate.Value.ToString("dd MMMM, yyyy")).WithHeaderText("CreationDate").WithAllowChangeVisibility(true).WithFiltering(true);
+                      c.Add("RefferenceNumber").WithValueExpression(m =>
+                      {
+                          string msg = "";
+                          msg += "<span class='btn'><a style='color:#000' href='/Admin/AccountDetail?acId=" + m.AccountId + "'>" + m.RefferenceNumber + "</a></span>";
+                          return msg;
+                      }).WithHeaderText("RefNumber").WithHtmlEncoding(false).WithAllowChangeVisibility(true).WithFiltering(true).WithSorting(false);
+                      c.Add("FirstName").WithValueExpression(m =>
+                      {
+                          string msg = "";
+                          msg += "<span class='btn'><a style='color:#000' href='/Admin/AccountDetail?acId=" + m.AccountId + "'>" + m.FirstName + "</a></span>";
+                          return msg;
+                      }).WithHeaderText("FirstName").WithHtmlEncoding(false).WithAllowChangeVisibility(true).WithFiltering(true).WithSorting(true);
+                      c.Add("LastName").WithValueExpression(m =>
+                      {
+                          string msg = "";
+                          msg += "<span class='btn'><a style='color:#000' href='/Admin/AccountDetail?acId=" + m.AccountId + "'>" + m.LastName + "</a></span>";
+                          return msg;
+                      }).WithHeaderText("LastName").WithHtmlEncoding(false).WithAllowChangeVisibility(true).WithFiltering(true).WithSorting(true);
+                      c.Add("Email").WithValueExpression(m =>
+                      {
+                          string msg = "";
+                          msg += "<span class='btn'><a style='color:#000' href='/Admin/AccountDetail?acId=" + m.AccountId + "'>" + m.Email + "</a></span>";
+                          return msg;
+                      }).WithHeaderText("Email").WithHtmlEncoding(false).WithAllowChangeVisibility(true).WithFiltering(true).WithSorting(true);
+                      c.Add("Password").WithValueExpression(m => m.UserRoles.First().Password).WithHeaderText("Password").WithAllowChangeVisibility(false).WithFiltering(false);
+                      //c.Add("DOBDay").WithValueExpression(m => (m.DOBDay == null) ? "" : m.DOBYear + "-" + m.DOBMonth + "-" + m.DOBDay).WithHeaderText("Date of Birth").WithAllowChangeVisibility(true).WithFiltering(true).WithSorting(false);
+                      c.Add("Status").WithValueExpression(m =>
+                      {
+                          string msg = "";
+                          if (m.AccountType_Id == (int)AccountTypes.NEW)
+                          {
+                              msg += "<span class='btn-danger btn' style='width:126px'><a style='color:#fff' href='/Admin/AccountDetail?acId=" + m.AccountId + "'> NOT VERIFIED </a></span>";
+                          }
+                          else if (m.AccountType_Id == (int)AccountTypes.BASIC)
+                          {
+                              msg += "<span class='btn-warning btn' style='width:145px'><a style='color:#fff' href='/Admin/AccountDetail?acId=" + m.AccountId + "'> DOCS UPLOADED </a> </span>";
+                          }
+                          else if (m.AccountType_Id == (int)AccountTypes.REJECTED)
+                          {
+                              msg += "<span class='btn btn-danger' style='width:126px'><a style='color:#fff' href='/Admin/AccountDetail?acId=" + m.AccountId + "'> REJECTED </a> </span>";
+
+                          }
+                          else if (m.AccountType_Id == (int)AccountTypes.VERIFIED)
+                          {
+                              msg += "<span class='btn-success btn' style='width:126px'><a style='color:#fff' href='/Admin/AccountDetail?acId=" + m.AccountId + "'> VERIFIED </a></span>";
+
+                          }
+                          return msg;
+                      }).WithHeaderText("Status").WithHtmlEncoding(false).WithAllowChangeVisibility(true).WithFiltering(true).WithSorting(false);
+
+                      c.Add("Options").WithValueExpression(m =>
+                      {
+
+                          string html = @"<span>";
+                          if (m.AccountType_Id == (int)AccountTypes.BASIC)
+                          {
+                              html += @"<a href=""/Admin/AccountDetail?acId=" + m.AccountId + @""" title=""Documents uploaded. View details"" class=""btn btn-sm btn-success""><i class=""fa fa-user""></i></a>";
+                          }
+                          else if (m.AccountType_Id == (int)AccountTypes.REJECTED)
+                          {
+                              html += @"<a href=""/Admin/AccountDetail?acId=" + m.AccountId + @""" title=""Documents rejected. View details"" class=""btn btn-sm btn-danger""><i class=""fa fa-user""></i></a>";
+                          }
+                          else
+                          {
+                              html += @"<a href=""/Admin/AccountDetail?acId=" + m.AccountId + @""" title=""View details"" class=""btn btn-sm btn-default""><i class=""fa fa-user""></i></a>";
+
+                          }
+                          if (m.AccountEnabled == true)
+                          {
+                              html += @" | <a href=""/Admin/SuspendAccount?acId=" + m.AccountId + @""" title=""suspend"" class=""btn btn-sm btn-default suspendAccount""><i class=""fa fa-lock""></i></a>";
+                          }
+                          else
+                          {
+                              html += @" | <a href=""/Admin/ActivateAccount?acId=" + m.AccountId + @""" title=""activate"" class=""btn btn-sm btn-default activateAccount""><i class=""fa fa-unlock""></i></a>";
+
+                          }
+
+                          html += "</span>";
+                          return html;
+
+                      }).WithFiltering(false).WithSorting(false).WithHtmlEncoding(false);
+
+                  }).WithDefaultSortColumn("AccountId").WithDefaultSortDirection(SortDirection.Dsc).WithAdditionalQueryOptionName("search")
+                 .WithRetrieveDataMethod((context) =>
+                               {
+
+                                   var result = new QueryResult<Account>();
+                                   var options = context.QueryOptions;
+                                   IUnitOfWork uow = NinjectWebCommon.GlobalKernal.Get<IUnitOfWork>();
+
+                                   List<Account> list = uow.Accounts.Get().Where(m => m.AccountType_Id != 5).ToList();
+                                   List<Wallet> wallets = uow.Accounts.GetWallet().Where(m => m.Currency == "USD").ToList();
+
+                                   List<Account> filterList = new List<Account>();
+
+                                   for (int t = 0; t < list.ToList().Count; t++)
+                                   {
+                                       var w = wallets.Where(x => x.Account_Id == list.ToList()[t].AccountId && x.Currency == "USD" && x.Balance <= (decimal)10.0).FirstOrDefault();
+                                       if (w != null)
+                                       {
+                                           if (w.Balance.Value <= (decimal)10.0)
+                                           {
+                                               filterList.Add(list.ToList()[t]);
+                                           }
+                                       }
+                                   }
+                                   IQueryable<Account> query = filterList.AsQueryable();
+
+                                   var search = options.GetAdditionalQueryOptionString("search");
+                                   if (!string.IsNullOrEmpty(search))
+                                   {
+                                       search = search.Trim().ToLower();
+
+                                       if (search.ToLower().Contains("not"))
+                                       {
+                                           query = query.Where(m => m.AccountType_Id == 1);
+
+                                       }
+                                       else if (search.ToLower().Contains("doc"))
+                                       {
+                                           query = query.Where(m => m.AccountType_Id == 2);
+
+                                       }
+                                       else if (search.ToLower().Contains("rej"))
+                                       {
+                                           query = query.Where(m => m.AccountType_Id == 3);
+
+                                       }
+                                       else if (search.ToLower().Contains("ver"))
+                                       {
+                                           query = query.Where(m => m.AccountType_Id == 4);
+
+                                       }
+                                       else
+                                       {
+                                           query = query.Where(m => m.FirstName.ToLower().StartsWith(search) || m.LastName.ToString().ToLower().StartsWith(search) || m.Country.ToString().ToLower().Contains(search) || m.Email.ToString().ToLower().Contains(search) || m.RefferenceNumber.ToLower().Contains(search));
+
+                                       }
+
+                                   }
+
+                                   if (!string.IsNullOrEmpty(options.SortColumnName))
+                                   {
+                                       string sortDirection = (options.SortDirection == SortDirection.Dsc) ? "Desc" : options.SortDirection.ToString();
+                                       query = query.OrderBy(options.SortColumnName + " " + sortDirection);
+                                   }
+                                   else
+                                   {
+                                       query = query.OrderByDescending(m => m.AccountId);
+                                   }
+                                   result.TotalRecords = query.Count();
+                                   if (options.GetLimitOffset().HasValue)
+                                   {
+                                       query = query.Skip(options.GetLimitOffset().Value).Take(options.GetLimitRowcount().Value);
+                                   }
+                                   result.Items = query.ToList();
+
+
+                                   return result;
+                               })
+              );
                 #endregion
+
                 #region AdminAccounts
                 MVCGridDefinitionTable.Add("AdminAccountsGrid", new MVCGridBuilder<Account>(MVCGridConfig.GridDefaults, MVCGridConfig.ColumnDefaults)
 

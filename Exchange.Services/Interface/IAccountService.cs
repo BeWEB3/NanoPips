@@ -26,6 +26,7 @@ namespace Exchange.Services.Interface
         bool Approve(long acId);
         bool Reject(long acId, string reason);
         IQueryable<Account> Get();
+        IQueryable<Wallet> GetWallet();
         List<Notification> GetNotifications();
         List<Wallet> GetAllWallets(long acId, string from, string to);
         Notification UpdateNotification(long notificationId);

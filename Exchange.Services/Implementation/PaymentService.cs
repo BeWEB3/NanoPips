@@ -700,5 +700,48 @@ namespace Exchange.Services.Implementation
                 }
             }
         }
+
+        public string AddRefferal(string email, long accounId)
+        {
+            var acc = _db.Accounts.Where(x => x.Email.ToLower() == email.ToLower()).FirstOrDefault();
+            if (acc == null)
+            {
+                return "Email does not Exist.";
+            }
+            else if (acc.AccountId == accounId)
+            {
+                return "Same user can not referred to itself.";
+            }
+            else
+            {
+                var tmp = _db.Accounts.Where(t => t.Referral_AccountId == acc.AccountId).ToList();
+                if (tmp.Count == 0)
+                {
+                    acc.Referral_AccountId = accounId;
+                    _db.Configuration.ValidateOnSaveEnabled = false;
+                    _db.SaveChanges();
+                    return "Updated!";
+                }
+                else {
+                    return "User Already Referred";
+                }
+            }
+        }
+
+        public string refferalSubtract(decimal amount, long accounId, string reason)
+        {
+            var res = _db.Accounts.Where(x => x.AccountId == accounId).FirstOrDefault();
+            if (res == null)
+            {
+                return "Account does not Exist.";
+            }
+            else
+            {
+                _db.Payments.Add(new Payment() { PaymentDate = DateTime.Now, PaymentStatus_Id = (int)2, Account_Id = accounId, Amount = amount, AmountSent = amount, Currency = "USD", PaymentType = "REFERRAL_SUBTRACT", Source = "ADMIN_REFERRAL_WITHDRAW", StatusMessage = "Referral Withdraw Completed", Reason = reason });
+                _db.Configuration.ValidateOnSaveEnabled = false;
+                _db.SaveChanges();
+                return "Updated!";
+            }
+        }
     }
 }

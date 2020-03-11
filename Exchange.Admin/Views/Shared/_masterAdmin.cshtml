@@ -99,11 +99,9 @@
                             <a class="dropdown-item wave" href="@Url.Action("ChangePassword","Admin")"><span class="gg-icon material-icons">settings</span>Change Password</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item wave" href="@Url.Action("Logout","Account")"> <span class="gg-icon material-icons">power_settings_new</span>Logout</a>
-
                         </div>
                     </li>
                 </ul>
-
             </div> <!-- end navbar-head -->
         </nav>
         <!-- wrap -->
@@ -118,48 +116,18 @@
                     <li class="nav-item">
                         <a class="nav-link wave" href="@Url.Action("Accounts","Admin")"><span class="gg-icon material-icons">account_circle</span>Accounts</a>
                     </li>
-                    @*<li class="nav-item">
-                            <a class="nav-link wave" href="@Url.Action("Settings","Admin")"><span class="gg-icon material-icons">settings</span>Settings</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link wave" href="@Url.Action("Wallet","Admin")"><span class="gg-icon material-icons">account_balance_wallet</span>Master Wallets</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link wave" href="@Url.Action("WalletBalances","Admin")"><span class="gg-icon material-icons">account_balance_wallet</span>Wallets Balances</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link wave" href="@Url.Action("ManageSpread","Admin")"><span class="gg-icon material-icons">adjust</span>Manage Spread</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link wave" href="@Url.Action("ERCTokens","Admin")"><span class="gg-icon material-icons">adjust</span>Add ERC Token</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link wave" href="@Url.Action("TransactionHistoryForAdmin","Admin")"><span class="gg-icon material-icons">attach_money</span>Transaction History</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link wave" href="@Url.Action("Currency","Admin")"><span class="gg-icon material-icons">attach_money</span>Manage Currencies</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link wave" href="@Url.Action("WithDrawls","Admin")"><span class="gg-icon material-icons">adjust</span>Withdrawals</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link wave" href="@Url.Action("NameScanKYC","Admin")"><span class="gg-icon material-icons">adjust</span>KYC API Data</a>
-                        </li>
-                        <li class="nav-item nav-toggle">
-                            <a class="nav-link wave" href="javascript:void(0);"><span class="gg-icon material-icons">assignment</span>Reports</a>
-                            <ul class="nav-dropdown">
-                                <li><a class="nav-link wave" href="@Url.Action("Deposits","Admin")"><span class="gg-icon material-icons font-18 ml-1">adjust</span>Deposits</a></li>
-                                <li><a class="nav-link wave" href="@Url.Action("BuySells","Admin")"><span class="gg-icon material-icons font-18 ml-1">adjust</span>Buy/Sell</a></li>
-                                <li><a class="nav-link wave" href="@Url.Action("Profit","Admin")"><span class="gg-icon material-icons font-18 ml-1">adjust</span>Profit</a></li>
-                            </ul>
-                        </li>*@
                     @if (userType == Convert.ToInt32(EUserRoleType.SUPER_ADMIN))
                     {
                         <li class="nav-item">
                             <a class="nav-link wave" href="@Url.Action("AdminAccounts","Admin")"><span class="gg-icon material-icons">account_circle</span> Manage Admin Accounts</a>
                         </li>
                     }
-
+                    <li class="nav-item">
+                        <a class="nav-link wave" href="@Url.Action("AccountsProfit","Admin")"><img src="~/Assets/images/profit10_icon.png" style="width:30px; height:30px; padding:5px 7px 5px 0px;"/>  +10 Balance Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link wave" href="@Url.Action("AccountsLoss","Admin")"><img src="~/Assets/images/loss10_icon.png" style="width:30px; height:30px; padding:5px 7px 5px 0px;"/>  -10 Balance Users</a>
+                    </li>
 
                 </ul> <!-- end sidebar menu items -->
             </section> <!-- end sidebar -->    <!-- main content -->

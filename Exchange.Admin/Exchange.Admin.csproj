@@ -283,6 +283,7 @@
     <Content Include="Assets\images\instagram.png" />
     <Content Include="Assets\images\line.png" />
     <Content Include="Assets\images\logo.png" />
+    <Content Include="Assets\images\loss10_icon.png" />
     <Content Include="Assets\images\lowcost.png" />
     <Content Include="Assets\images\Manage Account.png" />
     <Content Include="Assets\images\productinfo\cards.png" />
@@ -294,6 +295,7 @@
     <Content Include="Assets\images\productinfo\card_v2.png" />
     <Content Include="Assets\images\productinfo\check.png" />
     <Content Include="Assets\images\productinfo\play.png" />
+    <Content Include="Assets\images\profit10_icon.png" />
     <Content Include="Assets\images\screen-graph.png" />
     <Content Include="Assets\images\scroll-down.png" />
     <Content Include="Assets\images\secure.png" />
@@ -505,6 +507,8 @@
     <Content Include="Views\Admin\WalletBalances.cshtml" />
     <Content Include="Views\Admin\TransactionHistoryForAdmin.cshtml" />
     <Content Include="Views\Admin\Withdrawal.cshtml" />
+    <Content Include="Views\Admin\AccountsProfit.cshtml" />
+    <Content Include="Views\Admin\AccountsLoss.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

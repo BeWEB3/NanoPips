@@ -13,7 +13,7 @@ namespace OrderManagment
 {
     public class OrderManagmentScript
     {
-        private static IUnitOfWork uow = null;
+        private static IUnitOfWork uow  = null;
         private static List<Pair> pairs = new List<Pair>();
         private static List<Trade> tradeList;
 
@@ -274,7 +274,7 @@ namespace OrderManagment
                         var line = frame.GetFileLineNumber();
                         Console.WriteLine(ex.Message + "   Error Line Numbre:  " + line);
                     }
-                    Thread.Sleep(500);
+                    Thread.Sleep(300);
                 }
             });
             OrderManagment.Start();
