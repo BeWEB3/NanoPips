@@ -487,7 +487,7 @@
                 <div class="col-md-5 col-xs-10 card cardWhiteBg">
                     <div class="txtLiveState"> Live Stats</div>
                     <div class="txtDailyUpdate">Updated Daily</div>
-                    <div class="row" style="padding-top: 10px;">
+                    <div class="row" style="padding-top:10px;">
                         <div class="col-md-4" style="padding: 15px 0px 25px 15px;">
                             <div class="boxTotalEarn">
                                 <span class="font-weight-500"> Total Earned </span> <br />
@@ -589,12 +589,12 @@
                     </li>
                 </ul>
                 <div class="tab-content">
-
                     <div class="tab-content container">
+
                         <div id="hom" class=" tab-pane active">
-                            <div class="modal-body row">
+                            <div class="modal-body row" style="margin-right:auto;margin-left:auto;">
                                 <div class="row" style="padding-top: 10px;">
-                                    <div class="col-md-12 col-xs-12">
+                                    <div class="col-md-12 col-xs-12" style="padding:0;">
                                         <table class="table trade-table table-bordered table-striped" style="width:470px !important">
                                             <thead>
                                                 <tr>
@@ -617,10 +617,10 @@
                             </div>
                         </div>
 
-                        <div id="homBtc" class=" tab-pane">
+                        <div id="homBtc" class="tab-pane">
                             <div class="modal-body row" style="margin-right:auto;margin-left:auto;">
                                 <div class="row" style="padding-top: 10px;">
-                                    <div class="col-md-12 col-xs-12" style="padding:0;">
+                                    <div class="" style="padding:0;">
                                         <table class="table trade-table  table-bordered table-striped" style="width:470px !important">
                                             <thead>
                                                 <tr>
@@ -643,58 +643,26 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
     </div>
 
-    @*<div class="modal fade in" id="refferals_table" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content width-85">
-                <div class="modal-body row" style="margin-right:auto;margin-left:auto;">
-                    <div class="row" style="padding-top: 10px;">
-                        <div class="col-md-12 col-xs-12">
-                            <table class="table trade-table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">Amount</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in Model.refferalUsers as List<userList>)
-                                    {
-                                        <tr>
-                                            <td scope="col">@item.email</td>
-                                            <td scope="col">@item.amount</td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>*@
-
     <div class="modal fade in" id="refferalsSubtract_table" role="dialog">
-        <div class="modal-dialog">
+        <div class="modal-dialog" style="max-width:600px !important;">
             <div class="modal-content width-85">
-                <div class="modal-body row" style="margin-right:auto; margin-left:auto;">
+                <div class="modal-body row" style="margin-right:20px; margin-left:20px;">
                     <div class="row" style="padding-top:10px;">
                         <div class="col-md-12 col-xs-12">
-                            <table class="table trade-table">
+                            <table class="table trade-table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th scope="col">DateTime</th>
-                                        <th scope="col">Transfer</th>
-                                        <th scope="col">Amount</th>
+                                        <th scope="col">DateTime/Email</th>
+                                        <th style="width:170px;" scope="col">Transfer</th>
+                                        <th style="width:170px;" scope="col">Amount</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody style="table-layout:auto; font-size:12px">
                                     @foreach (var item in Model.referralSubtract as List<referralSubtractList>)
                                     {
                                         <tr>
@@ -703,6 +671,22 @@
                                             <td scope="col">@item.amount</td>
                                         </tr>
                                     }
+                                    @foreach (var item in Model.refferalUsers as List<userList>)
+                                    {
+                                        <tr>
+                                            <td scope="col">@item.email</td>
+                                            <td scope="col">Credit</td>
+                                            <td scope="col">@item.amount</td>
+                                        </tr>
+                                    }
+                                    @foreach (var item in Model.refferalTier2Users as List<userList>)
+                                    {
+                                        <tr>
+                                            <td scope="col">@item.email</td>
+                                            <td scope="col">Credit</td>
+                                            <td scope="col">@item.amount</td>
+                                        </tr>
+                                    }
                                 </tbody>
                             </table>
                         </div>
@@ -711,6 +695,7 @@
             </div>
         </div>
     </div>
+
     <div class="modal fade in" id="viewleaderboard" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content width-85">
@@ -889,15 +874,12 @@
         <div class="col-md-1"></div>
         <div class="col-md-10" style="font-size: 16px;">
             Logic Flow:<br />
-            <br />
-
+            <br/>
             Junaid account has 6 digit link for his account. <br />
             Example: nanopips.com/XXY652<br />
             <br />
-
             Junaid give this link to Aman. Aman register on this link.<br />
             <br />
-
             Now Aman email shows here in Junaid login and will show Junaid 15% from Aman TRADE LOSSES<br />
             When Aman USD or USD Copy(BTC) balance touches 10 or below, show 15% of Aman TRADE LOSSES in Junaid account here.<br />
             <br />

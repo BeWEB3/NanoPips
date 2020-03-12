@@ -31,6 +31,7 @@ namespace Exchange.Services.Implementation
         }
 
         public RefferalData GetRefferalData(long accId) {
+
             var acc = _db.Accounts.Where(a => a.AccountId == accId).SingleOrDefault();
             if (acc == null)
             {
@@ -44,6 +45,7 @@ namespace Exchange.Services.Implementation
                 refferalData.rankList      = new List<rank>();
                 List<referralSubtractList> list = new List<referralSubtractList>();
                 var refferalCount          = _db.Accounts.Where(r => r.Referral_AccountId == acc.AccountId).ToList();
+                refferalCount.Reverse();
                 refferalData.refferalCount = refferalCount.Count();
                 refferalData.referralCode  = acc.RefferenceNumber;
 
@@ -112,6 +114,7 @@ namespace Exchange.Services.Implementation
                 {
                     var refId = refferalCount[t].AccountId;
                     var tier2Referrals = _db.Accounts.Where(w => w.Referral_AccountId == refId).ToList();
+                    tier2Referrals.Reverse();
                     for(int n = 0; n < tier2Referrals.Count; n++)
                     {
                         var id = tier2Referrals[n].AccountId;
@@ -156,11 +159,11 @@ namespace Exchange.Services.Implementation
                                 }
                                 total += (perTradeProfit - (trade.Amount.Value * trade.Value.Value));
                             }
-                            totalEarn += Math.Round(((Math.Abs(total) * 10) / 100), 1);
+                            totalEarn += Math.Round(((Math.Abs(total) * 5) / 100), 1);
                             refferalData.refferalTier2Users.Add(new userList()
                             {
                                 email = tier2Referrals[n].Email,
-                                amount = Math.Round(((Math.Abs(total) * 10) / 100), 1),
+                                amount = Math.Round(((Math.Abs(total) * 5) / 100), 1),
                             });
                         }
                         else
@@ -175,7 +178,7 @@ namespace Exchange.Services.Implementation
                 }
 
                 var referralSubtract = _db.Payments.Where(t => t.PaymentType == "REFERRAL_SUBTRACT" && t.Account_Id == accId).ToList();
-                totalEarn += referralSubtract.Sum(s => s.Amount).Value;
+                //totalEarn += referralSubtract.Sum(s => s.Amount).Value;
 
                 foreach (var v in referralSubtract)
                 {
@@ -185,6 +188,7 @@ namespace Exchange.Services.Implementation
                         amount   = v.Amount.Value,
                     });
                 }
+                list.Reverse();
 
                 refferalData.earning  = Math.Round(totalEarn, 2);
                 refferalData.dateTime = DateTime.UtcNow;
