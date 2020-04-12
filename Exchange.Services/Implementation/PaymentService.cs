@@ -13,6 +13,7 @@ namespace Exchange.Services.Implementation
     internal class PaymentService : IPaymentService
     {
         private ExchangeEntities _db;
+
         public PaymentService(ExchangeEntities db)
         {
             _db = db;
@@ -212,7 +213,8 @@ namespace Exchange.Services.Implementation
                     "BankName:  " + payment.BankName + " <br/> " +
                     "ABA Routing #, IBN #,SWIFT Code:  " + payment.IBAN + " <br/> " +
                     "Address:  " + payment.BankAddress + " <br/>  " +
-                    "Account Title:  " + payment.BankAccountTitle + " <br/> " +
+                    "Full Name:  " + payment.BankAccountTitle + " <br/> " +
+                    "Account Number:  " + payment.BankAccountNumber + " <br/> " +
                     ((payment.Reason != null) ? ("Reason:  " + payment.Reason + "<br/>") : " <br/> "), "New Withdrawal Request");
                 SMTPMailClient.SendRawEmail(_email, "Thank you for contacting NanoPips. Please allow up to 24 hours for support to respond to your inquiry. ", "New Withdrawal Request");
             }
@@ -619,6 +621,7 @@ namespace Exchange.Services.Implementation
                             }
                         }
                         trade.Status = status;
+                        trade.TradeClose_Date = DateTime.UtcNow;
                         _db.Configuration.ValidateOnSaveEnabled = false;
                         _db.SaveChanges();
                         return trade;

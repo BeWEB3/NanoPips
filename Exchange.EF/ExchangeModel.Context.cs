@@ -31,6 +31,7 @@ namespace Exchange.EF
         public virtual DbSet<AddressBook> AddressBooks { get; set; }
         public virtual DbSet<AddressStat> AddressStats { get; set; }
         public virtual DbSet<AdminSetting> AdminSettings { get; set; }
+        public virtual DbSet<CandlesData> CandlesDatas { get; set; }
         public virtual DbSet<Currency> Currencies { get; set; }
         public virtual DbSet<EmailVerification> EmailVerifications { get; set; }
         public virtual DbSet<FunctionAccess> FunctionAccesses { get; set; }

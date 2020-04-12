@@ -7,34 +7,34 @@
 <head>
 
     <title>NanoPips</title>
-    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <link href="~/Assets/css/bootstrap.css" rel="stylesheet"/>
+    <link href="~/Assets/css/bootstrap.css" rel="stylesheet" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" media="all"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" media="all" />
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,700&display=swap" rel="stylesheet">
-    <link href="~/Assets/css/switchery.min.css" rel="stylesheet"/>
-    <link href="~/Assets/css/indexStyle.css" rel="stylesheet"/>
+    <link href="~/Assets/css/switchery.min.css" rel="stylesheet" />
+    <link href="~/Assets/css/indexStyle.css" rel="stylesheet" />
     @if (Session["DARK"] != null)
     {
-        <link href="~/TradeAssets/css/indexStyleDark.css" rel="stylesheet"/>
+        <link href="~/TradeAssets/css/indexStyleDark.css" rel="stylesheet" />
     }
-    <link href="~/Assets/css/simple-line-icons.min.css" rel="stylesheet"/>
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link href="~/Assets/css/simple-line-icons.min.css" rel="stylesheet" />
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     <script src="~/DashboardAssets/js/switchery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
-    <link href="~/Assets/css/candlestick-chart.css" rel="stylesheet"/>
+    <link href="~/Assets/css/candlestick-chart.css" rel="stylesheet" />
     <script src="https://d3js.org/d3.v4.min.js"></script>
-    <link href="~/Assets/css/main.css" rel="stylesheet"/>
+    <link href="~/Assets/css/main.css" rel="stylesheet" />
     <script src="~/DashboardAssets/vendor_components/popper/dist/popper.min.js"></script>
     <script src="~/DashboardAssets/js/common.js"></script>
     <script src="~/Scripts/require.js"></script>
     @*<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.2.0/require.js"></script>*@
     <script type="text/javascript" src="~/dist/i18n/i18n.en.js"></script>
-    <link href="~/uikit/css/uikit.min.css" rel="stylesheet"/>
-    <link href="~/uikit/jquery.qtip.min.css" rel="stylesheet"/>
-    <link href="~/jquery-minicolors/jquery.minicolors.css" rel="stylesheet"/>
-    <link href="~/dist/iguanachart.css" rel="stylesheet"/>
+    <link href="~/uikit/css/uikit.min.css" rel="stylesheet" />
+    <link href="~/uikit/jquery.qtip.min.css" rel="stylesheet" />
+    <link href="~/jquery-minicolors/jquery.minicolors.css" rel="stylesheet" />
+    <link href="~/dist/iguanachart.css" rel="stylesheet" />
 
     <script type="text/javascript">
         require.config({
@@ -145,9 +145,9 @@
             text-align: center;
         }
 
-        .ui-datepicker-next span {
-            display: none !important;
-        }
+            .ui-datepicker-next span {
+                display: none !important;
+            }
 
         .ui-datepicker-prev {
             background-color: transparent !important;
@@ -249,10 +249,10 @@
             font-weight: 600;
         }
 
-        .ui-datepicker-month option[selected],
-        .ui-datepicker-year option[selected] {
-            background-color: #e5edf0 !important;
-        }
+            .ui-datepicker-month option[selected],
+            .ui-datepicker-year option[selected] {
+                background-color: #e5edf0 !important;
+            }
 
         .ui-datepicker .ui-state-hover {
             /*background: none !important;*/
@@ -279,11 +279,11 @@
             margin: 7px 0 0 4px;
         }
 
-        .ui-datepicker .ui-state-default.ui-state-highlight {
-            border-color: #dcdcdc;
-            background-color: #cff3f8 !important;
-            color: #3e9aba !important;
-        }
+            .ui-datepicker .ui-state-default.ui-state-highlight {
+                border-color: #dcdcdc;
+                background-color: #cff3f8 !important;
+                color: #3e9aba !important;
+            }
 
         .openemr-calendar .ui-state-default {
             font-size: 10px;
@@ -424,15 +424,14 @@
             color: #000 !important;
         }
 
-        .dropdown-menu ul li a:hover {
-            text-decoration: none;
-        }
+            .dropdown-menu ul li a:hover {
+                text-decoration: none;
+            }
 
         .modal-backdrop.in {
             filter: alpha(opacity=0);
             opacity: .0 !important;
         }
-
     </style>
 
     <!--Start of Tawk.to Script-->
@@ -468,7 +467,7 @@
                         <div class="tab-content tabContentPadding1">
                             <div id="home1" class=" tab-pane pad-t-30 active">
                                 <span class="txtLabel tabReg">REGISTER</span><br />
-                                <span class="txtLabel txtRegBelow">Fill out your basic information such as Name.</span>
+                                <span class="txtLabel txtRegBelow">Fill out your basic information.</span>
                                 <div class="row pad-t-30">
                                     @using (Html.BeginForm("SignUp", "Dashboard", FormMethod.Post, new { id = "s-form1" }))
                                     {
@@ -556,7 +555,7 @@
                                                         <label class="Label">Email</label><br />
                                                         @Html.TextBoxFor(m => m.UserRoles.Username, new { @class = "form-control inputField", placeholder = "Email", id = "forgotEmail1" })
                                                         <p class="text-danger">@Html.ValidationMessageFor(m => m.UserRoles.Username)</p>
-                                                        <br/>
+                                                        <br />
                                                         <div class="mg-t-50">
                                                             <button type="submit" class="btn btn-block nanoBtn btnLogin">Request Password Reset Link </button>
                                                             <br />
@@ -672,97 +671,105 @@
             <div class="col10">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 chartPaddMobile">
                     <div id="iChart" class="iChart chartHeight" style="position:relative !important;"></div>
-
+                    
                     <script type="text/javascript">
+                        try {
                             var chartDataSource = { @Html.Raw(Model.GetCandles) };
-                        require(['jquery', 'iguanachart'], function ($) {
-                                @*iChartDataSource.data = chartDataSource;*@
-                            $('#iChart').on("iguanaChartEvents", function (e, name, data) {
-                                if (name == "drawComplete") {
+                            require(['jquery', 'iguanachart'], function ($) {
+                                $('#iChart').on("iguanaChartEvents", function (e, name, data) {
+                                    if (name == "drawComplete") {
+                                        $("[name='SelectInstrument']").removeClass("active");
+                                    }
+                                }).iguanaChart({
+                                    lib_path: "/dist",
+                                    ticker: "@Model.MarketName",
+                                    chartOptions: {
+                                        minHeight: $('#iChart').height(),
+                                        futureAmount: 1,
+                                        floatingLegend: true,
+                                        floatingLegendFontSize: 13,
+                                        floatingLegendTextColor: "#444444",
+                                        floatingLegendBorderColor: "rgba(82,175,201,1)",
+                                        floatingLegendBackground: "rgba(82,175,201,.6)",
+                                        uiTools: { top: true },
+                                    },
+                                    dataSource: $.extend(true, {}, chartDataSource)
+                                });
+
+                                $(document).on("click", "[name='SelectInstrument']", function () {
+                                    $("#iChart").iguanaChart("toolStart", $(this).data("instrument"));
                                     $("[name='SelectInstrument']").removeClass("active");
-                                }
-                            }).iguanaChart({
-                                lib_path: "/dist",
-                                ticker: "@Model.MarketName",
-                                chartOptions: {
-                                    minHeight: $('#iChart').height(),
-                                    futureAmount: 1,
-                                    floatingLegend: true,
-                                    floatingLegendFontSize: 13,
-                                    floatingLegendTextColor: "#444444",
-                                    floatingLegendBorderColor: "rgba(82,175,201,1)",
-                                    floatingLegendBackground: "rgba(82,175,201,.6)",
-                                    uiTools: { top: true },
-                                },
-                                dataSource: $.extend(true, {}, chartDataSource)
+                                    $(this).addClass("active");
                                 });
 
-                            $(document).on("click", "[name='SelectInstrument']", function () {
-                                $("#iChart").iguanaChart("toolStart", $(this).data("instrument"));
-                                $("[name='SelectInstrument']").removeClass("active");
-                                $(this).addClass("active");
-                            });
-
-                                @if (Session["DARK"] != null)
-                                {
-                                    @:$("#iChart").iguanaChart("setTheme", "Dark");
-                                }
-                                else {
-                                    @:$("#iChart").iguanaChart("setTheme", "White");
-                                }
-
-                            setInterval(function () {
-                                var pair  = "@Model.MarketName";
-                                var timeF = "@Model.TimeFrameValue";
-                                $.post("@Url.Action("GetCandlesData", "Dashboard")", { pair: pair, timeFrame: timeF }, function (data) {
-
-                                    var tm = data.obj.Ticker, vl = data.obj.Volume, preHloc = [], hloc = [];
-                                    var point = $("#iChart").data("iguanaChart").getLastPoint();
-
-                                    preHloc[0] = data.obj.High;
-                                    preHloc[1] = data.obj.Low;
-                                    preHloc[2] = data.obj.Open;
-                                    preHloc[3] = data.obj.Close;
-
-                                    hloc[0] = Math.max.apply(null, preHloc);
-                                    hloc[1] = Math.min.apply(null, preHloc);
-                                    hloc[2] = preHloc[2];
-                                    hloc[3] = preHloc[3];
-
-                                    var result = {
-                                        "hloc":    {},
-                                        "vl":      {},
-                                        "xSeries": {}
-                                    };
-
-                                    result["hloc"][Object.keys(point.xSeries)[0]]    = [hloc];
-                                    result["vl"][Object.keys(point.xSeries)[0]]      = [vl];
-                                    result["xSeries"][Object.keys(point.xSeries)[0]] = [tm];
-                                    $("#iChart").iguanaChart("addPoint", result);
-                                });
-                            }, 2000)
-
-                            var isLogin = "@Model.IsLogin";
-                            if (isLogin === 'True') {
-                                setInterval(function () {
-                                    var offset = new Date().getTimezoneOffset();
-                                    var pair   = "@Model.MarketName";
-                                    var point  = $("#iChart").data("iguanaChart").getLastPoint();
-                                    var ticker = point.xSeries['LKOH'][0];
-                                    $.get("@Url.Action("GetTradeOnChart", "Dashboard")", { timeOffset: offset, pair: pair, point: ticker }, function (dt) {
-                                        $("#iChart").on("iguanaChartEvents", function (e, name, data) {
-                                            if (dt.res.length != 0) {
-                                                $("#iChart").data("iguanaChart").removeTransactions();
-                                                $("#iChart").data("iguanaChart").addTransactions(dt.res, 2);
-                                            }
-                                            else {
-                                                $("#iChart").data("iguanaChart").removeTransactions();
-                                            }
-                                        });
-                                    });
-                                }, 500)
+                            @if (Session["DARK"] != null)
+                            {
+                                @:$("#iChart").iguanaChart("setTheme", "Dark");
                             }
-                        });
+                            else {
+                                @:$("#iChart").iguanaChart("setTheme", "White");
+                            }
+
+                                var pair = "@Model.MarketName";
+                                var timeF = "@Model.TimeFrameValue";
+                                var pairSplit = "@Model.pairSplit"
+                                var utcTime = "@Model.timeOffset"
+
+                                setInterval(function () {
+
+                                    $.get("@Url.Action("GetCandlesData", "Dashboard")", { pair: pair, timeFrame: timeF, utcTime: utcTime }, function (data) {
+
+                                        var tm = data.obj.Ticker, vl = data.obj.Volume, preHloc = [], hloc = [];
+                                        var point = $("#iChart").data("iguanaChart").getLastPoint();
+
+                                        preHloc[0] = data.obj.High;
+                                        preHloc[1] = data.obj.Low;
+                                        preHloc[2] = data.obj.Open;
+                                        preHloc[3] = data.obj.Close;
+
+                                        hloc[0] = Math.max.apply(null, preHloc);
+                                        hloc[1] = Math.min.apply(null, preHloc);
+                                        hloc[2] = preHloc[2];
+                                        hloc[3] = preHloc[3];
+
+                                        var result = {
+                                            "hloc": {},
+                                            "vl": {},
+                                            "xSeries": {}
+                                        };
+
+                                        result["hloc"][Object.keys(point.xSeries)[0]] = [hloc];
+                                        result["vl"][Object.keys(point.xSeries)[0]] = [vl];
+                                        result["xSeries"][Object.keys(point.xSeries)[0]] = [tm];
+                                        $("#iChart").iguanaChart("addPoint", result);
+                                    });
+                                }, 2500);
+
+                                var isLogin = "@Model.IsLogin";
+                                if (isLogin === 'True') {
+                                    setInterval(function () {
+                                        var offset = new Date().getTimezoneOffset();
+                                        var pair = "@Model.MarketName";
+                                        var point = $("#iChart").data("iguanaChart").getLastPoint();
+                                        var ticker = point.xSeries['LKOH'][0];
+                                        $.get("@Url.Action("GetTradeOnChart", "Dashboard")", { timeOffset: offset, pair: pair, point: ticker }, function (dt) {
+                                            $("#iChart").on("iguanaChartEvents", function (e, name, data) {
+                                                if (dt.res.length != 0) {
+                                                    $("#iChart").data("iguanaChart").removeTransactions();
+                                                    $("#iChart").data("iguanaChart").addTransactions(dt.res, 2);
+                                                }
+                                                else {
+                                                    $("#iChart").data("iguanaChart").removeTransactions();
+                                                }
+                                            });
+                                        });
+                                    }, 3000)
+                                }
+                            });
+                        }
+                        catch (ex) {
+                            alert("Error")
+                        }
                     </script>
                 </div>
             </div>
@@ -820,7 +827,7 @@
                                         </li>
                                         <li>
                                             <a href="@Url.Action("Logout","Account")">
-                                                <span class="DarkImg"  style="padding-left:3px;"><img src="/Assets/images/logout.png" title="Logout" class="topImages" /></span>
+                                                <span class="DarkImg" style="padding-left:3px;"><img src="/Assets/images/logout.png" title="Logout" class="topImages" /></span>
                                                 <span class="LightImg" style="padding-left:3px;"><img src="~/Assets/images/1-Logout.png" title="Logout" class="topImages" /></span>
                                                 <span class="txtLabel" style="padding-left:3px;padding-left:12px;">Logout</span>
                                             </a>
@@ -840,7 +847,7 @@
                             <ul class="dropdown-menu full-width">
                                 @foreach (var item in Model.GetPairs as List<Exchange.DTO.Pair>)
                                 {
-                                    <li><a class="txtLabel dropdownHover select_coin" href="@Url.Action("Index","Dashboard", new { symbol = item.MarketSymbol, timeFrame = Model.TimeFrameValue, utcTime = Model.timeOffset })" data-coin=@item.MarketCurrency data-pair=@item.BaseCurrency>@item.MarketSymbol</a></li>
+                                    <li><a class="txtLabel dropdownHover select_coin" href="@Url.Action("Index","Dashboard", new { symbol = item.MarketSymbol, timeFrame = Model.TimeFrameValue, utcTime = Model.timeOffset })" data-coin=@item.MarketCurrency data-pair=@item.MarketCurrency>@item.MarketSymbol</a></li>
                                 }
                             </ul>
                         </div>
@@ -855,40 +862,36 @@
                             <ul class="dropdown-menu full-width">
                                 <li>
                                     <a href="@Url.Action("Index","Dashboard", new { symbol = Model.MarketName, timeFrame = "1m", utcTime = Model.timeOffset })" class="candle-select-range  dropdownHover txtLabel
-                                       timeframe" data-value="1M">1M</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("Index","Dashboard", new { symbol = Model.MarketName, timeFrame = "3m", utcTime = Model.timeOffset })" class="candle-select-range  dropdownHover txtLabel
-                                       timeframe" data-value="3M">3M</a>
+                                       timeframe" data-value="1m">1M</a>
                                 </li>
                                 <li>
                                     <a href="@Url.Action("Index","Dashboard", new { symbol = Model.MarketName, timeFrame = "5m", utcTime = Model.timeOffset })" class="candle-select-range  dropdownHover txtLabel
-                                       timeframe" data-value="5M">5M</a>
+                                       timeframe" data-value="5m">5M</a>
                                 </li>
                                 <li>
-                                    <a href="@Url.Action("Index","Dashboard", new { symbol = Model.MarketName, timeFrame = "15m", utcTime = Model.timeOffset })" class="candle-select-range dropdownHover txtLabel
-                                       timeframe" data-value="15M">15M</a>
+                                    <a href="@Url.Action("Index","Dashboard", new { symbol = Model.MarketName, timeFrame = "15m", utcTime = Model.timeOffset })" class="candle-select-range  dropdownHover txtLabel
+                                       timeframe" data-value="15m">15M</a>
                                 </li>
                                 <li>
-                                    <a href="@Url.Action("Index","Dashboard", new { symbol = Model.MarketName, timeFrame = "30m", utcTime = Model.timeOffset })" class="candle-select-range dropdownHover txtLabel
-                                       timeframe" data-value="30M">30M</a>
+                                    <a href="@Url.Action("Index","Dashboard", new { symbol = Model.MarketName, timeFrame = "30m", utcTime = Model.timeOffset })" class="candle-select-range  dropdownHover txtLabel
+                                       timeframe" data-value="30m">30M</a>
                                 </li>
                                 <li>
                                     <a href="@Url.Action("Index","Dashboard", new { symbol = Model.MarketName, timeFrame = "1h", utcTime = Model.timeOffset })" class="candle-select-range  dropdownHover txtLabel
-                                       timeframe" data-value="1H">1H</a>
+                                       timeframe" data-value="1h">1H</a>
                                 </li>
                                 <li>
                                     <a href="@Url.Action("Index","Dashboard", new { symbol = Model.MarketName, timeFrame = "1d", utcTime = Model.timeOffset })" class="candle-select-range  dropdownHover txtLabel
-                                       timeframe" data-value="1D">1D</a>
+                                       timeframe" data-value="1d">1D</a>
                                 </li>
                                 <li>
-                                    <a href="@Url.Action("Index","Dashboard", new { symbol = Model.MarketName, timeFrame = "3d", utcTime = Model.timeOffset })" class="candle-select-range  dropdownHover txtLabel
-                                       timeframe" data-value="3D">3D</a>
+                                    <a href="@Url.Action("Index","Dashboard", new { symbol = Model.MarketName, timeFrame = "1w", utcTime = Model.timeOffset })" class="candle-select-range dropdownHover txtLabel
+                                       timeframe" data-value="1w">1W</a>
                                 </li>
-                                <li>
-                                    <a href="@Url.Action("Index","Dashboard", new { symbol = Model.MarketName, timeFrame = "1w", utcTime = Model.timeOffset })" class="candle-select-range  dropdownHover txtLabel
-                                       timeframe" data-value="1W">1W</a>
-                                </li>
+                                @*<li>
+                                    <a href="@Url.Action("Index","Dashboard", new { symbol = Model.MarketName, timeFrame = "1M", utcTime = Model.timeOffset })" class="candle-select-range dropdownHover txtLabel
+                                       timeframe" data-value="1M">MONTH</a>
+                                </li>*@
                             </ul>
                         </div>
                     </div>
@@ -1031,7 +1034,7 @@
         </div>
     </div>
 
-    <div class="col4 row" style="margin:0px; ">
+    <div class="col4 row" style="margin:0px;">
     </div>
 
     <div class="col4">
@@ -1060,12 +1063,6 @@
                                        timeframe" data-value="1M">1M</a>
                         <div class="divider"></div>
                     </li>
-
-                    <li style="color:#000;text-align:center">
-                        <a href="@Url.Action("Index","Dashboard", new { symbol = Model.MarketName, timeFrame = "3m", utcTime = Model.timeOffset })" class="candle-select-range  dropdownHover txtLabel
-                                       timeframe" data-value="3M">3M</a>
-                        <div class="divider"></div>
-                    </li>
                     <li style="color:#000;text-align:center">
                         <a href="@Url.Action("Index","Dashboard", new { symbol = Model.MarketName, timeFrame = "5m", utcTime = Model.timeOffset })" class="candle-select-range  dropdownHover txtLabel
                                        timeframe" data-value="5M">5M</a>
@@ -1092,20 +1089,14 @@
                         <div class="divider"></div>
                     </li>
                     <li style="color:#000;text-align:center">
-                        <a href="@Url.Action("Index","Dashboard", new { symbol = Model.MarketName, timeFrame = "3d", utcTime = Model.timeOffset })" class="candle-select-range  dropdownHover txtLabel
-                                       timeframe" data-value="3D">3D</a>
-                        <div class="divider"></div>
-                    </li>
-                    <li style="color:#000;text-align:center">
                         <a href="@Url.Action("Index","Dashboard", new { symbol = Model.MarketName, timeFrame = "1w", utcTime = Model.timeOffset })" class="candle-select-range  dropdownHover txtLabel
                                        timeframe" data-value="1W">1W</a>
                         <div class="divider"></div>
-                    </li>
+                    </li> 
                 </ul>
             </div>
 
             <div class="dropup">
-
                 <button style="background-color:transparent" id="expire_time_buttond" type="button" class=" aa btn  dropdown-toggle expire-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img src="~/autoclose.png" />
                 </button>
@@ -1129,14 +1120,6 @@
                     <div class="divider"></div>
                 </ul>
             </div>
-
-            @*<div class=" dropup">
-
-                    <button style="background-color:transparent" type="button" id="current_price" class=" btn  dropdown-toggle dropdown-filter" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
-                        <img src="~/60x60-3.png" />
-                    </button>
-                </div>*@
 
             <div class="dropup">
                 <button type="button" class=" aa btn dropdown-toggle expire-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color:transparent">
@@ -1309,8 +1292,6 @@
         </div>
     </div>
 
-
-
     <div class="modal fade in" id="tradeHistoryModal" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -1362,6 +1343,7 @@
                                         <th scope="col">Entry Time</th>
                                         <th scope="col">Cost</th>
                                         <th scope="col">Exit Price</th>
+                                        <th scope="col">Close Time</th>
                                         <th scope="col">PnL</th>
                                     </tr>
                                 </thead>
@@ -1394,7 +1376,7 @@
                         <div class="tab-content tabContentPadding1">
                             <div id="home2" class=" tab-pane pad-t-30 active">
                                 <span class="txtLabel tabReg">REGISTER</span><br />
-                                <span class="txtLabel txtRegBelow">Fill out your basic information such as Name.</span>
+                                <span class="txtLabel txtRegBelow">Fill out your basic information.</span>
 
                                 <div class="row pad-t-30">
                                     @using (Html.BeginForm("SignUp", "Dashboard", FormMethod.Post, new { id = "s-form2" }))
@@ -1811,6 +1793,10 @@ if (isLogin === 'True') {
         var sym     = "@Model.MarketName";
         var time    = 0;
 
+        //setInterval(function () {
+        //    location.reload(true);
+        //}, (5*60000));
+
         function saveST() {
             var trId     = $('#tradeIdFromOrder').val();
             var stLoss   = $('#stoplossm').val();
@@ -1848,99 +1834,100 @@ if (isLogin === 'True') {
                     }
                     $('#stmodal').toggle();
                 });
-            } }
+            }
+        }
 
         setInterval(function () {
             if (isLogin === 'True') {
                 $.get("@Url.Action("GetPendingOrders", "Dashboard")", function (data) {
-                var pendingTable = "";
-                for (var i = 0; i < data.pendingOrders.orders.length; i++) {
-                    var exprTime = "";
-                    var chk = false;
-                    if (data.pendingOrders.orders[i].Direction === "BUY") {
-                        if (data.pendingOrders.orders[i].PnL >= 0) {
-                            chk = true;
+                    var pendingTable = "";
+                    for (var i = 0; i < data.pendingOrders.orders.length; i++) {
+                        var exprTime = "";
+                        var chk = false;
+                        if (data.pendingOrders.orders[i].Direction === "BUY") {
+                            if (data.pendingOrders.orders[i].PnL >= 0) {
+                                chk = true;
+                            }
+                            else {
+                                chk = false;
+                            }
+                        }
+                        else if (data.pendingOrders.orders[i].Direction === "SELL") {
+                            if (data.pendingOrders.orders[i].PnL >= 0) {
+                                chk = false;
+                            }
+                            else {
+                                chk = true;
+                            }
                         }
                         else {
-                            chk = false;
-                        }
-                    }
-                    else if (data.pendingOrders.orders[i].Direction === "SELL") {
-                        if (data.pendingOrders.orders[i].PnL >= 0) {
-                            chk = false;
-                        }
-                        else {
                             chk = true;
                         }
-                    }
-                    else {
-                        chk = true;
-                    }
 
-                    if (data.pendingOrders.orders[i].expiryTime === -1) {
-                        exprTime = "∞";
-                    }
-                    else {
-                        exprTime = data.pendingOrders.orders[i].expiryTime + " Sec"
-                    }
+                        if (data.pendingOrders.orders[i].expiryTime === -1) {
+                            exprTime = "∞";
+                        }
+                        else {
+                            exprTime = data.pendingOrders.orders[i].expiryTime + " Sec"
+                        }
 
-                    data.pendingOrders.orders[i]
-                    var tradeDate = new Date(data.pendingOrders.orders[i].TradeDate);
-                    tradeDate.setHours(tradeDate.getHours() - (tradeDate.getTimezoneOffset() / 60));
-                    var tempPnL = (data.pendingOrders.orders[i].PnL == null) ? "N/A" : (Math.abs(data.pendingOrders.orders[i].PnL)).toFixed(6);
+                        data.pendingOrders.orders[i]
+                        var tradeDate = new Date(data.pendingOrders.orders[i].TradeDate);
+                        tradeDate.setHours(tradeDate.getHours() - (tradeDate.getTimezoneOffset() / 60));
+                        var tempPnL = (data.pendingOrders.orders[i].PnL == null) ? "N/A" : (Math.abs(data.pendingOrders.orders[i].PnL)).toFixed(6);
 
-                    pendingTable += "<tr><td style='vertical-align:middle'>"
-                        + data.pendingOrders.orders[i].Symbol + "</td><td style='vertical-align:middle' value='"+data.pendingOrders.orders[i].Rate.toFixed(5)+"' id='rateForExchange"+data.pendingOrders.orders[i].TradeId+"'> "
-                        + data.pendingOrders.orders[i].Rate.toFixed(5) + "</td><td style='vertical-align:middle'> "
-                        + data.pendingOrders.orders[i].Direction + "</td><td style='vertical-align:middle'> "
-                        + tradeDate.toLocaleDateString() + " : " + tradeDate.toLocaleTimeString() + "</td><td style='padding:2px;vertical-align:middle;text-align:center;'>"
-                        + ((data.pendingOrders.orders[i].ST_Enable != null) ? ("<div  style=' width:100%;white-space: nowrap;'><input type='text' value='Stop' readonly class='borderNone ' style='border: 1px solid #ded5d5;color:red;width:50px;margin:0px;padding: 1px;border-radius: 0px;border-right:0px;'><input class='borderNone ' readonly id='takepro" + data.pendingOrders.orders[i].TradeId + "'style='border-width: 0px;width:100px;text-align: center;margin: 0px;border: 1px solid #ded5d5;border-left: 0px;' value='" + data.pendingOrders.orders[i].DownPrice.toFixed(3) + "'/><span data-toggle='modal' data-target='#stmodel' id='toGetRate" + data.pendingOrders.orders[i].TradeId + "' style='margin:10px !important; cursor:pointer; vertical-align: middle; color:green; font-size:19px;'><i class='fa fa-edit'></i></span></div>" + "<div style='width:100%;white-space: nowrap;'><input class='borderNone '  type='text' value='Target' readonly style='border: 1px solid #ded5d5;color:green;width:50px;margin:0px;padding: 1px;border-radius: 0px;border-right:0px;'><input class='borderNone ' readonly id='stoploss" + data.pendingOrders.orders[i].TradeId + "'class='getValueOnClick' style='border-width: 0px;width:100px;text-align: center;margin: 0px;border: 1px solid #ded5d5;border-left: 0px;' value='" + data.pendingOrders.orders[i].UpPrice.toFixed(3) + "'/><span data-toggle='modal' data-target='#stmodel' id='toGetAmount" + data.pendingOrders.orders[i].TradeId + "' style='margin:10px !important; cursor:pointer; vertical-align: middle; color:green; font-size:19px;'><i class='fa fa-edit'></i</span>") : "<span style='font-weight:bold;vertical-align:middle;font-size:13px;cursor:pointer;'id='modifyRatesByModal" + data.pendingOrders.orders[i].TradeId   +"' data-toggle='modal' data-target='#stmodel'>Modify</span></div>")
-                        + "</td><td style='vertical-align:middle'> "
-                        + exprTime + "</td><td style='vertical-align:middle'> "
-                        + (data.pendingOrders.orders[i].Amount * data.pendingOrders.orders[i].Value) + "</td><td style='vertical-align:middle'> "
-                        + ((data.pendingOrders.orders[i].ExitPrice === null) ? "N/A" : data.pendingOrders.orders[i].ExitPrice.toFixed(5)) +
-                        "</td><td style=" + ((chk === true) ? 'color:green' : 'color:red') + ";font-weight:bold;vertical-align:middle>" +
-                        tempPnL + "</td><td style='vertical-align:middle' orderId='" + data.pendingOrders.orders[i].TradeId + "'class='closeorderbt' ><span style='text-align:center;vertical-align:middle; border:1px solid gray; padding:10px;'>x</span></td></tr>";
-                }
+                        pendingTable += "<tr><td style='vertical-align:middle'>"
+                            + data.pendingOrders.orders[i].Symbol + "</td><td style='vertical-align:middle' value='" + data.pendingOrders.orders[i].Rate.toFixed(5) + "' id='rateForExchange" + data.pendingOrders.orders[i].TradeId + "'> "
+                            + data.pendingOrders.orders[i].Rate.toFixed(5) + "</td><td style='vertical-align:middle'> "
+                            + data.pendingOrders.orders[i].Direction + "</td><td style='vertical-align:middle'> "
+                            + tradeDate.toLocaleDateString() + " : " + tradeDate.toLocaleTimeString() + "</td><td style='padding:2px;vertical-align:middle;text-align:center;'>"
+                            + ((data.pendingOrders.orders[i].ST_Enable != null) ? ("<div  style=' width:100%;white-space: nowrap;'><input type='text' value='Stop' readonly class='borderNone ' style='border: 1px solid #ded5d5;color:red;width:50px;margin:0px;padding: 1px;border-radius: 0px;border-right:0px;'><input class='borderNone ' readonly id='takepro" + data.pendingOrders.orders[i].TradeId + "'style='border-width: 0px;width:100px;text-align: center;margin: 0px;border: 1px solid #ded5d5;border-left: 0px;' value='" + data.pendingOrders.orders[i].DownPrice.toFixed(3) + "'/><span data-toggle='modal' data-target='#stmodel' id='toGetRate" + data.pendingOrders.orders[i].TradeId + "' style='margin:10px !important; cursor:pointer; vertical-align: middle; color:green; font-size:19px;'><i class='fa fa-edit'></i></span></div>" + "<div style='width:100%;white-space: nowrap;'><input class='borderNone '  type='text' value='Target' readonly style='border: 1px solid #ded5d5;color:green;width:50px;margin:0px;padding: 1px;border-radius: 0px;border-right:0px;'><input class='borderNone ' readonly id='stoploss" + data.pendingOrders.orders[i].TradeId + "'class='getValueOnClick' style='border-width: 0px;width:100px;text-align: center;margin: 0px;border: 1px solid #ded5d5;border-left: 0px;' value='" + data.pendingOrders.orders[i].UpPrice.toFixed(3) + "'/><span data-toggle='modal' data-target='#stmodel' id='toGetAmount" + data.pendingOrders.orders[i].TradeId + "' style='margin:10px !important; cursor:pointer; vertical-align: middle; color:green; font-size:19px;'><i class='fa fa-edit'></i</span>") : "<span style='font-weight:bold;vertical-align:middle;font-size:13px;cursor:pointer;'id='modifyRatesByModal" + data.pendingOrders.orders[i].TradeId + "' data-toggle='modal' data-target='#stmodel'>Modify</span></div>")
+                            + "</td><td style='vertical-align:middle'> "
+                            + exprTime + "</td><td style='vertical-align:middle'> "
+                            + (data.pendingOrders.orders[i].Amount * data.pendingOrders.orders[i].Value) + "</td><td style='vertical-align:middle'> "
+                            + ((data.pendingOrders.orders[i].ExitPrice === null) ? "N/A" : data.pendingOrders.orders[i].ExitPrice.toFixed(5)) +
+                            "</td><td style=" + ((chk === true) ? 'color:green' : 'color:red') + ";font-weight:bold;vertical-align:middle>" +
+                            tempPnL + "</td><td style='vertical-align:middle' orderId='" + data.pendingOrders.orders[i].TradeId + "'class='closeorderbt' ><span style='text-align:center;vertical-align:middle; border:1px solid gray; padding:10px;'>x</span></td></tr>";
+                    }
                     $("#pendingOrderstBody").html(pendingTable);
 
-                for (var i = 0; i < data.pendingOrders.orders.length; i++) {
-                    //$('#stoploss'+data.pendingOrders.orders[i].TradeId).click(function () {
-                    $('#toGetAmount' + data.pendingOrders.orders[i].TradeId).click(function () {
-                        var str = $(this).attr('id');
-                        var res = str.split("toGetAmount");
-                        var value2 = $('#takepro' + res[1]).val();
-                        var value1 = $('#stoploss' + res[1]).val();
-                        $('#stoplossm').val(value2);
-                        $('#takeprom').val(value1);
-                        $('#tradeIdFromOrder').val(res[1]);
-                        $('#stmodel').css("display", "block");
-                     });
-                    //$('#takepro'+data.pendingOrders.orders[i].TradeId).click(function () {
-                    $('#toGetRate' + data.pendingOrders.orders[i].TradeId).click(function () {
-                        var str = $(this).attr('id');
-                        var res = str.split("toGetRate");
-                        var value1 = $('#stoploss' + res[1]).val();
-                        var value2 = $('#takepro' + res[1]).val();
-                        $('#takeprom').val(value1);
-                        $('#stoplossm').val(value2);
-                        $('#tradeIdFromOrder').val(res[1]);
-                        $('#stmodel').css("display", "block");
-                    });
-                    $('#modifyRatesByModal'+data.pendingOrders.orders[i].TradeId).click(function () {
-                        var str = $(this).attr('id');
-                        var res = str.split("modifyRatesByModal");
-                        var detail = $('#rateForExchange'+res[1]).attr('value');
-                        var addSpread = (detail * 70) / 100;
-                        var value2 = parseInt(detail) + addSpread;
-                        var value1 = parseInt(detail) - addSpread;
-                        $('#takeprom').val(value2.toFixed(3));
-                        $('#stoplossm').val(value1.toFixed(3));
-                        $('#tradeIdFromOrder').val(res[1]);
-                        $('#stmodel').css("display", "block");
-                    });
-                }
-            })
+                    for (var i = 0; i < data.pendingOrders.orders.length; i++) {
+                        //$('#stoploss'+data.pendingOrders.orders[i].TradeId).click(function () {
+                        $('#toGetAmount' + data.pendingOrders.orders[i].TradeId).click(function () {
+                            var str = $(this).attr('id');
+                            var res = str.split("toGetAmount");
+                            var value2 = $('#takepro' + res[1]).val();
+                            var value1 = $('#stoploss' + res[1]).val();
+                            $('#stoplossm').val(value2);
+                            $('#takeprom').val(value1);
+                            $('#tradeIdFromOrder').val(res[1]);
+                            $('#stmodel').css("display", "block");
+                        });
+                        //$('#takepro'+data.pendingOrders.orders[i].TradeId).click(function () {
+                        $('#toGetRate' + data.pendingOrders.orders[i].TradeId).click(function () {
+                            var str = $(this).attr('id');
+                            var res = str.split("toGetRate");
+                            var value1 = $('#stoploss' + res[1]).val();
+                            var value2 = $('#takepro' + res[1]).val();
+                            $('#takeprom').val(value1);
+                            $('#stoplossm').val(value2);
+                            $('#tradeIdFromOrder').val(res[1]);
+                            $('#stmodel').css("display", "block");
+                        });
+                        $('#modifyRatesByModal' + data.pendingOrders.orders[i].TradeId).click(function () {
+                            var str = $(this).attr('id');
+                            var res = str.split("modifyRatesByModal");
+                            var detail = $('#rateForExchange' + res[1]).attr('value');
+                            var addSpread = (detail * 70) / 100;
+                            var value2 = parseInt(detail) + addSpread;
+                            var value1 = parseInt(detail) - addSpread;
+                            $('#takeprom').val(value2.toFixed(3));
+                            $('#stoplossm').val(value1.toFixed(3));
+                            $('#tradeIdFromOrder').val(res[1]);
+                            $('#stmodel').css("display", "block");
+                        });
+                    }
+                });
         }
     }, 2000)
 
@@ -1950,7 +1937,7 @@ if (isLogin === 'True') {
                 $('.user_funds').text("$" + data.balance.bal.toFixed(1));
             });
         }
-    }, 2000);
+    }, 5000);
 
     $("#datepicker_input_from").datepicker({
         showButtonPanel: true,
@@ -2000,11 +1987,21 @@ if (isLogin === 'True') {
                 else {
                     $.post("@Url.Action("GetTradeHistorySpecific", "Dashboard")", { dateFrom: from, dateTo: to }, function (data) {
                         var tradeTable = "";
-                        var total = 0;
+                        var total  = 0;
                         for (var i = 0; i < data.list.length; i++) {
-                            var perTradeProfit = 0;
                             var tradeDate = new Date(data.list[i].TradeDate);
                             tradeDate.setHours(tradeDate.getHours() - (tradeDate.getTimezoneOffset() / 60));
+                            var tradeDateString = tradeDate.toLocaleDateString() + " : " + tradeDate.toLocaleTimeString();
+                            var tradeCloseDateString = '---';
+                            if (data.list[i].TradeCloseDate !== null) {
+                                var tradeCloseDate = new Date(data.list[i].TradeCloseDate);
+                                tradeCloseDate.setHours(tradeCloseDate.getHours() - (tradeCloseDate.getTimezoneOffset() / 60));
+                                tradeCloseDateString = tradeCloseDate.toLocaleDateString() + " : " + tradeCloseDate.toLocaleTimeString();
+                            }
+                            else {
+                                tradeCloseDateString = '---';
+                            }
+
                             if (data.list[i].isTradeOrder === true) {
                                 if (data.list[i].PnL != null) {
                                     perTrade = 0;
@@ -2021,7 +2018,7 @@ if (isLogin === 'True') {
                                     }
                                     else if (data.list[i].Direction === "SELL") {
                                         if (data.list[i].PnL >= 0) {
-                                            perTradeProfit = (Math.abs(data.list[i].PnL) * (-1));
+                                            perTradeProfit = (data.list[i].PnL * (-1));
                                             chk = false;
                                         }
                                         else {
@@ -2029,28 +2026,30 @@ if (isLogin === 'True') {
                                             chk = true;
                                         }
                                     }
-                                    tradeTable += "<tr><td> "
-                                        + data.list[i].Symbol + " </td><td> "
-                                        + data.list[i].Rate + " </td><td> "
-                                        + data.list[i].Direction + " </td><td> "
-                                        + tradeDate.toLocaleDateString() + " : " + tradeDate.toLocaleTimeString() + " </td><td> "
-                                        + (data.list[i].Amount * data.list[i].Value) + " </td><td> "
-                                        + ((data.list[i].ExitPrice === null) ? "N/A" : data.list[i].ExitPrice) +
-                                        " </td><td style=" + ((chk === true) ? 'color:green' : 'color:red') + ";>" +
+                                    tradeTable += "<tr><td>"
+                                        + data.list[i].Symbol + " </td><td>"
+                                        + data.list[i].Rate + " </td><td>"
+                                        + data.list[i].Direction + " </td><td>"
+                                        + tradeDateString + " </td><td>"
+                                        + (data.list[i].Amount * data.list[i].Value).toFixed(3) + " </td><td>"
+                                        + ((data.list[i].ExitPrice === null) ? "N/A" : data.list[i].ExitPrice) + " </td><td>"
+                                        + tradeCloseDateString 
+                                        + " </td><td style=" + ((chk === true) ? 'color:green' : 'color:red') + ";>" +
                                         perTradeProfit.toFixed(3) + " USD" + "</td></tr>";
                                     total += (perTradeProfit - (data.list[i].Amount * data.list[i].Value));
                                 }
                             }
                             else {
-                                tradeTable += "<tr><td> "
-                                    + data.list[i].Symbol + " </td><td> "
-                                    + "---" + " </td><td> "
-                                    + data.list[i].Direction + " </td><td> "
-                                    + tradeDate.toLocaleDateString() + " : " + tradeDate.toLocaleTimeString() + " </td><td> "
-                                    + (data.list[i].Amount) + " </td><td> "
-                                    + "---" + " </td><td " +
-                                    "style=" + ((data.list[i].Symbol === 'DEPOSIT') ? 'color:green' : 'color:red') + ";>" +
-                                    data.list[i].Amount.toFixed(3) + " USD" + "</td></tr>";
+                                tradeTable += "<tr><td>"
+                                    + data.list[i].Symbol + " </td><td>"
+                                    + "---" + " </td><td>"
+                                    + "---" + " </td><td>"
+                                    + tradeDateString + " </td><td>"
+                                    + (data.list[i].Amount).toFixed(3) + " </td><td>"
+                                    + "---" + " </td><td>"
+                                    + tradeDateString
+                                    + " </td><td style=" + ((data.list[i].Symbol === 'DEPOSIT') ? 'color:green' : 'color:red') + ";>"
+                                    + data.list[i].Amount.toFixed(3) + " USD" + "</td></tr>";
                             }
                         }
                         $(".totalPnL").html(total.toFixed(1) + " USD");
@@ -2160,9 +2159,11 @@ if (isLogin === 'True') {
             var tradeid = $(this).attr("orderId");
             $.post("@Url.Action("CloseOrder", "Dashboard")", { orderId: tradeid }, function (data) {
             });
-        });
+            });
 
-        setInterval(function () {
+
+///////////////////////Order Book /////////////////////
+        @*setInterval(function () {
             var sym = "@Model.MarketName";
             $.post("@Url.Action("GetOrderBook", "Dashboard")", { pair: sym }, function (data) {
                 var orderBookTable = "";
@@ -2185,7 +2186,9 @@ if (isLogin === 'True') {
                 }
                 $("#orderbooklist_tb").html(orderBookTable);
             })
-        }, 1500)
+        }, 1500)*@
+
+
 
 ////////////////////Buy Hover //////////
                 // Green Dark: #02e4a1 ///////
@@ -2225,11 +2228,22 @@ if (isLogin === 'True') {
                 if (isLogin === 'True') {
                     $.post("@Url.Action("GetTradeHistorySpecific", "Dashboard")", { dateFrom: from, dateTo: to }, function (data) {
                         var tradeTable = "";
-                        var total = 0;
+                        var total      = 0;
                         var perTradeProfit;
                         for (var i = 0; i < data.list.length; i++) {
                             var tradeDate = new Date(data.list[i].TradeDate);
                             tradeDate.setHours(tradeDate.getHours() - (tradeDate.getTimezoneOffset() / 60));
+                            var tradeDateString = tradeDate.toLocaleDateString() + " : " + tradeDate.toLocaleTimeString();
+                            var tradeCloseDateString = '---';
+                            if (data.list[i].TradeCloseDate !== null) {
+                                var tradeCloseDate = new Date(data.list[i].TradeCloseDate);
+                                tradeCloseDate.setHours(tradeCloseDate.getHours() - (tradeCloseDate.getTimezoneOffset() / 60));
+                                tradeCloseDateString = tradeCloseDate.toLocaleDateString() + " : " + tradeCloseDate.toLocaleTimeString();
+                            }
+                            else {
+                                tradeCloseDateString = '---';
+                            }
+
                             if (data.list[i].isTradeOrder === true) {
                                 if (data.list[i].PnL != null) {
                                     perTrade = 0;
@@ -2254,36 +2268,37 @@ if (isLogin === 'True') {
                                             chk = true;
                                         }
                                     }
-                                    tradeTable += "<tr><td> "
-                                        + data.list[i].Symbol + " </td><td> "
-                                        + data.list[i].Rate + " </td><td> "
-                                        + data.list[i].Direction + " </td><td> "
-                                        + tradeDate.toLocaleDateString() + " : " + tradeDate.toLocaleTimeString() + " </td><td> "
-                                        + (data.list[i].Amount * data.list[i].Value) + " </td><td> "
-                                        + ((data.list[i].ExitPrice === null) ? "N/A" : data.list[i].ExitPrice) +
-                                        " </td><td style=" + ((chk === true) ? 'color:green' : 'color:red') + ";>" +
+                                    tradeTable += "<tr><td>"
+                                        + data.list[i].Symbol + " </td><td>"
+                                        + data.list[i].Rate + " </td><td>"
+                                        + data.list[i].Direction + " </td><td>"
+                                        + tradeDateString + " </td><td>"
+                                        + (data.list[i].Amount * data.list[i].Value).toFixed(3) + " </td><td>"
+                                        + ((data.list[i].ExitPrice === null) ? "N/A" : data.list[i].ExitPrice) + " </td><td>"
+                                        + tradeCloseDateString
+                                        + " </td><td style=" + ((chk === true) ? 'color:green' : 'color:red') + ";>" +
                                         perTradeProfit.toFixed(3) + " USD" + "</td></tr>";
-
                                     total += (perTradeProfit - (data.list[i].Amount * data.list[i].Value));
                                 }
                             }
                             else {
-                                tradeTable += "<tr><td> "
-                                    + data.list[i].Symbol + " </td><td> "
-                                    + "---" + " </td><td> "
-                                    + data.list[i].Direction + " </td><td> "
-                                    + tradeDate.toLocaleDateString() + " : " + tradeDate.toLocaleTimeString() + " </td><td> "
-                                    + (data.list[i].Amount) + " </td><td> "
-                                    + "---" + " </td><td " +
-                                    "style=" + ((data.list[i].Symbol === 'DEPOSIT') ? 'color:green' : 'color:red') + ";>" +
-                                    data.list[i].Amount.toFixed(3) + " USD" + "</td></tr>";
+                                tradeTable += "<tr><td>"
+                                    + data.list[i].Symbol + " </td><td>"
+                                    + "---" + " </td><td>"
+                                    + "---" + " </td><td>"
+                                    + tradeDateString + " </td><td>"
+                                    + (data.list[i].Amount).toFixed(3) + " </td><td>"
+                                    + "---" + " </td><td>"
+                                    + tradeDateString
+                                    + " </td><td style=" + ((data.list[i].Symbol === 'DEPOSIT') ? 'color:green' : 'color:red') + ";>"
+                                    + data.list[i].Amount.toFixed(3) + " USD" + "</td></tr>";
                             }
                         }
                         $(".totalPnL").html(total.toFixed(1) + " USD");
                         $("#tradeHistoryBody").html(tradeTable);
                     });
                 }
-            }, 10000);
+            }, 15000);
         });
 
     </script>

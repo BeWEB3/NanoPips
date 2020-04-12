@@ -5,26 +5,27 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="2b42684b1784465dba4fea05d92e64ce" Name="Diagram1" ZoomLevel="52">
-        <EntityTypeShape EntityType="ExchangeModel.Account" Width="1.5" PointX="3" PointY="20.625" />
-        <EntityTypeShape EntityType="ExchangeModel.AccountType" Width="1.5" PointX="0.75" PointY="24.375" />
-        <EntityTypeShape EntityType="ExchangeModel.AddressBook" Width="1.5" PointX="5.25" PointY="11" />
-        <EntityTypeShape EntityType="ExchangeModel.AddressStat" Width="1.5" PointX="5.25" PointY="36.75" />
+        <EntityTypeShape EntityType="ExchangeModel.Account" Width="1.5" PointX="3" PointY="20.75" />
+        <EntityTypeShape EntityType="ExchangeModel.AccountType" Width="1.5" PointX="0.75" PointY="24.5" />
+        <EntityTypeShape EntityType="ExchangeModel.AddressBook" Width="1.5" PointX="5.25" PointY="11.125" />
+        <EntityTypeShape EntityType="ExchangeModel.AddressStat" Width="1.5" PointX="5.25" PointY="37" />
         <EntityTypeShape EntityType="ExchangeModel.AdminSetting" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ExchangeModel.CandlesData" Width="1.5" PointX="0.75" PointY="6.75" />
         <EntityTypeShape EntityType="ExchangeModel.Currency" Width="1.5" PointX="0.75" PointY="1.125" />
         <EntityTypeShape EntityType="ExchangeModel.EmailVerification" Width="1.5" PointX="5.25" PointY="8.125" />
-        <EntityTypeShape EntityType="ExchangeModel.FunctionAccess" Width="1.5" PointX="5.25" PointY="20.125" />
-        <EntityTypeShape EntityType="ExchangeModel.FunctionRequest" Width="1.5" PointX="3" PointY="53.25" />
-        <EntityTypeShape EntityType="ExchangeModel.KYC" Width="1.5" PointX="5.25" PointY="41.25" />
-        <EntityTypeShape EntityType="ExchangeModel.Notification" Width="1.5" PointX="5.25" PointY="44.875" />
+        <EntityTypeShape EntityType="ExchangeModel.FunctionAccess" Width="1.5" PointX="8.25" PointY="16.125" />
+        <EntityTypeShape EntityType="ExchangeModel.FunctionRequest" Width="1.5" PointX="6" PointY="5.375" />
+        <EntityTypeShape EntityType="ExchangeModel.KYC" Width="1.5" PointX="5.25" PointY="45.25" />
+        <EntityTypeShape EntityType="ExchangeModel.Notification" Width="1.5" PointX="5.25" PointY="41.5" />
         <EntityTypeShape EntityType="ExchangeModel.Pair" Width="1.5" PointX="3" PointY="1.25" />
-        <EntityTypeShape EntityType="ExchangeModel.Payment" Width="1.5" PointX="5.25" PointY="29.25" />
-        <EntityTypeShape EntityType="ExchangeModel.PaymentStatu" Width="1.5" PointX="5.75" PointY="3.75" />
-        <EntityTypeShape EntityType="ExchangeModel.SecurityAnswer" Width="1.5" PointX="5.25" PointY="48.625" />
+        <EntityTypeShape EntityType="ExchangeModel.Payment" Width="1.5" PointX="5.25" PointY="25.625" />
+        <EntityTypeShape EntityType="ExchangeModel.PaymentStatu" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ExchangeModel.SecurityAnswer" Width="1.5" PointX="5.25" PointY="48.875" />
         <EntityTypeShape EntityType="ExchangeModel.Trade" Width="1.5" PointX="7.5" PointY="19.25" />
-        <EntityTypeShape EntityType="ExchangeModel.UserActivity" Width="1.5" PointX="0.75" PointY="6.75" />
-        <EntityTypeShape EntityType="ExchangeModel.UserRole" Width="1.5" PointX="5.25" PointY="23.625" />
-        <EntityTypeShape EntityType="ExchangeModel.UserRoleType" Width="1.5" PointX="3" PointY="17.25" />
-        <EntityTypeShape EntityType="ExchangeModel.Wallet" Width="1.5" PointX="5.25" PointY="14.125" />
+        <EntityTypeShape EntityType="ExchangeModel.UserActivity" Width="1.5" PointX="8.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ExchangeModel.UserRole" Width="1.5" PointX="5.25" PointY="21.75" />
+        <EntityTypeShape EntityType="ExchangeModel.UserRoleType" Width="1.5" PointX="3" PointY="17.375" />
+        <EntityTypeShape EntityType="ExchangeModel.Wallet" Width="1.5" PointX="5.25" PointY="14.25" />
         <AssociationConnector Association="ExchangeModel.FK_Accounts_AccountType" />
         <AssociationConnector Association="ExchangeModel.FK_AddressBook_Accounts" />
         <AssociationConnector Association="ExchangeModel.FK_AddressStats_Accounts" />

@@ -3,10 +3,10 @@ using Exchange.Services.Interface;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Net;
 using Exchange.Common;
 using Exchange.EF;
 using System.Linq;
+using System.Net;
 
 namespace Exchange.Services.Implementation
 {
@@ -31,7 +31,7 @@ namespace Exchange.Services.Implementation
         {
             try
             {
-                var val = new WebClient().DownloadString("https://api.bittrex.com/v3/markets/" + market + "/candles?candleInterval=" + interval);
+                var val     = new WebClient().DownloadString("https://api.bittrex.com/v3/markets/" + market + "/candles?candleInterval=" + interval);
                 var candles = JsonConvert.DeserializeObject<List<GetCandlesResponse>>(val);
                 return candles;
             }
@@ -44,12 +44,57 @@ namespace Exchange.Services.Implementation
         {
             try
             {
-                var val = new WebClient().DownloadString("https://api.binance.com/api/v3/klines?symbol=" + market + "&interval=" + interval + "&limit=" + limit);
+                var val = new System.Net.WebClient().DownloadString("https://api.binance.com/api/v3/klines?symbol=" + market + "&interval=" + interval + "&limit=" + limit);
                 var candles = JsonConvert.DeserializeObject<object[][]>(val);
                 return candles;
             }
             catch (Exception ex) {
-                return new object[0][];
+                return null;
+            }
+        }
+
+        public CandlesData GetCandleWebSocket(string market, string interval)
+        {
+            try
+            {
+                var dt =_db.CandlesDatas.Where(x => x.SymbolName == market && x.TimeFrameOriginal == interval).AsEnumerable().FirstOrDefault(x=> x.TimeFrameOriginal == interval);
+                return dt;
+            }
+            catch (Exception ex) {
+                return null;
+            }
+        }
+
+        public GetPolygonCandles GetCandlesPolygon(string market, string from, string to, string interval)
+        {
+            try
+            {
+                var wC = new WebClient();
+                var url = "https://api.polygon.io/v2/aggs/ticker/X:" + market + "/range/1/" + interval + "/" + from + "/" + to + "?unadjusted=true&apiKey=" + ApiContants.polygonApi;
+                var val = wC.DownloadString(url);
+                var candles = JsonConvert.DeserializeObject<GetPolygonCandles>(val);
+                return candles;
+            }
+            catch (Exception ex)
+            {
+                var dt = new GetPolygonCandles();
+                dt.results = new List<GetPolygonCandles.Ticker>();
+                return dt;
+            }
+        }
+
+        public GetLatestCandle GetLastCandlePolygon(string market, string from, string to, string interval)
+        {
+            try
+            {
+                string url  = "https://api.polygon.io/v2/snapshot/locale/global/markets/crypto/tickers/X:" + market + "?apiKey=" + ApiContants.polygonApi;
+                var val     = new WebClient().DownloadString(url);
+                var candles = JsonConvert.DeserializeObject<GetLatestCandle>(val);
+                return candles;
+            }
+            catch (Exception ex) {
+                var dt     = new GetLatestCandle();
+                return dt;
             }
         }
 
@@ -57,7 +102,7 @@ namespace Exchange.Services.Implementation
         {
             try
             {
-                var val = new WebClient().DownloadString("https://api.bittrex.com/v3/markets/" + market + "/orderbook");
+                var val = new System.Net.WebClient().DownloadString("https://api.bittrex.com/v3/markets/" + market + "/orderbook");
                 var book = JsonConvert.DeserializeObject<OrderBookModel>(val);
                 return book;
             }
@@ -77,7 +122,7 @@ namespace Exchange.Services.Implementation
         public GetSpecificTicker GetSpecificTicker(string symbol)
         {
             try {
-                var val    = new WebClient().DownloadString("https://api.bittrex.com/v3/markets/" + symbol + "/ticker");
+                var val    = new System.Net.WebClient().DownloadString("https://api.bittrex.com/v3/markets/" + symbol + "/ticker");
                 var ticker = JsonConvert.DeserializeObject<GetSpecificTicker>(val);
                 return ticker;
             }
@@ -93,6 +138,7 @@ namespace Exchange.Services.Implementation
             _db.SaveChanges();
             return true;
         }
+
         public bool DeactivateCurrency(long curId)
         {
             _db.Currencies.Find(curId).Status = false;
@@ -115,7 +161,7 @@ namespace Exchange.Services.Implementation
         public GetOrderBookBinance GetOrderBookBinance(string symbol)
         {
             try {
-                var val = new WebClient().DownloadString("https://api.binance.com/api/v3/depth?symbol=" + symbol);
+                var val = new System.Net.WebClient().DownloadString("https://api.binance.com/api/v3/depth?symbol=" + symbol);
                 var book = JsonConvert.DeserializeObject<GetOrderBookBinance>(val);
                 return book;
             }
@@ -128,7 +174,7 @@ namespace Exchange.Services.Implementation
         {
             try
             {
-                var val = new WebClient().DownloadString("https://api.binance.com/api/v3/ticker/bookTicker?symbol=" + symbol);
+                var val = new System.Net.WebClient().DownloadString("https://api.binance.com/api/v3/ticker/bookTicker?symbol=" + symbol);
                 var ticker = JsonConvert.DeserializeObject<GetSpecificTickerBinance>(val);
                 return ticker;
             }

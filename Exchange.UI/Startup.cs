@@ -3,6 +3,7 @@ using Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 [assembly: OwinStartup(typeof(Exchange.UI.Startup))]
 namespace Exchange.UI
@@ -11,7 +12,9 @@ namespace Exchange.UI
     {
         public void Configuration(IAppBuilder app)
         {
-            // Any connection or hub wire up and configuration should go here
+            //ServicePointManager.Expect100Continue = true;
+            //ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+
             app.MapSignalR();
         }
     }

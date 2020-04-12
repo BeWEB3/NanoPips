@@ -11,6 +11,7 @@ namespace Exchange.UI.Models
         public List<Pair> GetPairs { get; set; }
         public List<Trade> GetTradeHistory { get; set; }
         public string MarketName { get; set; }
+        public string pairSplit { get; set; }
         public object GetCandles { get; set; }
         public GetOrderBookBinance GetOrderBook { get; set; }
         public string TimeFrameValue { get; set; }

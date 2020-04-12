@@ -549,7 +549,7 @@
                         <th>Date</th>
                     </tr>
                     <tr>
-                        <td class="txtViewReport" data-toggle="modal" data-target="#refferalsSubtract_table" style="cursor:pointer;"><span>$</span>@Model.earning</td>
+                        <td class="txtViewReport" data-toggle="modal" data-target="#refferalsSubtract_table" style="cursor:pointer;"><span>$</span>@Model.totalSubtract</td>
                         <td class="txtViewReport" data-toggle="modal" data-target="#refferals_table">View Full Report</td>
                         <td>@Model.dateTime</td>
                     </tr>
@@ -566,10 +566,10 @@
                         <th>Date</th>
                     </tr>
                     <tr>
-                        <td class="txtViewReport" data-toggle="modal" data-target="#refferalsSubtract_table" style="cursor:pointer;"><span>$</span>@Model.earning</td>
+                        <td class="txtViewReport" data-toggle="modal" data-target="#refferalsSubtract_table" style="cursor:pointer;"><span>$</span>@Model.totalSubtract</td>
                         <td class="txtViewReport" data-toggle="modal" data-target="#refferals_table">View Full Report</td>
                         <td>@Model.dateTime</td>
-                    </tr>
+                        </tr>
                 </table>
                 <hr>
             </div>
@@ -582,15 +582,14 @@
 
                 <ul class="nav nav-tabs" style="border: none;margin-top: 20px;justify-content: center;" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" style="font-weight:bold;" data-toggle="tab" href="#hom">Tire 1</a>
+                        <a class="nav-link active" style="font-weight:bold;" data-toggle="tab" href="#hom">Tier 1</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" style="font-weight:bold;" data-toggle="tab" href="#homBtc">Tire 2</a>
+                        <a class="nav-link" style="font-weight:bold;" data-toggle="tab" href="#homBtc">Tier 2</a>
                     </li>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-content container">
-
                         <div id="hom" class=" tab-pane active">
                             <div class="modal-body row" style="margin-right:auto;margin-left:auto;">
                                 <div class="row" style="padding-top: 10px;">
@@ -618,7 +617,7 @@
                         </div>
 
                         <div id="homBtc" class="tab-pane">
-                            <div class="modal-body row" style="margin-right:auto;margin-left:auto;">
+                            <div class="modal-body row" style="margin-right:auto; margin-left:auto;">
                                 <div class="row" style="padding-top: 10px;">
                                     <div class="" style="padding:0;">
                                         <table class="table trade-table  table-bordered table-striped" style="width:470px !important">
@@ -657,36 +656,32 @@
                             <table class="table trade-table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th scope="col">DateTime/Email</th>
+                                        <th scope="col">DateTime</th>
                                         <th style="width:170px;" scope="col">Transfer</th>
                                         <th style="width:170px;" scope="col">Amount</th>
                                     </tr>
                                 </thead>
                                 <tbody style="table-layout:auto; font-size:12px">
-                                    @foreach (var item in Model.referralSubtract as List<referralSubtractList>)
+                                    @foreach (var item in Model.combineData as List<userList>)
                                     {
+                                        if (item.amount != 0)
+                                        {
+                                            <tr>
+                                                <td scope="col">@item.dateTime</td>
+                                                <td scope="col">@item.email</td>
+                                                <td scope="col">@item.amount</td>
+                                            </tr>
+                                        }
+                                    }
+                                    @*@foreach (var item in Model.referralSubtract as List<referralSubtractList>)
+                                    {
+                                        var val = (item.amount > 0) ? ("+" + item.amount) : item.amount.ToString();
                                         <tr>
                                             <td scope="col">@item.dateTime</td>
                                             <td scope="col">@item.reason</td>
-                                            <td scope="col">@item.amount</td>
+                                            <td scope="col">@val</td>
                                         </tr>
-                                    }
-                                    @foreach (var item in Model.refferalUsers as List<userList>)
-                                    {
-                                        <tr>
-                                            <td scope="col">@item.email</td>
-                                            <td scope="col">Credit</td>
-                                            <td scope="col">@item.amount</td>
-                                        </tr>
-                                    }
-                                    @foreach (var item in Model.refferalTier2Users as List<userList>)
-                                    {
-                                        <tr>
-                                            <td scope="col">@item.email</td>
-                                            <td scope="col">Credit</td>
-                                            <td scope="col">@item.amount</td>
-                                        </tr>
-                                    }
+                                    }*@
                                 </tbody>
                             </table>
                         </div>

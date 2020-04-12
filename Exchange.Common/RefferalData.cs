@@ -8,15 +8,18 @@ namespace Exchange.Common
     {
         public List<userList> refferalUsers { get; set; }
         public List<userList> refferalTier2Users { get; set; }
+        public List<userList> combineData { get; set; }
         public List<rank> rankList { get; set; }
         public string     referralCode { get; set; }
         public long       refferalCount { get; set; }
         public decimal    earning { get; set; }
+        public decimal    totalSubtract { get; set; }
         public DateTime   dateTime { get; set; }
         public List<referralSubtractList> referralSubtract { get; set; }
     }
     public class userList
     {
+        public DateTime dateTime { get; set; }
         public string  email { get; set; }
         public decimal amount { get; set; }
     }

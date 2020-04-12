@@ -35,6 +35,7 @@ namespace Exchange.DTO
         public Nullable<bool> StopLoss_TakeProfitEn { get; set; }
         public Nullable<decimal> UpLimitValue { get; set; }
         public Nullable<decimal> DownLimitValue { get; set; }
+        public Nullable<System.DateTime> TradeClose_Date { get; set; }
     
         public virtual Account Account { get; set; }
         public virtual Wallet Wallet { get; set; }

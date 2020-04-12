@@ -13,6 +13,13 @@ namespace Exchange.UI
 
         //public override void OnActionExecuting(ActionExecutingContext filterContext)
         //{
+        //    filterContext.RequestContext.HttpContext.Response.AddHeader("Access-Control-Allow-Origin", "https://api.binance.com");
+        //    base.OnActionExecuting(filterContext);
+        //}
+
+
+        //public override void OnActionExecuting(ActionExecutingContext filterContext)
+        //{
         //    var date = DateTime.Parse("1/10/2020");
 
         //    ViewResult view = new ViewResult();

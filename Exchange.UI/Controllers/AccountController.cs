@@ -234,7 +234,6 @@ namespace Exchange.UI.Controllers
                 ViewBag.error = ex.ErrorMessage;
                 return View();
             }
-        
         }
 
         public ActionResult SendEmail(string name, string email, string phone, string subject, string message)

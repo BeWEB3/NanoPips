@@ -30,8 +30,8 @@ namespace Exchange.Services.Implementation
             return true;
         }
 
-        public RefferalData GetRefferalData(long accId) {
-
+        public RefferalData GetRefferalData(long accId)
+        {
             var acc = _db.Accounts.Where(a => a.AccountId == accId).SingleOrDefault();
             if (acc == null)
             {
@@ -41,6 +41,7 @@ namespace Exchange.Services.Implementation
                 decimal totalEarn          = 0;
                 RefferalData refferalData  = new RefferalData();
                 refferalData.refferalUsers = new List<userList>();
+                refferalData.combineData   = new List<userList>();
                 refferalData.refferalTier2Users = new List<userList>();
                 refferalData.rankList      = new List<rank>();
                 List<referralSubtractList> list = new List<referralSubtractList>();
@@ -51,7 +52,7 @@ namespace Exchange.Services.Implementation
 
                 for (int x = 0; x < refferalCount.Count(); x++) {
                     var id = refferalCount[x].AccountId;
-                    var dbWallet =  _db.Wallets.Where(m => m.Account_Id == id && m.Currency == "USD").ToList();
+                    var dbWallet = _db.Wallets.Where(m => m.Account_Id == id && m.Currency == "USD").ToList();
                     if (dbWallet.Count() == 0)
                     {
                         refferalData.refferalUsers.Add(new userList()
@@ -96,8 +97,10 @@ namespace Exchange.Services.Implementation
                         refferalData.refferalUsers.Add(new userList()
                         {
                             email  = refferalCount[x].Email,
+                            dateTime = tradeList[tradeList.Count - 1].TradeDate,
                             amount = Math.Round(((Math.Abs(total) * 15) / 100), 1),
                         });
+                        
                     }
                     else {
                         refferalData.refferalUsers.Add(new userList()
@@ -123,7 +126,7 @@ namespace Exchange.Services.Implementation
                         {
                             refferalData.refferalTier2Users.Add(new userList()
                             {
-                                email = tier2Referrals[n].Email,
+                                email  = tier2Referrals[n].Email,
                                 amount = 0,
                             });
                         }
@@ -162,7 +165,8 @@ namespace Exchange.Services.Implementation
                             totalEarn += Math.Round(((Math.Abs(total) * 5) / 100), 1);
                             refferalData.refferalTier2Users.Add(new userList()
                             {
-                                email = tier2Referrals[n].Email,
+                                email  = tier2Referrals[n].Email,
+                                dateTime = tradeList[tradeList.Count - 1].TradeDate,
                                 amount = Math.Round(((Math.Abs(total) * 5) / 100), 1),
                             });
                         }
@@ -176,13 +180,28 @@ namespace Exchange.Services.Implementation
                         }
                     }
                 }
+                for (int s = 0; s < refferalData.refferalUsers.Count; s++) {
+                    refferalData.combineData.Add(new userList() {
+                        dateTime = refferalData.refferalUsers[s].dateTime,
+                        amount   = refferalData.refferalUsers[s].amount,
+                        email    = refferalData.refferalUsers[s].email,
+                    });
+                }
+                for (int s = 0; s < refferalData.refferalTier2Users.Count; s++) {
+                    refferalData.combineData.Add(new userList() {
+                        dateTime = refferalData.refferalTier2Users[s].dateTime,
+                        amount   = refferalData.refferalTier2Users[s].amount,
+                        email    = refferalData.refferalTier2Users[s].email,
+                    });
+                }
+                refferalData.combineData.RemoveAll(x => x.amount == 0);
+                refferalData.combineData.Select(c => { c.email = "Credit"; return c; }).ToList();
 
                 var referralSubtract = _db.Payments.Where(t => t.PaymentType == "REFERRAL_SUBTRACT" && t.Account_Id == accId).ToList();
-                //totalEarn += referralSubtract.Sum(s => s.Amount).Value;
-
                 foreach (var v in referralSubtract)
                 {
-                    list.Add(new referralSubtractList() {
+                    list.Add(new referralSubtractList()
+                    {
                         dateTime = v.PaymentDate.Value,
                         reason   = v.Reason,
                         amount   = v.Amount.Value,
@@ -190,7 +209,20 @@ namespace Exchange.Services.Implementation
                 }
                 list.Reverse();
 
+                for (int t = 0; t < list.Count; t++) {
+                    refferalData.combineData.Add(new userList()
+                    {
+                        dateTime = list[t].dateTime,
+                        amount   = list[t].amount,
+                        email    = list[t].reason,
+                    });
+                }
+
+                refferalData.combineData = refferalData.combineData.OrderByDescending(x => x.dateTime).ToList();
+
+                decimal totalSubtract = referralSubtract.Sum(s => s.Amount).Value;
                 refferalData.earning  = Math.Round(totalEarn, 2);
+                refferalData.totalSubtract = Math.Round(refferalData.earning + totalSubtract, 2);
                 refferalData.dateTime = DateTime.UtcNow;
                 refferalData.referralSubtract = list;
                 refferalData.rankList.Add(new rank("br*****in@*****.com", 1, (decimal)18.89));
@@ -915,7 +947,7 @@ namespace Exchange.Services.Implementation
         public string Get2FABarCodeURL(string email)
         {
             TwoFactorAuthenticator tfa = new TwoFactorAuthenticator();
-            SetupCode code = tfa.GenerateSetupCode("Nano Pips", email, Constants.TwoFactorSecret, 300, 300);
+            SetupCode code = tfa.GenerateSetupCode("Nano Pips", email, Constants.TwoFactorSecret, true, 300);
             return code.QrCodeSetupImageUrl;
         }
 
@@ -1153,7 +1185,6 @@ namespace Exchange.Services.Implementation
         </div>
     </div>";
             #endregion
-            //"clientservice@nanopips.com"
             new Thread(() => SMTPMailClient.SendEmail(body, "NanoPips, Documents Uploaded", new string[] { "clientservice@nanopips.com", "zabi.butt1989@gmail.com" })).Start();
             return kycDetail;
         }
@@ -1162,7 +1193,8 @@ namespace Exchange.Services.Implementation
         {
             try {
                 _db.Configuration.ProxyCreationEnabled = false;
-               return _db.Trades.Where(x => x.Account_Id == account_id && DbFunctions.TruncateTime(x.TradeDate) >= dateFrom && DbFunctions.TruncateTime(x.TradeDate) <= dateTo && x.Status == "COMPLETED").ToList();
+                //return _db.Trades.Where(x => ((x.Account_Id == account_id && DbFunctions.TruncateTime(x.TradeClose_Date) >= dateFrom && DbFunctions.TruncateTime(x.TradeClose_Date) <= dateTo) || x.TradeClose_Date == null) && x.Status == "COMPLETED").ToList();
+                return _db.Trades.Where(x => x.Account_Id == account_id && x.Status == "COMPLETED").ToList();
             }
             catch(Exception ex) {
                 return new List<Trade>();

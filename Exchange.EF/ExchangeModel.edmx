@@ -85,6 +85,22 @@
           <Property Name="SettingKey" Type="varchar" MaxLength="200" />
           <Property Name="SettingValue" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="CandlesData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" />
+          <Property Name="SymbolName" Type="nvarchar(max)" />
+          <Property Name="H" Type="decimal" Precision="18" Scale="5" />
+          <Property Name="L" Type="decimal" Precision="18" Scale="5" />
+          <Property Name="O" Type="decimal" Precision="18" Scale="5" />
+          <Property Name="C" Type="decimal" Precision="18" Scale="5" />
+          <Property Name="TimeStamp" Type="bigint" />
+          <Property Name="Volume" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="TimeFrame" Type="nvarchar(max)" />
+          <Property Name="TimeFrameOriginal" Type="nvarchar(max)" />
+          <Property Name="Status" Type="bit" />
+        </EntityType>
         <EntityType Name="Currencies">
           <Key>
             <PropertyRef Name="CurrencyId" />
@@ -268,6 +284,7 @@
           <Property Name="StopLoss_TakeProfitEn" Type="bit" />
           <Property Name="UpLimitValue" Type="decimal" Precision="18" Scale="8" />
           <Property Name="DownLimitValue" Type="decimal" Precision="18" Scale="8" />
+          <Property Name="TradeClose_Date" Type="datetime" />
         </EntityType>
         <EntityType Name="UserActivities">
           <Key>
@@ -532,6 +549,7 @@
           <EntitySet Name="AddressBook" EntityType="Self.AddressBook" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AddressStats" EntityType="Self.AddressStats" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AdminSettings" EntityType="Self.AdminSettings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CandlesData" EntityType="Self.CandlesData" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Currencies" EntityType="Self.Currencies" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmailVerification" EntityType="Self.EmailVerification" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FunctionAccess" EntityType="Self.FunctionAccess" Schema="dbo" store:Type="Tables" />
@@ -626,6 +644,7 @@
           <EntitySet Name="AddressBooks" EntityType="ExchangeModel.AddressBook" />
           <EntitySet Name="AddressStats" EntityType="ExchangeModel.AddressStat" />
           <EntitySet Name="AdminSettings" EntityType="ExchangeModel.AdminSetting" />
+          <EntitySet Name="CandlesDatas" EntityType="ExchangeModel.CandlesData" />
           <EntitySet Name="Currencies" EntityType="ExchangeModel.Currency" />
           <EntitySet Name="EmailVerifications" EntityType="ExchangeModel.EmailVerification" />
           <EntitySet Name="FunctionAccesses" EntityType="ExchangeModel.FunctionAccess" />
@@ -803,6 +822,22 @@
           <Property Name="SettingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SettingKey" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="SettingValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CandlesData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="SymbolName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="H" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="L" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="O" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="C" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="TimeStamp" Type="Int64" />
+          <Property Name="Volume" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TimeFrame" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TimeFrameOriginal" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Boolean" />
         </EntityType>
         <EntityType Name="Currency">
           <Key>
@@ -999,6 +1034,7 @@
           <Property Name="StopLoss_TakeProfitEn" Type="Boolean" />
           <Property Name="UpLimitValue" Type="Decimal" Precision="18" Scale="8" />
           <Property Name="DownLimitValue" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="TradeClose_Date" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Account" Relationship="ExchangeModel.FK_Trades_Accounts" FromRole="Trade" ToRole="Account" />
           <NavigationProperty Name="Wallet" Relationship="ExchangeModel.FK_Trades_Wallets" FromRole="Trade" ToRole="Wallet" />
         </EntityType>
@@ -1356,6 +1392,23 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="CandlesDatas">
+            <EntityTypeMapping TypeName="ExchangeModel.CandlesData">
+              <MappingFragment StoreEntitySet="CandlesData">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="TimeFrameOriginal" ColumnName="TimeFrameOriginal" />
+                <ScalarProperty Name="TimeFrame" ColumnName="TimeFrame" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="C" ColumnName="C" />
+                <ScalarProperty Name="O" ColumnName="O" />
+                <ScalarProperty Name="L" ColumnName="L" />
+                <ScalarProperty Name="H" ColumnName="H" />
+                <ScalarProperty Name="SymbolName" ColumnName="SymbolName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Currencies">
             <EntityTypeMapping TypeName="ExchangeModel.Currency">
               <MappingFragment StoreEntitySet="Currencies">
@@ -1527,6 +1580,7 @@
           <EntitySetMapping Name="Trades">
             <EntityTypeMapping TypeName="ExchangeModel.Trade">
               <MappingFragment StoreEntitySet="Trades">
+                <ScalarProperty Name="TradeClose_Date" ColumnName="TradeClose_Date" />
                 <ScalarProperty Name="DownLimitValue" ColumnName="DownLimitValue" />
                 <ScalarProperty Name="UpLimitValue" ColumnName="UpLimitValue" />
                 <ScalarProperty Name="StopLoss_TakeProfitEn" ColumnName="StopLoss_TakeProfitEn" />

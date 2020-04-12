@@ -11,6 +11,7 @@ namespace Exchange.Common
         public long    TradeId { get; set; }
         public string  TradeType { get; set; }
         public string  TradeDate { get; set; }
+        public string  TradeCloseDate { get; set; }
         public string  Currency { get; set; }
         public string  Symbol { get; set; }
         public decimal Amount { get; set; }

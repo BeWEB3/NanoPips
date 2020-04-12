@@ -19643,7 +19643,6 @@ IguanaChart = function (options) {
                 _this.chart.setIndicators(_this.chart.dataSource.dataSettings.graphicIndicators);
             }
             _this.renderIndicatorsCurrent();
-
         };
 
         this.renderIndicatorsList = function () {

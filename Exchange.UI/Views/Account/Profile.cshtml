@@ -6,19 +6,19 @@
 <html>
 <head>
     <title>Nanopips</title>
-    <link rel="shortcut icon" href="https://www.nanopips.com/img/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="https://www.nanopips.com/img/favicon.ico" type="image/x-icon"/>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="~/TradeAssets/js/popper.min.js"></script>
-    <link href="~/Assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Assets/css/bootstrap.css" rel="stylesheet"/>
     <script src="~/TradeAssets/js/bootbox.min.js"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" rel="stylesheet">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" media="all"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
-    <link href="~/Assets/css/simple-line-icons.min.css" rel="stylesheet" />
-    <link href="~/Assets/css/main.css" rel="stylesheet" />
+    <link href="~/Assets/css/simple-line-icons.min.css" rel="stylesheet"/>
+    <link href="~/Assets/css/main.css" rel="stylesheet"/>
 
     @*<script src="~/Scripts/jquery.validate.min.js"></script>
         <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
@@ -35,6 +35,7 @@
         var lastSecond = '';
 
 /**/</script>
+
     <style>
         .auto-margin-block {
             margin: auto;
@@ -90,6 +91,7 @@
                 color: white !important;
             }
     </style>
+
 </head>
 <body style="font-family: 'Rubik', sans-serif;">
     <nav class="navbar navbar-default navbar-static-top login-navbar">
@@ -167,7 +169,6 @@
                                                 Please allow upto 24 hours for your documents to verified.
                                             </span>
                                         }
-
                                     </div>
                                 </div>
                             </div>
@@ -497,7 +498,7 @@
                                         @Html.TextBoxFor(m => m.Payment.BankName, new { @class = "pull-left width-90-per", placeholder = "BankName", Required = "" })
                                     </div>
                                     <div class="col-md-6 col-sm-6 spacer">
-                                        <label class="font-size-10">ABA Routing #, IBN #,SWIFT Code</label> <br />
+                                        <label class="font-size-10">ABA Routing #, IBAN #,SWIFT Code</label> <br />
                                         @Html.TextBoxFor(m => m.Payment.IBAN, new { @class = "pull-left width-90-per", placeholder = "###", Required = "" })
                                     </div>
                                     <div class="col-md-6 col-sm-6 spacer">
@@ -631,19 +632,20 @@
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col-md-9" style="font-size:14px">
-                                        <b> INSTRUCTIONS: </b> <br />
+                                        <b> INSTRUCTIONS: </b>
+                                        <br/>
                                         1. Send an Interac e-Transfer to <span style="color:darkblue;"><b><u>clientservice@nanopips.com</u></b></span>. (Canada Only)
-                                        <br />
+                                        <br/>
                                         2. Name: NanoPips Ltd.
-                                        <br />
+                                        <br/>
                                         3. Include your <b>Full Name</b> and NanoPips Verified <b>Email Address</b> in the Special Notes.
-                                        <br /><br />
+                                        <br/><br />
                                         Transfer Time: 1-24 Hours.
                                         <br/><br/>
                                         NanoPips does not charge any fees for incoming transfers.
-                                        <br /> <br />
+                                        <br/><br/>
                                         Intermediary fees may apply.
-                                        <br /> <br />
+                                        <br/><br/>
                                         Contact: <span style="color:darkblue;"><b><u>clientservice@nanopips.com</u></b></span>
                                     </div>
                                 </div>
@@ -707,13 +709,13 @@
                                         1 Valid Government Issued Photo ID.
                                     </div>
                                     <div class="col-md-6 col-sm-6 spacer">
-                                        @Html.TextBoxFor(m => m.KYC.FirstDocument, new { @class = "form-control file pull-left", type = "file" })
+                                        @Html.TextBoxFor(m => m.KYC.FirstDocument, new { @class = "form-control file pull-left", type = "file", required = "required" })
                                     </div>
                                     <div class="col-md-6 col-sm-6 spacer">
                                         1 Valid Proof of Address within the past 60 days.
                                     </div>
                                     <div class="col-md-6  col-sm-6 spacer">
-                                        @Html.TextBoxFor(m => m.KYC.SecondDocument, new { @class = "form-control file pull-left", type = "file" })
+                                        @Html.TextBoxFor(m => m.KYC.SecondDocument, new { @class = "form-control file pull-left", type = "file", required = "required" })
                                     </div>
                                     <div class="col-md-12 spacer text-center">
                                         <button type="submit" class="btn btn-primary btn-lg submit_form_btn">Submit</button>
@@ -852,6 +854,7 @@
                     </div>
                 </div>
                 <!-- deposit-withdraw -->
+
                 <div class="deposit-withdraw-container-body profile-sub display-none text-center">
                     <div class="deposit-withdraw-loader display-none">
                         <div class="loader" style="width:50px; height: 50px;"></div>

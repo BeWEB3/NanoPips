@@ -88,67 +88,68 @@ namespace Exchange.Common
                 }
             }
         }
+        
         public static bool SendEmail(string body, string subject, string[] to)
         {
             ///////////////SMTP CONFIGURATIONS
-            //SmtpClient smtpClient = new SmtpClient("smtp.elasticemail.com", 2525);
-            //NetworkCredential basicCredential =
-            //    new NetworkCredential("nm@investaco.in", "ac60f054-5ba8-44ef-9e7c-af052fbbd256");
-            //MailMessage message = new MailMessage();
-            //MailAddress fromAddress = new MailAddress("zzz@investaco.in", "Nano Pips");
-            //smtpClient.UseDefaultCredentials = false;
-            //smtpClient.EnableSsl = true;
-            //smtpClient.Credentials = basicCredential;
-            //message.From = fromAddress;
-            //message.Subject = subject;
-            ////Set IsBodyHtml to true means you can send HTML email.
-            //message.IsBodyHtml = true;
-            //message.Body = body;
+            SmtpClient smtpClient = new SmtpClient("smtp.elasticemail.com", 2525);
+            NetworkCredential basicCredential =  new NetworkCredential("clientservice@nanopips.com", "E4D97A321B4877DD1ADEBF0E537D33866581");
+            MailMessage message = new MailMessage();
+            MailAddress fromAddress = new MailAddress("clientservice@nanopips.com", "Nano Pips");
+            smtpClient.UseDefaultCredentials = false;
+            smtpClient.EnableSsl = true;
+            smtpClient.Credentials = basicCredential;
+            message.From = fromAddress;
+            message.Subject = subject;
+            //Set IsBodyHtml to true means you can send HTML email.
+            message.IsBodyHtml = true;
+            message.Body = body;
 
-            //foreach (var item in to)
-            //{
-            //    message.To.Add(item);
-            //}
+            foreach (var item in to)
+            {
+                message.To.Add(item);
+            }
+
+            try
+            {
+                smtpClient.Send(message);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+                //Error, could not send the message
+                // Response.Write(ex.Message);
+            }
 
 
-            //try
-            //{
-            //    smtpClient.Send(message);
-            //    return true;
-            //}
-            //catch (Exception ex)
-            //{
-            //    return false;
-            //    //Error, could not send the message
-            //    // Response.Write(ex.Message);
-            //}
             //////////////////////////////////////////
             /////// ELASTIC API CONFIGURATIONS
             ///
-            try
-            {
-                NameValueCollection values = new NameValueCollection();
-                values.Add("apikey", "D509C22AF02010E1E89C14EA4A983881E2690A5F43E805614511736FD8A76D81E7E09A5C41DDF3B056DF73279FDC9E20");
-                values.Add("from", "clientservice@nanopips.com");
-                //values.Add("apikey", "ac60f054-5ba8-44ef-9e7c-af052fbbd256");
-                //values.Add("from", "zzz@investaco.in");
-                values.Add("fromName", "Nano Pips");
-                values.Add("to", to[0]);
-                if (to.Length >= 2)
-                {
-                    values.Add("to", to[1]);
-                }
-                values.Add("subject", subject);
-                values.Add("bodyHtml", body);
-                values.Add("isTransactional", "true");
-                string address = "https://api.elasticemail.com/v2/email/send";
-                string response = Send(address, values);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            //try
+            //{
+            //    NameValueCollection values = new NameValueCollection();
+            //    values.Add("apikey", "D509C22AF02010E1E89C14EA4A983881E2690A5F43E805614511736FD8A76D81E7E09A5C41DDF3B056DF73279FDC9E20");
+            //    values.Add("from", "clientservice@nanopips.com");
+            //    //values.Add("apikey", "ac60f054-5ba8-44ef-9e7c-af052fbbd256");
+            //    //values.Add("from", "zzz@investaco.in");
+            //    values.Add("fromName", "Nano Pips");
+            //    values.Add("to", to[0]);
+            //    if (to.Length >= 2)
+            //    {
+            //        values.Add("to", to[1]);
+            //    }
+            //    values.Add("subject", subject);
+            //    values.Add("bodyHtml", body);
+            //    values.Add("isTransactional", "true");
+            //    string address = "https://api.elasticemail.com/v2/email/send";
+            //    string response = Send(address, values);
+            //    return true;
+            //}
+            //catch
+            //{
+            //    return false;
+            //}
         }
     }
 }
