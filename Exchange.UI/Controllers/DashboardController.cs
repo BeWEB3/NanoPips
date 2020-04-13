@@ -587,7 +587,6 @@ namespace Exchange.UI.Controllers
                         }
                     }
                 }
-
                 return Json(new { list }, JsonRequestBehavior.AllowGet);
             }
         }
