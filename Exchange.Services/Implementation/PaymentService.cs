@@ -663,10 +663,10 @@ namespace Exchange.Services.Implementation
             }
             if (amount > 0)
             {
-                _db.Payments.Add(new Payment() { PaymentDate = DateTime.Now, PaymentStatus_Id = (int)2, Account_Id = ac.AccountId, Amount = amount, AmountSent = amount, Currency = currency, PaymentType = "DEPOSIT", Source = "ADMIN_DEPOSIT", StatusMessage = "Deposit Completed", Reason = reason });
+                _db.Payments.Add(new Payment() { PaymentDate = DateTime.UtcNow, PaymentStatus_Id = (int)2, Account_Id = ac.AccountId, Amount = amount, AmountSent = amount, Currency = currency, PaymentType = "DEPOSIT", Source = "ADMIN_DEPOSIT", StatusMessage = "Deposit Completed", Reason = reason });
             }
             else {
-                _db.Payments.Add(new Payment() { PaymentDate = DateTime.Now, PaymentStatus_Id = (int)2, Account_Id = ac.AccountId, Amount = amount, AmountSent = amount, Currency = currency, PaymentType = "WITHDRAW", Source = "ADMIN_DEPOSIT", StatusMessage = "WithDraw Completed", Reason = reason });
+                _db.Payments.Add(new Payment() { PaymentDate = DateTime.UtcNow, PaymentStatus_Id = (int)2, Account_Id = ac.AccountId, Amount = amount, AmountSent = amount, Currency = currency, PaymentType = "WITHDRAW", Source = "ADMIN_DEPOSIT", StatusMessage = "WithDraw Completed", Reason = reason });
             }
             _db.SaveChanges();
             return true;

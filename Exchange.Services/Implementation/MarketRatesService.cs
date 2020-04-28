@@ -44,7 +44,8 @@ namespace Exchange.Services.Implementation
         {
             try
             {
-                var val = new System.Net.WebClient().DownloadString("https://api.binance.com/api/v3/klines?symbol=" + market + "&interval=" + interval + "&limit=" + limit);
+                string url = "https://api.binance.com/api/v3/klines?symbol=" + market + "&interval=" + interval + "&limit=" + limit;
+                var val = new System.Net.WebClient().DownloadString(url);
                 var candles = JsonConvert.DeserializeObject<object[][]>(val);
                 return candles;
             }

@@ -292,6 +292,7 @@
     <Content Include="Assets\images\back.bmp" />
     <Content Include="Assets\images\banner-bg.jpg" />
     <Content Include="Assets\images\bg.jpg" />
+    <Content Include="Assets\images\blur.jpg" />
     <Content Include="Assets\images\box1.png" />
     <Content Include="Assets\images\box2.png" />
     <Content Include="Assets\images\box3.png" />

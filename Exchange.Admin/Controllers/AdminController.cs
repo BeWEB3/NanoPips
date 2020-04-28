@@ -2,7 +2,6 @@
 using CoinEXR.Admin.App_Start;
 using Exchange.Common;
 using Exchange.DTO;
-using Exchange.UI.Models;
 using Exchange.UOW;
 using MVCGrid.Models;
 using MVCGrid.Web;
@@ -136,33 +135,42 @@ namespace Exchange.UI.Controllers
         {
             DateTime from, to;
             from = DateTime.UtcNow.AddYears(-20);
-            to = DateTime.UtcNow;
+            to   = DateTime.UtcNow;
 
             var ac = SessionItems.Get(SessionKey.ACCOUNT) as Account;
+
             var paymentsList = _uow.Payment.GetSpecificPayments(accId, from, to);
-            var res = _uow.Accounts.GetTradeHistory(accId, from, to);
+            var res = _uow.Accounts.GetTradeHistory(accId, from, to).ToList();
+
             List<PendingOrderForView> list = new List<PendingOrderForView>();
             for (int t = 0; t < res.Count; t++)
             {
-                list.Add(new PendingOrderForView()
+                if (res[t].TradeClose_Date != null)
                 {
-                    TradeId = res[t].TradeId,
-                    TradeDate = res[t].TradeDate.ToString(),
-                    TradeType = res[t].TradeType,
-                    TradeTypeValue = res[t].TradeTypeValue,
-                    Currency = res[t].Currency,
-                    Symbol = res[t].Symbol,
-                    Amount = (decimal)res[t].Amount,
-                    Rate = (decimal)res[t].Rate,
-                    Status = res[t].Status,
-                    ExitPrice = res[t].ExitPrice,
-                    Account_Id = (long)res[t].Account_Id,
-                    Value = (decimal)res[t].Value,
-                    Direction = res[t].Direction,
-                    PnL = res[t].PnL,
-                    Ticker = (res[t].TradeDate.Ticks - 621355968000000000) / 10000000,
-                    isTradeOrder = true,
-                });
+                    if (from.Ticks <= res[t].TradeClose_Date.Value.Ticks && to.Ticks >= res[t].TradeClose_Date.Value.Ticks)
+                    {
+                        list.Add(new PendingOrderForView()
+                        {
+                            TradeId = res[t].TradeId,
+                            TradeDate = res[t].TradeDate.ToString(),
+                            TradeCloseDate = res[t].TradeClose_Date.ToString(),
+                            TradeType = res[t].TradeType,
+                            TradeTypeValue = res[t].TradeTypeValue,
+                            Currency = res[t].Currency,
+                            Symbol = res[t].Symbol,
+                            Amount = (decimal)res[t].Amount,
+                            Rate = (decimal)res[t].Rate,
+                            Status = res[t].Status,
+                            ExitPrice = res[t].ExitPrice,
+                            Account_Id = (long)res[t].Account_Id,
+                            Value = (decimal)res[t].Value,
+                            Direction = res[t].Direction,
+                            PnL = res[t].PnL,
+                            Ticker = (res[t].TradeClose_Date.Value.Ticks - 621355968000000000) / 10000000,
+                            isTradeOrder = true,
+                        });
+                    }
+                }
             }
 
             for (int t = 0; t < paymentsList.Count; t++)
@@ -172,6 +180,7 @@ namespace Exchange.UI.Controllers
                     TradeId = paymentsList[t].PaymentId,
                     TradeDate = paymentsList[t].PaymentDate.ToString(),
                     TradeType = paymentsList[t].PaymentType,
+                    TradeCloseDate = null,
                     TradeTypeValue = 0,
                     Currency = paymentsList[t].Currency,
                     Symbol = paymentsList[t].PaymentType,
@@ -187,8 +196,90 @@ namespace Exchange.UI.Controllers
                     Ticker = (paymentsList[t].PaymentDate.Value.Ticks - 621355968000000000) / 10000000,
                 });
             }
+
             list = list.OrderByDescending(o => o.Ticker).ToList();
+
+            for (int t = 0; t < res.Count; t++)
+            {
+                if (res[t].TradeClose_Date == null)
+                {
+                    if (from.Ticks <= res[t].TradeDate.Ticks && to.Ticks >= res[t].TradeDate.Ticks)
+                    {
+                        list.Add(new PendingOrderForView()
+                        {
+                            TradeId = res[t].TradeId,
+                            TradeDate = res[t].TradeDate.ToString(),
+                            TradeType = res[t].TradeType,
+                            TradeTypeValue = res[t].TradeTypeValue,
+                            Currency = res[t].Currency,
+                            TradeCloseDate = null,
+                            Symbol = res[t].Symbol,
+                            Amount = (decimal)res[t].Amount,
+                            Rate = (decimal)res[t].Rate,
+                            Status = res[t].Status,
+                            ExitPrice = res[t].ExitPrice,
+                            Account_Id = (long)res[t].Account_Id,
+                            Value = (decimal)res[t].Value,
+                            Direction = res[t].Direction,
+                            PnL = res[t].PnL,
+                            Ticker = (res[t].TradeDate.Ticks - 621355968000000000) / 10000000,
+                            isTradeOrder = true,
+                        });
+                    }
+                }
+            }
             return Json(new { list }, JsonRequestBehavior.AllowGet);
+
+            //var paymentsList = _uow.Payment.GetSpecificPayments(accId, from, to);
+            //var res = _uow.Accounts.GetTradeHistory(accId, from, to);
+            //List<PendingOrderForView> list = new List<PendingOrderForView>();
+            //for (int t = 0; t < res.Count; t++)
+            //{
+            //    list.Add(new PendingOrderForView()
+            //    {
+            //        TradeId = res[t].TradeId,
+            //        TradeDate = res[t].TradeDate.ToString(),
+            //        TradeType = res[t].TradeType,
+            //        TradeTypeValue = res[t].TradeTypeValue,
+            //        Currency = res[t].Currency,
+            //        Symbol = res[t].Symbol,
+            //        Amount = (decimal)res[t].Amount,
+            //        Rate = (decimal)res[t].Rate,
+            //        Status = res[t].Status,
+            //        ExitPrice = res[t].ExitPrice,
+            //        Account_Id = (long)res[t].Account_Id,
+            //        Value = (decimal)res[t].Value,
+            //        Direction = res[t].Direction,
+            //        PnL = res[t].PnL,
+            //        Ticker = (res[t].TradeDate.Ticks - 621355968000000000) / 10000000,
+            //        isTradeOrder = true,
+            //    });
+            //}
+
+            //for (int t = 0; t < paymentsList.Count; t++)
+            //{
+            //    list.Add(new PendingOrderForView()
+            //    {
+            //        TradeId = paymentsList[t].PaymentId,
+            //        TradeDate = paymentsList[t].PaymentDate.ToString(),
+            //        TradeType = paymentsList[t].PaymentType,
+            //        TradeTypeValue = 0,
+            //        Currency = paymentsList[t].Currency,
+            //        Symbol = paymentsList[t].PaymentType,
+            //        Amount = (decimal)paymentsList[t].Amount,
+            //        Rate = 0,
+            //        Status = PaymentStatusType.COMPLETED.ToString(),
+            //        ExitPrice = 0,
+            //        Account_Id = (long)paymentsList[t].Account_Id,
+            //        Value = 0,
+            //        Direction = paymentsList[t].PaymentType,
+            //        PnL = (decimal)paymentsList[t].Amount,
+            //        isTradeOrder = false,
+            //        Ticker = (paymentsList[t].PaymentDate.Value.Ticks - 621355968000000000) / 10000000,
+            //    });
+            //}
+            //list = list.OrderByDescending(o => o.Ticker).ToList();
+            //return Json(new { list }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult _GetBelow10Losses()
@@ -302,24 +393,28 @@ namespace Exchange.UI.Controllers
             return RedirectToAction("Accounts", "Admin");
 
         }
+
         public ActionResult ActivateAccount(string acId)
         {
             _uow.Accounts.Activate(Convert.ToInt64(acId));
             TempData["msg"] = "Account has been activated successfully";
             return RedirectToAction("Accounts", "Admin");
         }
+
         public ActionResult ApproveAccount(string acId)
         {
             _uow.Accounts.Approve(Convert.ToInt64(acId));
             TempData["msg"] = "Account has been approved successfully";
             return RedirectToAction("AccountDetail", "Admin", new { acId = acId });
         }
+
         public ActionResult RejectAccount(string acId, string reason)
         {
             _uow.Accounts.Reject(Convert.ToInt64(acId), reason);
             TempData["msg"] = "Documents have been rejected successfully";
             return RedirectToAction("AccountDetail", "Admin", new { acId = acId });
         }
+
         //    public ActionResult Deposits()
         //    {
         //        return View();
@@ -386,6 +481,7 @@ namespace Exchange.UI.Controllers
         //        var sum = query.Sum(m => m.Revenue);
         //        return (sum == null) ? "0.0000" : sum.Value.ToString("0.0000");
         //    }
+
         public ActionResult ChangePassword()
         {
             return View();
@@ -556,6 +652,7 @@ namespace Exchange.UI.Controllers
             return RedirectToAction("AdminAccounts", "Admin");
 
         }
+
         public ActionResult ActivateAdminAccount(string acId)
         {
             _uow.Accounts.Activate(Convert.ToInt64(acId));

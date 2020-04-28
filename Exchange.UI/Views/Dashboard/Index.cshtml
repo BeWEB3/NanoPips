@@ -80,6 +80,38 @@
     </script>
 
     <style>
+        @@media (max-width: 375px) and (min-width: 361px) {
+            .mmm {
+                width: 350px !important;
+            }
+        }
+
+        @@media (max-width: 360px) and (min-width: 321px) {
+            .mmm {
+                width: 325px !important;
+            }
+        }
+
+        @@media (max-width: 320px) {
+            .mmm {
+                width: 300px !important;
+            }
+        }
+
+        @@media (max-width: 414px) and (min-width: 376px) {
+            .mmm {
+                width: 390px !important;
+            }
+        }
+
+        @@media (max-width: 480px) and (min-width: 415px) {
+            .mmm {
+                width: 450px !important;
+            }
+        }
+        /*.mmm{
+        width:800px !important;
+        }*/
 
         .ui-datepicker {
             text-align: center;
@@ -465,51 +497,55 @@
                             </li>
                         </ul>
                         <div class="tab-content tabContentPadding1">
-                            <div id="home1" class=" tab-pane pad-t-30 active">
-                                <span class="txtLabel tabReg">REGISTER</span><br />
-                                <span class="txtLabel txtRegBelow">Fill out your basic information.</span>
-                                <div class="row pad-t-30">
-                                    @using (Html.BeginForm("SignUp", "Dashboard", FormMethod.Post, new { id = "s-form1" }))
-                                    {
-                                        <div class="col-md-6 col-xs-6">
-                                            <label class="Label txtLabel">Email</label><br />
-                                            @Html.TextBoxFor(m => m.UserRoles.Username, new { @class = "form-control inputField txtLabel", placeholder = "Email", id = "email" })
-                                            <p class="text-danger"> @Html.ValidationMessageFor(m => m.UserRoles.Username)</p>
-                                            <p class="text-danger" id="ae">Email Already Exist</p>
+                            <div id="home1" class="tab-pane pad-t-30 active" style="margin:20px;">
+                                <span class="txtLabel txtRegBelow">At this time we are not accepting new clients.</span> <br /> <br />
+                                @*<a id="loginbt1" style="color:green; font-size:16px;"> Login</a>*@
 
-                                            <label class="Label txtLabel">Password</label> <br />
-                                            @Html.PasswordFor(m => m.UserRoles.Password, new { @class = "form-control txtLabel", placeholder = "Password" })
-                                            <p class="text-danger">@Html.ValidationMessageFor(m => m.UserRoles.Password)</p>
-                                            <lable class="Label txtLabel">Terms & Conditions </lable>
-                                            <div class="form-control" style="margin-top: 4px;">
-                                                <div class="form-inline">
-                                                    <input type="checkbox" class="checkbox" id="termsCondition">
-                                                    <span class="txtLabel" style="font-size:12px;">I Agree</span>
+                                @*<div id="home1" class="tab-pane pad-t-30 active">
+                                        <span class="txtLabel tabReg">REGISTER</span><br />
+                                        <span class="txtLabel txtRegBelow">Fill out your basic information.</span>
+                                        <div class="row pad-t-30">
+                                            @using (Html.BeginForm("SignUp", "Dashboard", FormMethod.Post, new { id = "s-form1" }))
+                                            {
+                                                <div class="col-md-6 col-xs-6">
+                                                    <label class="Label txtLabel">Email</label><br />
+                                                    @Html.TextBoxFor(m => m.UserRoles.Username, new { @class = "form-control inputField txtLabel", placeholder = "Email", id = "email" })
+                                                    <p class="text-danger"> @Html.ValidationMessageFor(m => m.UserRoles.Username)</p>
+                                                    <p class="text-danger" id="ae">Email Already Exist</p>
+
+                                                    <label class="Label txtLabel">Password</label> <br />
+                                                    @Html.PasswordFor(m => m.UserRoles.Password, new { @class = "form-control txtLabel", placeholder = "Password" })
+                                                    <p class="text-danger">@Html.ValidationMessageFor(m => m.UserRoles.Password)</p>
+                                                    <lable class="Label txtLabel">Terms & Conditions </lable>
+                                                    <div class="form-control" style="margin-top: 4px;">
+                                                        <div class="form-inline">
+                                                            <input type="checkbox" class="checkbox" id="termsCondition">
+                                                            <span class="txtLabel" style="font-size:12px;">I Agree</span>
+                                                        </div>
+                                                    </div>
+                                                    <label class="error-message" style="color:#a94442; font-weight:500; margin-top:10px;"></label>
                                                 </div>
-                                            </div>
-                                            <label class="error-message" style="color:#a94442; font-weight:500; margin-top:10px;"></label>
-                                        </div>
-                                        <div class="col-md-6 col-xs-6">
-                                            <label class="Label txtLabel">Name</label><br />
-                                            @Html.TextBoxFor(m => m.UserRoles.Username, new { @class = "form-control inputField txtLabel", placeholder = "Name" })
-                                            <p class="text-danger"> @Html.ValidationMessageFor(m => m.UserRoles.Name)</p>
+                                                <div class="col-md-6 col-xs-6">
+                                                    <label class="Label txtLabel">Name</label><br />
+                                                    @Html.TextBoxFor(m => m.UserRoles.Username, new { @class = "form-control inputField txtLabel", placeholder = "Name" })
+                                                    <p class="text-danger"> @Html.ValidationMessageFor(m => m.UserRoles.Name)</p>
 
-                                            <label class="Label">Confirm Password</label><br />
-                                            @Html.PasswordFor(m => m.UserRoles.ConfirmPassword, new { @class = "form-control txtLabel", placeholder = "Confirm Password" })
-                                            <p class="text-danger">@Html.ValidationMessageFor(m => m.UserRoles.ConfirmPassword)</p>
+                                                    <label class="Label">Confirm Password</label><br />
+                                                    @Html.PasswordFor(m => m.UserRoles.ConfirmPassword, new { @class = "form-control txtLabel", placeholder = "Confirm Password" })
+                                                    <p class="text-danger">@Html.ValidationMessageFor(m => m.UserRoles.ConfirmPassword)</p>
 
-                                            <label class="Label">Referral Code</label><br />
-                                            @Html.TextBoxFor(m => m.UserRoles.RefferenceNumber, new { @class = "form-control txtLabel", style = "text-align:center", id = "refferenceNumber", placeholder = "Referral Code" })
+                                                    <label class="Label">Referral Code</label><br />
+                                                    @Html.TextBoxFor(m => m.UserRoles.RefferenceNumber, new { @class = "form-control txtLabel", style = "text-align:center", id = "refferenceNumber", placeholder = "Referral Code" })
+                                                </div>
+                                                <div class="col-md-12 col-xs-12" style="margin-top:10px; margin-bottom:0px;">
+                                                    <button type="submit" class="btn btn-block nanoBtn btnSignup">SIGN UP</button>
+                                                    <br />
+                                                </div>
+                                                <br />
+                                            }
                                         </div>
-                                        <div class="col-md-12 col-xs-12" style="margin-top:10px; margin-bottom:0px;">
-                                            <button type="submit" class="btn btn-block nanoBtn btnSignup">SIGN UP</button>
-                                            <br />
-                                        </div>
-                                        <br />
-                                    }
-                                </div>
+                                    </div>*@
                             </div>
-
                             <div id="menu1" class=" tab-pane pad-t-30 " style="padding-left:10px;">
                                 <div class="row" style="margin-bottom:0px;">
                                     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
@@ -671,7 +707,7 @@
             <div class="col10">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 chartPaddMobile">
                     <div id="iChart" class="iChart chartHeight" style="position:relative !important;"></div>
-                    
+
                     <script type="text/javascript">
                         try {
                             var chartDataSource = { @Html.Raw(Model.GetCandles) };
@@ -884,14 +920,6 @@
                                     <a href="@Url.Action("Index","Dashboard", new { symbol = Model.MarketName, timeFrame = "1d", utcTime = Model.timeOffset })" class="candle-select-range  dropdownHover txtLabel
                                        timeframe" data-value="1d">1D</a>
                                 </li>
-                                <li>
-                                    <a href="@Url.Action("Index","Dashboard", new { symbol = Model.MarketName, timeFrame = "1w", utcTime = Model.timeOffset })" class="candle-select-range dropdownHover txtLabel
-                                       timeframe" data-value="1w">1W</a>
-                                </li>
-                                @*<li>
-                                    <a href="@Url.Action("Index","Dashboard", new { symbol = Model.MarketName, timeFrame = "1M", utcTime = Model.timeOffset })" class="candle-select-range dropdownHover txtLabel
-                                       timeframe" data-value="1M">MONTH</a>
-                                </li>*@
                             </ul>
                         </div>
                     </div>
@@ -903,7 +931,7 @@
                 <div class="col-md-12 col-sm-4 col-xs-4" style="padding-top:5px;">
                     <span class="txtLabel dropdownHover font-12">Auto Close</span>
                     <br>
-                    <div class="btn-group full-width">
+                    <div class="btn-group full-width" style="pointer-events:none">
                         <button id="expire_time_buttond" type="button" class="btn btn-sm borderNone outline-primary dropdown-toggle full-width expire-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="expire-dropdown-current">0 min</span> <span class="caret"></span>
                         </button>
@@ -1088,15 +1116,10 @@
                                        timeframe" data-value="1D">1D</a>
                         <div class="divider"></div>
                     </li>
-                    <li style="color:#000;text-align:center">
-                        <a href="@Url.Action("Index","Dashboard", new { symbol = Model.MarketName, timeFrame = "1w", utcTime = Model.timeOffset })" class="candle-select-range  dropdownHover txtLabel
-                                       timeframe" data-value="1W">1W</a>
-                        <div class="divider"></div>
-                    </li> 
                 </ul>
             </div>
 
-            <div class="dropup">
+            <div class="dropup" style="pointer-events:none">
                 <button style="background-color:transparent" id="expire_time_buttond" type="button" class=" aa btn  dropdown-toggle expire-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img src="~/autoclose.png" />
                 </button>
@@ -1293,7 +1316,7 @@
     </div>
 
     <div class="modal fade in" id="tradeHistoryModal" role="dialog">
-        <div class="modal-dialog">
+        <div class="modal-dialog mmm" style="width:800px">
             <div class="modal-content">
                 <div class="modal-body row" style="margin-right:0px;">
                     <div class="">
@@ -1374,46 +1397,49 @@
                             </li>
                         </ul>
                         <div class="tab-content tabContentPadding1">
-                            <div id="home2" class=" tab-pane pad-t-30 active">
-                                <span class="txtLabel tabReg">REGISTER</span><br />
-                                <span class="txtLabel txtRegBelow">Fill out your basic information.</span>
-
-                                <div class="row pad-t-30">
-                                    @using (Html.BeginForm("SignUp", "Dashboard", FormMethod.Post, new { id = "s-form2" }))
-                                    {
-                                        <div class="col-md-6 col-xs-6">
-                                            <label class="Label txtLabel">Email</label><br />
-                                            @Html.TextBoxFor(m => m.UserRoles.Username, new { @class = "form-control inputField txtLabel", placeholder = "Email", id = "email2" })
-                                            <p class="text-danger"> @Html.ValidationMessageFor(m => m.UserRoles.Username)</p>
-                                            @*<p class="text-danger" id="ae">Email Aready Exist</p>*@
-
-                                            <label class="Label txtLabel">Password</label> <br />
-                                            @Html.PasswordFor(m => m.UserRoles.Password, new { @class = "form-control inputField txtLabel", placeholder = "Password" })
-                                            <p class="text-danger">@Html.ValidationMessageFor(m => m.UserRoles.Password)</p>
-                                            <label class="checkbox-inline " style="width:100%; margin-top: -15px;">
-                                                <br />
-                                                <input type="checkbox" class="checkbox" id="termsCondition2">
-                                                <span class="txtLabel" style="font-size:12px;">Terms & Conditions</span>
-                                            </label>
-                                            <label class="error-message" style="color:red; margin-top: 10px;"></label>
-                                        </div>
-                                        <div class="col-md-6 col-xs-6">
-                                            <label class="Label txtLabel">Name</label> <br />
-                                            @Html.TextBoxFor(m => m.UserRoles.Username, new { @class = "form-control inputField txtLabel", placeholder = "Name" })
-                                            <p class="text-danger"> @Html.ValidationMessageFor(m => m.UserRoles.Username)</p>
-
-                                            <label class="Label">Confirm Password</label> <br />
-                                            @Html.PasswordFor(m => m.UserRoles.ConfirmPassword, new { @class = "form-control inputField txtLabel", placeholder = "Confirm Password" })
-                                            <p class="text-danger">@Html.ValidationMessageFor(m => m.UserRoles.ConfirmPassword)</p>
-                                        </div>
-                                        <div class="col-md-12 col-xs-12" style="margin-top:0px !important;margin-bottom:0px !important;">
-                                            <button type="submit" class="btn btn-block nanoBtn btnSignup">SIGN UP</button>
-                                            <br />
-                                        </div>
-                                        <br />
-                                    }
-                                </div>
+                            <div id="home2" class=" tab-pane pad-t-30 active" style="margin:20px;">
+                                <span class="txtLabel txtRegBelow">At this time we are not accepting new clients.</span> <br /> <br />
+                                @*<a id="loginbt2" style="color:green; font-size:16px;"> Login</a>*@
                             </div>
+
+                            @*<div id="home2" class=" tab-pane pad-t-30 active">
+                                    <span class="txtLabel tabReg">REGISTER</span><br />
+                                    <span class="txtLabel txtRegBelow">Fill out your basic information.</span>
+                                    <div class="row pad-t-30">
+                                        @using (Html.BeginForm("SignUp", "Dashboard", FormMethod.Post, new { id = "s-form2" }))
+                                        {
+                                            <div class="col-md-6 col-xs-6">
+                                                <label class="Label txtLabel">Email</label><br />
+                                                @Html.TextBoxFor(m => m.UserRoles.Username, new { @class = "form-control inputField txtLabel", placeholder = "Email", id = "email2" })
+                                                <p class="text-danger"> @Html.ValidationMessageFor(m => m.UserRoles.Username)</p>
+
+                                                <label class="Label txtLabel">Password</label> <br />
+                                                @Html.PasswordFor(m => m.UserRoles.Password, new { @class = "form-control inputField txtLabel", placeholder = "Password" })
+                                                <p class="text-danger">@Html.ValidationMessageFor(m => m.UserRoles.Password)</p>
+                                                <label class="checkbox-inline " style="width:100%; margin-top: -15px;">
+                                                    <br />
+                                                    <input type="checkbox" class="checkbox" id="termsCondition2">
+                                                    <span class="txtLabel" style="font-size:12px;">Terms & Conditions</span>
+                                                </label>
+                                                <label class="error-message" style="color:red; margin-top: 10px;"></label>
+                                            </div>
+                                            <div class="col-md-6 col-xs-6">
+                                                <label class="Label txtLabel">Name</label> <br />
+                                                @Html.TextBoxFor(m => m.UserRoles.Username, new { @class = "form-control inputField txtLabel", placeholder = "Name" })
+                                                <p class="text-danger"> @Html.ValidationMessageFor(m => m.UserRoles.Username)</p>
+
+                                                <label class="Label">Confirm Password</label> <br />
+                                                @Html.PasswordFor(m => m.UserRoles.ConfirmPassword, new { @class = "form-control inputField txtLabel", placeholder = "Confirm Password" })
+                                                <p class="text-danger">@Html.ValidationMessageFor(m => m.UserRoles.ConfirmPassword)</p>
+                                            </div>
+                                            <div class="col-md-12 col-xs-12" style="margin-top:0px !important;margin-bottom:0px !important;">
+                                                <button type="submit" class="btn btn-block nanoBtn btnSignup">SIGN UP</button>
+                                                <br />
+                                            </div>
+                                            <br />
+                                        }
+                                    </div>
+                                </div>*@
 
                             <div id="menu2" class=" tab-pane pad-t-30 " style=" padding-left: 10px;">
                                 <div class="row" style="margin-bottom: 0px;">
@@ -1445,6 +1471,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div id="menu4" class=" tab-pane  pad-t-30" style="padding-left: 10px;">
                                 <div class="row" style="margin-bottom:0px;">
                                     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
@@ -1473,6 +1500,7 @@
                             </div>
                         </div>
                     </div>
+
                     @*<script>
                             alert("a");
                             $("#click").click(function () {
@@ -1483,6 +1511,7 @@
                                 $("#stoplossm").val(stop);
                             });
                         </script>*@
+                    
                     <script>
                         $(".txtRegisterLogin3").click(function () {
                             $("#menu2").css('display', 'none');
@@ -2033,7 +2062,7 @@ if (isLogin === 'True') {
                                         + tradeDateString + " </td><td>"
                                         + (data.list[i].Amount * data.list[i].Value).toFixed(3) + " </td><td>"
                                         + ((data.list[i].ExitPrice === null) ? "N/A" : data.list[i].ExitPrice) + " </td><td>"
-                                        + tradeCloseDateString 
+                                        + tradeCloseDateString
                                         + " </td><td style=" + ((chk === true) ? 'color:green' : 'color:red') + ";>" +
                                         perTradeProfit.toFixed(3) + " USD" + "</td></tr>";
                                     total += (perTradeProfit - (data.list[i].Amount * data.list[i].Value));
@@ -2402,6 +2431,7 @@ if (isLogin === 'True') {
     })
 
     </script>
+
 </body>
 
 </html>

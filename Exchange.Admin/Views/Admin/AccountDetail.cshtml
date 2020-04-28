@@ -30,6 +30,7 @@
                                         <th scope="col">Entry Time</th>
                                         <th scope="col">Order Quantity</th>
                                         <th scope="col">Exit Price</th>
+                                        <th scope="col">Close Time</th>
                                         <th scope="col">PnL</th>
                                     </tr>
                                 </thead>
@@ -290,7 +291,6 @@
                                 + ((data.list[i].ExitPrice === null) ? "N/A" : data.list[i].ExitPrice) +
                                 " </td><td style=" + ((chk === true) ? 'color:green' : 'color:red') + ";>" +
                                 perTradeProfit.toFixed(4) + " USD" + "</td></tr>";
-
                             total += perTradeProfit - data.list[i].Amount;
                         }
                     }

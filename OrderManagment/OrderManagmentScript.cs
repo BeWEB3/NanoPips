@@ -325,6 +325,18 @@ namespace OrderManagment
                 }
             });
             UserBalance.Start();
+
+            ////////////////////////////////// Script Checking /////////////////////////////
+            Thread ScriptChecking = new Thread(() =>
+            {
+                while (true)
+                {
+                    new ScriptChecking().CheckProcesses();
+                    Thread.Sleep(10000);
+                    GC.Collect();
+                }
+            });
+            ScriptChecking.Start();
         }
 
         private static void CalculatePnL(List<Trade> trades, Account user)

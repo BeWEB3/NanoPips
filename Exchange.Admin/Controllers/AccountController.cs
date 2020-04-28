@@ -1,15 +1,7 @@
 ﻿using Exchange.Common;
 using Exchange.DTO;
 using Exchange.UOW;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Exchange.UI.Controllers
@@ -21,6 +13,7 @@ namespace Exchange.UI.Controllers
         {
             _uow = uow;
         }
+
         public ActionResult _notification()
         {
             var ac = SessionItems.Get(SessionKey.ACCOUNT) as Account;
@@ -39,6 +32,7 @@ namespace Exchange.UI.Controllers
             }
             return View();
         }
+
         [HttpPost]
         public ActionResult Login(UserRole model)
         {
@@ -71,9 +65,7 @@ namespace Exchange.UI.Controllers
                 {
                     TempData["error"] = "Invalid username or password";
                     return RedirectToAction("Login", "Account");
-
-                }
-                
+                }                
             }
             catch (ExchangeException ex)
             {
@@ -81,7 +73,6 @@ namespace Exchange.UI.Controllers
             }
             return View();
         }
-
         
         [ExchangeAuthorize]
         public ActionResult _header()
@@ -90,10 +81,12 @@ namespace Exchange.UI.Controllers
             ViewBag.email = ac.Email;
             return View();
         }
+
         public ActionResult Logout()
         {
             SessionItems.RemoveAll();
             return RedirectToAction("Index", "Admin");
         }
+
     }
 }

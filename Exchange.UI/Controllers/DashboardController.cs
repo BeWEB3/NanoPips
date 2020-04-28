@@ -490,13 +490,15 @@ namespace Exchange.UI.Controllers
                     dateFrom = tempdateFromTemp[0] + "-" + tempdateFromTemp[1] + "-" + tempdateFromTemp[2];
                     var tempdateToTemp = dateTo.Split('/');
                     dateTo = tempdateToTemp[0] + "-" + tempdateToTemp[1] + "-" + tempdateToTemp[2];
-                    from   = DateTime.Parse(dateFrom).ToUniversalTime();
-                    to     = DateTime.Parse(dateTo).ToUniversalTime();
+                    from   = DateTime.Parse(dateFrom + " 12:01:00 AM");
+                    to = DateTime.Parse(dateTo + " 23:59:00 PM");
                 }
                 else
                 {
-                    from   = DateTime.UtcNow.AddDays(0);
-                    to     = DateTime.UtcNow.AddDays(1);
+                    //{ 4 / 15 / 2020 12:15:03 PM}
+                    var fromTemp = DateTime.UtcNow;
+                    from = DateTime.Parse(fromTemp.Month + "/" + fromTemp.Day + "/" + fromTemp.Year + " 12:01:00 AM");
+                    to   = DateTime.UtcNow.AddDays(1);
                 }
                 var paymentsList = _uow.Payment.GetSpecificPayments(ac.AccountId, from, to);
                 var res = _uow.Accounts.GetTradeHistory(ac.AccountId, from, to).ToList();

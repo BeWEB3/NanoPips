@@ -19,8 +19,6 @@ namespace WebSocketManagment
             BinanceKlineData ThirtyMinute = null;
             BinanceKlineData Hour  = null;
             BinanceKlineData Day   = null;
-            BinanceKlineData Month = null;
-            BinanceKlineData Week  = null;
 
             BinanceKlineData MinuteETH = null;
             BinanceKlineData FiveMinuteETH = null;
@@ -28,8 +26,6 @@ namespace WebSocketManagment
             BinanceKlineData ThirtyMinuteETH = null;
             BinanceKlineData HourETH  = null;
             BinanceKlineData DayETH   = null;
-            BinanceKlineData MonthETH = null;
-            BinanceKlineData WeekETH  = null;
 
             BinanceKlineData MinuteLTC = null;
             BinanceKlineData FiveMinuteLTC = null;
@@ -37,8 +33,6 @@ namespace WebSocketManagment
             BinanceKlineData ThirtyMinuteLTC = null;
             BinanceKlineData HourLTC  = null;
             BinanceKlineData DayLTC   = null;
-            BinanceKlineData MonthLTC = null;
-            BinanceKlineData WeekLTC  = null;
 
             BinanceKlineData MinuteXRP = null;
             BinanceKlineData FiveMinuteXRP = null;
@@ -46,290 +40,535 @@ namespace WebSocketManagment
             BinanceKlineData ThirtyMinuteXRP = null;
             BinanceKlineData HourXRP  = null;
             BinanceKlineData DayXRP   = null;
-            BinanceKlineData MonthXRP = null;
-            BinanceKlineData WeekXRP  = null;
+
+            /////////////// Main ////////////////////
+            var ApiKey    = "TdRGlhtg7RsuQG6MPmbKvasd2EOMFBopLIVLmeAsoIRq5Q03qeCZwAOUCqjLhYIO";
+            var SecretKey = "45gClX8cfTo2zUezse6ETFdH1kMO44OnqdgaZEHve3nu1vRLWpI26ku52yjS9odt";
+
+            //////////////// Test ////////////////////
+            //var ApiKey = "9fc2M7WrNl6FdsEv9Pk80eGXy68bZgtUscp1oOPX6w2cnOKQyGdvrtoEAox9gQR2";
+            //var SecretKey = "fS7RG3om3ChfRI2JpD5cV1Qj2ZWwIvG8ANtRlrluDqSRVmz6bzDgS3CR5T0qp2gf";
 
             var client = new BinanceClient(new ClientConfiguration()
             {
-                ApiKey = "9fc2M7WrNl6FdsEv9Pk80eGXy68bZgtUscp1oOPX6w2cnOKQyGdvrtoEAox9gQR2",
-                SecretKey = "fS7RG3om3ChfRI2JpD5cV1Qj2ZWwIvG8ANtRlrluDqSRVmz6bzDgS3CR5T0qp2gf",
+                ApiKey = ApiKey,
+                SecretKey = SecretKey,
             });
 
+            var client1 = new BinanceClient(new ClientConfiguration()
+            {
+                ApiKey = ApiKey,
+                SecretKey = SecretKey,
+            });
+
+            var client2 = new BinanceClient(new ClientConfiguration()
+            {
+                ApiKey = ApiKey,
+                SecretKey = SecretKey,
+            });
+
+            var client3 = new BinanceClient(new ClientConfiguration()
+            {
+                ApiKey = ApiKey,
+                SecretKey = SecretKey,
+            });
+
+            var client4 = new BinanceClient(new ClientConfiguration()
+            {
+                ApiKey = ApiKey,
+                SecretKey = SecretKey,
+            });
+
+            var client5 = new BinanceClient(new ClientConfiguration()
+            {
+                ApiKey = ApiKey,
+                SecretKey = SecretKey,
+            });
+
+            var client6 = new BinanceClient(new ClientConfiguration()
+            {
+                ApiKey = ApiKey,
+                SecretKey = SecretKey,
+            });
+
+            var client7 = new BinanceClient(new ClientConfiguration()
+            {
+                ApiKey = ApiKey,
+                SecretKey = SecretKey,
+            });
+
+            var client8 = new BinanceClient(new ClientConfiguration()
+            {
+                ApiKey = ApiKey,
+                SecretKey = SecretKey,
+            });
+
+            var client9 = new BinanceClient(new ClientConfiguration()
+            {
+                ApiKey = ApiKey,
+                SecretKey = SecretKey,
+            });
+
+            var client10 = new BinanceClient(new ClientConfiguration()
+            {
+                ApiKey = ApiKey,
+                SecretKey = SecretKey,
+            });
+
+            var client11 = new BinanceClient(new ClientConfiguration()
+            {
+                ApiKey = ApiKey,
+                SecretKey = SecretKey,
+            });
+
+            var client12 = new BinanceClient(new ClientConfiguration()
+            {
+                ApiKey = ApiKey,
+                SecretKey = SecretKey,
+            });
+
+            var client13 = new BinanceClient(new ClientConfiguration()
+            {
+                ApiKey = ApiKey,
+                SecretKey = SecretKey,
+            });
+
+            var client14 = new BinanceClient(new ClientConfiguration()
+            {
+                ApiKey = ApiKey,
+                SecretKey = SecretKey,
+            });
+
+            var client15 = new BinanceClient(new ClientConfiguration()
+            {
+                ApiKey = ApiKey,
+                SecretKey = SecretKey,
+            });
+
+            var client16 = new BinanceClient(new ClientConfiguration()
+            {
+                ApiKey = ApiKey,
+                SecretKey = SecretKey,
+            });
+
+            var client17 = new BinanceClient(new ClientConfiguration()
+            {
+                ApiKey = ApiKey,
+                SecretKey = SecretKey,
+            });
+
+            var client18 = new BinanceClient(new ClientConfiguration()
+            {
+                ApiKey = ApiKey,
+                SecretKey = SecretKey,
+            });
+
+            var client19 = new BinanceClient(new ClientConfiguration()
+            {
+                ApiKey = ApiKey,
+                SecretKey = SecretKey,
+            });
+
+            var client20 = new BinanceClient(new ClientConfiguration()
+            {
+                ApiKey = ApiKey,
+                SecretKey = SecretKey,
+            });
+
+            var client21 = new BinanceClient(new ClientConfiguration()
+            {
+                ApiKey = ApiKey,
+                SecretKey = SecretKey,
+            });
+
+            var client22 = new BinanceClient(new ClientConfiguration()
+            {
+                ApiKey = ApiKey,
+                SecretKey = SecretKey,
+            });
+
+            var client23 = new BinanceClient(new ClientConfiguration()
+            {
+                ApiKey = ApiKey,
+                SecretKey = SecretKey,
+            });
+
+            Console.WriteLine("WebSocket Syncing Start...");
             ///////////////////////////////////////////////////////////////
             Thread WebSocketSyncing = new Thread(() =>
             {
-                try
-                {
-                    var manualWebSocketClient = new InstanceBinanceWebSocketClient(client);
-                    var socketId = manualWebSocketClient.ConnectToKlineWebSocket("BTCUSDT", KlineInterval.OneMinute, data =>
+                var manualWebSocketClient   = new InstanceBinanceWebSocketClient(client);
+                var manualWebSocketClient2  = new InstanceBinanceWebSocketClient(client1);
+                var manualWebSocketClient20 = new InstanceBinanceWebSocketClient(client2);
+                var manualWebSocketClient3  = new InstanceBinanceWebSocketClient(client3);
+                var manualWebSocketClient21 = new InstanceBinanceWebSocketClient(client4);
+                var manualWebSocketClient22 = new InstanceBinanceWebSocketClient(client5);
+                var manualWebSocketClient6  = new InstanceBinanceWebSocketClient(client6);
+                var manualWebSocketClient7  = new InstanceBinanceWebSocketClient(client7);
+                var manualWebSocketClient8  = new InstanceBinanceWebSocketClient(client8);
+                var manualWebSocketClient23 = new InstanceBinanceWebSocketClient(client9);
+                var manualWebSocketClient24 = new InstanceBinanceWebSocketClient(client10);
+                var manualWebSocketClient25 = new InstanceBinanceWebSocketClient(client11);
+                var manualWebSocketClient11 = new InstanceBinanceWebSocketClient(client12);
+                var manualWebSocketClient12 = new InstanceBinanceWebSocketClient(client13);
+                var manualWebSocketClient13 = new InstanceBinanceWebSocketClient(client14);
+                var manualWebSocketClient26 = new InstanceBinanceWebSocketClient(client15);
+                var manualWebSocketClient27 = new InstanceBinanceWebSocketClient(client16);
+                var manualWebSocketClient28 = new InstanceBinanceWebSocketClient(client17);
+                var manualWebSocketClient16 = new InstanceBinanceWebSocketClient(client18);
+                var manualWebSocketClient17 = new InstanceBinanceWebSocketClient(client19);
+                var manualWebSocketClient18 = new InstanceBinanceWebSocketClient(client20);
+                var manualWebSocketClient29 = new InstanceBinanceWebSocketClient(client21);
+                var manualWebSocketClient30 = new InstanceBinanceWebSocketClient(client22);
+                var manualWebSocketClient31 = new InstanceBinanceWebSocketClient(client23);
+
+                    try
                     {
-                        Minute = data;
-                    });
+                        var socketId = manualWebSocketClient.ConnectToKlineWebSocket("BTCUSDT", KlineInterval.OneMinute, data =>
+                        {
+                            try
+                            {
+                                Minute = data;
+                            }
+                            catch (Exception) {
+                                Environment.Exit(0);
+                            }
+                        });
 
-                    var manualWebSocketClient2 = new InstanceBinanceWebSocketClient(client);
-                    var socketId2 = manualWebSocketClient2.ConnectToKlineWebSocket("BTCUSDT", KlineInterval.OneHour, data =>
+                        var socketId2 = manualWebSocketClient2.ConnectToKlineWebSocket("BTCUSDT", KlineInterval.OneHour, data =>
+                        {
+                            try
+                            {
+                                Hour = data;
+                            }
+                            catch (Exception)
+                            {
+                                Environment.Exit(0);
+                            }
+                        });
+
+                        var socketId3 = manualWebSocketClient3.ConnectToKlineWebSocket("BTCUSDT", KlineInterval.OneDay, data =>
+                        {
+                            try { 
+                                Day = data;
+                            }
+                            catch (Exception)
+                            {
+                                Environment.Exit(0);
+                            }
+                        });
+
+                        var socketId20 = manualWebSocketClient20.ConnectToKlineWebSocket("BTCUSDT", KlineInterval.FiveMinutes, data =>
+                        {
+                            try { 
+                                FiveMinute = data;
+                            }
+                            catch (Exception)
+                            {
+                                Environment.Exit(0);
+                            }
+                        });
+
+                        var socketId21 = manualWebSocketClient21.ConnectToKlineWebSocket("BTCUSDT", KlineInterval.FifteenMinutes, data =>
+                        {
+                            try { 
+                                FifteenMinute = data;
+                            }
+                            catch (Exception)
+                            {
+                                Environment.Exit(0);
+                            }
+                        });
+
+                        var socketId22 = manualWebSocketClient22.ConnectToKlineWebSocket("BTCUSDT", KlineInterval.ThirtyMinutes, data =>
+                        {
+                            try { 
+                                ThirtyMinute = data;
+                            }
+                            catch (Exception)
+                            {
+                                Environment.Exit(0);
+                            }
+                        });
+
+                        /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        var socketId6 = manualWebSocketClient6.ConnectToKlineWebSocket("ETHUSDT", KlineInterval.OneMinute, data =>
+                        {
+                            try { 
+                                MinuteETH = data;
+                            }
+                            catch (Exception)
+                            {
+                                Environment.Exit(0);
+                            }
+                        });
+
+                        var socketId7 = manualWebSocketClient7.ConnectToKlineWebSocket("ETHUSDT", KlineInterval.OneHour, data =>
+                        {
+                            try { 
+                                HourETH = data;
+                            }
+                            catch (Exception)
+                            {
+                                Environment.Exit(0);
+                            }
+                        });
+
+                        var socketId8 = manualWebSocketClient8.ConnectToKlineWebSocket("ETHUSDT", KlineInterval.OneDay, data =>
+                        {
+                            try { 
+                                DayETH = data;
+                            }
+                            catch (Exception)
+                            {
+                                Environment.Exit(0);
+                            }
+                        });
+
+                        var socketId23 = manualWebSocketClient23.ConnectToKlineWebSocket("ETHUSDT", KlineInterval.FiveMinutes, data =>
+                        {
+                            try { 
+                                FiveMinuteETH = data;
+                            }
+                            catch (Exception)
+                            {
+                                Environment.Exit(0);
+                            }
+                        });
+
+                        var socketId24 = manualWebSocketClient24.ConnectToKlineWebSocket("ETHUSDT", KlineInterval.FifteenMinutes, data =>
+                        {
+                            try { 
+                                FifteenMinuteETH = data;
+                            }
+                            catch (Exception)
+                            {
+                                Environment.Exit(0);
+                            }
+                        });
+
+                        var socketId25 = manualWebSocketClient25.ConnectToKlineWebSocket("ETHUSDT", KlineInterval.ThirtyMinutes, data =>
+                        {
+                            try { 
+                                ThirtyMinuteETH = data;
+                            }
+                            catch (Exception)
+                            {
+                                Environment.Exit(0);
+                            }
+                        });
+
+                        ////////////////////////////////  LTC-USDT  ////////////////////////////////////////
+                        var socketId11 = manualWebSocketClient11.ConnectToKlineWebSocket("LTCUSDT", KlineInterval.OneMinute, data =>
+                        {
+                            try { 
+                                MinuteLTC = data;
+                            }
+                            catch (Exception)
+                            {
+                                Environment.Exit(0);
+                            }
+                        });
+
+                        var socketId12 = manualWebSocketClient12.ConnectToKlineWebSocket("LTCUSDT", KlineInterval.OneHour, data =>
+                        {
+                            try { 
+                                HourLTC = data;
+                            }
+                            catch (Exception)
+                            {
+                                Environment.Exit(0);
+                            }
+                        });
+
+                        var socketId13 = manualWebSocketClient13.ConnectToKlineWebSocket("LTCUSDT", KlineInterval.OneDay, data =>
+                        {
+                            try { 
+                                DayLTC = data;
+                            }
+                            catch (Exception)
+                            {
+                                Environment.Exit(0);
+                            }
+                        });
+
+                        var socketId26 = manualWebSocketClient26.ConnectToKlineWebSocket("LTCUSDT", KlineInterval.FiveMinutes, data =>
+                        {
+                            try { 
+                                FiveMinuteLTC = data;
+                            }
+                            catch (Exception)
+                            {
+                                Environment.Exit(0);
+                            }
+                        });
+
+                        var socketId27 = manualWebSocketClient27.ConnectToKlineWebSocket("LTCUSDT", KlineInterval.FifteenMinutes, data =>
+                        {
+                            try { 
+                                FifteenMinuteLTC = data;
+                            }
+                            catch (Exception)
+                            {
+                                Environment.Exit(0);
+                            }
+                        });
+
+                        var socketId28 = manualWebSocketClient28.ConnectToKlineWebSocket("LTCUSDT", KlineInterval.ThirtyMinutes, data =>
+                        {
+                            try
+                            {
+                                ThirtyMinuteLTC = data;
+                            }
+                            catch (Exception)
+                            {
+                                Environment.Exit(0);
+                            }
+                        });
+
+                        ////////////////////////////////////////   XRP-USDT   ///////////////////////////////////////
+                        var socketId16 = manualWebSocketClient16.ConnectToKlineWebSocket("XRPUSDT", KlineInterval.OneMinute, data =>
+                        {
+                            try { 
+                                MinuteXRP = data;
+                            }
+                            catch (Exception)
+                            {
+                                Environment.Exit(0);
+                            }
+                        });
+
+                        var socketId17 = manualWebSocketClient17.ConnectToKlineWebSocket("XRPUSDT", KlineInterval.OneHour, data =>
+                        {
+                            try { 
+                                HourXRP = data;
+                            }
+                            catch (Exception)
+                            {
+                                Environment.Exit(0);
+                            }
+                        });
+
+                        var socketId18 = manualWebSocketClient18.ConnectToKlineWebSocket("XRPUSDT", KlineInterval.OneDay, data =>
+                        {
+                            try { 
+                                DayXRP = data;
+                            }
+                            catch (Exception)
+                            {
+                                Environment.Exit(0);
+                            }
+                        });
+
+                        var socketId29 = manualWebSocketClient29.ConnectToKlineWebSocket("XRPUSDT", KlineInterval.FiveMinutes, data =>
+                        {
+                            try { 
+                                FiveMinuteXRP = data;
+                            }
+                            catch (Exception)
+                            {
+                                Environment.Exit(0);
+                            }
+                        });
+
+                        var socketId30 = manualWebSocketClient30.ConnectToKlineWebSocket("XRPUSDT", KlineInterval.FifteenMinutes, data =>
+                        {
+                            try { 
+                                FifteenMinuteXRP = data;
+                            }
+                            catch (Exception)
+                            {
+                                Environment.Exit(0);
+                            }
+                        });
+
+                        var socketId31 = manualWebSocketClient31.ConnectToKlineWebSocket("XRPUSDT", KlineInterval.ThirtyMinutes, data =>
+                        {
+                            try { 
+                                ThirtyMinuteXRP = data;
+                            }
+                            catch (Exception)
+                            {
+                                Environment.Exit(0);
+                            }
+                        });
+
+                    }
+                    catch (Exception ex)
                     {
-                        Hour = data;
-                    });
-
-                    var manualWebSocketClient3 = new InstanceBinanceWebSocketClient(client);
-                    var socketId3 = manualWebSocketClient2.ConnectToKlineWebSocket("BTCUSDT", KlineInterval.OneDay, data =>
-                    {
-                        Day = data;
-                    });
-
-                    //var manualWebSocketClient4 = new InstanceBinanceWebSocketClient(client);
-                    //var socketId4 = manualWebSocketClient2.ConnectToKlineWebSocket("BTCUSDT", KlineInterval.OneMonth, data =>
-                    //{
-                    //    Month = data;
-                    //});
-
-                    var manualWebSocketClient5 = new InstanceBinanceWebSocketClient(client);
-                    var socketId5 = manualWebSocketClient2.ConnectToKlineWebSocket("BTCUSDT", KlineInterval.OneWeek, data =>
-                    {
-                        Week = data;
-                    });
-
-                    var manualWebSocketClient20 = new InstanceBinanceWebSocketClient(client);
-                    var socketId20 = manualWebSocketClient2.ConnectToKlineWebSocket("BTCUSDT", KlineInterval.FiveMinutes, data =>
-                    {
-                        FiveMinute = data;
-                    });
-
-                    var manualWebSocketClient21 = new InstanceBinanceWebSocketClient(client);
-                    var socketId21 = manualWebSocketClient2.ConnectToKlineWebSocket("BTCUSDT", KlineInterval.FifteenMinutes, data =>
-                    {
-                        FifteenMinute = data;
-                    });
-
-                    var manualWebSocketClient22 = new InstanceBinanceWebSocketClient(client);
-                    var socketId22 = manualWebSocketClient2.ConnectToKlineWebSocket("BTCUSDT", KlineInterval.ThirtyMinutes, data =>
-                    {
-                        ThirtyMinute = data;
-                    });
-
-                    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    var manualWebSocketClient6 = new InstanceBinanceWebSocketClient(client);
-                    var socketId6 = manualWebSocketClient.ConnectToKlineWebSocket("ETHUSDT", KlineInterval.OneMinute, data =>
-                    {
-                        MinuteETH = data;
-                    });
-
-                    var manualWebSocketClient7 = new InstanceBinanceWebSocketClient(client);
-                    var socketId7 = manualWebSocketClient2.ConnectToKlineWebSocket("ETHUSDT", KlineInterval.OneHour, data =>
-                    {
-                        HourETH = data;
-                    });
-
-                    var manualWebSocketClient8 = new InstanceBinanceWebSocketClient(client);
-                    var socketId8 = manualWebSocketClient2.ConnectToKlineWebSocket("ETHUSDT", KlineInterval.OneDay, data =>
-                    {
-                        DayETH = data;
-                    });
-
-                    //var manualWebSocketClient9 = new InstanceBinanceWebSocketClient(client);
-                    //var socketId9 = manualWebSocketClient2.ConnectToKlineWebSocket("ETHUSDT", KlineInterval.OneMonth, data =>
-                    //{
-                    //    MonthETH = data;
-                    //});
-
-                    var manualWebSocketClient10 = new InstanceBinanceWebSocketClient(client);
-                    var socketId10 = manualWebSocketClient2.ConnectToKlineWebSocket("ETHUSDT", KlineInterval.OneWeek, data =>
-                    {
-                        WeekETH = data;
-                    });
-
-                    var manualWebSocketClient23 = new InstanceBinanceWebSocketClient(client);
-                    var socketId23 = manualWebSocketClient2.ConnectToKlineWebSocket("ETHUSDT", KlineInterval.FiveMinutes, data =>
-                    {
-                        FiveMinuteETH = data;
-                    });
-
-                    var manualWebSocketClient24 = new InstanceBinanceWebSocketClient(client);
-                    var socketId24 = manualWebSocketClient2.ConnectToKlineWebSocket("ETHUSDT", KlineInterval.FifteenMinutes, data =>
-                    {
-                        FifteenMinuteETH = data;
-                    });
-
-                    var manualWebSocketClient25 = new InstanceBinanceWebSocketClient(client);
-                    var socketId25 = manualWebSocketClient2.ConnectToKlineWebSocket("ETHUSDT", KlineInterval.ThirtyMinutes, data =>
-                    {
-                        ThirtyMinuteETH = data;
-                    });
-
-                    ////////////////////////////////  LTC-USDT  ////////////////////////////////////////
-                    var manualWebSocketClient11 = new InstanceBinanceWebSocketClient(client);
-                    var socketId11 = manualWebSocketClient.ConnectToKlineWebSocket("LTCUSDT", KlineInterval.OneMinute, data =>
-                    {
-                        MinuteLTC = data;
-                    });
-
-                    var manualWebSocketClient12 = new InstanceBinanceWebSocketClient(client);
-                    var socketId12 = manualWebSocketClient2.ConnectToKlineWebSocket("LTCUSDT", KlineInterval.OneHour, data =>
-                    {
-                        HourLTC = data;
-                    });
-
-                    var manualWebSocketClient13 = new InstanceBinanceWebSocketClient(client);
-                    var socketId13 = manualWebSocketClient2.ConnectToKlineWebSocket("LTCUSDT", KlineInterval.OneDay, data =>
-                    {
-                        DayLTC = data;
-                    });
-
-                    //var manualWebSocketClient14 = new InstanceBinanceWebSocketClient(client);
-                    //var socketId14 = manualWebSocketClient2.ConnectToKlineWebSocket("LTCUSDT", KlineInterval.OneMonth, data =>
-                    //{
-                    //    MonthLTC = data;
-                    //});
-
-                    var manualWebSocketClient15 = new InstanceBinanceWebSocketClient(client);
-                    var socketId15 = manualWebSocketClient2.ConnectToKlineWebSocket("LTCUSDT", KlineInterval.OneWeek, data =>
-                    {
-                        WeekLTC = data;
-                    });
-
-                    var manualWebSocketClient26 = new InstanceBinanceWebSocketClient(client);
-                    var socketId26 = manualWebSocketClient2.ConnectToKlineWebSocket("LTCUSDT", KlineInterval.FiveMinutes, data =>
-                    {
-                        FiveMinuteLTC = data;
-                    });
-
-                    var manualWebSocketClient27 = new InstanceBinanceWebSocketClient(client);
-                    var socketId27 = manualWebSocketClient2.ConnectToKlineWebSocket("LTCUSDT", KlineInterval.FifteenMinutes, data =>
-                    {
-                        FifteenMinuteLTC = data;
-                    });
-
-                    var manualWebSocketClient28 = new InstanceBinanceWebSocketClient(client);
-                    var socketId28 = manualWebSocketClient2.ConnectToKlineWebSocket("LTCUSDT", KlineInterval.ThirtyMinutes, data =>
-                    {
-                        ThirtyMinuteLTC = data;
-                    });
-
-
-////////////////////////////////////////   XRP-USDT   ///////////////////////////////////////
-                    var manualWebSocketClient16 = new InstanceBinanceWebSocketClient(client);
-                    var socketId16 = manualWebSocketClient.ConnectToKlineWebSocket("XRPUSDT", KlineInterval.OneMinute, data =>
-                    {
-                        MinuteXRP = data;
-                    });
-
-                    var manualWebSocketClient17 = new InstanceBinanceWebSocketClient(client);
-                    var socketId17 = manualWebSocketClient2.ConnectToKlineWebSocket("XRPUSDT", KlineInterval.OneHour, data =>
-                    {
-                        HourXRP = data;
-                    });
-
-                    var manualWebSocketClient18 = new InstanceBinanceWebSocketClient(client);
-                    var socketId18 = manualWebSocketClient2.ConnectToKlineWebSocket("XRPUSDT", KlineInterval.OneDay, data =>
-                    {
-                        DayXRP = data;
-                    });
-
-                    //var manualWebSocketClient19 = new InstanceBinanceWebSocketClient(client);
-                    //var socketId19 = manualWebSocketClient2.ConnectToKlineWebSocket("XRPUSDT", KlineInterval.OneMonth, data =>
-                    //{
-                    //    MonthXRP = data;
-                    //});
-
-                    var manualWebSocketClient33 = new InstanceBinanceWebSocketClient(client);
-                    var socketId33 = manualWebSocketClient2.ConnectToKlineWebSocket("XRPUSDT", KlineInterval.OneWeek, data =>
-                    {
-                        WeekXRP = data;
-                    });
-
-                    var manualWebSocketClient29 = new InstanceBinanceWebSocketClient(client);
-                    var socketId29 = manualWebSocketClient2.ConnectToKlineWebSocket("XRPUSDT", KlineInterval.FiveMinutes, data =>
-                    {
-                        FiveMinuteXRP = data;
-                    });
-
-                    var manualWebSocketClient30 = new InstanceBinanceWebSocketClient(client);
-                    var socketId30 = manualWebSocketClient2.ConnectToKlineWebSocket("XRPUSDT", KlineInterval.FifteenMinutes, data =>
-                    {
-                        FifteenMinuteXRP = data;
-                    });
-
-                    var manualWebSocketClient31 = new InstanceBinanceWebSocketClient(client);
-                    var socketId31 = manualWebSocketClient2.ConnectToKlineWebSocket("XRPUSDT", KlineInterval.ThirtyMinutes, data =>
-                    {
-                        ThirtyMinuteXRP = data;
-                    });
-
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
+                        Console.WriteLine("ERROR ON SOCKET:  " + ex.Message);
+                        Environment.Exit(0);
                 }
             });
             WebSocketSyncing.Start();
 
-            //////////////////////////////////////////////////////////////
+                //////////////////////////////////////////////////////////////
             Thread SetWebSocketData = new Thread (() =>
             {
                 while (true)
                 {
-                    if (Minute != null && FiveMinute != null && FifteenMinute != null && ThirtyMinute != null && Hour != null && Day != null && Week != null
-                         && MinuteETH != null && FiveMinuteETH != null && FifteenMinuteETH != null && ThirtyMinuteETH != null && HourETH != null && DayETH != null && WeekETH != null
-                         && MinuteLTC != null && FiveMinuteLTC != null && FifteenMinuteLTC != null && ThirtyMinuteLTC != null && HourLTC != null && DayLTC != null && WeekLTC != null
-                         && MinuteXRP != null && FiveMinuteXRP != null && FifteenMinuteXRP != null && ThirtyMinuteXRP != null && HourXRP != null && DayXRP != null && WeekXRP != null)
+                    if (Minute != null && FiveMinute != null && FifteenMinute != null && ThirtyMinute != null && Hour != null && Day != null
+                         && MinuteETH != null && FiveMinuteETH != null && FifteenMinuteETH != null && ThirtyMinuteETH != null && HourETH != null && DayETH != null
+                         && MinuteLTC != null && FiveMinuteLTC != null && FifteenMinuteLTC != null && ThirtyMinuteLTC != null && HourLTC != null && DayLTC != null
+                         && MinuteXRP != null && FiveMinuteXRP != null && FifteenMinuteXRP != null && ThirtyMinuteXRP != null && HourXRP != null && DayXRP != null)
                     {
-
                         using (var db = new ExchangeEntities())
                         {
                             var candlesList = db.CandlesDatas.ToList();
                             for (int t = 0; t < candlesList.Count; t++)
                             {
-                                var tmp = candlesList[t];
-                                var dt = db.CandlesDatas.Where(x => x.SymbolName == tmp.SymbolName && x.TimeFrame == tmp.TimeFrame).FirstOrDefault();
-                                BinanceKlineData commonDt = null;
-                                try
+                                if (candlesList[t].Status.Value)
                                 {
-                                    if (dt != null)
+                                    var tmp = candlesList[t];
+                                    var dt = db.CandlesDatas.Where(x => x.SymbolName == tmp.SymbolName && x.TimeFrame == tmp.TimeFrame).FirstOrDefault();
+                                    BinanceKlineData commonDt = null;
+                                    try
                                     {
-                                        if (dt.SymbolName == "BTC-USDT" && dt.TimeFrame == "OneMinute") commonDt = Minute;
-                                        else if (dt.SymbolName == "BTC-USDT" && dt.TimeFrame == "FiveMinute") commonDt    = FiveMinute;
-                                        else if (dt.SymbolName == "BTC-USDT" && dt.TimeFrame == "FifteenMinute") commonDt = FifteenMinute;
-                                        else if (dt.SymbolName == "BTC-USDT" && dt.TimeFrame == "ThirtyMinute") commonDt  = ThirtyMinute;
-                                        else if (dt.SymbolName == "BTC-USDT" && dt.TimeFrame == "OneHour") commonDt = Hour;
-                                        else if (dt.SymbolName == "BTC-USDT" && dt.TimeFrame == "OneDay") commonDt  = Day;
-                                        else if (dt.SymbolName == "BTC-USDT" && dt.TimeFrame == "OneWeek") commonDt = Week;
-                                        else if (dt.SymbolName == "ETH-USDT" && dt.TimeFrame == "OneMinute") commonDt = MinuteETH;
-                                        else if (dt.SymbolName == "ETH-USDT" && dt.TimeFrame == "FiveMinute") commonDt = FiveMinuteETH;
-                                        else if (dt.SymbolName == "ETH-USDT" && dt.TimeFrame == "FifteenMinute") commonDt = FifteenMinuteETH;
-                                        else if (dt.SymbolName == "ETH-USDT" && dt.TimeFrame == "ThirtyMinute") commonDt = ThirtyMinuteETH;
-                                        else if (dt.SymbolName == "ETH-USDT" && dt.TimeFrame == "OneHour") commonDt = HourETH;
-                                        else if (dt.SymbolName == "ETH-USDT" && dt.TimeFrame == "OneDay") commonDt  = DayETH;
-                                        else if (dt.SymbolName == "ETH-USDT" && dt.TimeFrame == "OneWeek") commonDt = WeekETH;
-                                        else if (dt.SymbolName == "LTC-USDT" && dt.TimeFrame == "OneMinute") commonDt = MinuteLTC;
-                                        else if (dt.SymbolName == "LTC-USDT" && dt.TimeFrame == "FiveMinute") commonDt = FiveMinuteLTC;
-                                        else if (dt.SymbolName == "LTC-USDT" && dt.TimeFrame == "FifteenMinute") commonDt = FifteenMinuteLTC;
-                                        else if (dt.SymbolName == "LTC-USDT" && dt.TimeFrame == "ThirtyMinute") commonDt = ThirtyMinuteLTC;
-                                        else if (dt.SymbolName == "LTC-USDT" && dt.TimeFrame == "OneHour") commonDt = HourLTC;
-                                        else if (dt.SymbolName == "LTC-USDT" && dt.TimeFrame == "OneDay") commonDt  = DayLTC;
-                                        else if (dt.SymbolName == "LTC-USDT" && dt.TimeFrame == "OneWeek") commonDt = WeekLTC;
-                                        else if (dt.SymbolName == "XRP-USDT" && dt.TimeFrame == "OneMinute") commonDt = MinuteXRP;
-                                        else if (dt.SymbolName == "XRP-USDT" && dt.TimeFrame == "FiveMinute") commonDt = FiveMinuteXRP;
-                                        else if (dt.SymbolName == "XRP-USDT" && dt.TimeFrame == "FifteenMinute") commonDt = FifteenMinuteXRP;
-                                        else if (dt.SymbolName == "XRP-USDT" && dt.TimeFrame == "ThirtyMinute") commonDt = ThirtyMinuteXRP;
-                                        else if (dt.SymbolName == "XRP-USDT" && dt.TimeFrame == "OneHour") commonDt = HourXRP;
-                                        else if (dt.SymbolName == "XRP-USDT" && dt.TimeFrame == "OneDay") commonDt  = DayXRP;
-                                        else if (dt.SymbolName == "XRP-USDT" && dt.TimeFrame == "OneWeek") commonDt = WeekXRP;
+                                        if (dt != null)
+                                        {
+                                            if (dt.SymbolName == "BTC-USDT" && dt.TimeFrame == "OneMinute") commonDt = Minute;
+                                            else if (dt.SymbolName == "BTC-USDT" && dt.TimeFrame == "FiveMinute") commonDt = FiveMinute;
+                                            else if (dt.SymbolName == "BTC-USDT" && dt.TimeFrame == "FifteenMinute") commonDt = FifteenMinute;
+                                            else if (dt.SymbolName == "BTC-USDT" && dt.TimeFrame == "ThirtyMinute") commonDt = ThirtyMinute;
+                                            else if (dt.SymbolName == "BTC-USDT" && dt.TimeFrame == "OneHour") commonDt = Hour;
+                                            else if (dt.SymbolName == "BTC-USDT" && dt.TimeFrame == "OneDay") commonDt = Day;
+                                            else if (dt.SymbolName == "ETH-USDT" && dt.TimeFrame == "OneMinute") commonDt = MinuteETH;
+                                            else if (dt.SymbolName == "ETH-USDT" && dt.TimeFrame == "FiveMinute") commonDt = FiveMinuteETH;
+                                            else if (dt.SymbolName == "ETH-USDT" && dt.TimeFrame == "FifteenMinute") commonDt = FifteenMinuteETH;
+                                            else if (dt.SymbolName == "ETH-USDT" && dt.TimeFrame == "ThirtyMinute") commonDt = ThirtyMinuteETH;
+                                            else if (dt.SymbolName == "ETH-USDT" && dt.TimeFrame == "OneHour") commonDt = HourETH;
+                                            else if (dt.SymbolName == "ETH-USDT" && dt.TimeFrame == "OneDay") commonDt = DayETH;
+                                            else if (dt.SymbolName == "LTC-USDT" && dt.TimeFrame == "OneMinute") commonDt = MinuteLTC;
+                                            else if (dt.SymbolName == "LTC-USDT" && dt.TimeFrame == "FiveMinute") commonDt = FiveMinuteLTC;
+                                            else if (dt.SymbolName == "LTC-USDT" && dt.TimeFrame == "FifteenMinute") commonDt = FifteenMinuteLTC;
+                                            else if (dt.SymbolName == "LTC-USDT" && dt.TimeFrame == "ThirtyMinute") commonDt = ThirtyMinuteLTC;
+                                            else if (dt.SymbolName == "LTC-USDT" && dt.TimeFrame == "OneHour") commonDt = HourLTC;
+                                            else if (dt.SymbolName == "LTC-USDT" && dt.TimeFrame == "OneDay") commonDt = DayLTC;
+                                            else if (dt.SymbolName == "XRP-USDT" && dt.TimeFrame == "OneMinute") commonDt = MinuteXRP;
+                                            else if (dt.SymbolName == "XRP-USDT" && dt.TimeFrame == "FiveMinute") commonDt = FiveMinuteXRP;
+                                            else if (dt.SymbolName == "XRP-USDT" && dt.TimeFrame == "FifteenMinute") commonDt = FifteenMinuteXRP;
+                                            else if (dt.SymbolName == "XRP-USDT" && dt.TimeFrame == "ThirtyMinute") commonDt = ThirtyMinuteXRP;
+                                            else if (dt.SymbolName == "XRP-USDT" && dt.TimeFrame == "OneHour") commonDt = HourXRP;
+                                            else if (dt.SymbolName == "XRP-USDT" && dt.TimeFrame == "OneDay") commonDt = DayXRP;
 
-                                        DateTime javaEpoch = new DateTime(1970, 1, 1);
+                                            DateTime javaEpoch = new DateTime(1970, 1, 1);
 
-                                        dt.H = commonDt.Kline.High;
-                                        dt.L = commonDt.Kline.Low;
-                                        dt.O = commonDt.Kline.Open;
-                                        dt.C = commonDt.Kline.Close;
-                                        dt.Volume    = commonDt.Kline.Volume;
-                                        dt.TimeStamp = (commonDt.Kline.StartTime.Ticks - javaEpoch.Ticks) / TimeSpan.TicksPerMillisecond;
+                                            dt.H = commonDt.Kline.High;
+                                            dt.L = commonDt.Kline.Low;
+                                            dt.O = commonDt.Kline.Open;
+                                            dt.C = commonDt.Kline.Close;
+                                            dt.Volume = commonDt.Kline.Volume;
+                                            dt.TimeStamp = (commonDt.Kline.StartTime.Ticks - javaEpoch.Ticks) / TimeSpan.TicksPerMillisecond;
 
-                                        db.Configuration.ValidateOnSaveEnabled = false;
-                                        db.SaveChanges();
+                                            db.Configuration.ValidateOnSaveEnabled = false;
+                                            db.SaveChanges();
+                                        }
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        Console.WriteLine("ERROR ON SAVING:  " + ex.Message);
                                     }
                                 }
-                                catch (Exception ex) { }
                             }
                         }
                         //Console.Clear();
@@ -364,6 +603,17 @@ namespace WebSocketManagment
         //    var xa = dtDateTime.AddSeconds(unixTimeStamp).ToUniversalTime().Ticks;
         //    return xa;
         //}
+
+        //Boolean check = manualWebSocketClient.IsAlive(socketId);
+
+        //catch (BinanceBadRequestException badRequestException)
+        //{ }
+        //catch (BinanceServerException serverException)
+        //{ }
+        //catch (BinanceTimeoutException timeoutException)
+        //{ }
+        //catch (BinanceException unknownException)
+        //{ }
 
     }
 }
