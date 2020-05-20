@@ -259,16 +259,16 @@
                                     </div>
                                     <div class="col-md-offset-4 col-md-4">
                                         @*<div class="btn-group" style="width: 100%;">
-                                            <button id="selectedcurrencyWithDraw" type="button" class="mar-top-20 btn btn-lg outline-primary dropdown-toggle dropdown-filter" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:inherit;">
-                                                Select Currency <span class="caret" style="margin-left:5px;"></span>
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                @foreach (var item in Model.CurrencyList as List<Exchange.DTO.Currency>)
-                                                {
-                                                    <li><a href="#" class="candle-select-range currencyclickWithDraw">@item.ThreeDigitName</a></li>
-                                                }
-                                            </ul>
-                                        </div>*@
+                                    <button id="selectedcurrencyWithDraw" type="button" class="mar-top-20 btn btn-lg outline-primary dropdown-toggle dropdown-filter" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:inherit;">
+                                        Select Currency <span class="caret" style="margin-left:5px;"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        @foreach (var item in Model.CurrencyList as List<Exchange.DTO.Currency>)
+                                        {
+                                            <li><a href="#" class="candle-select-range currencyclickWithDraw">@item.ThreeDigitName</a></li>
+                                        }
+                                    </ul>
+                                </div>*@
                                     </div>
                                     <div class="col-md-12 spacer text-center">
                                         <button type="button" data-toggle="modal" data-target="#myModal4" class="btn btn-primary btn-lg submit_form_btn width-50-per">Wire Transfer</button>
@@ -297,8 +297,9 @@
                                         <select id="selectAddress" class="width-100-per" style="padding: 10px;"></select>
                                     </div>
                                     <div class="col-md-12 col-sm-12 spacer">
-                                        <p class="text-center"> Withdrawls will only be sent to the whitelist address. 
-                                        <a data-toggle="modal" data-target="#myModal7" class="whiteAddressToAdd">Add Now</a>
+                                        <p class="text-center">
+                                            Withdrawls will only be sent to the whitelist address.
+                                            <a data-toggle="modal" data-target="#myModal7" class="whiteAddressToAdd">Add Now</a>
                                         </p>
                                     </div>
                                     <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 spacer">
@@ -362,34 +363,34 @@
                         </div>
                     </div>
                 </div>
+                <div class="modal fade" id="depositModel" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body row">
+                        <form enctype="multipart/form-data">
+                            <div class="col-md-12 spacer text-center">
+                                <img src="~/Assets/images/Account Verification.png" class="width-100px" />
+                            </div>
+                            <div class="col-md-12  col-sm-12 col-xs-12 spacer">
+                                <p class="text-bold text-center">Deposit to your Nanopips Account.</p>
+                            </div>
+                            <div class="col-md-12 spacer text-center">
+                                <button type="button" data-toggle="modal" data-target="#interacdeposit_model" class="btn btn-primary btn-lg submit_form_btn width-50-per">Interac e-Transfer</button>
+                            </div>
+                            <div class="col-md-12 spacer text-center">
+
+                 <button type="button" data-toggle="modal" data-target="#wiredeposit_model" class="btn btn-primary btn-lg submit_form_btn width-50-per">Direct Deposit | Wire Transfer</button>
+                            </div>
+                            <div class="col-md-12 spacer text-center">
+                                <button type="button" data-toggle="modal" data-target="#cryptoDeposit" class=" btnCryptoDeposit btn btn-primary btn-lg submit_form_btn width-50-per confirmation-Modal">Cryptocurrency Transfer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
                 @*<div class="modal fade" id="depositModel" role="dialog">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-body row">
-                                <form enctype="multipart/form-data">
-                                    <div class="col-md-12 spacer text-center">
-                                        <img src="~/Assets/images/Account Verification.png" class="width-100px" />
-                                    </div>
-                                    <div class="col-md-12  col-sm-12 col-xs-12 spacer">
-                                        <p class="text-bold text-center">Deposit to your Nanopips Account.</p>
-                                    </div>
-                                    <div class="col-md-12 spacer text-center">
-                                        <button type="button" data-toggle="modal" data-target="#interacdeposit_model" class="btn btn-primary btn-lg submit_form_btn width-50-per">Interac e-Transfer</button>
-                                    </div>
-                                    <div class="col-md-12 spacer text-center">
-                                        <button type="button" data-toggle="modal" data-target="#wiredeposit_model" class="btn btn-primary btn-lg submit_form_btn width-50-per">Direct Deposit | Wire Transfer</button>
-                                    </div>
-                                    <div class="col-md-12 spacer text-center">
-                                        <button type="button" data-toggle="modal" data-target="#cryptoDeposit" class=" btnCryptoDeposit btn btn-primary btn-lg submit_form_btn width-50-per confirmation-Modal">Cryptocurrency Transfer</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>*@
-
-                <div class="modal fade" id="depositModel" role="dialog">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-body row" style="align-content:center">
@@ -399,7 +400,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>*@
                 <script>
                     $('.btnCryptoDeposit').click(function () {
                         $('#cryptoDeposit').css("overflow-y", "auto");
@@ -438,16 +439,16 @@
                                     </div>
                                     <div class="col-md-offset-4 col-md-4">
                                         @*<div class="btn-group" style="width: 100%;">
-                                            <button id="selectedcurrency" type="button" class="mar-top-20 btn btn-lg outline-primary dropdown-toggle dropdown-filter" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:inherit;">
-                                                Select Currency <span class="caret" style="margin-left:5px;"></span>
-                                            </button>
-                                            <ul id="sortable1" class="dropdown-menu">
-                                                @foreach (var item in Model.CurrencyList as List<Exchange.DTO.Currency>)
-                                                {
-                                                    <li><a href="#" class="candle-select-range currencyclick">@item.ThreeDigitName</a></li>
-                                                }
-                                            </ul>
-                                        </div>*@
+                                    <button id="selectedcurrency" type="button" class="mar-top-20 btn btn-lg outline-primary dropdown-toggle dropdown-filter" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:inherit;">
+                                        Select Currency <span class="caret" style="margin-left:5px;"></span>
+                                    </button>
+                                    <ul id="sortable1" class="dropdown-menu">
+                                        @foreach (var item in Model.CurrencyList as List<Exchange.DTO.Currency>)
+                                        {
+                                            <li><a href="#" class="candle-select-range currencyclick">@item.ThreeDigitName</a></li>
+                                        }
+                                    </ul>
+                                </div>*@
                                     </div>
                                     <div class="col-md-12  col-sm-12 col-xs-12 spacer">
                                         <p class="text-bold text-center">
@@ -546,13 +547,13 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="modal fade" id="wiredeposit_model" role="dialog">
                     <div class="modal-dialog" style="width: 85%;">
                         <!-- Modal content-->
                         <div class="modal-content" style="padding: 25px;">
                             <div class="modal-title">
-                                <div class="model-header"><b >Wire Transfer</b></div>
+                                <div class="model-header"><b>Wire Transfer</b></div>
                             </div>
                             <div class="modal-body">
                                 <div class="row">
@@ -619,15 +620,15 @@
                                     </div>
                                 </div>
                             </div>
-                             <div class="modal-footer" style="border-top:1px solid rgba(102, 184, 92, 1)">
-                                 <div class="" style="float:left;" >
-                                     Have more questions? 
-                                     <a href="@Url.Action("contact","Account")">Contact us</a>
-                                 </div> 
-                                 <div class="" style="float:right; font-size:20px" >
-                                     <a href="https://www.facebook.com/nanopips/"><i class="fa fa-facebook-f" style="margin-right:15px;"></i></a>                    
-                                     <a href="https://twitter.com/nanopips"><i class="fa fa-twitter"></i></a>
-                                 </div>
+                            <div class="modal-footer" style="border-top:1px solid rgba(102, 184, 92, 1)">
+                                <div class="" style="float:left;">
+                                    Have more questions?
+                                    <a href="@Url.Action("contact","Account")">Contact us</a>
+                                </div>
+                                <div class="" style="float:right; font-size:20px">
+                                    <a href="https://www.facebook.com/nanopips/"><i class="fa fa-facebook-f" style="margin-right:15px;"></i></a>
+                                    <a href="https://twitter.com/nanopips"><i class="fa fa-twitter"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -644,32 +645,32 @@
                                 <div class="row">
                                     <div class="col-md-9" style="font-size:14px">
                                         <b> INSTRUCTIONS: </b>
-                                        <br/>
+                                        <br />
                                         1. Send an Interac e-Transfer to <span style="color:darkblue;"><b><u>clientservice@nanopips.com</u></b></span>. (Canada Only)
-                                        <br/>
+                                        <br />
                                         2. Name: NanoPips Ltd.
-                                        <br/>
+                                        <br />
                                         3. Include your <b>Full Name</b> and NanoPips Verified <b>Email Address</b> in the Special Notes.
-                                        <br/><br />
+                                        <br /><br />
                                         Transfer Time: 1-24 Hours.
-                                        <br/><br/>
+                                        <br /><br />
                                         NanoPips does not charge any fees for incoming transfers.
-                                        <br/><br/>
+                                        <br /><br />
                                         Intermediary fees may apply.
-                                        <br/><br/>
+                                        <br /><br />
                                         Contact: <span style="color:darkblue;"><b><u>clientservice@nanopips.com</u></b></span>
                                     </div>
                                 </div>
                             </div>
-                             <div class="modal-footer" style="border-top:1px solid rgba(102, 184, 92, 1)">
-                                 <div class="" style="float:left;" >
-                                     Have more questions? 
-                                     <a href="@Url.Action("contact","Account")">Contact us</a>
-                                 </div> 
-                                 <div class="" style="float:right; font-size:20px" >
-                                     <a href="https://www.facebook.com/nanopips/"><i class="fa fa-facebook-f" style="margin-right:15px;"></i></a>                    
-                                     <a href="https://twitter.com/nanopips"><i class="fa fa-twitter"></i></a>
-                                 </div>
+                            <div class="modal-footer" style="border-top:1px solid rgba(102, 184, 92, 1)">
+                                <div class="" style="float:left;">
+                                    Have more questions?
+                                    <a href="@Url.Action("contact","Account")">Contact us</a>
+                                </div>
+                                <div class="" style="float:right; font-size:20px">
+                                    <a href="https://www.facebook.com/nanopips/"><i class="fa fa-facebook-f" style="margin-right:15px;"></i></a>
+                                    <a href="https://twitter.com/nanopips"><i class="fa fa-twitter"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>

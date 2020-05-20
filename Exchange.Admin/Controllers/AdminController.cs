@@ -131,6 +131,14 @@ namespace Exchange.UI.Controllers
             return RedirectToAction("AccountDetail", "Admin", new { acId = acId });
         }
 
+        public ActionResult _Error500() {
+            return View();
+        }
+
+        public ActionResult _Error404() {
+            return View();
+        }
+
         public ActionResult _GetTradeHistory(long accId)
         {
             DateTime from, to;
@@ -297,13 +305,17 @@ namespace Exchange.UI.Controllers
             return Json(new { Total = data.Select(m => m.Total).ToArray(), Date = data.Select(m => m.Date).ToArray() }, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult AccountDetail(string acId)
+        public ActionResult AccountDetail(string acId, bool suspend = false)
         {
             long id = Convert.ToInt64(acId);
             ViewBag.acDetId = id;
+            if (suspend)
+            {
+                _uow.Accounts.Suspend(Convert.ToInt64(acId));
+                TempData["msgSuspend"] = "Account has been suspended successfully";
+            }
             ViewBag.currencies = _uow.MarketRates.GetAllCurrencies().Where(x => x.Status == true && x.ThreeDigitName == "USD").ToList();
             return View(_uow.Accounts.Get().Where(m => m.AccountId == id).First());
-
         }
 
         [HttpPost]
@@ -708,7 +720,7 @@ namespace Exchange.UI.Controllers
                           msg += "<span class='btn'><a style='color:#000' href='/Admin/AccountDetail?acId=" + m.AccountId + "'>" + m.Email + "</a></span>";
                           return msg;
                       }).WithHeaderText("Email").WithHtmlEncoding(false).WithAllowChangeVisibility(true).WithFiltering(true).WithSorting(true);
-                      c.Add("Password").WithValueExpression(m => m.UserRoles.First().Password).WithHeaderText("Password").WithAllowChangeVisibility(false).WithFiltering(false);
+                      //c.Add("Password").WithValueExpression(m => m.UserRoles.First().Password).WithHeaderText("Password").WithAllowChangeVisibility(false).WithFiltering(false);
                       //c.Add("DOBDay").WithValueExpression(m => (m.DOBDay == null) ? "" : m.DOBYear + "-" + m.DOBMonth + "-" + m.DOBDay).WithHeaderText("Date of Birth").WithAllowChangeVisibility(true).WithFiltering(true).WithSorting(false);
                       c.Add("Status").WithValueExpression(m =>
                       {
@@ -738,28 +750,31 @@ namespace Exchange.UI.Controllers
                       {
 
                           string html = @"<span>";
-                          if (m.AccountType_Id == (int)AccountTypes.BASIC)
-                          {
-                              html += @"<a href=""/Admin/AccountDetail?acId=" + m.AccountId + @""" title=""Documents uploaded. View details"" class=""btn btn-sm btn-success""><i class=""fa fa-user""></i></a>";
-                          }
-                          else if (m.AccountType_Id == (int)AccountTypes.REJECTED)
-                          {
-                              html += @"<a href=""/Admin/AccountDetail?acId=" + m.AccountId + @""" title=""Documents rejected. View details"" class=""btn btn-sm btn-danger""><i class=""fa fa-user""></i></a>";
-                          }
-                          else
-                          {
-                              html += @"<a href=""/Admin/AccountDetail?acId=" + m.AccountId + @""" title=""View details"" class=""btn btn-sm btn-default""><i class=""fa fa-user""></i></a>";
+                          
+                          html += @"<a href=""/Admin/AccountDetail?acId=" + m.AccountId + "&suspend=" + true + @""" title=""suspend"" class=""btn btn-sm btn-default suspendAccount""><i class=""fa fa-lock""></i></a>";
 
-                          }
-                          if (m.AccountEnabled == true)
-                          {
-                              html += @" | <a href=""/Admin/SuspendAccount?acId=" + m.AccountId + @""" title=""suspend"" class=""btn btn-sm btn-default suspendAccount""><i class=""fa fa-lock""></i></a>";
-                          }
-                          else
-                          {
-                              html += @" | <a href=""/Admin/ActivateAccount?acId=" + m.AccountId + @""" title=""activate"" class=""btn btn-sm btn-default activateAccount""><i class=""fa fa-unlock""></i></a>";
+                          //if (m.AccountType_Id == (int) AccountTypes.BASIC)
+                          //{
+                          //    html += @"<a href=""/Admin/AccountDetail?acId=" + m.AccountId + @""" title=""Documents uploaded. View details"" class=""btn btn-sm btn-success""><i class=""fa fa-user""></i></a>";
+                          //}
+                          //else if (m.AccountType_Id == (int)AccountTypes.REJECTED)
+                          //{
+                          //    html += @"<a href=""/Admin/AccountDetail?acId=" + m.AccountId + @""" title=""Documents rejected. View details"" class=""btn btn-sm btn-danger""><i class=""fa fa-user""></i></a>";
+                          //}
+                          //else
+                          //{
+                          //    html += @"<a href=""/Admin/AccountDetail?acId=" + m.AccountId + @""" title=""View details"" class=""btn btn-sm btn-default""><i class=""fa fa-user""></i></a>";
 
-                          }
+                          //}
+                          //if (m.AccountEnabled == true)
+                          //{
+                          //    html += @" | <a href=""/Admin/SuspendAccount?acId=" + m.AccountId + @""" title=""suspend"" class=""btn btn-sm btn-default suspendAccount""><i class=""fa fa-lock""></i></a>";
+                          //}
+                          //else
+                          //{
+                          //    html += @" | <a href=""/Admin/ActivateAccount?acId=" + m.AccountId + @""" title=""activate"" class=""btn btn-sm btn-default activateAccount""><i class=""fa fa-unlock""></i></a>";
+
+                          //}
 
                           html += "</span>";
                           return html;
@@ -861,7 +876,7 @@ namespace Exchange.UI.Controllers
                           msg += "<span class='btn'><a style='color:#000' href='/Admin/AccountDetail?acId=" + m.AccountId + "'>" + m.Email + "</a></span>";
                           return msg;
                       }).WithHeaderText("Email").WithHtmlEncoding(false).WithAllowChangeVisibility(true).WithFiltering(true).WithSorting(true);
-                      c.Add("Password").WithValueExpression(m => m.UserRoles.First().Password).WithHeaderText("Password").WithAllowChangeVisibility(false).WithFiltering(false);
+                      //c.Add("Password").WithValueExpression(m => m.UserRoles.First().Password).WithHeaderText("Password").WithAllowChangeVisibility(false).WithFiltering(false);
                       //c.Add("DOBDay").WithValueExpression(m => (m.DOBDay == null) ? "" : m.DOBYear + "-" + m.DOBMonth + "-" + m.DOBDay).WithHeaderText("Date of Birth").WithAllowChangeVisibility(true).WithFiltering(true).WithSorting(false);
                       c.Add("Status").WithValueExpression(m =>
                       {
@@ -885,34 +900,37 @@ namespace Exchange.UI.Controllers
                           return msg;
                       }).WithHeaderText("Status").WithHtmlEncoding(false).WithAllowChangeVisibility(true).WithFiltering(true).WithSorting(false);
 
-                      c.Add("Options").WithValueExpression(m =>
-                      {
-                          string html = @"<span>";
-                          if (m.AccountType_Id == (int)AccountTypes.BASIC)
-                          {
-                              html += @"<a href=""/Admin/AccountDetail?acId=" + m.AccountId + @""" title=""Documents uploaded. View details"" class=""btn btn-sm btn-success""><i class=""fa fa-user""></i></a>";
-                          }
-                          else if (m.AccountType_Id == (int)AccountTypes.REJECTED)
-                          {
-                              html += @"<a href=""/Admin/AccountDetail?acId=" + m.AccountId + @""" title=""Documents rejected. View details"" class=""btn btn-sm btn-danger""><i class=""fa fa-user""></i></a>";
-                          }
-                          else
-                          {
-                              html += @"<a href=""/Admin/AccountDetail?acId=" + m.AccountId + @""" title=""View details"" class=""btn btn-sm btn-default""><i class=""fa fa-user""></i></a>";
-                          }
-                          if (m.AccountEnabled == true)
-                          {
-                              html += @" | <a href=""/Admin/SuspendAccount?acId=" + m.AccountId + @""" title=""suspend"" class=""btn btn-sm btn-default suspendAccount""><i class=""fa fa-lock""></i></a>";
-                          }
-                          else
-                          {
-                              html += @" | <a href=""/Admin/ActivateAccount?acId=" + m.AccountId + @""" title=""activate"" class=""btn btn-sm btn-default activateAccount""><i class=""fa fa-unlock""></i></a>";
-                          }
+                  c.Add("Options").WithValueExpression(m =>
+                  {
+                      string html = @"<span>";
 
-                          html += "</span>";
-                          return html;
+                      html += @"<a href=""/Admin/AccountDetail?acId=" + m.AccountId + "&suspend=" + true + @""" title=""suspend"" class=""btn btn-sm btn-default suspendAccount""><i class=""fa fa-lock""></i></a>";
 
-                      }).WithFiltering(false).WithSorting(false).WithHtmlEncoding(false);
+                      //    if (m.AccountType_Id == (int)AccountTypes.BASIC)
+                      //    {
+                      //        html += @"<a href=""/Admin/AccountDetail?acId=" + m.AccountId + @""" title=""Documents uploaded. View details"" class=""btn btn-sm btn-success""><i class=""fa fa-user""></i></a>";
+                      //    }
+                      //    else if (m.AccountType_Id == (int)AccountTypes.REJECTED)
+                      //    {
+                      //        html += @"<a href=""/Admin/AccountDetail?acId=" + m.AccountId + @""" title=""Documents rejected. View details"" class=""btn btn-sm btn-danger""><i class=""fa fa-user""></i></a>";
+                      //    }
+                      //    else
+                      //    {
+                      //        html += @"<a href=""/Admin/AccountDetail?acId=" + m.AccountId + @""" title=""View details"" class=""btn btn-sm btn-default""><i class=""fa fa-user""></i></a>";
+                      //    }
+                      //    if (m.AccountEnabled == true)
+                      //    {
+                      //        html += @" | <a href=""/Admin/SuspendAccount?acId=" + m.AccountId + @""" title=""suspend"" class=""btn btn-sm btn-default suspendAccount""><i class=""fa fa-lock""></i></a>";
+                      //    }
+                      //    else
+                      //    {
+                      //        html += @" | <a href=""/Admin/ActivateAccount?acId=" + m.AccountId + @""" title=""activate"" class=""btn btn-sm btn-default activateAccount""><i class=""fa fa-unlock""></i></a>";
+                      //    }
+
+                      html += "</span>";
+                      return html;
+
+                  }).WithFiltering(false).WithSorting(false).WithHtmlEncoding(false);
                   }).WithDefaultSortColumn("AccountId").WithDefaultSortDirection(SortDirection.Dsc).WithAdditionalQueryOptionName("search")
                     .WithRetrieveDataMethod((context) =>
                         {
@@ -1021,7 +1039,7 @@ namespace Exchange.UI.Controllers
                           msg += "<span class='btn'><a style='color:#000' href='/Admin/AccountDetail?acId=" + m.AccountId + "'>" + m.Email + "</a></span>";
                           return msg;
                       }).WithHeaderText("Email").WithHtmlEncoding(false).WithAllowChangeVisibility(true).WithFiltering(true).WithSorting(true);
-                      c.Add("Password").WithValueExpression(m => m.UserRoles.First().Password).WithHeaderText("Password").WithAllowChangeVisibility(false).WithFiltering(false);
+                      //c.Add("Password").WithValueExpression(m => m.UserRoles.First().Password).WithHeaderText("Password").WithAllowChangeVisibility(false).WithFiltering(false);
                       //c.Add("DOBDay").WithValueExpression(m => (m.DOBDay == null) ? "" : m.DOBYear + "-" + m.DOBMonth + "-" + m.DOBDay).WithHeaderText("Date of Birth").WithAllowChangeVisibility(true).WithFiltering(true).WithSorting(false);
                       c.Add("Status").WithValueExpression(m =>
                       {
@@ -1047,37 +1065,40 @@ namespace Exchange.UI.Controllers
                           return msg;
                       }).WithHeaderText("Status").WithHtmlEncoding(false).WithAllowChangeVisibility(true).WithFiltering(true).WithSorting(false);
 
-                      c.Add("Options").WithValueExpression(m =>
-                      {
+                  c.Add("Options").WithValueExpression(m =>
+                  {
 
-                          string html = @"<span>";
-                          if (m.AccountType_Id == (int)AccountTypes.BASIC)
-                          {
-                              html += @"<a href=""/Admin/AccountDetail?acId=" + m.AccountId + @""" title=""Documents uploaded. View details"" class=""btn btn-sm btn-success""><i class=""fa fa-user""></i></a>";
-                          }
-                          else if (m.AccountType_Id == (int)AccountTypes.REJECTED)
-                          {
-                              html += @"<a href=""/Admin/AccountDetail?acId=" + m.AccountId + @""" title=""Documents rejected. View details"" class=""btn btn-sm btn-danger""><i class=""fa fa-user""></i></a>";
-                          }
-                          else
-                          {
-                              html += @"<a href=""/Admin/AccountDetail?acId=" + m.AccountId + @""" title=""View details"" class=""btn btn-sm btn-default""><i class=""fa fa-user""></i></a>";
+                      string html = @"<span>";
 
-                          }
-                          if (m.AccountEnabled == true)
-                          {
-                              html += @" | <a href=""/Admin/SuspendAccount?acId=" + m.AccountId + @""" title=""suspend"" class=""btn btn-sm btn-default suspendAccount""><i class=""fa fa-lock""></i></a>";
-                          }
-                          else
-                          {
-                              html += @" | <a href=""/Admin/ActivateAccount?acId=" + m.AccountId + @""" title=""activate"" class=""btn btn-sm btn-default activateAccount""><i class=""fa fa-unlock""></i></a>";
+                      html += @"<a href=""/Admin/AccountDetail?acId=" + m.AccountId + "&suspend=" + true + @""" title=""suspend"" class=""btn btn-sm btn-default suspendAccount""><i class=""fa fa-lock""></i></a>";
 
-                          }
+                      //    if (m.AccountType_Id == (int)AccountTypes.BASIC)
+                      //    {
+                      //        html += @"<a href=""/Admin/AccountDetail?acId=" + m.AccountId + @""" title=""Documents uploaded. View details"" class=""btn btn-sm btn-success""><i class=""fa fa-user""></i></a>";
+                      //    }
+                      //    else if (m.AccountType_Id == (int)AccountTypes.REJECTED)
+                      //    {
+                      //        html += @"<a href=""/Admin/AccountDetail?acId=" + m.AccountId + @""" title=""Documents rejected. View details"" class=""btn btn-sm btn-danger""><i class=""fa fa-user""></i></a>";
+                      //    }
+                      //    else
+                      //    {
+                      //        html += @"<a href=""/Admin/AccountDetail?acId=" + m.AccountId + @""" title=""View details"" class=""btn btn-sm btn-default""><i class=""fa fa-user""></i></a>";
 
-                          html += "</span>";
-                          return html;
+                      //    }
+                      //    if (m.AccountEnabled == true)
+                      //    {
+                      //        html += @" | <a href=""/Admin/SuspendAccount?acId=" + m.AccountId + @""" title=""suspend"" class=""btn btn-sm btn-default suspendAccount""><i class=""fa fa-lock""></i></a>";
+                      //    }
+                      //    else
+                      //    {
+                      //        html += @" | <a href=""/Admin/ActivateAccount?acId=" + m.AccountId + @""" title=""activate"" class=""btn btn-sm btn-default activateAccount""><i class=""fa fa-unlock""></i></a>";
 
-                      }).WithFiltering(false).WithSorting(false).WithHtmlEncoding(false);
+                      //    }
+
+                      html += "</span>";
+                      return html;
+
+                  }).WithFiltering(false).WithSorting(false).WithHtmlEncoding(false);
 
                   }).WithDefaultSortColumn("AccountId").WithDefaultSortDirection(SortDirection.Dsc).WithAdditionalQueryOptionName("search")
                  .WithRetrieveDataMethod((context) =>
@@ -1169,7 +1190,6 @@ namespace Exchange.UI.Controllers
                       c.Add("LastName").WithValueExpression(m => m.LastName).WithHeaderText("Last Name").WithAllowChangeVisibility(true).WithFiltering(true);
                       c.Add("Email").WithValueExpression(m => m.Email).WithHeaderText("Email").WithAllowChangeVisibility(true).WithFiltering(true);
                       c.Add("UserRoles.FirstOrDefault.UserRoleType.UserRoles").WithValueExpression(m => m.UserRoles.FirstOrDefault().UserRoleType.RoleType.ToString()).WithHeaderText("User Type").WithAllowChangeVisibility(true).WithFiltering(false);
-
                       c.Add("Status").WithValueExpression(m =>
                       {
                           string msg = "";
@@ -1183,39 +1203,44 @@ namespace Exchange.UI.Controllers
                           }
                           return msg;
                       }).WithHeaderText("Status").WithHtmlEncoding(false).WithAllowChangeVisibility(true).WithFiltering(true).WithSorting(false);
-                      c.Add("Options").WithValueExpression(m =>
-                      {
 
-                          string html = @"<span>";
-                          //if (m.AccountType_Id == (int)AccountTypes.BASIC)
-                          //{
-                          //    html += @"<a href=""/Admin/AccountDetail?acId=" + m.AccountId + @""" title=""Documents uploaded. View details"" class=""btn btn-sm btn-success""><i class=""fa fa-user""></i></a>";
-                          //}
-                          //else if (m.AccountType_Id == (int)AccountTypes.REJECTED)
-                          //{
-                          //    html += @"<a href=""/Admin/AccountDetail?acId=" + m.AccountId + @""" title=""Documents rejected. View details"" class=""btn btn-sm btn-danger""><i class=""fa fa-user""></i></a>";
-                          //}
-                          //else
-                          //{
-                          //    html += @"<a href=""/Admin/AccountDetail?acId=" + m.AccountId + @""" title=""View details"" class=""btn btn-sm btn-default""><i class=""fa fa-user""></i></a>";
+                  c.Add("Options").WithValueExpression(m =>
+                  {
 
-                          //}
-                          
+                      string html = @"<span>";
 
-                          if (m.AccountEnabled == true)
-                          {
-                              html += @" | <a href=""/Admin/SuspendAdminAccount?acId=" + m.AccountId + @""" title=""suspend"" class=""btn btn-sm btn-default suspendAdmin""><i class=""fa fa-lock""></i></a>";
-                          }
-                          else
-                          {
-                              html += @" | <a href=""/Admin/ActivateAdminAccount?acId=" + m.AccountId + @""" title=""activate"" class=""btn btn-sm btn-default activateAdmin""><i class=""fa fa-unlock""></i></a>";
+                      html += @"<a href=""/Admin/AccountDetail?acId=" + m.AccountId + "&suspend=" + true + @""" title=""suspend"" class=""btn btn-sm btn-default suspendAccount""><i class=""fa fa-lock""></i></a>";
 
-                          }
+                      //    //if (m.AccountType_Id == (int)AccountTypes.BASIC)
+                      //    //{
+                      //    //    html += @"<a href=""/Admin/AccountDetail?acId=" + m.AccountId + @""" title=""Documents uploaded. View details"" class=""btn btn-sm btn-success""><i class=""fa fa-user""></i></a>";
+                      //    //}
+                      //    //else if (m.AccountType_Id == (int)AccountTypes.REJECTED)
+                      //    //{
+                      //    //    html += @"<a href=""/Admin/AccountDetail?acId=" + m.AccountId + @""" title=""Documents rejected. View details"" class=""btn btn-sm btn-danger""><i class=""fa fa-user""></i></a>";
+                      //    //}
+                      //    //else
+                      //    //{
+                      //    //    html += @"<a href=""/Admin/AccountDetail?acId=" + m.AccountId + @""" title=""View details"" class=""btn btn-sm btn-default""><i class=""fa fa-user""></i></a>";
 
-                          html += "</span>";
-                          return html;
+                      //    //}
 
-                      }).WithFiltering(false).WithSorting(false).WithHtmlEncoding(false);
+
+                      //    if (m.AccountEnabled == true)
+                      //    {
+                      //        html += @" | <a href=""/Admin/SuspendAdminAccount?acId=" + m.AccountId + @""" title=""suspend"" class=""btn btn-sm btn-default suspendAdmin""><i class=""fa fa-lock""></i></a>";
+                      //    }
+                      //    else
+                      //    {
+                      //        html += @" | <a href=""/Admin/ActivateAdminAccount?acId=" + m.AccountId + @""" title=""activate"" class=""btn btn-sm btn-default activateAdmin""><i class=""fa fa-unlock""></i></a>";
+
+                      //    }
+
+                      html += "</span>";
+                      return html;
+
+                  }).WithFiltering(false).WithSorting(false).WithHtmlEncoding(false);
+
                   }).WithDefaultSortColumn("AccountId").WithDefaultSortDirection(SortDirection.Dsc).WithAdditionalQueryOptionName("search")
                  .WithRetrieveDataMethod((context) =>
                  {
