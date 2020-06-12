@@ -64,7 +64,7 @@ namespace Exchange.UI.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            var date = DateTime.Parse("5/30/2020");
+            var date = DateTime.Parse("8/29/2020");
             if (DateTime.Now < date)
             {
                 UOWRegistration.BindAll(kernel);
